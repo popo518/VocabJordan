@@ -1,5 +1,5 @@
 const CACHE_NAME = 'vocabjordan-v7';
-const ASSETS = ['/', '/index.html', '/manifest.json', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/icon.svg'];
+const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './icon.svg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -26,6 +26,6 @@ self.addEventListener('fetch', e => {
       const clone = res.clone();
       caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
       return res;
-    }).catch(() => caches.match(e.request).then(cached => cached || caches.match('/index.html')))
+    }).catch(() => caches.match(e.request).then(cached => cached || caches.match('./index.html')))
   );
 });
