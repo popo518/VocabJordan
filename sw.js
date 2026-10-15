@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vocabjordan-v7';
+const CACHE_NAME = 'vocabjordan-v8';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './icon.svg'];
 
 self.addEventListener('install', e => {
