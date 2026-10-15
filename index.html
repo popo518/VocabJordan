@@ -347,17 +347,13 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 
 <div class="float-bg" id="floatBg"></div>
 <div class="float-dust" id="floatDust"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="orb orb-4"></div>
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="orb orb-4"></div>
 
 <div id="confirmModal"><div class="cm-box"><div class="cm-title" id="cmTitle">تأكيد</div><div class="cm-text" id="cmText">هل أنت متأكد؟</div><div class="cm-actions"><button class="action-btn ghost" id="cmCancel">إلغاء</button><button class="action-btn" id="cmOk">تأكيد</button></div></div></div>
 <div id="countModal"><div class="cm-box"><div class="cm-title">🎯 عدد أسئلة مخصص</div><div class="cm-text">أدخل عدد الأسئلة اللي بدك إياها</div><input type="number" class="cm-input" id="countInput" min="1" max="100" value="10" inputmode="numeric"><div class="cm-hint">المتاح: <b id="countMax">99</b> سؤال</div><div class="cm-actions"><button class="action-btn ghost" id="countCancel">إلغاء</button><button class="action-btn" id="countOk">تأكيد ✓</button></div></div></div>
 <div id="iosModal"><div class="cm-box"><div class="cm-title">📲 تثبيت التطبيق على iPhone</div><div class="cm-text">لأن iOS Safari ما يدعم التثبيت التلقائي، اتبع هالخطوات:</div><div class="ios-steps"><div class="step-row"><span class="step-num">1</span><span>اضغط على زر <b>المشاركة</b> <span style="font-size:1.1rem">⬆️</span> في الأسفل</span></div><div class="step-row"><span class="step-num">2</span><span>اختر <b>"إضافة إلى الشاشة الرئيسية"</b> <span style="font-size:1.1rem">➕</span></span></div><div class="step-row"><span class="step-num">3</span><span>اضغط <b>"إضافة"</b> في الأعلى</span></div></div><div class="cm-actions"><button class="action-btn" id="iosOk">فهمت ✓</button></div></div></div>
 
 <div class="stage">
-
   <div id="scr-home" class="screen active">
     <div class="topbar">
       <div class="brand"><div class="brand-logo">V</div><div><div class="brand-name">VocabJordan</div><div class="brand-sub">مفردات 2009 متقدم</div></div></div>
@@ -373,10 +369,7 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
   </div>
 
   <div id="scr-vocab" class="screen">
-    <div class="unit-header">
-      <button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button>
-      <div class="uh-info"><div class="uh-label" id="vLabel">UNIT 01</div><div class="uh-title" id="vTitle">المعاني</div></div>
-    </div>
+    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label" id="vLabel">UNIT 01</div><div class="uh-title" id="vTitle">المعاني</div></div></div>
     <div class="content-wrap"><div class="step-title" style="text-align:center;padding-bottom:10px"><p>اختر شنو بدك تعمل</p></div><div class="boxes-grid" id="vocabGrid"></div></div>
   </div>
 
@@ -431,7 +424,6 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
     <div class="content-wrap"><div class="scroll-area" id="resultsBody" style="padding-top:8px"></div></div>
     <div class="bottom-bar" id="resultsBottomBar"></div>
   </div>
-
 </div>
 
 <div class="quality-float" id="qualityBar" role="group" aria-label="جودة العرض">
@@ -457,11 +449,10 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   🧩  1) بيانات المعاني (VOCAB)
+   🧩  بيانات المعاني (VOCAB)
    ═══════════════════════════════════════════════════════════════════════════ */
 const VOCAB=[
   {unit:'الوحدة الأولى', sections:[
-
     {title:'Fixed expressions related to identity', words:[
       {t:'be wild about (something)', m:'مولع بشيء ما', e:'be crazy about something'},
       {t:'get a kick out of (something)', m:'يشعر بالمتعة والحماس', e:'feel excitement and enjoyment'},
@@ -473,67 +464,32 @@ const VOCAB=[
       {t:'plump for', m:'يختار شيئاً بعد تردد / تفكير', e:'choose'},
       {t:'be (not) (that) into', m:'(ليس) مهتمًا (كثيرًا)', e:'(not) be (very) keen on something'}
     ]},
-
     {title:'Personality adjectives and values', words:[
-      {t:'spontaneous', m:'تلقائي / عفوي'},
-      {t:'spontaneity', m:'التلقائية / العفوية'},
-      {t:'committed', m:'ملتزم'},
-      {t:'commitment', m:'الالتزام'},
-      {t:'frank', m:'صريح'},
-      {t:'frankness', m:'الصراحة'},
-      {t:'stable', m:'مستقر'},
-      {t:'stability', m:'الاستقرار'},
-      {t:'tactful', m:'لبق'},
-      {t:'tactfulness', m:'اللباقة'},
-      {t:'passionate (about)', m:'شغوف'},
-      {t:'passion', m:'الشغف'},
-      {t:'assertive', m:'حازم'},
-      {t:'assertiveness', m:'الحزم'},
-      {t:'discreet', m:'كنوم'},
-      {t:'discretion', m:'الكنمان'},
-      {t:'humble', m:'متواضع'},
-      {t:'humility', m:'التواضع'},
-      {t:'inclusive', m:'شامل / متقبل للآخرين'},
-      {t:'inclusiveness / inclusivity', m:'الشمول'},
-      {t:'merciful', m:'رحيم'},
-      {t:'mercy', m:'الرحمة'},
-      {t:'sincere', m:'صادق'},
-      {t:'sincerity', m:'الصدق'}
+      {t:'spontaneous', m:'تلقائي / عفوي'},{t:'spontaneity', m:'التلقائية / العفوية'},
+      {t:'committed', m:'ملتزم'},{t:'commitment', m:'الالتزام'},
+      {t:'frank', m:'صريح'},{t:'frankness', m:'الصراحة'},
+      {t:'stable', m:'مستقر'},{t:'stability', m:'الاستقرار'},
+      {t:'tactful', m:'لبق'},{t:'tactfulness', m:'اللباقة'},
+      {t:'passionate (about)', m:'شغوف'},{t:'passion', m:'الشغف'},
+      {t:'assertive', m:'حازم'},{t:'assertiveness', m:'الحزم'},
+      {t:'discreet', m:'كنوم'},{t:'discretion', m:'الكنمان'},
+      {t:'humble', m:'متواضع'},{t:'humility', m:'التواضع'},
+      {t:'inclusive', m:'شامل / متقبل للآخرين'},{t:'inclusiveness / inclusivity', m:'الشمول'},
+      {t:'merciful', m:'رحيم'},{t:'mercy', m:'الرحمة'},
+      {t:'sincere', m:'صادق'},{t:'sincerity', m:'الصدق'}
     ]},
-
     {title:'Compound adjectives (personality)', words:[
-      {t:'tight-fisted', m:'بخيل'},
-      {t:'like-minded', m:'متشابه التفكير'},
-      {t:'strong-willed', m:'قوي الإرادة'},
-      {t:'kind-hearted', m:'طيب القلب'},
-      {t:'high-spirited', m:'مفعم بالحيوية / الحماس'},
-      {t:'narrow-minded', m:'ضيق الأفق'},
-      {t:'thin-skinned', m:'حساس جدًا'},
-      {t:'olive oil-based', m:'قائم على زيت الزيتون'},
-      {t:'absent-minded', m:'شارد الذهن'},
-      {t:'quick-witted', m:'سريع البديهة'},
-      {t:'forward-looking', m:'متطلع للمستقبل'},
-      {t:'good-looking', m:'حسن المظهر'},
-      {t:'record-breaking', m:'مُحطّم للأرقام القياسية'},
-      {t:'eye-catching', m:'ملفت للنظر / جذاب'},
-      {t:'thought-provoking', m:'مثير للتفكير'},
-      {t:'time-saving', m:'موفر للوقت'},
-      {t:'mouth-watering', m:'مشهي'},
-      {t:'hard-working', m:'مجتهد / مواظب على العمل'},
-      {t:'cutting-edge', m:'رائد في مجاله / متطور'},
-      {t:'world-famous', m:'مشهور عالميًا'},
-      {t:'full-time', m:'بدوام كامل'},
-      {t:'laid-back', m:'هادئ الطباع / بارد الأعصاب'},
-      {t:'red-hot', m:'متوهج / مشتعل'},
-      {t:'highly strung', m:'شديد التوتر'},
-      {t:'tongue tied', m:'عاجز عن الكلام'},
-      {t:'underconfident', m:'متردد / غير واثق'},
-      {t:'streetwise', m:'شخص ذكي في التعامل مع أمور الحياة'},
-      {t:'lifelong', m:'مدى الحياة / طويل الأمد'},
-      {t:'carefree', m:'خالٍ من الهموم'},
-      {t:'overcooked', m:'مطهو أكثر من اللازم'}
+      {t:'tight-fisted', m:'بخيل'},{t:'like-minded', m:'متشابه التفكير'},{t:'strong-willed', m:'قوي الإرادة'},
+      {t:'kind-hearted', m:'طيب القلب'},{t:'high-spirited', m:'مفعم بالحيوية / الحماس'},{t:'narrow-minded', m:'ضيق الأفق'},
+      {t:'thin-skinned', m:'حساس جدًا'},{t:'olive oil-based', m:'قائم على زيت الزيتون'},{t:'absent-minded', m:'شارد الذهن'},
+      {t:'quick-witted', m:'سريع البديهة'},{t:'forward-looking', m:'متطلع للمستقبل'},{t:'good-looking', m:'حسن المظهر'},
+      {t:'record-breaking', m:'مُحطّم للأرقام القياسية'},{t:'eye-catching', m:'ملفت للنظر / جذاب'},{t:'thought-provoking', m:'مثير للتفكير'},
+      {t:'time-saving', m:'موفر للوقت'},{t:'mouth-watering', m:'مشهي'},{t:'hard-working', m:'مجتهد / مواظب على العمل'},
+      {t:'cutting-edge', m:'رائد في مجاله / متطور'},{t:'world-famous', m:'مشهور عالميًا'},{t:'full-time', m:'بدوام كامل'},
+      {t:'laid-back', m:'هادئ الطباع / بارد الأعصاب'},{t:'red-hot', m:'متوهج / مشتعل'},{t:'highly strung', m:'شديد التوتر'},
+      {t:'tongue tied', m:'عاجز عن الكلام'},{t:'underconfident', m:'متردد / غير واثق'},{t:'streetwise', m:'شخص ذكي في التعامل مع أمور الحياة'},
+      {t:'lifelong', m:'مدى الحياة / طويل الأمد'},{t:'carefree', m:'خالٍ من الهموم'},{t:'overcooked', m:'مطهو أكثر من اللازم'}
     ]},
-
     {title:'Idioms and idiomatic phrases related to personality', words:[
       {t:'a cold fish', m:'شخص بارد المشاعر', e:'a person who doesn’t show their feelings'},
       {t:'a dark horse', m:'شخص يخفي قدراته (قد يفاجئ الآخرين بقدراته)', e:'a person who keeps their abilities secret'},
@@ -545,7 +501,6 @@ const VOCAB=[
       {t:'a social butterfly', m:'شخص اجتماعي', e:'someone who likes to attend social events'},
       {t:'keep yourself to yourself', m:'شخص لا يحب مقابلة الناس / انطوائي', e:'to avoid meeting people socially'}
     ]},
-
     {title:'Words with their definitions', words:[
       {t:'destiny', m:'المصير / القدر', e:'what will happen in the future'},
       {t:'disposition', m:'الطبع / السجية', e:'character or personality'},
@@ -559,7 +514,6 @@ const VOCAB=[
       {t:'proponents', m:'المؤيدون', e:'people who publicly support an idea'},
       {t:'trait', m:'صفة / سمة', e:'a particular characteristic or way of behaving'}
     ]},
-
     {title:'Verbs for thinking and understanding', words:[
       {t:'perceive', m:'يدرك (يستخدم الحواس لإدراك شيء معين)'},
       {t:'recognise', m:'يتعرف / يميز / يدرك'},
@@ -573,64 +527,38 @@ const VOCAB=[
       {t:'consider', m:'يأخذ بعين الاعتبار / يفكر'},
       {t:'reflect', m:'يفكر بعمق / يتأمل / يعكس'}
     ]}
-
   ]},
 
   {unit:'الوحدة الثانية', sections:[
-
     {title:'Verbs of movement', words:[
-      {t:'surge', m:'يندفع بقوة'},
-      {t:'lurch', m:'يتحرك فجأة وبشكل غير متوازن'},
-      {t:'hobble', m:'يعرج (بسبب إصابة أو عملية)'},
-      {t:'wobble', m:'يتمایل'},
-      {t:'shuffle', m:'يجز قدميه / يمشي متثاقلًا'},
-      {t:'stride', m:'يمشي بخطوات واسعة / واثقة'},
-      {t:'ride', m:'يركب'}
+      {t:'surge', m:'يندفع بقوة'},{t:'lurch', m:'يتحرك فجأة وبشكل غير متوازن'},{t:'hobble', m:'يعرج (بسبب إصابة أو عملية)'},
+      {t:'wobble', m:'يتمایل'},{t:'shuffle', m:'يجز قدميه / يمشي متثاقلًا'},{t:'stride', m:'يمشي بخطوات واسعة / واثقة'},{t:'ride', m:'يركب'}
     ]},
-
     {title:'Idioms related to movement', words:[
-      {t:'in the same boat', m:'في نفس المأزق'},
-      {t:'go downhill', m:'يتهدور / يسوء'},
+      {t:'in the same boat', m:'في نفس المأزق'},{t:'go downhill', m:'يتهدور / يسوء'},
       {t:'driving force behind (something)', m:'القوة الدافعة وراء شيء ما'},
-      {t:'be plain sailing', m:'سهل وسلس دون مشاكل'},
-      {t:'take somebody for a ride', m:'يخدع شخصًا / يستغله'},
+      {t:'be plain sailing', m:'سهل وسلس دون مشاكل'},{t:'take somebody for a ride', m:'يخدع شخصًا / يستغله'},
       {t:'steer clear of (something)', m:'يتجنب شيئًا / يتفاداه'},
       {t:'drive (somebody) up the wall', m:'يثير جنون شخص ما / يزعجه بشدة'},
       {t:'completely at sea with something', m:'في حيرة تامة ولا يفهم شيئًا ما'}
     ]},
-
     {title:'Public transport words and their synonyms', words:[
-      {t:'descend', m:'ينزل / يهبط (syn: go down)'},
-      {t:'bolt', m:'يندفع بسرعة (syn: rush)'},
-      {t:'collide', m:'يصطدم (syn: crash into)'},
-      {t:'drag', m:'يجر (syn: pull)'},
-      {t:'rumble', m:'يتقدم ببطء مع دوي منخفض (syn: go slowly)'},
-      {t:'alight', m:'ينزل من وسيلة نقل (syn: get off)'},
-      {t:'falter', m:'يتعثر (syn: slip)'},
-      {t:'disperse', m:'يتفرق (syn: spread out)'}
+      {t:'descend', m:'ينزل / يهبط (syn: go down)'},{t:'bolt', m:'يندفع بسرعة (syn: rush)'},
+      {t:'collide', m:'يصطدم (syn: crash into)'},{t:'drag', m:'يجر (syn: pull)'},
+      {t:'rumble', m:'يتقدم ببطء مع دوي منخفض (syn: go slowly)'},{t:'alight', m:'ينزل من وسيلة نقل (syn: get off)'},
+      {t:'falter', m:'يتعثر (syn: slip)'},{t:'disperse', m:'يتفرق (syn: spread out)'}
     ]},
-
     {title:'Phrases', words:[
-      {t:'brag about (something)', m:'يتفاخر بـ / يتباهى بـ'},
-      {t:'the knock-on effect', m:'تأثير غير مباشر / أثر مترتّب على'},
-      {t:'a hurdle / hurdles... to overcome', m:'عقبة / عقبات يجب تجاوزها'},
-      {t:'leave (your) mark', m:'تترك بصمتك'},
-      {t:'get their fair share', m:'يحصل نصيبه العادل'},
-      {t:'at breakneck speed', m:'بسرعة فائقة / جنونية'}
+      {t:'brag about (something)', m:'يتفاخر بـ / يتباهى بـ'},{t:'the knock-on effect', m:'تأثير غير مباشر / أثر مترتّب على'},
+      {t:'a hurdle / hurdles... to overcome', m:'عقبة / عقبات يجب تجاوزها'},{t:'leave (your) mark', m:'تترك بصمتك'},
+      {t:'get their fair share', m:'يحصل نصيبه العادل'},{t:'at breakneck speed', m:'بسرعة فائقة / جنونية'}
     ]},
-
     {title:'Phrasal nouns', words:[
-      {t:'getaway', m:'رحلة قصيرة (هروب من روتين معين)'},
-      {t:'outcome', m:'نتيجة / مآل'},
-      {t:'breakthrough', m:'تقدّم كبير / إنجاز نوعيّ / طفرة نوعيّة'},
-      {t:'outlook', m:'توقعات (الطقس) / نظرة مستقبلية'},
-      {t:'setback', m:'نكسة / عقبة'},
-      {t:'outset', m:'البداية'},
-      {t:'outlay', m:'إنفاق / نفقة'},
-      {t:'outcry', m:'احتجاج كبير / استنكار'},
-      {t:'cutbacks', m:'تقليصات (في الميزانية / عدد الموظفين)'}
+      {t:'getaway', m:'رحلة قصيرة (هروب من روتين معين)'},{t:'outcome', m:'نتيجة / مآل'},
+      {t:'breakthrough', m:'تقدّم كبير / إنجاز نوعيّ / طفرة نوعيّة'},{t:'outlook', m:'توقعات (الطقس) / نظرة مستقبلية'},
+      {t:'setback', m:'نكسة / عقبة'},{t:'outset', m:'البداية'},{t:'outlay', m:'إنفاق / نفقة'},
+      {t:'outcry', m:'احتجاج كبير / استنكار'},{t:'cutbacks', m:'تقليصات (في الميزانية / عدد الموظفين)'}
     ]},
-
     {title:'SPEAKING | Considering options', words:[
       {t:'Considering alternatives', m:'التفكير في البدائل'},
       {t:"There's a lot to be said for... But on the other hand, ...", m:'هناك الكثير مما يُقال لصالح... ولكن من ناحية أخرى،'},
@@ -648,16 +576,13 @@ const VOCAB=[
       {t:'There are pros and cons for each.', m:'لكل منهما إيجابيات وسلبيات'},
       {t:"If you really wanted to pin me down, I'd probably say...", m:'إذا كنت مصرًا على معرفة رأيي، فربما سأقول...'}
     ]},
-
     {title:'Travel Verbs (Literal vs Figurative)', words:[
       {t:'drive (yourself / somebody) too hard', m:'يدفع نفسه / غيره إلى بذل جهد مفرط قد يكون ضارًا (مجازي) · يقود مركبة (حرفي)', e:'to push yourself or somebody to work extremely hard (figurative) · to operate a vehicle (literal)'},
       {t:'park (an idea / something)', m:'يؤجل التفكير في فكرة أو موضوع إلى وقت لاحق (مجازي) · يصف أو يركن مركبة (حرفي)', e:'to delay thinking about an idea or subject until a later time (figurative) · to leave a vehicle in a particular place for a time (literal)'}
     ]}
-
   ]},
 
   {unit:'الوحدة الثالثة', sections:[
-
     {title:'Business-related vocabulary', words:[
       {t:'quote', m:'السعر المقدّر / عرض السعر / السعر المقترح', e:'the estimated price that will be charged for a service'},
       {t:'USP (Unique Selling Point)', m:'الميزة الفارقة / التي تميز المنتج', e:'the feature that makes a product different from and better than anything else'},
@@ -672,7 +597,6 @@ const VOCAB=[
       {t:'bricks and mortar', m:'مشروع له مقر فعلي (غير إلكتروني)', e:'buildings such as houses, offices, factories'},
       {t:'turnover', m:'إجمالي الإيرادات / المبيعات', e:'the amount of business a company does in a set period of time'}
     ]},
-
     {title:'Phrasal verbs related to Business', words:[
       {t:'break into', m:'ينخرط في / يدخل السوق', e:'get involved with'},
       {t:'build up', m:'يزيد / يُنمي تدريجياً', e:'gradually increase'},
@@ -682,7 +606,6 @@ const VOCAB=[
       {t:'sign up', m:'يُسجل / ينضم رسميًا', e:'get to commit'},
       {t:'win over', m:'يكسب تأييد / يُقنع', e:'persuade'}
     ]},
-
     {title:'Synonyms for the verb persuade', words:[
       {t:'coerce (into doing something)', m:'يُجبر أو يُكره على فعل شيء'},
       {t:'incite (to do something)', m:'يُحرّض أو يُشجّع بقوة'},
@@ -696,7 +619,6 @@ const VOCAB=[
       {t:'convince (to do something)', m:'يُقنع أو يُثبت صحة أمر'},
       {t:'sway (into doing something)', m:'يُؤثر في الرأي أو القرار'}
     ]},
-
     {title:'SPEAKING | Negotiating', words:[
       {t:'This is a bit awkward, but...', m:'هذا محرج بعض الشيء، ولكن...'},
       {t:'Would you be prepared to...?', m:'هل ستكون مستعداً ل...؟'},
@@ -717,22 +639,14 @@ const VOCAB=[
       {t:'Can we try and meet halfway on this?', m:'هل يمكننا الوصول إلى حل وسط؟'},
       {t:'How does that sound?', m:'ما رأيك بهذا الاقتراح؟'}
     ]},
-
     {title:'Words with their synonyms', words:[
       {t:'bear in mind', m:'يأخذ بعين الاعتبار (syn: take into account)'},
-      {t:'cancel out', m:'يلغي / يطلب (syn: outweigh)'},
-      {t:'negate', m:'يلغي'},
-      {t:'persevere', m:'يثابر (syn: persist)'},
-      {t:'plough on', m:'يواصل بالرغم من الصعوبات'},
-      {t:'detrimental', m:'ضار / مؤذ (syn: adverse)'},
-      {t:'dispassionate', m:'غير متحيز (syn: objective)'},
-      {t:'impartial', m:'محايد'},
-      {t:'notion', m:'مفهوم (syn: concept)'},
-      {t:'pitfall', m:'مأزق (syn: trap)'},
-      {t:'snare', m:'فخ'},
-      {t:'propensity', m:'نزعة / ميل (syn: tendency)'}
+      {t:'cancel out', m:'يلغي / يطلب (syn: outweigh)'},{t:'negate', m:'يلغي'},
+      {t:'persevere', m:'يثابر (syn: persist)'},{t:'plough on', m:'يواصل بالرغم من الصعوبات'},
+      {t:'detrimental', m:'ضار / مؤذ (syn: adverse)'},{t:'dispassionate', m:'غير متحيز (syn: objective)'},
+      {t:'impartial', m:'محايد'},{t:'notion', m:'مفهوم (syn: concept)'},
+      {t:'pitfall', m:'مأزق (syn: trap)'},{t:'snare', m:'فخ'},{t:'propensity', m:'نزعة / ميل (syn: tendency)'}
     ]},
-
     {title:'Collocations related to purchasing', words:[
       {t:'buy in bulk', m:'يشتري بالجملة / بكميات كبيرة (بهدف التوفير)'},
       {t:'go on a shopping spree', m:'يتسوق بكثرة دفعة واحدة'},
@@ -743,7 +657,6 @@ const VOCAB=[
       {t:'display wares', m:'يعرض بضاعته'},
       {t:'run errands', m:'يقضي الحاجات / قضاء المهمات اليومية'}
     ]},
-
     {title:'Sales and persuasion techniques', words:[
       {t:'framing', m:'تأطير (طريقة عرض الفكرة أو المعلومة للتأثير على القرار)', e:'the way information is presented to influence the decisions people make'},
       {t:'the scarcity principle', m:'مبدأ الندرة', e:'a way of making the customer believe that there is not enough of a product, allowing salespeople to sell it more quickly, for a higher price, or both'},
@@ -751,162 +664,14 @@ const VOCAB=[
       {t:'social proof', m:'الدليل الاجتماعي', e:'when a product seems more attractive because many other people are buying it, too'},
       {t:'"yes questions"', m:'أسئلة "نعم" (أسئلة توجيهية تجعل الزبون يوافق)', e:'asking a series of questions where the answer is intended to be "Yes", to encourage the customer to agree with the salesperson'}
     ]}
-
-  ]},
-
-  {unit:'الوحدة الرابعة', sections:[
-
-    {title:'Adjectives to describe food', words:[
-      {t:'tempting', m:'مُغر / فاتح للشهية'},
-      {t:'fluffy', m:'هش / رقيق (منتفخ، فيه هواء)'},
-      {t:'tender', m:'طري'},
-      {t:'velvety', m:'ناعم القوام'},
-      {t:'chewy', m:'صعب المضغ'},
-      {t:'greasy', m:'دهني (مليء بالزيوت)'},
-      {t:'stodgy', m:'دسم / ثقيل على المعدة'},
-      {t:'mouldy', m:'متعفن'},
-      {t:'scalding', m:'شديد السخونة'},
-      {t:'soggy', m:'رطب / رخو / مبلل بشكل زائد'}
-    ]},
-
-    {title:'Partitives', words:[
-      {t:'a piece of information', m:'معلومة'},
-      {t:'a piece of advice', m:'نصيحة'},
-      {t:'a piece of fruit', m:'قطعة فاكهة'},
-      {t:'a piece of gooey chocolate brownie', m:'قطعة من براوني الشوكولاتة اللزجة'},
-      {t:'a drop of oil', m:'قطرة من الزيت'},
-      {t:'a drop of dressing', m:'قطرة من التنبيلة'},
-      {t:'a slab of meat', m:'شريحة سميكة من اللحم'},
-      {t:'a slab of chocolate', m:'قطعة سميكة من الشوكولاتة'},
-      {t:'a slice of cheese', m:'شريحة من الجبن'},
-      {t:'a slice of lemon', m:'شريحة من الليمون'},
-      {t:'a slice of toast', m:'شريحة من الخبز المحمّص'},
-      {t:'a segment of fruit', m:'شريحة / قطعة من الفاكهة'},
-      {t:'a segment of orange', m:'شريحة / قطعة من البرتقال'},
-      {t:'a segment of grapefruit', m:'شريحة / قطعة من الجريب فروت'},
-      {t:'a dab of glue', m:'القليل من الصمغ'},
-      {t:'a dab of chocolate sauce', m:'القليل من صلصة الشوكولاتة'},
-      {t:'a sprinkle of sugar', m:'رشة من السكر العادي'},
-      {t:'a spoonful of tomato sauce', m:'ملعقة من صلصة الطماطم'},
-      {t:'a spoonful of baked beans', m:'ملعقة من الفاصولياء المطبوخة'},
-      {t:'a dusting of icing sugar', m:'رشة من سكر التزيين'},
-      {t:'a dusting of chocolate powder', m:'رشة من مسحوق الشوكولاتة'},
-      {t:'a dusting of flour', m:'رشة من الدقيق'},
-      {t:'a sprig of herbs', m:'عود من الأعشاب العطرية'},
-      {t:'a sprig of mint', m:'عود من النعناع'},
-      {t:'a clove of garlic', m:'فص / حبة من الثوم'},
-      {t:'a heel of bread', m:'الطرف الأخير من الرغيف'},
-      {t:'a handful of peas', m:'حفنة من البازلاء'},
-      {t:'a scoop of ice cream', m:'ملعقة / كرة من المثلجات'},
-      {t:'a pinch of salt', m:'رشة من الملح'},
-      {t:'a fit of anger', m:'نوبة غضب'},
-      {t:'a sprinkle of grated chocolate', m:'رشة من الشوكولاتة المبشورة'},
-      {t:'portions of fruit and vegetables', m:'حصص من الفاكهة والخضروات'}
-    ]},
-
-    {title:'Vocabulary related to eating', words:[
-      {t:'let your dinner go down', m:'تدع عشاءك يُهضم', e:'let your body digest dinner'},
-      {t:'your stomach rumbles', m:'معدتك تصدر صوت قرقرة / يقرقر بطنك من الجوع', e:'you get a sudden message from your stomach'},
-      {t:'rustle up (something)', m:'يُحضر شيئاً سريعاً', e:'quickly cook'},
-      {t:'comfort eating', m:'الأكل بدافع الراحة', e:'something tasty and full of unhealthy ingredients'},
-      {t:'devour', m:'يلتهم بشراهة / بنهم', e:'eat'}
-    ]},
-
-    {title:'Verbs', words:[
-      {t:'bombard', m:'يهاجم / يمطر بوابل'},
-      {t:'water', m:'يسيل لعابه عند رؤية شيء (يُشم / يُرى)'},
-      {t:'devour', m:'يلتهم بشراهة / بنهم'},
-      {t:'sneak', m:'يتسلل'},
-      {t:'trawl (through)', m:'يبحث / يفتش بدقة / ينقب'},
-      {t:'strike', m:'يضرب'},
-      {t:'succumb', m:'يستسلم / يرضخ'},
-      {t:'trigger', m:'يتسبب في / يحفز / يثير / يطلق'},
-      {t:'waft', m:'يتطاير / ينتشر'},
-      {t:'waver', m:'يتلاشى / يتذبذب / يضعف / لا يبقى ثابتاً'}
-    ]},
-
-    {title:'Colloquial words / phrases with formal synonyms', words:[
-      {t:'give it a wide berth', m:'يُتجنب تمامًا (formal: avoid)'},
-      {t:'hype', m:'ضجة إعلامية / تهويل (formal: advertising and previews)'},
-      {t:"I'll give it that", m:'أعترف أنها نقطة لصالحه (formal: that’s one point in its favour)'},
-      {t:'a letdown', m:'خيبة أمل (formal: a disappointment)'},
-      {t:'make out that', m:'يشير / يلمح إلى (formal: indicate)'},
-      {t:'value for money', m:'ذو قيمة مقابل النقود (formal: not too expensive)'},
-      {t:'yearn for', m:'يتوق إلى (formal: really desire)'}
-    ]}
-
-  ]},
-
-  {unit:'الوحدة الخامسة', sections:[
-
-    {title:'Idioms related to studying', words:[
-      {t:'breeze / sail through (something)', m:'يجتاز / ينجز شيئاً بسهولة ونجاح', e:'do something successfully and easily'},
-      {t:'get the hang of (something)', m:'يفهم كيفية عمل شيء / يتمكن منه', e:'learn how to do something'},
-      {t:'get your head down', m:'تركز على شيء بجد', e:'focus on something'},
-      {t:'drum (something) into (somebody)', m:'يغرس / يلقن شيئاً لشخص ما بالتكرار', e:'teach something by repeating it many times'},
-      {t:'keep (somebody) on track', m:'يبقي شخص على المسار الصحيح', e:'continue to make good progress with an activity'},
-      {t:'be on a steep learning curve', m:'تكون في مرحلة تعلم صعبة ومكثفة', e:'you have a lot to learn'},
-      {t:'run on empty', m:'يواصل العمل رغم الإرهاق أو النفاد التام من الطاقة', e:'have no energy left'},
-      {t:'go blank', m:'يتوقف العقل عن التفكير فجأة وتنسى كل شيء', e:'suddenly forget information that you knew previously'}
-    ]},
-
-    {title:'Collocations with attempt and effort', words:[
-      {t:'valiant', m:'شجاع / باسل', e:'very brave'},
-      {t:'frantic', m:'هائج / شديد الاضطراب / مستعجل جداً', e:'almost out of control'},
-      {t:'futile', m:'غير مُجدي / عقيم / بلا فائدة', e:'achieving nothing'},
-      {t:'half-hearted', m:'غير متحمس / فاتر / بلا إصرار أو عزيمة', e:'with no enthusiasm'},
-      {t:'misguided', m:'مضلل / غير موفق / مبني على فهم مغلوط', e:'based on wrong information'},
-      {t:'last-ditch', m:'محاولة أخيرة ويائسة', e:'after a series of failures'},
-      {t:'strenuous', m:'شاق / مجهد / يحتاج إلى طاقة كبيرة', e:'using a lot of energy'},
-      {t:'sustained', m:'مستمر / متواصل / ممتد لفترة طويلة', e:'determined and continuing for a long time'}
-    ]},
-
-    {title:'Vocabulary related to sporting success', words:[
-      {t:'being a self-starter', m:'تبادر من تلقاء نفسك'},
-      {t:'self-conviction', m:'إيمان / قناعة الشخص بنفسه'},
-      {t:'boundless energy', m:'طاقة لا حدود لها'},
-      {t:'natural aptitude for (something)', m:'موهبة طبيعية / قدرة فطرية في شيء ما'},
-      {t:'perseverance', m:'مثابرة رغم التعب والصعوبات'},
-      {t:'raw talent', m:'موهبة خام'},
-      {t:'rivalry', m:'منافسة أو خصومة'},
-      {t:'stubborn streak', m:'جانب عنيد في الشخصية / عرق عناد'},
-      {t:'tenacity', m:'الإصرار / التمسك بالهدف'},
-      {t:'scrutiny', m:'تدقيق / مراجعة دقيقة'},
-      {t:'willingness to make sacrifices', m:'الاستعداد لتقديم التضحيات'}
-    ]},
-
-    {title:'Collocations related to sporting success', words:[
-      {t:'liaise with', m:'يتواصل / يتعاون مع / ينسق مع'},
-      {t:'channel into', m:'يوجّه / يحول / يكرّس لـ'},
-      {t:'plagued by', m:'يُبتلى بـ / يعاني من'},
-      {t:'single out', m:'يُميّز / ينتقي'},
-      {t:'embark upon', m:'يبدأ / يشرع بـ'},
-      {t:'lose sight of', m:'يغفل عن / ينسى شيئاً مهمًا'}
-    ]},
-
-    {title:'Prepositional phrases', words:[
-      {t:'run out of steam', m:'يفقد الطاقة / الحماس / القدرة على الاستمرار'},
-      {t:"step out of someone's comfort zone", m:'يخرج من منطقة الراحة'},
-      {t:'check in on', m:'يطمئن على'},
-      {t:'pat someone on the back for', m:'يربت على كتف شخص تقديرًا لشيء معين'},
-      {t:'be (really) up for', m:'يكون متحمسًا لـ / يرغب (بشدة) في'},
-      {t:'for a change', m:'من باب التغيير / من باب كسر الروتين'},
-      {t:'be a lot at stake', m:'تكون المخاطرة كبيرة'},
-      {t:'from personal experience', m:'من خلال تجربة شخصية'},
-      {t:'lose faith in', m:'يفقد الثقة بـ'},
-      {t:'by far', m:'بلا منازع / بشكل واضح'}
-    ]}
-
   ]}
 ];
 
-
 /* ═══════════════════════════════════════════════════════════════════════════
-   📚  2) أسئلة الكتاب (BOOK_QUESTIONS)
+   📚  أسئلة الكتاب (BOOK_QUESTIONS)
    ═══════════════════════════════════════════════════════════════════════════ */
 const BOOK_QUESTIONS=[
-
-  /* ═══════════ الوحدة الأولى · Section 0: Fixed expressions related to identity ═══════════ */
+  /* ═══ الوحدة الأولى · Section 0 ═══ */
   {unitIdx:0, sectionIdx:0, prompt:'I really get a kick --- of mystery stories.', options:['by','out','with','into'], answer:'out'},
   {unitIdx:0, sectionIdx:0, prompt:'Would you --- a day out or a day in bed?', options:['plump for','make you tick','say a lot about','click with'], answer:'plump for'},
   {unitIdx:0, sectionIdx:0, prompt:'Can your clothes --- you?', options:['set great store by','plump for','say a lot about','be wild about'], answer:'say a lot about'},
@@ -929,7 +694,7 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:0, prompt:"When we know it, it's easier to be ourselves and to find the tribe that we really click ---.", options:['with','out','for','by'], answer:'with'},
   {unitIdx:0, sectionIdx:0, prompt:'When we know this, we can consider whether the choices we make are in line --- these values.', options:['out','by','into','with'], answer:'with'},
 
-  /* ═══════════ الوحدة الأولى · Section 1: Personality adjectives and values ═══════════ */
+  /* ═══ الوحدة الأولى · Section 1 ═══ */
   {unitIdx:0, sectionIdx:1, prompt:'I want to look at what personality testing is, and how I believe it should be used to create a work environment in which everyone feels --- about their job.', options:['passionate','underconfident','defensive','mercy'], answer:'passionate'},
   {unitIdx:0, sectionIdx:1, prompt:'The presenter believes that personality testing can be used as a way to help all employees feel --- towards their work.', options:['passionate','humility','underconfident','defensive'], answer:'passionate'},
   {unitIdx:0, sectionIdx:1, prompt:"Although she doesn't think that personality tests help in the hiring process, she does credit them with helping managers to match employees with their specific skills and creating a/an --- work environment.", options:['underconfident','inclusive','defensive','assertive'], answer:'inclusive'},
@@ -940,8 +705,13 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:1, prompt:'Jameela is so caring and --- and very --- when it comes to helping other people.', options:['discreet / defensive','underconfident / self-aware','defensive / passionate','compassionate / dedicated'], answer:'compassionate / dedicated'},
   {unitIdx:0, sectionIdx:1, prompt:"Even though I'm pretty strong and --- -working by nature, I do get exhausted and fed up sometimes.", options:['absent','hard','forward','thought'], answer:'hard'},
   {unitIdx:0, sectionIdx:1, prompt:"If you're pretty laid ---, you're unlikely to become super-driven overnight.", options:['saving','witted','provoking','back'], answer:'back'},
+  {unitIdx:0, sectionIdx:1, prompt:"'Spontaneous' describes someone who:", options:['plans everything carefully','acts naturally without planning','hides their feelings','avoids social events'], answer:'acts naturally without planning'},
+  {unitIdx:0, sectionIdx:1, prompt:"A person who is 'committed' is one who:", options:['avoids responsibility','is dedicated to a task or cause','is very talkative','changes opinions often'], answer:'is dedicated to a task or cause'},
+  {unitIdx:0, sectionIdx:1, prompt:"'Frank' means someone who:", options:['is shy and quiet','speaks honestly and directly','is often rude','avoids conflict'], answer:'speaks honestly and directly'},
+  {unitIdx:0, sectionIdx:1, prompt:"A 'humble' person is someone who:", options:['brags about their achievements','is modest about their abilities','is aggressive','avoids new experiences'], answer:'is modest about their abilities'},
+  {unitIdx:0, sectionIdx:1, prompt:"A 'sincere' person is:", options:['dishonest','genuine and honest in their feelings','very demanding','emotionally distant'], answer:'genuine and honest in their feelings'},
 
-  /* ═══════════ الوحدة الأولى · Section 2: Compound adjectives (personality) ═══════════ */
+  /* ═══ الوحدة الأولى · Section 2 ═══ */
   {unitIdx:0, sectionIdx:2, prompt:"The word that completes the compound adjective 'tight ---' is:", options:['back','looking','strung','fisted'], answer:'fisted'},
   {unitIdx:0, sectionIdx:2, prompt:"Every time we eat out, he always tries to avoid paying his share. He's so ---.", options:['tight-fisted','forward-fisted','like-minded','thin-skinned'], answer:'tight-fisted'},
   {unitIdx:0, sectionIdx:2, prompt:'I joined a film club hoping to meet --- people at school.', options:['thin-skinned','like-minded','strong-spirited','absent-minded'], answer:'like-minded'},
@@ -956,20 +726,25 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:2, prompt:"I'm so --- I can't find my glasses even when they're on top of my head!", options:['tight-fisted','absent-minded','laid-back','forward-looking'], answer:'absent-minded'},
   {unitIdx:0, sectionIdx:2, prompt:"Be careful what you say to her. She's really --- and can't take criticism at all.", options:['thin-skinned','narrow-skinned','absent-minded','time-saving'], answer:'thin-skinned'},
   {unitIdx:0, sectionIdx:2, prompt:'This business is stuck in the past. They need a more --- approach.', options:['forward-fisted','overcooked','forward-looking','like-minded'], answer:'forward-looking'},
+  {unitIdx:0, sectionIdx:2, prompt:"Someone who refuses to consider other people's opinions is:", options:['open-minded','narrow-minded','kind-hearted','carefree'], answer:'narrow-minded'},
+  {unitIdx:0, sectionIdx:2, prompt:"A 'quick-witted' person is:", options:['slow to understand','mentally sharp and clever','physically fast','usually anxious'], answer:'mentally sharp and clever'},
+  {unitIdx:0, sectionIdx:2, prompt:"A 'good-looking' person is:", options:['smart in a business way','physically attractive','well-dressed','tall'], answer:'physically attractive'},
+  {unitIdx:0, sectionIdx:2, prompt:"'Mouth-watering' food is:", options:['disgusting','very tasty and appetizing','bland','burnt'], answer:'very tasty and appetizing'},
+  {unitIdx:0, sectionIdx:2, prompt:"A 'carefree' person is:", options:['worried about everything','free from worries or responsibilities','very selfish','very serious'], answer:'free from worries or responsibilities'},
+  {unitIdx:0, sectionIdx:2, prompt:"A 'time-saving' method is one that:", options:['wastes time','helps you do things faster','is very complicated','requires careful planning'], answer:'helps you do things faster'},
 
-  /* ═══════════ الوحدة الأولى · Section 3: Idioms related to personality ═══════════ */
+  /* ═══ الوحدة الأولى · Section 3 ═══ */
   {unitIdx:0, sectionIdx:3, prompt:"'A person who doesn't show their feelings' is the definition of:", options:['a cold fish','a smart alec','a soft touch','a smart cookie'], answer:'a cold fish'},
   {unitIdx:0, sectionIdx:3, prompt:"The idiom which means 'a person who keeps their abilities secret' is:", options:['a soft touch','a social butterfly','a go-getter','a dark horse'], answer:'a dark horse'},
   {unitIdx:0, sectionIdx:3, prompt:"Which of the following idioms means 'a person who is determined to be successful'?", options:['a social butterfly','a smart alec','a go-getter','a mover and shaker'], answer:'a go-getter'},
   {unitIdx:0, sectionIdx:3, prompt:"The idiom that means 'a person with a lot of power and influence' is:", options:['a mover and shaker','a smart cookie','a cold fish','a dark horse'], answer:'a mover and shaker'},
-  {unitIdx:0, sectionIdx:3, prompt:'My new neighbour is a talking butterfly and always wants to chat with me. - "Talking" is incorrectly used in the sentence above and should be replaced with:', options:['soft','smart','dark','social'], answer:'social'},
-  {unitIdx:0, sectionIdx:3, prompt:"My grandma always gives us money for things we want - she's such a gentle touch. - 'Gentle' is incorrectly used in the sentence above and should be replaced with:", options:['soft','mover','dark','cold'], answer:'soft'},
-  {unitIdx:0, sectionIdx:3, prompt:"The idiom 'a smart alec' means:", options:['someone who likes to attend social events.','a person who tries to look clever in an annoying way.','a person who is determined to be successful.','a person who doesn\'t show their feelings.'], answer:'a person who tries to look clever in an annoying way.'},
-  {unitIdx:0, sectionIdx:3, prompt:"The definition of the idiom 'a smart cookie' is:", options:['a person who tries to look clever in an annoying way.','a person who is determined to be successful.','a clever person.','a person who doesn\'t show their feelings.'], answer:'a clever person.'},
-  {unitIdx:0, sectionIdx:3, prompt:"What is the meaning of the idiom 'a soft touch'?", options:['a person you can easily deceive or persuade to do what you want.','someone who likes to attend social events.','a person who keeps their abilities secret.','a person with a lot of power and influence.'], answer:'a person you can easily deceive or persuade to do what you want.'},
-  {unitIdx:0, sectionIdx:3, prompt:'--- means someone who likes to attend social events.', options:['Keep yourself to yourself','A cold fish','A social butterfly','A soft touch'], answer:'A social butterfly'},
+  {unitIdx:0, sectionIdx:3, prompt:"'A smart alec' is someone who:", options:['tries to look clever in an annoying way','is very intelligent','avoids social events','is very shy'], answer:'tries to look clever in an annoying way'},
+  {unitIdx:0, sectionIdx:3, prompt:"'A smart cookie' means:", options:['a clever person','a person who loves sweets','a shy person','a boring person'], answer:'a clever person'},
+  {unitIdx:0, sectionIdx:3, prompt:"'A soft touch' is a person who:", options:['is physically strong','can easily be deceived or persuaded','is very strict','never shows emotions'], answer:'can easily be deceived or persuaded'},
+  {unitIdx:0, sectionIdx:3, prompt:"'A social butterfly' is someone who:", options:['avoids people','likes to attend social events','is very aggressive','prefers to be alone'], answer:'likes to attend social events'},
+  {unitIdx:0, sectionIdx:3, prompt:"If you 'keep yourself to yourself', you:", options:['avoid meeting people socially','are very outgoing','help everyone','never stop talking'], answer:'avoid meeting people socially'},
 
-  /* ═══════════ الوحدة الأولى · Section 4: Words with their definitions ═══════════ */
+  /* ═══ الوحدة الأولى · Section 4 ═══ */
   {unitIdx:0, sectionIdx:4, prompt:"The word which means 'character or personality' is:", options:['disposition','moulded','proponents','imply'], answer:'disposition'},
   {unitIdx:0, sectionIdx:4, prompt:"Which of the following words means 'influenced or changed'?", options:['oversimplification','hereditary','moulded','nurture'], answer:'moulded'},
   {unitIdx:0, sectionIdx:4, prompt:"'People who publicly support an idea' is the definition of:", options:['vulnerability','proponents','offspring','trait'], answer:'proponents'},
@@ -986,30 +761,29 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:4, prompt:'Some people think that kindness is a ---, but I see it as a strength.', options:['oversimplification','vulnerability','proponent','nurture'], answer:'vulnerability'},
   {unitIdx:0, sectionIdx:4, prompt:'My family, community and beliefs have very much --- the person I am today.', options:['oversimplification','hereditary','moulded','implied'], answer:'moulded'},
   {unitIdx:0, sectionIdx:4, prompt:"Suha's intelligence is ---, she gets it from her parents who are both teachers.", options:['hereditary','proponent','imply','vulnerability'], answer:'hereditary'},
-  {unitIdx:0, sectionIdx:4, prompt:'Thinking that personality tests can tell you every detail about how someone will react to a situation is an ---.', options:['proponents','oversimplification','destiny','offspring'], answer:'oversimplification'},
-  {unitIdx:0, sectionIdx:4, prompt:'If managers use personality testing to ensure that they only hire people of a certain type, such as those who are unlikely to disagree with them, this is certainly a --- of the system.', options:['offspring','nurture','disposition','vulnerability'], answer:'vulnerability'},
-  {unitIdx:0, sectionIdx:4, prompt:'This type of question would reveal whether the taker was of a more introverted or extroverted ---.', options:['proponent','disposition','vulnerability','oversimplification'], answer:'disposition'},
 
-  /* ═══════════ الوحدة الأولى · Section 5: Verbs for thinking and understanding ═══════════ */
+  /* ═══ الوحدة الأولى · Section 5 ═══ */
   {unitIdx:0, sectionIdx:5, prompt:'This implies that the languages spoken by the Inuit mould the way they --- of the world.', options:['plump','click','gather','conceive'], answer:'gather'},
   {unitIdx:0, sectionIdx:5, prompt:"We can probably --- from this that they don't feel the need to quantify precisely in the way that many of us do.", options:['overcooked','underconfident','deduce','plump'], answer:'deduce'},
   {unitIdx:0, sectionIdx:5, prompt:"I suppose our boss is very forward --- and always thinks about the long-term future of the business, rather than what's just round the corner.", options:['seeing','looking','minded','hot'], answer:'looking'},
   {unitIdx:0, sectionIdx:5, prompt:"I simply can't --- why two sisters with the same parents have such different personalities.", options:['conclude','assume','comprehend','narrow-minded'], answer:'comprehend'},
   {unitIdx:0, sectionIdx:5, prompt:"There is very little --- in my cousin's life as he always plans everything down to the last detail.", options:['discretion','humility','spontaneity','assertiveness'], answer:'spontaneity'},
   {unitIdx:0, sectionIdx:5, prompt:'The writer of the article is a --- of the theory that early childhood habits last a lifetime.', options:['mover and shaker','proponent','go-getter','cold fish'], answer:'proponent'},
-  {unitIdx:0, sectionIdx:5, prompt:'Because you had lived in Brazil, I --- you spoke Portuguese.', options:['grasped','assumed','concluded','reflected'], answer:'assumed'},
-  {unitIdx:0, sectionIdx:5, prompt:"It's hard to --- how much the world is likely to change in the next 50 years.", options:['comprehend','conceive','reflect','grasp'], answer:'grasp'},
-  {unitIdx:0, sectionIdx:5, prompt:'They failed to --- just how important the decision was.', options:['recognise','assume','grasp','conclude'], answer:'recognise'},
-  {unitIdx:0, sectionIdx:5, prompt:'With difficulty, he managed to --- what she was trying to explain.', options:['assume','comprehend','grasp','deduce'], answer:'grasp'},
-  {unitIdx:0, sectionIdx:5, prompt:"From what I can ---, she's actually been fired, rather than resigning.", options:['gather','conceive','deduce','plump'], answer:'gather'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Perceive' means:", options:['to become aware of something through the senses','to ignore something','to forget','to create'], answer:'to become aware of something through the senses'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Recognise' means:", options:['to identify someone or something from previous experience','to forget something','to imagine something','to build something'], answer:'to identify someone or something from previous experience'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Grasp' (in this unit's context) means:", options:['to hold tightly with your hands','to understand','to throw away','to shout'], answer:'to understand'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Assume' means:", options:['to know for sure','to suppose something is true without proof','to deny','to refuse'], answer:'to suppose something is true without proof'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Reflect' (in this unit's context) means:", options:['to think deeply about something','to shine light','to sing','to write quickly'], answer:'to think deeply about something'},
 
-  /* ═══════════ الوحدة الثانية · Section 0: Verbs of movement ═══════════ */
+  /* ═══ الوحدة الثانية · Section 0 ═══ */
   {unitIdx:1, sectionIdx:0, prompt:'Eman --- through all the questions in the test and finished at least ten minutes before anyone else.', options:['sailed','backpedaled','parked','stumbled'], answer:'sailed'},
   {unitIdx:1, sectionIdx:0, prompt:'After the interview, Tareq was --- when the manager asked him if he could start immediately.', options:['backpedaled','staggered','parked','hobbled'], answer:'staggered'},
   {unitIdx:1, sectionIdx:0, prompt:'When Professor Hassan had lost one page of his notes, he panicked and started --- over his words.', options:['stumbling','staggering','sailing','backpedaling'], answer:'stumbling'},
   {unitIdx:1, sectionIdx:0, prompt:"I'm terrible when I'm reading - I often --- to the end of a chapter to see what happens.", options:['backpedal','hobble','jump','shuffle'], answer:'jump'},
+  {unitIdx:1, sectionIdx:0, prompt:'The football coach has been --- the team hard recently, so they can start to win again.', options:['flying','driving','striding','jumping'], answer:'driving'},
   {unitIdx:1, sectionIdx:0, prompt:'Her fingers --- across the keyboard as she hurried to finish her essay.', options:['backpedaled','shuffled','flew','hobbled'], answer:'flew'},
   {unitIdx:1, sectionIdx:0, prompt:'When Khalid realised he was wrong, he tried to --- very quickly.', options:['backpedal','fly','jump','sail'], answer:'backpedal'},
+  {unitIdx:1, sectionIdx:0, prompt:"The government's plans to reform the public sector have been --- until after the general election.", options:['driven','parked','flown','surged'], answer:'parked'},
   {unitIdx:1, sectionIdx:0, prompt:'He arrived --- on a black horse.', options:['riding','parking','backpedaling','jumping'], answer:'riding'},
   {unitIdx:1, sectionIdx:0, prompt:'A guy wearing a very unusual outfit like an old-fashioned British gentleman boarded the train and --- over to sit by a businessman in his pinstripe suit.', options:['backpedaled','shuffled','jumped','sailed'], answer:'shuffled'},
   {unitIdx:1, sectionIdx:0, prompt:'The gentleman --- down the platform, clearly uncomfortable with his shoes.', options:['hobbled','strode','surged','parked'], answer:'hobbled'},
@@ -1031,7 +805,7 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:0, prompt:'Since the operation on my knee, I find it much easier to drive my car to the shops rather than --- down the road.', options:['lurch','hobble','stride','surge'], answer:'hobble'},
   {unitIdx:1, sectionIdx:0, prompt:'I remember my mother telling my brother, when he was very young, not to ---, but to pick his feet up properly when he was walking.', options:['stride','shuffle','stumble','surge'], answer:'shuffle'},
 
-  /* ═══════════ الوحدة الثانية · Section 1: Idioms related to movement ═══════════ */
+  /* ═══ الوحدة الثانية · Section 1 ═══ */
   {unitIdx:1, sectionIdx:1, prompt:"There are new roadworks in the town centre, and it is driving motorists up the ---. So you'd better --- clear of the main junction for at least a week.", options:['wall, steer','boat, drive','downhill, steer','wall, take'], answer:'wall, steer'},
   {unitIdx:1, sectionIdx:1, prompt:"He encountered some obstacles while training to become a pilot. It wasn't all --- sailing.", options:['force','downhill','plain','sea'], answer:'plain'},
   {unitIdx:1, sectionIdx:1, prompt:"It was because of Suha's commitment that the new rail project was successful. She was the driving --- behind it.", options:['force','plain','steer','ride'], answer:'force'},
@@ -1054,11 +828,18 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:1, prompt:'I have to admit, it sounds like the snack counter has --- downhill. The sandwiches were great when we went.', options:['gone','driven','been','taken'], answer:'gone'},
   {unitIdx:1, sectionIdx:1, prompt:"Also, we were sitting near the TV screen and the volume was so high it nearly --- us up the wall. Next time, we'll fly!", options:['drove','took','went','flew'], answer:'drove'},
 
-  /* ═══════════ الوحدة الثانية · Section 2: Public transport words & synonyms ═══════════ */
+  /* ═══ الوحدة الثانية · Section 2 ═══ */
   {unitIdx:1, sectionIdx:2, prompt:'Which of the following is a synonym for "bolting"?', options:['rushing','pulling','slipping','going down'], answer:'rushing'},
   {unitIdx:1, sectionIdx:2, prompt:"I've heard about ClearSpace-1 - the first space mission to remove debris from orbit. A real breakthrough which involves a vehicle designed to trap objects, then --- them down into the earth's atmosphere where they'll burn up.", options:['drag','bolt','glance','grasp'], answer:'drag'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'descend' is a synonym for:", options:['go up','go down','jump over','walk around'], answer:'go down'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'collide' is a synonym for:", options:['miss','crash into','avoid','escape'], answer:'crash into'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'rumble' is a synonym for:", options:['rush','go slowly','fly','jump'], answer:'go slowly'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'alight' is a synonym for:", options:['get on','get off','fall down','wake up'], answer:'get off'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'falter' is a synonym for:", options:['speed up','slip','stand still','shout'], answer:'slip'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'disperse' is a synonym for:", options:['gather','spread out','combine','stay close'], answer:'spread out'},
+  {unitIdx:1, sectionIdx:2, prompt:"The word 'bolt' is a synonym for:", options:['crawl','rush','stroll','stop'], answer:'rush'},
 
-  /* ═══════════ الوحدة الثانية · Section 3: Phrases ═══════════ */
+  /* ═══ الوحدة الثانية · Section 3 ═══ */
   {unitIdx:1, sectionIdx:3, prompt:'Do you think the employees get their fair --- of the money?', options:['share','effect','mark','speed'], answer:'share'},
   {unitIdx:1, sectionIdx:3, prompt:'What --- might you have to overcome to be successful in your chosen career?', options:['share','mark','hurdles','knock-on'], answer:'hurdles'},
   {unitIdx:1, sectionIdx:3, prompt:'Do you think you would enjoy travelling at breakneck ---?', options:['effect','speed','share','mark'], answer:'speed'},
@@ -1076,7 +857,7 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:3, prompt:'The --- for developing any ideas is enormous, as you can imagine.', options:['outlay','milling','breakneck','hurdle'], answer:'outlay'},
   {unitIdx:1, sectionIdx:3, prompt:'I know humans are certainly leaving their ---, bits of metal and things.', options:['effect','speed','mark','share'], answer:'mark'},
 
-  /* ═══════════ الوحدة الثانية · Section 4: Phrasal nouns ═══════════ */
+  /* ═══ الوحدة الثانية · Section 4 ═══ */
   {unitIdx:1, sectionIdx:4, prompt:"We're going for a quick --- to Amman at the weekend.", options:['setback','breakthrough','getaway','outget'], answer:'getaway'},
   {unitIdx:1, sectionIdx:4, prompt:'The --- of the investigation into the collision will not be known before March.', options:['comethrough','setback','outcome','getaway'], answer:'outcome'},
   {unitIdx:1, sectionIdx:4, prompt:"They've recently made an amazing --- in developing driverless cars.", options:['breakthrough','cutbacks','outlay','getthrough'], answer:'breakthrough'},
@@ -1092,7 +873,7 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:4, prompt:"We're waiting to hear the --- of the meeting when they finish at 2.", options:['getaway','outcome','setback','cutback'], answer:'outcome'},
   {unitIdx:1, sectionIdx:4, prompt:'Recently, the rising cost of university education has caused an --- from students and parents.', options:['outcry','outlay','outlook','breakthrough'], answer:'outcry'},
 
-  /* ═══════════ الوحدة الثانية · Section 5: SPEAKING | Considering options ═══════════ */
+  /* ═══ الوحدة الثانية · Section 5 ═══ */
   {unitIdx:1, sectionIdx:5, prompt:'I think on --- I prefer the old system.', options:['balance','question','pin','way'], answer:'balance'},
   {unitIdx:1, sectionIdx:5, prompt:"I'm in two --- here. There are pros and cons for each solution.", options:['questions','minds','ways','points'], answer:'minds'},
   {unitIdx:1, sectionIdx:5, prompt:'Thinking about it, there are a lot of points in --- of having a couple of days on the windy, rainy coast.', options:['minds','favour','question','forward'], answer:'favour'},
@@ -1100,168 +881,125 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:5, prompt:'Well, you could --- that with everyone contributing it might be cheaper than the cost of train travel to the city, hotel rooms, tickets to the show ...?', options:['go','put','argue','pin'], answer:'argue'},
   {unitIdx:1, sectionIdx:5, prompt:'Which of the following is an example of considering alternatives?', options:["I'm split between the beach and the canal.","There are a lot of points in favour of having a couple of days on the windy, rainy coast.","Oh, a canal trip - no question! I love being on the water!","If you really wanted to pin me down, I'd probably say - if Antarctica is definitely out, then the seaside!"], answer:"I'm split between the beach and the canal."},
   {unitIdx:1, sectionIdx:5, prompt:"I'm in two minds here. There are pros and cons for each solution. - The sentence above is used for ...", options:['giving preferences','considering alternatives','checking understanding','summarising'], answer:'considering alternatives'},
-  {unitIdx:1, sectionIdx:5, prompt:'All of the following examples are used for giving preferences except:', options:["Well, I'm in two minds here - I'm not that keen on going back to London.","Oh, a canal trip - no question! I love being on the water! And you?","There's a lot to be said for a couple of days in the capital.","If you really wanted to pin me down, I'd probably say - if Antarctica is definitely out, then the seaside!"], answer:"There's a lot to be said for a couple of days in the capital."},
+  {unitIdx:1, sectionIdx:5, prompt:"'I'd go for... anytime!' is used for:", options:['considering alternatives','giving preferences','refusing an offer','making a complaint'], answer:'giving preferences'},
+  {unitIdx:1, sectionIdx:5, prompt:"'No two ways about it, my choice would be...' is used for:", options:['considering alternatives','giving preferences','asking for options','refusing'], answer:'giving preferences'},
+  {unitIdx:1, sectionIdx:5, prompt:"'I'm split between the... and...' is used for:", options:['considering alternatives','giving preferences','summarising','agreeing completely'], answer:'considering alternatives'},
+  {unitIdx:1, sectionIdx:5, prompt:"'There are pros and cons for each.' is used for:", options:['considering alternatives','giving preferences','refusing an offer','showing anger'], answer:'considering alternatives'},
+  {unitIdx:1, sectionIdx:5, prompt:"'It's pretty clear cut to me that...' is used for:", options:['giving preferences','hesitating','refusing','complaining'], answer:'giving preferences'},
+  {unitIdx:1, sectionIdx:5, prompt:"'If you really wanted to pin me down, I'd probably say...' is used for:", options:['giving preferences','avoiding decisions','refusing to answer','summarising'], answer:'giving preferences'},
 
-  /* ═══════════ الوحدة الثانية · Section 6: Travel Verbs (Literal vs Figurative) ═══════════ */
-  {unitIdx:1, sectionIdx:6, prompt:'The football coach has been --- the team hard recently, so they can start to win again.', options:['flying','driving','striding','jumping'], answer:'driving'},
-  {unitIdx:1, sectionIdx:6, prompt:"The government's plans to reform the public sector have been --- until after the general election.", options:['driven','parked','flown','surged'], answer:'parked'},
+  /* ═══ الوحدة الثانية · Section 6 (Travel Verbs) ═══ */
+  {unitIdx:1, sectionIdx:6, prompt:"'Drive yourself too hard' has a figurative meaning of:", options:['operating a vehicle roughly','pushing yourself to work extremely hard','avoiding work','driving fast'], answer:'pushing yourself to work extremely hard'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Park an idea' has a figurative meaning of:", options:['leave a car somewhere','delay thinking about something until later','forget about something permanently','refuse to discuss'], answer:'delay thinking about something until later'},
 
-  /* ═══════════ الوحدة الثالثة · Section 0: Business-related vocabulary ═══════════ */
-  {unitIdx:2, sectionIdx:0, prompt:"'The estimated price that will be charged for a service' is the definition of:", options:['quote','USP','cost-effective','turnover'], answer:'quote'},
-  {unitIdx:2, sectionIdx:0, prompt:"'The feature that makes a product different from and better than anything else' is the definition of:", options:['quote','USP (Unique Selling Point)','cost-effective','bespoke'], answer:'USP (Unique Selling Point)'},
-  {unitIdx:2, sectionIdx:0, prompt:"'Good value for money / brings the best possible profits for the lowest possible price' is the definition of:", options:['cost-effective','bargain basement','turnover','venture'], answer:'cost-effective'},
-  {unitIdx:2, sectionIdx:0, prompt:"'A new business that is risky' is the definition of:", options:['venture','business concept','turnover','price tag'], answer:'venture'},
-  {unitIdx:2, sectionIdx:0, prompt:"'Extended or expanded on the work normally done' is the definition of:", options:['branching out','bricks and mortar','launching','turnover'], answer:'branching out'},
-  {unitIdx:2, sectionIdx:0, prompt:"'The amount that something costs' is the definition of:", options:['price tag','quote','turnover','bargain basement'], answer:'price tag'},
-  {unitIdx:2, sectionIdx:0, prompt:"'Specially made for a particular person' is the definition of:", options:['bespoke','bargain basement','cost-effective','business concept'], answer:'bespoke'},
-  {unitIdx:2, sectionIdx:0, prompt:"'An idea for a business' is the definition of:", options:['business concept','venture','quote','USP'], answer:'business concept'},
-  {unitIdx:2, sectionIdx:0, prompt:"'(Of a price) extremely cheap' is the definition of:", options:['bargain basement','cost-effective','bespoke','price tag'], answer:'bargain basement'},
-  {unitIdx:2, sectionIdx:0, prompt:"'Buildings such as houses, offices, factories' is the definition of:", options:['bricks and mortar','branching out','venture','business concept'], answer:'bricks and mortar'},
-  {unitIdx:2, sectionIdx:0, prompt:"'The amount of business a company does in a set period of time' is the definition of:", options:['turnover','quote','price tag','launching'], answer:'turnover'},
+  /* ═══ الوحدة الثالثة · Section 0 ═══ */
+  {unitIdx:2, sectionIdx:0, prompt:"'Good value for money' is the definition of:", options:['cost-effective','bespoke','quote','launching'], answer:'cost-effective'},
+  {unitIdx:2, sectionIdx:0, prompt:"'Extremely cheap' is the definition of:", options:['quote','bargain basement','bespoke','price tag'], answer:'bargain basement'},
+  {unitIdx:2, sectionIdx:0, prompt:"'Specially made for a particular person' is the definition of:", options:['price tag','turnover','bespoke','venture'], answer:'bespoke'},
+  {unitIdx:2, sectionIdx:0, prompt:"Which of the following means 'the feature that makes a product different from and better than anything else'?", options:['USP (Unique Selling Point)','bespoke','turnover','branching out'], answer:'USP (Unique Selling Point)'},
+  {unitIdx:2, sectionIdx:0, prompt:"The word that means 'the estimated price that will be charged for a service' is:", options:['bespoke','USP','quote','venture'], answer:'quote'},
+  {unitIdx:2, sectionIdx:0, prompt:"'Buildings such as houses, offices, factories' is the definition of:", options:['bricks and mortar','quote','USP','turnover'], answer:'bricks and mortar'},
+  {unitIdx:2, sectionIdx:0, prompt:"'A new business that is risky' is the definition of:", options:['USP','quote','venture','turnover'], answer:'venture'},
+  {unitIdx:2, sectionIdx:0, prompt:"Which of the following means 'the amount of business a company does in a set period of time'?", options:['quote','turnover','bespoke','venture'], answer:'turnover'},
+  {unitIdx:2, sectionIdx:0, prompt:"The word that means 'making a new product available to be sold' is:", options:['launching','quote','venture','USP'], answer:'launching'},
+  {unitIdx:2, sectionIdx:0, prompt:"The phrase that means 'an idea for a business' is:", options:['business concept','branching out','cost-effective','price tag'], answer:'business concept'},
+  {unitIdx:2, sectionIdx:0, prompt:"The phrase that means 'extended or expanded on the work normally done'?", options:['quote','USP','venture','branching out'], answer:'branching out'},
+  {unitIdx:2, sectionIdx:0, prompt:"'The amount that something costs' is the definition of:", options:['quote','price tag','USP','venture'], answer:'price tag'},
+  {unitIdx:2, sectionIdx:0, prompt:'My friend has just established a new start- --- which uses AI to help businesses.', options:['investment','up','buy','gimmick'], answer:'up'},
+  {unitIdx:2, sectionIdx:0, prompt:"They're giving away free toys with children's meals as a part of a sales ---.", options:['gimmick','buy','investment','up'], answer:'gimmick'},
+  {unitIdx:2, sectionIdx:0, prompt:'Planes are expensive to design and make, so require a lot of upfront ---.', options:['investment','buy','up','gimmick'], answer:'investment'},
+  {unitIdx:2, sectionIdx:0, prompt:"I wasn't planning on getting a new shirt today, it was a bit of an impulse ---.", options:['investment','gimmick','up','buy'], answer:'buy'},
 
-  /* ═══════════ الوحدة الثالثة · Section 1: Phrasal verbs related to Business ═══════════ */
-  {unitIdx:2, sectionIdx:1, prompt:"'Get involved with' is the meaning of the phrasal verb:", options:['break into','build up','set up','sign up'], answer:'break into'},
-  {unitIdx:2, sectionIdx:1, prompt:"'Gradually increase' is the meaning of the phrasal verb:", options:['build up','break into','knock off','pass up'], answer:'build up'},
-  {unitIdx:2, sectionIdx:1, prompt:"'Considerably reduce' is the meaning of the phrasal verb:", options:['knock (something) off','build up','set up','win over'], answer:'knock (something) off'},
-  {unitIdx:2, sectionIdx:1, prompt:"'Fail to take advantage of' is the meaning of the phrasal verb:", options:['pass up','break into','set up','sign up'], answer:'pass up'},
-  {unitIdx:2, sectionIdx:1, prompt:"'Start' is the meaning of the phrasal verb:", options:['set up','sign up','win over','build up'], answer:'set up'},
-  {unitIdx:2, sectionIdx:1, prompt:"'Get to commit' is the meaning of the phrasal verb:", options:['sign up','set up','pass up','break into'], answer:'sign up'},
-  {unitIdx:2, sectionIdx:1, prompt:"'Persuade' is the meaning of the phrasal verb:", options:['win over','build up','knock off','break into'], answer:'win over'},
+  /* ═══ الوحدة الثالثة · Section 1 ═══ */
+  {unitIdx:2, sectionIdx:1, prompt:'My family set --- this business 100 years ago.', options:['up','over','off','into'], answer:'up'},
+  {unitIdx:2, sectionIdx:1, prompt:'Fast-food restaurants are --- up all over town.', options:['springing','winning','knocking','breaking'], answer:'springing'},
+  {unitIdx:2, sectionIdx:1, prompt:'We had to --- quite a lot --- the price and compensate the neighbours.', options:['pass, up','set, up','win, over','knock, off'], answer:'knock, off'},
+  {unitIdx:2, sectionIdx:1, prompt:'My brother was a master at convincing our parents to let him go out for the afternoon! Even when they had said no initially, he could always --- them ---.', options:['knock, off','set, up','break, into','win, over'], answer:'win, over'},
+  {unitIdx:2, sectionIdx:1, prompt:'Slowly, the business is being built ---.', options:['up','off','over','into'], answer:'up'},
+  {unitIdx:2, sectionIdx:1, prompt:'When I heard about goat rental companies springing --- all over the US, it seemed like it might be a good market to break into.', options:['up','over','off','into'], answer:'up'},
+  {unitIdx:2, sectionIdx:1, prompt:'So, what gave you the idea to --- the business?', options:['set up','break into','win over','sign up'], answer:'set up'},
+  {unitIdx:2, sectionIdx:1, prompt:'It seemed like it might be a good market to get involved with. - The phrasal verb that has the same meaning as the underlined words above is:', options:['set up','break into','win over','sign up'], answer:'break into'},
+  {unitIdx:2, sectionIdx:1, prompt:'It was too good an opportunity to fail to take advantage of. - The phrasal verb that has the same meaning as the underlined words above is:', options:['pass up','set up','win over','knock off'], answer:'pass up'},
+  {unitIdx:2, sectionIdx:1, prompt:'We often get new customers to commit on the spot. - The phrasal verb that has the same meaning as the underlined words above is:', options:['sign up','pass, up','set, up','break, into'], answer:'sign up'},
+  {unitIdx:2, sectionIdx:1, prompt:"We'd been gradually increasing customer loyalty in that area. - The phrasal verb that has the same meaning as the underlined words above is:", options:['building up','passing up','winning over','setting up'], answer:'building up'},
+  {unitIdx:2, sectionIdx:1, prompt:"Eventually, we did manage to persuade them. - The phrasal verb that has the same meaning as the underlined words above is:", options:['knock them off','set them up','break into them','win them over'], answer:'win them over'},
+  {unitIdx:2, sectionIdx:1, prompt:'We had to considerably reduce the price. - The phrasal verb that has the same meaning as the underlined words above is:', options:['knock quite a lot off','pass quite a lot up','sign quite a lot up','set quite a lot up'], answer:'knock quite a lot off'},
 
-  /* ═══════════ الوحدة الثالثة · Section 2: Synonyms for the verb persuade ═══════════ */
-  {unitIdx:2, sectionIdx:2, prompt:"Which of the following verbs means 'to force or compel someone to do something'?", options:['coerce','cajole','coax','entice'], answer:'coerce'},
-  {unitIdx:2, sectionIdx:2, prompt:"Which of the following verbs means 'to persuade by being extra nice'?", options:['cajole','urge','incite','coerce'], answer:'cajole'},
-  {unitIdx:2, sectionIdx:2, prompt:"Which of the following verbs means 'to strongly encourage someone to do something'?", options:['urge','entice','coax','sway'], answer:'urge'},
+  /* ═══ الوحدة الثالثة · Section 2 ═══ */
+  {unitIdx:2, sectionIdx:2, prompt:"I'm not always very --- when I meet new people. It takes me time to feel safe with them.", options:['trusting','cunning','crafty','credulous'], answer:'trusting'},
+  {unitIdx:2, sectionIdx:2, prompt:'I was quite --- about how much work I needed to do to pass my exams.', options:['credulous','gullible','naive','suspecting'], answer:'naive'},
+  {unitIdx:2, sectionIdx:2, prompt:'My cousin has always been a --- businesswoman and runs several companies now.', options:['shrewd','gullible','naive','unsuspecting'], answer:'shrewd'},
+  {unitIdx:2, sectionIdx:2, prompt:'In 1925, the Eiffel Tower in Paris was sold to a --- businessman by Victor Lustig, an American conman.', options:['cunning','ingenuous','gullible','shrewd'], answer:'gullible'},
+  {unitIdx:2, sectionIdx:2, prompt:"I loved the film! I thought the story was --- and I've never seen anything like it before.", options:['ingenuous','naive','credulous','gullible'], answer:'ingenuous'},
+  {unitIdx:2, sectionIdx:2, prompt:"Interviewer: I don't perceive myself as naive or ingenuous, so Lama, Adnan, was I manipulated? - Lama: Well, 'manipulated' is quite a strong word, but certainly I can see that the salesperson was --- - she obviously knew what she was doing!", options:['luxury','eyesore','crafty','upfront'], answer:'crafty'},
+  {unitIdx:2, sectionIdx:2, prompt:'The salesperson was also --- enough to use another well-known persuasion technique on you: the principle of scarcity.', options:['shrewd','electric','upfront','bargain'], answer:'shrewd'},
+  {unitIdx:2, sectionIdx:2, prompt:"Let's say you're a teenager and you want to --- your parents to let you go out for the afternoon.", options:['convince','knock','break','pass'], answer:'convince'},
+  {unitIdx:2, sectionIdx:2, prompt:'She --- the child to clean her teeth. (COAX)', options:['coaxed','enticed','cajoled','urged'], answer:'coaxed'},
+  {unitIdx:2, sectionIdx:2, prompt:'They --- her away from her job with promises of a better salary. (ENTICE)', options:['coaxed','enticed','cajoled','urged'], answer:'enticed'},
+  {unitIdx:2, sectionIdx:2, prompt:'She --- us into working late. (CAJOLE)', options:['coaxed','enticed','cajoled','urged'], answer:'cajoled'},
+  {unitIdx:2, sectionIdx:2, prompt:'She --- the team into taking responsibility. (URGE)', options:['coaxed','enticed','urged','incited'], answer:'urged'},
+  {unitIdx:2, sectionIdx:2, prompt:'He tried to --- his brother into doing it. (INCITE)', options:['coax','entice','cajole','incite'], answer:'incite'},
+  {unitIdx:2, sectionIdx:2, prompt:'He tried to coerce his brother into doing it. - The sentence that has the same meaning as the one above is:', options:['He tried to incite his brother to do it.','He tried to coax his brother to do it.','He tried to cajole his brother into doing it.','He tried to sway his brother to do it.'], answer:'He tried to incite his brother to do it.'},
+  {unitIdx:2, sectionIdx:2, prompt:'Omar pressured the team into taking responsibility. - The underlined word "pressured" means:', options:['coaxed','urged','cajoled','enticed'], answer:'urged'},
+  {unitIdx:2, sectionIdx:2, prompt:'Which word has the sense of persuading someone to do something violent or unpleasant?', options:['incite','sway','coax','cajole'], answer:'incite'},
+  {unitIdx:2, sectionIdx:2, prompt:'Which word has the sense of tempting people to choose between two things?', options:['sway','incite','coax','entice'], answer:'sway'},
 
-  /* ═══════════ الوحدة الثالثة · Section 4: Words with their synonyms ═══════════ */
-  {unitIdx:2, sectionIdx:4, prompt:"The synonym of 'bear in mind' is:", options:['take into account','outweigh','persist','concept'], answer:'take into account'},
-  {unitIdx:2, sectionIdx:4, prompt:"The synonym of 'detrimental' is:", options:['adverse','objective','concept','tendency'], answer:'adverse'},
-  {unitIdx:2, sectionIdx:4, prompt:"The synonym of 'dispassionate' is:", options:['objective','adverse','persist','trap'], answer:'objective'},
-  {unitIdx:2, sectionIdx:4, prompt:"The synonym of 'notion' is:", options:['concept','trap','tendency','adverse'], answer:'concept'},
-  {unitIdx:2, sectionIdx:4, prompt:"The synonym of 'pitfall' is:", options:['trap','concept','persist','objective'], answer:'trap'},
-  {unitIdx:2, sectionIdx:4, prompt:"The synonym of 'propensity' is:", options:['tendency','trap','adverse','concept'], answer:'tendency'},
+  /* ═══ الوحدة الثالثة · Section 3 ═══ */
+  {unitIdx:2, sectionIdx:3, prompt:"I'm really sorry, but at the --- of the day, we don't know when the top was purchased, you see, and we have a fourteen-day return policy.", options:['bottom','meet','end','room'], answer:'end'},
+  {unitIdx:2, sectionIdx:3, prompt:"Student: My birthday was only yesterday, the top can't have been bought very long ago. - Assistant: I'm so sorry, but it has to be a ---.", options:["'no'",'prepared','awkward','saying'], answer:"'no'"},
+  {unitIdx:2, sectionIdx:3, prompt:"I guess I'm wondering if there's any --- on how much you want for the rent?", options:['compromise','flexibility','halfway','bottom'], answer:'flexibility'},
+  {unitIdx:2, sectionIdx:3, prompt:"Landlord: I'm --- that's a bit less than I'd be willing to accept. The bottom line is, this is a good flat and I won't have any difficulty finding a tenant.", options:['awkward','afraid','prepared','shake'], answer:'afraid'},
+  {unitIdx:2, sectionIdx:3, prompt:"Well, this is a bit ---, but I was bought this top as a birthday present, and it just doesn't suit me. Can I return it?", options:['awkward','prepared','range','willing'], answer:'awkward'},
+  {unitIdx:2, sectionIdx:3, prompt:"Well, I'd like to --- yes, but I'm afraid it isn't company policy.", options:['say','try','see','can'], answer:'say'},
+  {unitIdx:2, sectionIdx:3, prompt:"I can see what you're ---, but the top's clearly from this shop.", options:['seeing','saying','willing','preparing'], answer:'saying'},
+  {unitIdx:2, sectionIdx:3, prompt:'Would you be --- to give me a store gift card or credit so I can buy something else from the store?', options:['awkward','shake','wondering','prepared'], answer:'prepared'},
+  {unitIdx:2, sectionIdx:3, prompt:'Which of the following examples is used to refuse an offer?', options:["I can see what you're saying, but the top's clearly from this shop.","Well, I'd like to say yes, but I'm afraid it isn't company policy.","At the end of the day, the children really won't be any bother, they're quite self-sufficient.","B + C"], answer:'B + C'},
+  {unitIdx:2, sectionIdx:3, prompt:"Well, this is a bit awkward, but I was bought this top as a birthday present, and it just doesn't suit me. Can I return it? - The underlined part of the above sentence refers to ... when negotiating.", options:['asking for what you want','accepting an offer','refusing an offer','trying to get to a win-win situation'], answer:'asking for what you want'},
+  {unitIdx:2, sectionIdx:3, prompt:'Huda: Well, (1) --- yes, but midnight is a bit late for me on a Friday night.', options:["I'd like to say","I'm afraid","How about if we","at the end of the day"], answer:"I'd like to say"},
+  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: (2) --- say 11.30? Would that be OK?", options:["Let's shake on that","How about if we","I'm afraid","At the end of the day"], answer:'How about if we'},
+  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: Oh, I'm afraid (3) --- budget. The children really won't be any bother.", options:["it has to be a 'no' to my","that's a bit out of my","there's no flexibility in my","let's shake on my"], answer:"that's a bit out of my"},
+  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: You won't have to do anything except watch TV. Would you (4) --- accept 7 dinars an hour?", options:['be prepared to','be afraid to','be awkward to','shake to'], answer:'be prepared to'},
+  {unitIdx:2, sectionIdx:3, prompt:'Huda: Can we try and (5) ---? Would 7.50 dinars be OK?', options:['shake on this','meet halfway on this','end the day here','give up on this'], answer:'meet halfway on this'},
 
-  /* ═══════════ الوحدة الثالثة · Section 5: Collocations related to purchasing ═══════════ */
-  {unitIdx:2, sectionIdx:5, prompt:"Which of the following collocations means 'to buy a lot of things at once to save money'?", options:['buy in bulk','go on a shopping spree','mooch around the shops','shop around for the best deal'], answer:'buy in bulk'},
-  {unitIdx:2, sectionIdx:5, prompt:"Which of the following collocations means 'to go shopping excessively in one go'?", options:['go on a shopping spree','buy in bulk','stock up on essentials','run errands'], answer:'go on a shopping spree'},
-  {unitIdx:2, sectionIdx:5, prompt:"Which of the following collocations means 'to buy essential items in large quantities for storage'?", options:['stock up on essentials','go on a shopping spree','mooch around the shops','carry the products'], answer:'stock up on essentials'},
-  {unitIdx:2, sectionIdx:5, prompt:"Which of the following collocations means 'to wander around shops without intending to buy anything'?", options:['mooch around the shops','buy in bulk','shop around for the best deal','display wares'], answer:'mooch around the shops'},
-  {unitIdx:2, sectionIdx:5, prompt:"Which of the following collocations means 'to look in different shops to get the best price'?", options:['shop around for the best deal','buy in bulk','mooch around the shops','run errands'], answer:'shop around for the best deal'},
-  {unitIdx:2, sectionIdx:5, prompt:"Which of the following collocations means 'to do daily tasks such as shopping'?", options:['run errands','buy in bulk','display wares','carry the products'], answer:'run errands'},
+  /* ═══ الوحدة الثالثة · Section 4 ═══ */
+  {unitIdx:2, sectionIdx:4, prompt:'"Just one of the cons might easily outweigh all of the pros." - The words that have the same meaning as the underlined word above are:', options:['cancel out','negate','persevere','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"A cost-benefit analysis allows you to be more objective." - The word that has the same meaning as the underlined word above is:', options:['dispassionate','impartial','detrimental','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"There are also other costs to take into account, such as the cost in your time." - The words that have the same meaning as the underlined ones above are:', options:['cancel out','bear in mind','plough on','persist'], answer:'bear in mind'},
+  {unitIdx:2, sectionIdx:4, prompt:'"People have a tendency to overvalue immediate rewards." - The word that has the same meaning as the underlined one above is:', options:['propensity','concept','snare','notion'], answer:'propensity'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Another trap is the sunk-cost fallacy." - The word that has the same meaning as the underlined one above is:', options:['pitfall','snare','notion','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Because you have already invested, you should persist no matter what." - The words that have the same meaning as the underlined word above are:', options:['persevere','plough on','cancel out','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"After a certain point, investing more money does not lead to increased benefits, and may even have an adverse impact." - The word that has the same meaning as the underlined one above is:', options:['dispassionate','impartial','objective','detrimental'], answer:'detrimental'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Nowadays, it\'s worth considering this concept when it comes to free social media sites." - The word that has the same meaning as the underlined one above is:', options:['notion','pitfall','snare','trap'], answer:'notion'},
 
-  /* ═══════════ الوحدة الثالثة · Section 6: Sales and persuasion techniques ═══════════ */
-  {unitIdx:2, sectionIdx:6, prompt:"'A way of making the customer believe that there is not enough of a product, allowing salespeople to sell it more quickly, for a higher price, or both' is the definition of:", options:['framing','the scarcity principle','social proof','reciprocation'], answer:'the scarcity principle'},
-  {unitIdx:2, sectionIdx:6, prompt:"'When a product seems more attractive because many other people are buying it, too' is the definition of:", options:['reciprocation','framing','social proof','"yes questions"'], answer:'social proof'},
-  {unitIdx:2, sectionIdx:6, prompt:"'The way information is presented to influence the decisions people make' is the definition of:", options:['framing','the scarcity principle','reciprocation','social proof'], answer:'framing'},
-  {unitIdx:2, sectionIdx:6, prompt:'Giving a potential customer a gift so that they feel they want to buy something from you is an example of:', options:['framing','reciprocation','social proof','"yes questions"'], answer:'reciprocation'},
-  {unitIdx:2, sectionIdx:6, prompt:"Asking a series of questions where the answer is intended to be 'Yes', to encourage the customer to agree with the salesperson, is known as:", options:['"yes questions"','framing','social proof','reciprocation'], answer:'"yes questions"'},
+  /* ═══ الوحدة الثالثة · Section 5 (Collocations purchasing) ═══ */
+  {unitIdx:2, sectionIdx:5, prompt:"'Buy in bulk' means:", options:['buy a small amount','buy large quantities to save money','buy cheap items only','buy from a specific shop'], answer:'buy large quantities to save money'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Go on a shopping spree' means:", options:['buy only essentials','shop a lot in one go (often for fun)','browse without buying','look for the cheapest deals'], answer:'shop a lot in one go (often for fun)'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Stock up on essentials' means:", options:['buy only luxury items','buy important items in large amounts to store','sell items quickly','avoid buying anything'], answer:'buy important items in large amounts to store'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Mooch around the shops' means:", options:['shop seriously for hours','wander around shops without intending to buy','buy things on impulse','complain about shops'], answer:'wander around shops without intending to buy'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Shop around for the best deal' means:", options:['buy the first thing you see','compare prices in different shops to find the cheapest','avoid shopping','only buy online'], answer:'compare prices in different shops to find the cheapest'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Carry the products' means:", options:['transport goods by truck','supply or sell products in a shop','refuse to sell products','return products'], answer:'supply or sell products in a shop'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Display wares' means:", options:['hide products in storage','show items for sale on shelves','wrap up purchases','count inventory'], answer:'show items for sale on shelves'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Run errands' means:", options:['exercise in the morning','do small everyday tasks like shopping','drive long distances','avoid all tasks'], answer:'do small everyday tasks like shopping'},
 
-  /* ═══════════ الوحدة الرابعة · Section 0: Adjectives to describe food ═══════════ */
-  {unitIdx:3, sectionIdx:0, prompt:"Which adjective describes food that is 'soft, light and full of air'?", options:['fluffy','tender','velvety','greasy'], answer:'fluffy'},
-  {unitIdx:3, sectionIdx:0, prompt:"Which adjective describes food that is 'hard to chew'?", options:['chewy','tender','fluffy','velvety'], answer:'chewy'},
-  {unitIdx:3, sectionIdx:0, prompt:"Which adjective describes food that is 'full of oil'?", options:['greasy','soggy','fluffy','tender'], answer:'greasy'},
-  {unitIdx:3, sectionIdx:0, prompt:"Which adjective describes food that is 'heavy and difficult to digest'?", options:['stodgy','tender','velvety','tempting'], answer:'stodgy'},
-  {unitIdx:3, sectionIdx:0, prompt:"Which adjective describes food that is 'too hot and could burn you'?", options:['scalding','mouldy','greasy','soggy'], answer:'scalding'},
-  {unitIdx:3, sectionIdx:0, prompt:"Which adjective describes food that is 'too wet and soft'?", options:['soggy','chewy','stodgy','fluffy'], answer:'soggy'},
-
-  /* ═══════════ الوحدة الرابعة · Section 1: Partitives ═══════════ */
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of information', options:['piece','drop','slab','sprig'], answer:'piece'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of advice', options:['piece','drop','clove','scoop'], answer:'piece'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of oil', options:['drop','piece','slice','sprig'], answer:'drop'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of meat', options:['slab','drop','sprig','dusting'], answer:'slab'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of cheese', options:['slice','clove','sprig','dusting'], answer:'slice'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of herbs', options:['sprig','slice','clove','handful'], answer:'sprig'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of garlic', options:['clove','sprig','dusting','dab'], answer:'clove'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of bread (the end piece)', options:['heel','slice','sprig','clove'], answer:'heel'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of peas', options:['handful','sprig','clove','slice'], answer:'handful'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of ice cream', options:['scoop','slice','sprig','drop'], answer:'scoop'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of salt', options:['pinch','scoop','slice','sprig'], answer:'pinch'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of anger', options:['fit','drop','slab','sprig'], answer:'fit'},
-  {unitIdx:3, sectionIdx:1, prompt:'A --- of icing sugar', options:['dusting','pinch','drop','clove'], answer:'dusting'},
-
-  /* ═══════════ الوحدة الرابعة · Section 2: Vocabulary related to eating ═══════════ */
-  {unitIdx:3, sectionIdx:2, prompt:"'Let your body digest dinner' means:", options:['let your dinner go down','rustle up something','comfort eating','devour'], answer:'let your dinner go down'},
-  {unitIdx:3, sectionIdx:2, prompt:"'You get a sudden message from your stomach' means:", options:['your stomach rumbles','rustle up something','let your dinner go down','devour'], answer:'your stomach rumbles'},
-  {unitIdx:3, sectionIdx:2, prompt:"'Quickly cook' means:", options:['rustle up (something)','devour','comfort eating','let your dinner go down'], answer:'rustle up (something)'},
-  {unitIdx:3, sectionIdx:2, prompt:"'Something tasty and full of unhealthy ingredients' refers to:", options:['comfort eating','rustle up','devour','your stomach rumbles'], answer:'comfort eating'},
-
-  /* ═══════════ الوحدة الرابعة · Section 3: Verbs ═══════════ */
-  {unitIdx:3, sectionIdx:3, prompt:'To attack or hit with a lot of things at once:', options:['bombard','water','sneak','strike'], answer:'bombard'},
-  {unitIdx:3, sectionIdx:3, prompt:'To eat greedily:', options:['devour','waft','waver','strike'], answer:'devour'},
-  {unitIdx:3, sectionIdx:3, prompt:'To move quietly and secretly:', options:['sneak','waft','bombard','trigger'], answer:'sneak'},
-  {unitIdx:3, sectionIdx:3, prompt:'To search thoroughly:', options:['trawl (through)','waft','strike','succumb'], answer:'trawl (through)'},
-  {unitIdx:3, sectionIdx:3, prompt:'To give in / surrender:', options:['succumb','trigger','waver','strike'], answer:'succumb'},
-  {unitIdx:3, sectionIdx:3, prompt:'To cause something to happen:', options:['trigger','waft','waver','bombard'], answer:'trigger'},
-  {unitIdx:3, sectionIdx:3, prompt:'To float or drift through the air:', options:['waft','strike','succumb','bombard'], answer:'waft'},
-  {unitIdx:3, sectionIdx:3, prompt:'To become unsteady or lose determination:', options:['waver','waft','strike','devour'], answer:'waver'},
-
-  /* ═══════════ الوحدة الرابعة · Section 4: Colloquial words / phrases ═══════════ */
-  {unitIdx:3, sectionIdx:4, prompt:"The formal synonym of 'give it a wide berth' is:", options:['avoid','indicate','disappointment','advertising'], answer:'avoid'},
-  {unitIdx:3, sectionIdx:4, prompt:"The formal synonym of 'hype' is:", options:['advertising and previews','avoid','indicate','really desire'], answer:'advertising and previews'},
-  {unitIdx:3, sectionIdx:4, prompt:"The formal synonym of 'a letdown' is:", options:['a disappointment','avoid','indicate','really desire'], answer:'a disappointment'},
-  {unitIdx:3, sectionIdx:4, prompt:"The formal synonym of 'make out that' is:", options:['indicate','avoid','disappointment','advertising'], answer:'indicate'},
-  {unitIdx:3, sectionIdx:4, prompt:"The formal synonym of 'yearn for' is:", options:['really desire','avoid','indicate','advertising'], answer:'really desire'},
-
-  /* ═══════════ الوحدة الخامسة · Section 0: Idioms related to studying ═══════════ */
-  {unitIdx:4, sectionIdx:0, prompt:"'Do something successfully and easily' is the meaning of:", options:['breeze / sail through','get the hang of','get your head down','go blank'], answer:'breeze / sail through'},
-  {unitIdx:4, sectionIdx:0, prompt:"'Learn how to do something' is the meaning of:", options:['get the hang of (something)','breeze through','run on empty','go blank'], answer:'get the hang of (something)'},
-  {unitIdx:4, sectionIdx:0, prompt:"'Focus on something' is the meaning of:", options:['get your head down','run on empty','go blank','get the hang of'], answer:'get your head down'},
-  {unitIdx:4, sectionIdx:0, prompt:"'Teach something by repeating it many times' is the meaning of:", options:['drum (something) into (somebody)','keep somebody on track','breeze through','go blank'], answer:'drum (something) into (somebody)'},
-  {unitIdx:4, sectionIdx:0, prompt:"'Continue to make good progress with an activity' is the meaning of:", options:['keep (somebody) on track','get your head down','run on empty','go blank'], answer:'keep (somebody) on track'},
-  {unitIdx:4, sectionIdx:0, prompt:"'You have a lot to learn' is the meaning of:", options:['be on a steep learning curve','breeze through','get your head down','go blank'], answer:'be on a steep learning curve'},
-  {unitIdx:4, sectionIdx:0, prompt:"'Have no energy left' is the meaning of:", options:['run on empty','breeze through','get the hang of','go blank'], answer:'run on empty'},
-  {unitIdx:4, sectionIdx:0, prompt:"'Suddenly forget information that you knew previously' is the meaning of:", options:['go blank','run on empty','breeze through','drum into'], answer:'go blank'},
-
-  /* ═══════════ الوحدة الخامسة · Section 1: Collocations with attempt and effort ═══════════ */
-  {unitIdx:4, sectionIdx:1, prompt:"'Very brave' is the meaning of:", options:['valiant','frantic','futile','sustained'], answer:'valiant'},
-  {unitIdx:4, sectionIdx:1, prompt:"'Almost out of control' is the meaning of:", options:['frantic','valiant','futile','strenuous'], answer:'frantic'},
-  {unitIdx:4, sectionIdx:1, prompt:"'Achieving nothing' is the meaning of:", options:['futile','valiant','strenuous','sustained'], answer:'futile'},
-  {unitIdx:4, sectionIdx:1, prompt:"'With no enthusiasm' is the meaning of:", options:['half-hearted','valiant','frantic','strenuous'], answer:'half-hearted'},
-  {unitIdx:4, sectionIdx:1, prompt:"'Based on wrong information' is the meaning of:", options:['misguided','frantic','futile','strenuous'], answer:'misguided'},
-  {unitIdx:4, sectionIdx:1, prompt:"'After a series of failures' is the meaning of:", options:['last-ditch','valiant','misguided','sustained'], answer:'last-ditch'},
-  {unitIdx:4, sectionIdx:1, prompt:"'Using a lot of energy' is the meaning of:", options:['strenuous','valiant','futile','sustained'], answer:'strenuous'},
-  {unitIdx:4, sectionIdx:1, prompt:"'Determined and continuing for a long time' is the meaning of:", options:['sustained','strenuous','futile','frantic'], answer:'sustained'},
-
-  /* ═══════════ الوحدة الخامسة · Section 2: Vocabulary related to sporting success ═══════════ */
-  {unitIdx:4, sectionIdx:2, prompt:"'Persistence despite fatigue and difficulties' is the meaning of:", options:['perseverance','rivalry','raw talent','scrutiny'], answer:'perseverance'},
-  {unitIdx:4, sectionIdx:2, prompt:"'Unpolished talent that is still clear' is the meaning of:", options:['raw talent','perseverance','rivalry','tenacity'], answer:'raw talent'},
-  {unitIdx:4, sectionIdx:2, prompt:"'Competition or hostility' is the meaning of:", options:['rivalry','perseverance','tenacity','scrutiny'], answer:'rivalry'},
-  {unitIdx:4, sectionIdx:2, prompt:"'Determination and sticking to a goal' is the meaning of:", options:['tenacity','perseverance','rivalry','scrutiny'], answer:'tenacity'},
-  {unitIdx:4, sectionIdx:2, prompt:"'Close examination or review' is the meaning of:", options:['scrutiny','rivalry','perseverance','raw talent'], answer:'scrutiny'},
-
-  /* ═══════════ الوحدة الخامسة · Section 3: Collocations related to sporting success ═══════════ */
-  {unitIdx:4, sectionIdx:3, prompt:"'To communicate or coordinate with' is the meaning of:", options:['liaise with','channel into','plagued by','single out'], answer:'liaise with'},
-  {unitIdx:4, sectionIdx:3, prompt:"'To direct or dedicate energy towards something' is the meaning of:", options:['channel into','liaise with','embark upon','lose sight of'], answer:'channel into'},
-  {unitIdx:4, sectionIdx:3, prompt:"'To suffer from / be troubled by' is the meaning of:", options:['plagued by','single out','liaise with','embark upon'], answer:'plagued by'},
-  {unitIdx:4, sectionIdx:3, prompt:"'To single out / choose specially' is the meaning of:", options:['single out','channel into','lose sight of','embark upon'], answer:'single out'},
-  {unitIdx:4, sectionIdx:3, prompt:"'To begin / start something new' is the meaning of:", options:['embark upon','liaise with','channel into','lose sight of'], answer:'embark upon'},
-  {unitIdx:4, sectionIdx:3, prompt:"'To forget about something important' is the meaning of:", options:['lose sight of','single out','plagued by','embark upon'], answer:'lose sight of'},
-
-  /* ═══════════ الوحدة الخامسة · Section 4: Prepositional phrases ═══════════ */
-  {unitIdx:4, sectionIdx:4, prompt:"'To lose energy / enthusiasm / ability to continue' is the meaning of:", options:['run out of steam','be a lot at stake','for a change','by far'], answer:'run out of steam'},
-  {unitIdx:4, sectionIdx:4, prompt:"'To leave your comfort zone' is the meaning of:", options:["step out of someone's comfort zone",'check in on','by far','for a change'], answer:"step out of someone's comfort zone"},
-  {unitIdx:4, sectionIdx:4, prompt:"'To check on someone to make sure they are okay' is the meaning of:", options:['check in on','pat someone on the back for','be up for','lose faith in'], answer:'check in on'},
-  {unitIdx:4, sectionIdx:4, prompt:"'To praise or congratulate someone' is the meaning of:", options:['pat someone on the back for','check in on','for a change','by far'], answer:'pat someone on the back for'},
-  {unitIdx:4, sectionIdx:4, prompt:"'To be enthusiastic about / keen on' is the meaning of:", options:['be (really) up for','be a lot at stake','lose faith in','by far'], answer:'be (really) up for'},
-  {unitIdx:4, sectionIdx:4, prompt:"'Just to do something different / break the routine' is the meaning of:", options:['for a change','by far','check in on','be up for'], answer:'for a change'},
-  {unitIdx:4, sectionIdx:4, prompt:"'To have a lot to lose / be a big risk' is the meaning of:", options:['be a lot at stake','by far','lose faith in','for a change'], answer:'be a lot at stake'},
-  {unitIdx:4, sectionIdx:4, prompt:"'From your own experience' is the meaning of:", options:['from personal experience','by far','for a change','be up for'], answer:'from personal experience'},
-  {unitIdx:4, sectionIdx:4, prompt:"'To stop trusting something/someone' is the meaning of:", options:['lose faith in','be a lot at stake','run out of steam','by far'], answer:'lose faith in'},
-  {unitIdx:4, sectionIdx:4, prompt:"'By a great amount / clearly' is the meaning of:", options:['by far','for a change','be up for','check in on'], answer:'by far'}
-
+  /* ═══ الوحدة الثالثة · Section 6 (Sales techniques) ═══ */
+  {unitIdx:2, sectionIdx:6, prompt:'When the salesperson told you that they wouldn\'t be getting any more stock in, that made you wonder if you might be missing out if you didn\'t get it right away, which is very ---.', options:['breaking','knocking','enticing','passing'], answer:'enticing'},
+  {unitIdx:2, sectionIdx:6, prompt:'Do you really think it works to --- people into doing something?', options:['pressure','discount','collapse','withdraw'], answer:'pressure'},
+  {unitIdx:2, sectionIdx:6, prompt:'I remember saying to my parents that everyone was going to this event, thinking that would --- them to let me go, and they just said "If everyone was jumping off a cliff, would you?"', options:['convince','knock','owe','collapse'], answer:'convince'},
+  {unitIdx:2, sectionIdx:6, prompt:'The technique where giving a customer a small gift makes them feel they should buy something is called:', options:['framing','reciprocation','social proof','the scarcity principle'], answer:'reciprocation'},
+  {unitIdx:2, sectionIdx:6, prompt:"The technique of presenting information in a way that influences the customer's decision is called:", options:['framing','reciprocation','social proof','the scarcity principle'], answer:'framing'},
+  {unitIdx:2, sectionIdx:6, prompt:'When a product seems more attractive because many other people are buying it, this is called:', options:['framing','reciprocation','social proof','the scarcity principle'], answer:'social proof'},
+  {unitIdx:2, sectionIdx:6, prompt:'A way of making the customer believe there is not enough of a product is called:', options:['framing','reciprocation','social proof','the scarcity principle'], answer:'the scarcity principle'},
+  {unitIdx:2, sectionIdx:6, prompt:'Asking a series of questions where the answer is intended to be "Yes" is called:', options:['framing','reciprocation','social proof','"yes questions"'], answer:'"yes questions"'}
 ];
-
 
 /* ═══════════════════════════════════════════════════════════════════════════
    ⚙️  إعدادات عامة
    ═══════════════════════════════════════════════════════════════════════════ */
 const LOCKED_UNITS=[];
 
-
 /* ═══════════════════════════════════════════════════════════════════════════
    ⬇️  الكود التشغيلي
    ═══════════════════════════════════════════════════════════════════════════ */
-
 const floatWrappers=[];
 const floatLayers=[];
 const FLOAT_WORDS=['dream','focus','learn','grow','speak','think','create','believe','explore','achieve','imagine','inspire','discover','wonder','reflect','journey','vision','purpose','passion','wisdom','courage','future','identity','language','culture','mind','voice','story','change','bridge','snow','word','meaning','grammar','write','read','happy','peace','strong','kind','calm','bold','warm','shine','hope','rise','soul','faith','heart','light','truth','grace','magic','spark','flow','glow','bloom','soar','dive','leap','dance','sing','paint','build','shape','craft','forge','frame','blaze','whisper','listen','hear','tell','ask','answer','search','find','know','feel','sense','touch','move','breathe','live','love','care','give','share','teach','guide','lead','follow','walk','run','climb','reach','hold','carry','lift','fly','float','drift','echo','resonate','kindle','ignite','flourish','thrive','evolve','become'];
@@ -1797,16 +1535,24 @@ function renderQCorrection(){
   });
 }
 
+/* ══════════════════ BUILD QUIZ (with global dedup) ══════════════════ */
 function buildQuiz(){
   const pool=getSelectedWords();const types=state.selectedQTypes;const count=state.selectedQCount;
   const questions=[];
   const secSet={};state.selectedSections.forEach(i=>{secSet[state.unit+'-'+i]=true});
-  const usedPrompts={};
+  const usedKeys={};
+  const addQ=(q)=>{
+    if(!q)return false;
+    const key=q.kind+'|'+q.prompt;
+    if(usedKeys[key])return false;
+    usedKeys[key]=true;
+    questions.push(q);
+    return true;
+  };
   if(types.indexOf('book')>=0){
     const bookPool=BOOK_QUESTIONS.filter(q=>secSet[q.unitIdx+'-'+q.sectionIdx]);
     bookPool.forEach(q=>{
-      if(usedPrompts[q.prompt])return;usedPrompts[q.prompt]=true;
-      questions.push({kind:'book',prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:false,promptRTL:false,user:null,answered:false});
+      addQ({kind:'book',prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:false,promptRTL:false,user:null,answered:false});
     });
   }
   const nonBook=types.filter(t=>t!=='book');
@@ -1825,7 +1571,7 @@ function buildQuiz(){
           const o=shuffle(pool.filter(x=>x.e&&x.e!==w.e).map(x=>x.e)).slice(0,3);
           if(o.length>=3)q={kind:'definition',prompt:w.t,options:shuffle([w.e].concat(o)),answer:w.e,optionsRTL:false,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};
         }
-        if(q)questions.push(q);
+        addQ(q);
       }
     }
   }
