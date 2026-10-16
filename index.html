@@ -298,10 +298,47 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 .ios-steps{background:var(--surface);border-radius:12px;padding:14px;margin-bottom:14px;text-align:right}
 .ios-steps .step-row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.813rem;font-weight:600;color:var(--text-2);line-height:1.5}
 .ios-steps .step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;display:grid;place-items:center;font-family:'Inter',sans-serif;font-weight:900;font-size:.75rem;flex-shrink:0}
+/* ═══ شريط الذكر الخفيف — أسفل الشاشة ═══ */
+#dhikrFloat{
+  position:fixed;
+  bottom:calc(48px + var(--safe-bottom));
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 14px;
+  border-radius:99px;
+  background:rgba(20,24,36,.55);
+  backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(139,92,246,.18);
+  color:var(--text-3);
+  font-size:.688rem;
+  font-weight:700;
+  font-family:'Tajawal',sans-serif;
+  letter-spacing:.2px;
+  pointer-events:none;
+  z-index:99;
+  opacity:0;
+  transition:opacity 1.2s ease;
+  user-select:none;
+  white-space:nowrap;
+  max-width:calc(100vw - 40px);
+}
+html[data-theme="light"] #dhikrFloat{
+  background:rgba(255,255,255,.65);
+  border-color:rgba(99,102,241,.18);
+}
+#dhikrFloat.show{opacity:.62;}
+#dhikrFloat .df-icon{font-size:.813rem;line-height:1;}
+#dhikrFloat .df-text{transition:opacity .6s ease,transform .6s ease;}
+#dhikrFloat .df-text.fade{opacity:0;transform:translateY(-4px);}
 @media (max-width:420px){
   .quality-float{bottom:calc(56px + var(--safe-bottom));padding:4px 5px;gap:3px}
   .quality-btn{padding:5px 8px;font-size:.625rem;gap:3px}
   .quality-btn .q-emoji{font-size:.75rem}
+  #dhikrFloat{font-size:.625rem;padding:4px 11px;gap:5px;}
+  #dhikrFloat .df-icon{font-size:.75rem;}
 }
 @media (max-width:330px){.quality-btn .q-text{display:none}}
 @media (max-height:640px){.box-card,.unit-card{width:clamp(100px,25vw,140px)}.step-title h2{font-size:1.063rem}}
@@ -329,6 +366,8 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
   html,body{scroll-behavior:auto !important}
   .install-pill{animation:none !important}
   .install-pill .inst-emoji{animation:none !important}
+  #dhikrFloat{transition:none;}
+  #dhikrFloat .df-text{transition:none;}
 }
 </style>
 </head>
@@ -339,15 +378,46 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
   <div class="splash-brand">VocabJordan</div>
   <div class="splash-tagline">مفردات 2009 متقدم</div>
   <div class="splash-dhikr" id="splashDhikr">
-    <span class="splash-dhikr-icon" id="splashDhikrIcon">🕌</span>
-    <div class="splash-dhikr-text" id="splashDhikrText">اللهم صلِّ وسلِّم على نبينا محمد ﷺ</div>
-    <span class="splash-dhikr-type" id="splashDhikrType">صلاة على النبي</span>
+    <span class="splash-dhikr-icon" id="splashDhikrIcon">📿</span>
+    <div class="splash-dhikr-text" id="splashDhikrText">سبحان الله</div>
+    <span class="splash-dhikr-type" id="splashDhikrType">تسبيح</span>
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     FAILSAFE SCRIPT — يعمل بشكل مستقل تماماً
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  var _splashHidden = false;
+  function _hideSplash(){
+    if(_splashHidden) return;
+    _splashHidden = true;
+    var s = document.getElementById('splashScreen');
+    if(s){
+      s.classList.add('hide');
+      setTimeout(function(){ s.style.display = 'none'; }, 700);
+    }
+  }
+  setTimeout(_hideSplash, 3500);
+  document.addEventListener('click', _hideSplash, true);
+  document.addEventListener('touchstart', _hideSplash, true);
+  document.addEventListener('keydown', _hideSplash, true);
+  window.addEventListener('error', _hideSplash);
+  window.addEventListener('unhandledrejection', _hideSplash);
+  window.__hideSplash = _hideSplash;
+})();
+</script>
 
 <div class="float-bg" id="floatBg"></div>
 <div class="float-dust" id="floatDust"></div>
 <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="orb orb-4"></div>
+
+<!-- شريط الذكر الخفيف -->
+<div id="dhikrFloat" aria-hidden="true">
+  <span class="df-icon" id="dhikrIcon">📿</span>
+  <span class="df-text" id="dhikrText">سبحان الله</span>
+</div>
 
 <div id="confirmModal"><div class="cm-box"><div class="cm-title" id="cmTitle">تأكيد</div><div class="cm-text" id="cmText">هل أنت متأكد؟</div><div class="cm-actions"><button class="action-btn ghost" id="cmCancel">إلغاء</button><button class="action-btn" id="cmOk">تأكيد</button></div></div></div>
 <div id="countModal"><div class="cm-box"><div class="cm-title">🎯 عدد أسئلة مخصص</div><div class="cm-text">أدخل عدد الأسئلة اللي بدك إياها</div><input type="number" class="cm-input" id="countInput" min="1" max="100" value="10" inputmode="numeric"><div class="cm-hint">المتاح: <b id="countMax">99</b> سؤال</div><div class="cm-actions"><button class="action-btn ghost" id="countCancel">إلغاء</button><button class="action-btn" id="countOk">تأكيد ✓</button></div></div></div>
@@ -448,17 +518,14 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 <script>
 'use strict';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   🧩  بيانات المعاني (VOCAB)
-   ═══════════════════════════════════════════════════════════════════════════ */
-const VOCAB=[
+var VOCAB=[
   {unit:'الوحدة الأولى', sections:[
     {title:'Fixed expressions related to identity', words:[
       {t:'be wild about (something)', m:'مولع بشيء ما', e:'be crazy about something'},
       {t:'get a kick out of (something)', m:'يشعر بالمتعة والحماس', e:'feel excitement and enjoyment'},
       {t:'set great store by (something)', m:'يولي أهمية كبيرة لـ / يقدر شيئاً ما جداً', e:'consider something to be important'},
       {t:'be in line with (something)', m:'يتماشى مع', e:'match with'},
-      {t:'say a lot about (someone)', m:'يكشف الكثير عن شخصية أحد ما', e:'reveal someone’s traits'},
+      {t:'say a lot about (someone)', m:'يكشف الكثير عن شخصية أحد ما', e:'reveal someone traits'},
       {t:'click with (someone)', m:'ينسجم بسرعة مع شخص ما', e:'hit it off with someone'},
       {t:'(what) makes us tick', m:'يدفعنا للتصرف بطريقة معينة', e:'makes us behave in a certain way'},
       {t:'plump for', m:'يختار شيئاً بعد تردد / تفكير', e:'choose'},
@@ -472,7 +539,7 @@ const VOCAB=[
       {t:'tactful', m:'لبق'},{t:'tactfulness', m:'اللباقة'},
       {t:'passionate (about)', m:'شغوف'},{t:'passion', m:'الشغف'},
       {t:'assertive', m:'حازم'},{t:'assertiveness', m:'الحزم'},
-      {t:'discreet', m:'كنوم'},{t:'discretion', m:'الكنمان'},
+      {t:'discreet', m:'كتوم'},{t:'discretion', m:'الكتمان'},
       {t:'humble', m:'متواضع'},{t:'humility', m:'التواضع'},
       {t:'inclusive', m:'شامل / متقبل للآخرين'},{t:'inclusiveness / inclusivity', m:'الشمول'},
       {t:'merciful', m:'رحيم'},{t:'mercy', m:'الرحمة'},
@@ -491,13 +558,13 @@ const VOCAB=[
       {t:'lifelong', m:'مدى الحياة / طويل الأمد'},{t:'carefree', m:'خالٍ من الهموم'},{t:'overcooked', m:'مطهو أكثر من اللازم'}
     ]},
     {title:'Idioms and idiomatic phrases related to personality', words:[
-      {t:'a cold fish', m:'شخص بارد المشاعر', e:'a person who doesn’t show their feelings'},
-      {t:'a dark horse', m:'شخص يخفي قدراته (قد يفاجئ الآخرين بقدراته)', e:'a person who keeps their abilities secret'},
-      {t:'a go-getter', m:'شخص طموح ومجتهد (يركز على العزيمة والإصرار)', e:'a person who is determined to be successful'},
-      {t:'a mover and shaker', m:'شخص مؤثر وفعال (يمتلك سلطة)', e:'a person with a lot of power and influence'},
+      {t:'a cold fish', m:'شخص بارد المشاعر', e:'a person who does not show their feelings'},
+      {t:'a dark horse', m:'شخص يخفي قدراته', e:'a person who keeps their abilities secret'},
+      {t:'a go-getter', m:'شخص طموح ومجتهد', e:'a person who is determined to be successful'},
+      {t:'a mover and shaker', m:'شخص مؤثر وفعال', e:'a person with a lot of power and influence'},
       {t:'a smart alec', m:'شخص متباهٍ بذكائه بشكل مزعج', e:'a person who tries to look clever in an annoying way'},
       {t:'a smart cookie', m:'شخص ذكي وفطن', e:'a clever person'},
-      {t:'a soft touch', m:'شخص سهل الإقناع أو الخداع', e:'a person you can easily deceive or persuade to do what you want'},
+      {t:'a soft touch', m:'شخص سهل الإقناع أو الخداع', e:'a person you can easily deceive or persuade'},
       {t:'a social butterfly', m:'شخص اجتماعي', e:'someone who likes to attend social events'},
       {t:'keep yourself to yourself', m:'شخص لا يحب مقابلة الناس / انطوائي', e:'to avoid meeting people socially'}
     ]},
@@ -506,16 +573,16 @@ const VOCAB=[
       {t:'disposition', m:'الطبع / السجية', e:'character or personality'},
       {t:'hereditary', m:'وراثي', e:'passed from parent to child'},
       {t:'imply', m:'يوحي / يلمح', e:'suggest'},
-      {t:'moulded', m:'مشكل / مشكون / متأثر', e:'influenced or changed'},
-      {t:'vulnerability', m:'قابلية للتأثر / هشاشة / ضعف', e:'the quality of being easily hurt'},
+      {t:'moulded', m:'مشكّل / متأثر', e:'influenced or changed'},
+      {t:'vulnerability', m:'قابلية للتأثر / هشاشة', e:'the quality of being easily hurt'},
       {t:'nurture', m:'التربية / الرعاية', e:'helping something or somebody to develop'},
       {t:'offspring', m:'الذرية / الأبناء', e:'children'},
-      {t:'oversimplification', m:'تبسيط مفرط لدرجة التضليل عن الحقيقة', e:'making something so easy to understand that it is no longer true'},
+      {t:'oversimplification', m:'تبسيط مفرط لدرجة التضليل', e:'making something so easy to understand that it is no longer true'},
       {t:'proponents', m:'المؤيدون', e:'people who publicly support an idea'},
       {t:'trait', m:'صفة / سمة', e:'a particular characteristic or way of behaving'}
     ]},
     {title:'Verbs for thinking and understanding', words:[
-      {t:'perceive', m:'يدرك (يستخدم الحواس لإدراك شيء معين)'},
+      {t:'perceive', m:'يدرك (بالحواس)'},
       {t:'recognise', m:'يتعرف / يميز / يدرك'},
       {t:'conceive', m:'يفهم / يستوعب'},
       {t:'comprehend', m:'يفهم / يستوعب'},
@@ -523,51 +590,48 @@ const VOCAB=[
       {t:'assume', m:'يفترض / يعتبر'},
       {t:'deduce', m:'يستنتج استنتاجاً فورياً'},
       {t:'conclude', m:'يستخلص بعد تفكير'},
-      {t:'gather', m:'يجمع / يستنتج من المعلومات المتاحة'},
-      {t:'consider', m:'يأخذ بعين الاعتبار / يفكر'},
-      {t:'reflect', m:'يفكر بعمق / يتأمل / يعكس'}
+      {t:'gather', m:'يجمع / يستنتج من المعلومات'},
+      {t:'consider', m:'يأخذ بعين الاعتبار'},
+      {t:'reflect', m:'يفكر بعمق / يتأمل'}
     ]}
   ]},
 
   {unit:'الوحدة الثانية', sections:[
     {title:'Verbs of movement', words:[
-      {t:'surge', m:'يندفع بقوة'},{t:'lurch', m:'يتحرك فجأة وبشكل غير متوازن'},{t:'hobble', m:'يعرج (بسبب إصابة أو عملية)'},
-      {t:'wobble', m:'يتمایل'},{t:'shuffle', m:'يجز قدميه / يمشي متثاقلًا'},{t:'stride', m:'يمشي بخطوات واسعة / واثقة'},{t:'ride', m:'يركب'}
+      {t:'surge', m:'يندفع بقوة'},{t:'lurch', m:'يتحرك فجأة بشكل غير متوازن'},{t:'hobble', m:'يعرج'},
+      {t:'wobble', m:'يتمایل'},{t:'shuffle', m:'يجرّ قدميه'},{t:'stride', m:'يمشي بخطوات واسعة'},{t:'ride', m:'يركب'}
     ]},
     {title:'Idioms related to movement', words:[
-      {t:'in the same boat', m:'في نفس المأزق'},{t:'go downhill', m:'يتهدور / يسوء'},
+      {t:'in the same boat', m:'في نفس المأزق'},{t:'go downhill', m:'يتدهور / يسوء'},
       {t:'driving force behind (something)', m:'القوة الدافعة وراء شيء ما'},
       {t:'be plain sailing', m:'سهل وسلس دون مشاكل'},{t:'take somebody for a ride', m:'يخدع شخصًا / يستغله'},
       {t:'steer clear of (something)', m:'يتجنب شيئًا / يتفاداه'},
-      {t:'drive (somebody) up the wall', m:'يثير جنون شخص ما / يزعجه بشدة'},
-      {t:'completely at sea with something', m:'في حيرة تامة ولا يفهم شيئًا ما'}
+      {t:'drive (somebody) up the wall', m:'يثير جنون شخص ما'},
+      {t:'completely at sea with something', m:'في حيرة تامة'}
     ]},
     {title:'Public transport words and their synonyms', words:[
       {t:'descend', m:'ينزل / يهبط (syn: go down)'},{t:'bolt', m:'يندفع بسرعة (syn: rush)'},
       {t:'collide', m:'يصطدم (syn: crash into)'},{t:'drag', m:'يجر (syn: pull)'},
-      {t:'rumble', m:'يتقدم ببطء مع دوي منخفض (syn: go slowly)'},{t:'alight', m:'ينزل من وسيلة نقل (syn: get off)'},
+      {t:'rumble', m:'يتقدم ببطء (syn: go slowly)'},{t:'alight', m:'ينزل من وسيلة نقل (syn: get off)'},
       {t:'falter', m:'يتعثر (syn: slip)'},{t:'disperse', m:'يتفرق (syn: spread out)'}
     ]},
     {title:'Phrases', words:[
-      {t:'brag about (something)', m:'يتفاخر بـ / يتباهى بـ'},{t:'the knock-on effect', m:'تأثير غير مباشر / أثر مترتّب على'},
+      {t:'brag about (something)', m:'يتفاخر بـ / يتباهى بـ'},{t:'the knock-on effect', m:'تأثير غير مباشر'},
       {t:'a hurdle / hurdles... to overcome', m:'عقبة / عقبات يجب تجاوزها'},{t:'leave (your) mark', m:'تترك بصمتك'},
       {t:'get their fair share', m:'يحصل نصيبه العادل'},{t:'at breakneck speed', m:'بسرعة فائقة / جنونية'}
     ]},
     {title:'Phrasal nouns', words:[
-      {t:'getaway', m:'رحلة قصيرة (هروب من روتين معين)'},{t:'outcome', m:'نتيجة / مآل'},
-      {t:'breakthrough', m:'تقدّم كبير / إنجاز نوعيّ / طفرة نوعيّة'},{t:'outlook', m:'توقعات (الطقس) / نظرة مستقبلية'},
+      {t:'getaway', m:'رحلة قصيرة (هروب)'},{t:'outcome', m:'نتيجة / مآل'},
+      {t:'breakthrough', m:'تقدّم كبير / طفرة نوعيّة'},{t:'outlook', m:'توقعات / نظرة مستقبلية'},
       {t:'setback', m:'نكسة / عقبة'},{t:'outset', m:'البداية'},{t:'outlay', m:'إنفاق / نفقة'},
-      {t:'outcry', m:'احتجاج كبير / استنكار'},{t:'cutbacks', m:'تقليصات (في الميزانية / عدد الموظفين)'}
+      {t:'outcry', m:'احتجاج كبير / استنكار'},{t:'cutbacks', m:'تقليصات'}
     ]},
     {title:'SPEAKING | Considering options', words:[
       {t:'Considering alternatives', m:'التفكير في البدائل'},
-      {t:"There's a lot to be said for... But on the other hand, ...", m:'هناك الكثير مما يُقال لصالح... ولكن من ناحية أخرى،'},
       {t:'There are a lot of points in favour of...', m:'هناك العديد من النقاط التي تصب في مصلحة...'},
-      {t:'You have to consider the fact that... and likewise with this option, there are some drawbacks too.', m:'عليك أن تأخذ بعين الاعتبار أن... وبالمثل، لهذا الخيار بعض السلبيات أيضًا'},
       {t:'Alternatively, we could put forward the idea of...', m:'وبدلاً عن ذلك، يمكننا طرح فكرة...'},
       {t:'Well, you could argue that...', m:'حسناً، يمكن المجادلة بأن...'},
       {t:"I'd go for... anytime!", m:'سأختار... في أي وقت!'},
-      {t:'Oh, a canal trip - no question! Definitely!', m:'أوه، جولة بالقارب بالقناة المائية؟ بدون نقاش! بالتأكيد!'},
       {t:"It's pretty clear cut to me that...", m:'من الواضح جداً بالنسبة لي أن...'},
       {t:"On balance, I'd say...", m:'بعد النظر في جميع الجوانب، يمكنني القول...'},
       {t:'No two ways about it, my choice would be...', m:'لا جدال في الأمر، خياري سيكون...'},
@@ -576,25 +640,58 @@ const VOCAB=[
       {t:'There are pros and cons for each.', m:'لكل منهما إيجابيات وسلبيات'},
       {t:"If you really wanted to pin me down, I'd probably say...", m:'إذا كنت مصرًا على معرفة رأيي، فربما سأقول...'}
     ]},
-    {title:'Travel Verbs (Literal vs Figurative)', words:[
-      {t:'drive (yourself / somebody) too hard', m:'يدفع نفسه / غيره إلى بذل جهد مفرط قد يكون ضارًا (مجازي) · يقود مركبة (حرفي)', e:'to push yourself or somebody to work extremely hard (figurative) · to operate a vehicle (literal)'},
-      {t:'park (an idea / something)', m:'يؤجل التفكير في فكرة أو موضوع إلى وقت لاحق (مجازي) · يصف أو يركن مركبة (حرفي)', e:'to delay thinking about an idea or subject until a later time (figurative) · to leave a vehicle in a particular place for a time (literal)'}
+    {title:'Travel Verbs — Literal Meaning (المعنى الحرفي)', words:[
+      {t:'sail through (something)', m:'يبحر على الماء بقارب (حرفي)'},
+      {t:'stumble over (something)', m:'يتعثر على شيء ما (حرفي)'},
+      {t:'park (something)', m:'يوقف مركبة في مكان مخصص (حرفي)'},
+      {t:'drive (yourself / somebody)', m:'يقود مركبة (حرفي)'},
+      {t:'jump (the lights)', m:'يستخدم قدميه للحركة في الهواء (حرفي)'},
+      {t:'stagger', m:'يتحرك بطريقة غير ثابتة (حرفي)'},
+      {t:'fly', m:'يتحرك في الهواء (حرفي)'},
+      {t:'backpedal', m:'يستخدم الدواسات في الدراجة للرجوع (حرفي)'},
+      {t:"make (somebody's) way", m:'ينتج شيئاً من مواد (حرفي)'},
+      {t:'fall into step beside / with (somebody)', m:'يهبط على الأرض فجأة بحادث (حرفي)'},
+      {t:'milling around', m:'يطحن شيئاً (مثل القمح) (حرفي)'},
+      {t:'thunder past', m:'صوت عالٍ من السماء أثناء عاصفة (حرفي)'},
+      {t:'forge ahead', m:'ينسخ شيئاً بشكل غير قانوني (حرفي)'},
+      {t:"find (somebody's) footing", m:'يستعيد شيئاً كان مفقوداً (حرفي)'},
+      {t:"catch (somebody's) eye", m:'يمسك جسدياً بشيء يتحرك في الهواء (حرفي)'},
+      {t:'sweep along with the crowds', m:'يستخدم مكنسة لجمع الأوساخ (حرفي)'}
+    ]},
+    {title:'Travel Verbs — Figurative Meaning (المعنى المجازي)', words:[
+      {t:'sail through (something)', m:'يفعل شيئاً بسرعة ودون مشاكل (مجازي)'},
+      {t:'stumble over (something)', m:'يتردد ويتحدث بطريقة غير واضحة (مجازي)'},
+      {t:'park (an idea)', m:'يخطط للتفكير في شيء لاحقاً (مجازي)'},
+      {t:'drive (yourself / somebody) too hard', m:'يبذل جهداً كبيراً قد يكون ضاراً (مجازي)'},
+      {t:'jump (the lights)', m:'يمر على إشارة حمراء دون توقف (مجازي)'},
+      {t:'be staggered by', m:'يُصدم / يُذهل / يُفاجأ بشيء (مجازي)'},
+      {t:'fly', m:'يتحرك بسرعة وبشكل مفاجئ (مجازي)'},
+      {t:'backpedal', m:'يقول إن شيئاً قاله للتو غير صحيح (مجازي)'},
+      {t:"make (somebody's) way", m:'يُنشأ شيء غير مادي (مجازي)'},
+      {t:'fall into step beside / with (somebody)', m:'يغيّر طريقة مشيه ليمشي بنفس وتيرة من حوله (مجازي)'},
+      {t:'milling around', m:'مجموعة من الناس يتحركون بدون اتجاه واضح (مجازي)'},
+      {t:'thunder past', m:'يمر بصوت عالٍ جداً (مجازي)'},
+      {t:'forge ahead', m:'يتقدم للأمام بصعوبة (مجازي)'},
+      {t:'completely at sea with (something)', m:'مرتبك أو غير متأكد (مجازي)'},
+      {t:"find (somebody's) footing", m:'يبدأ بالشعور بالثقة في موقف جديد (مجازي)'},
+      {t:"catch (somebody's) eye", m:'يتواصل بالعين مع شخص ما (مجازي)'},
+      {t:'sweep along with the crowds', m:'يُسحب مع مجموعة دون سيطرة (مجازي)'}
     ]}
   ]},
 
   {unit:'الوحدة الثالثة', sections:[
     {title:'Business-related vocabulary', words:[
-      {t:'quote', m:'السعر المقدّر / عرض السعر / السعر المقترح', e:'the estimated price that will be charged for a service'},
-      {t:'USP (Unique Selling Point)', m:'الميزة الفارقة / التي تميز المنتج', e:'the feature that makes a product different from and better than anything else'},
-      {t:'cost-effective', m:'فعال من حيث التكلفة', e:'good value for money / brings the best possible profits for the lowest possible price'},
-      {t:'launching / launch a business', m:'يطلق / إطلاق منتج جديد في السوق', e:'making a new product available to be sold'},
+      {t:'quote', m:'السعر المقدّر / عرض السعر', e:'the estimated price that will be charged for a service'},
+      {t:'USP (Unique Selling Point)', m:'الميزة الفارقة للمنتج', e:'the feature that makes a product different from and better than anything else'},
+      {t:'cost-effective', m:'فعال من حيث التكلفة', e:'good value for money'},
+      {t:'launching / launch a business', m:'إطلاق منتج جديد في السوق', e:'making a new product available to be sold'},
       {t:'venture', m:'مشروع جديد ومحفوف بالمخاطر', e:'a new business that is risky'},
       {t:'branching out', m:'التوسع / التفرع إلى مجالات جديدة', e:'extended or expanded on the work normally done'},
       {t:'price tag', m:'السعر / التكلفة', e:'the amount that something costs'},
       {t:'bespoke', m:'مُصمم حسب الطلب', e:'specially made for a particular person'},
       {t:'business concept', m:'فكرة مشروع', e:'an idea for a business'},
       {t:'bargain basement', m:'رخيص جداً / سعر زهيد', e:'(of a price) extremely cheap'},
-      {t:'bricks and mortar', m:'مشروع له مقر فعلي (غير إلكتروني)', e:'buildings such as houses, offices, factories'},
+      {t:'bricks and mortar', m:'مشروع له مقر فعلي', e:'buildings such as houses, offices, factories'},
       {t:'turnover', m:'إجمالي الإيرادات / المبيعات', e:'the amount of business a company does in a set period of time'}
     ]},
     {title:'Phrasal verbs related to Business', words:[
@@ -602,18 +699,18 @@ const VOCAB=[
       {t:'build up', m:'يزيد / يُنمي تدريجياً', e:'gradually increase'},
       {t:'knock (something) off', m:'يُخفض شيئاً ما بشكل كبير', e:'considerably reduce'},
       {t:'pass up', m:'يفوت فرصة', e:'fail to take advantage of'},
-      {t:'set up', m:'يُؤسس / ينشىء / يجهز', e:'start'},
+      {t:'set up', m:'يُؤسس / ينشئ / يجهز', e:'start'},
       {t:'sign up', m:'يُسجل / ينضم رسميًا', e:'get to commit'},
       {t:'win over', m:'يكسب تأييد / يُقنع', e:'persuade'}
     ]},
     {title:'Synonyms for the verb persuade', words:[
       {t:'coerce (into doing something)', m:'يُجبر أو يُكره على فعل شيء'},
       {t:'incite (to do something)', m:'يُحرّض أو يُشجّع بقوة'},
-      {t:'pressure (to do something / into doing something)', m:'يُمارس الضغط أو الإكراه'},
-      {t:'urge (to do something / into doing something)', m:'يُلح أو يدفع شخصًا لفعل شيء'},
-      {t:'cajole (into doing something)', m:'يُقنع بلطف أو يُطري ليؤثر'},
-      {t:'coax (to do something / into doing something)', m:'يُقنع بالملاطفة أو الإغراء'},
-      {t:'entice (to do something / into doing something)', m:'يُغري أو يُحفز بالرغبات'},
+      {t:'pressure (to do something)', m:'يُمارس الضغط أو الإكراه'},
+      {t:'urge (to do something)', m:'يُلح أو يدفع شخصًا لفعل شيء'},
+      {t:'cajole (into doing something)', m:'يُقنع بلطف أو يُطري'},
+      {t:'coax (to do something)', m:'يُقنع بالملاطفة أو الإغراء'},
+      {t:'entice (to do something)', m:'يُغري أو يُحفز بالرغبات'},
       {t:'persuade (to do something)', m:'يُقنع شخصًا بأن يفعل شيئًا'},
       {t:'encourage (to do something)', m:'يشجع شخصًا على أن يفعل شيئًا'},
       {t:'convince (to do something)', m:'يُقنع أو يُثبت صحة أمر'},
@@ -622,10 +719,10 @@ const VOCAB=[
     {title:'SPEAKING | Negotiating', words:[
       {t:'This is a bit awkward, but...', m:'هذا محرج بعض الشيء، ولكن...'},
       {t:'Would you be prepared to...?', m:'هل ستكون مستعداً ل...؟'},
-      {t:"I'm wondering if there's any flexibility...?", m:'أتساءل عما إذا كان هناك أي مرونة...؟'},
+      {t:"I'm wondering if there's any flexibility...?", m:'أتساءل عما إذا كان هناك أي مرونة؟'},
       {t:'How about if we were to...?', m:'ما رأيك لو قمنا بـ...؟'},
       {t:"I'd like to say yes, but...", m:'أود أن أقول نعم، ولكن...'},
-      {t:"I'm afraid that's a bit out of my price range/budget.", m:'أخشى أن يكون هذا خارج ميزانيتي / يتجاوز قدرتي.'},
+      {t:"I'm afraid that's a bit out of my price range/budget.", m:'أخشى أن يكون هذا خارج ميزانيتي.'},
       {t:"I'm afraid that's a bit less than I'd be willing to accept.", m:'أخشى أن يكون هذا أقل مما يمكنني قبوله.'},
       {t:'The bottom line is...', m:'خلاصة القول هي...'},
       {t:'At the end of the day...', m:'في نهاية المطاف...'},
@@ -635,43 +732,39 @@ const VOCAB=[
       {t:'OK, I can live with that.', m:'موافق، يمكنني القبول بذلك.'},
       {t:"I can see what you're saying, but...", m:'أفهم وجهة نظرك، ولكن...'},
       {t:'Is there any room for compromise?', m:'هل هناك مجال للتسوية؟'},
-      {t:"Provided you..., I see no reason why I couldn't...", m:'طالما أنك...، فلا أرى أي سبب يمنعني من أن...'},
+      {t:"Provided you..., I see no reason why I couldn't...", m:'طالما أنك...، فلا أرى أي سبب يمنعني...'},
       {t:'Can we try and meet halfway on this?', m:'هل يمكننا الوصول إلى حل وسط؟'},
       {t:'How does that sound?', m:'ما رأيك بهذا الاقتراح؟'}
     ]},
     {title:'Words with their synonyms', words:[
       {t:'bear in mind', m:'يأخذ بعين الاعتبار (syn: take into account)'},
-      {t:'cancel out', m:'يلغي / يطلب (syn: outweigh)'},{t:'negate', m:'يلغي'},
+      {t:'cancel out', m:'يلغي (syn: outweigh)'},{t:'negate', m:'يلغي'},
       {t:'persevere', m:'يثابر (syn: persist)'},{t:'plough on', m:'يواصل بالرغم من الصعوبات'},
       {t:'detrimental', m:'ضار / مؤذ (syn: adverse)'},{t:'dispassionate', m:'غير متحيز (syn: objective)'},
       {t:'impartial', m:'محايد'},{t:'notion', m:'مفهوم (syn: concept)'},
       {t:'pitfall', m:'مأزق (syn: trap)'},{t:'snare', m:'فخ'},{t:'propensity', m:'نزعة / ميل (syn: tendency)'}
     ]},
     {title:'Collocations related to purchasing', words:[
-      {t:'buy in bulk', m:'يشتري بالجملة / بكميات كبيرة (بهدف التوفير)'},
+      {t:'buy in bulk', m:'يشتري بالجملة / بكميات كبيرة'},
       {t:'go on a shopping spree', m:'يتسوق بكثرة دفعة واحدة'},
       {t:'stock up on essentials', m:'يشتري المستلزمات الأساسية بكميات كبيرة'},
       {t:'mooch around the shops', m:'يتجول في المتاجر دون النية للشراء'},
-      {t:'shop around for the best deal', m:'يبحث في المتاجر المختلفة للحصول على أفضل صفقة / أفضل سعر'},
-      {t:'carry the products', m:'يوفر المنتجات / يبيعها في المحل'},
+      {t:'shop around for the best deal', m:'يبحث للحصول على أفضل صفقة'},
+      {t:'carry the products', m:'يوفر المنتجات / يبيعها'},
       {t:'display wares', m:'يعرض بضاعته'},
-      {t:'run errands', m:'يقضي الحاجات / قضاء المهمات اليومية'}
+      {t:'run errands', m:'يقضي الحاجات / المهمات اليومية'}
     ]},
     {title:'Sales and persuasion techniques', words:[
-      {t:'framing', m:'تأطير (طريقة عرض الفكرة أو المعلومة للتأثير على القرار)', e:'the way information is presented to influence the decisions people make'},
-      {t:'the scarcity principle', m:'مبدأ الندرة', e:'a way of making the customer believe that there is not enough of a product, allowing salespeople to sell it more quickly, for a higher price, or both'},
-      {t:'reciprocation', m:'المعاملة بالمثل / التبادل', e:'when each side gives the other something, such as giving a potential customer a gift, they feel they want to buy something from them'},
-      {t:'social proof', m:'الدليل الاجتماعي', e:'when a product seems more attractive because many other people are buying it, too'},
-      {t:'"yes questions"', m:'أسئلة "نعم" (أسئلة توجيهية تجعل الزبون يوافق)', e:'asking a series of questions where the answer is intended to be "Yes", to encourage the customer to agree with the salesperson'}
+      {t:'framing', m:'تأطير (طريقة عرض الفكرة)', e:'the way information is presented to influence the decisions people make'},
+      {t:'the scarcity principle', m:'مبدأ الندرة', e:'a way of making the customer believe that there is not enough of a product'},
+      {t:'reciprocation', m:'المعاملة بالمثل / التبادل', e:'when each side gives the other something'},
+      {t:'social proof', m:'الدليل الاجتماعي', e:'when a product seems more attractive because many other people are buying it'},
+      {t:'"yes questions"', m:'أسئلة "نعم"', e:'asking questions where the answer is intended to be Yes'}
     ]}
   ]}
 ];
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   📚  أسئلة الكتاب (BOOK_QUESTIONS)
-   ═══════════════════════════════════════════════════════════════════════════ */
-const BOOK_QUESTIONS=[
-  /* ═══ الوحدة الأولى · Section 0 ═══ */
+var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:0, prompt:'I really get a kick --- of mystery stories.', options:['by','out','with','into'], answer:'out'},
   {unitIdx:0, sectionIdx:0, prompt:'Would you --- a day out or a day in bed?', options:['plump for','make you tick','say a lot about','click with'], answer:'plump for'},
   {unitIdx:0, sectionIdx:0, prompt:'Can your clothes --- you?', options:['set great store by','plump for','say a lot about','be wild about'], answer:'say a lot about'},
@@ -691,12 +784,10 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:0, prompt:"The expression which means 'hit it off with someone' is:", options:['be in line with','plump for','click with','set great store by'], answer:'click with'},
   {unitIdx:0, sectionIdx:0, prompt:"Which of the following expressions means 'reveal our traits'?", options:['say a lot about us','make us tick','be wild about','be in line with'], answer:'say a lot about us'},
   {unitIdx:0, sectionIdx:0, prompt:"We're no longer wild --- collecting toy cars.", options:['for','with','about','by'], answer:'about'},
-  {unitIdx:0, sectionIdx:0, prompt:"When we know it, it's easier to be ourselves and to find the tribe that we really click ---.", options:['with','out','for','by'], answer:'with'},
+  {unitIdx:0, sectionIdx:0, prompt:"When we know it, it's easier to find the tribe that we really click ---.", options:['with','out','for','by'], answer:'with'},
   {unitIdx:0, sectionIdx:0, prompt:'When we know this, we can consider whether the choices we make are in line --- these values.', options:['out','by','into','with'], answer:'with'},
 
-  /* ═══ الوحدة الأولى · Section 1 ═══ */
   {unitIdx:0, sectionIdx:1, prompt:'I want to look at what personality testing is, and how I believe it should be used to create a work environment in which everyone feels --- about their job.', options:['passionate','underconfident','defensive','mercy'], answer:'passionate'},
-  {unitIdx:0, sectionIdx:1, prompt:'The presenter believes that personality testing can be used as a way to help all employees feel --- towards their work.', options:['passionate','humility','underconfident','defensive'], answer:'passionate'},
   {unitIdx:0, sectionIdx:1, prompt:"Although she doesn't think that personality tests help in the hiring process, she does credit them with helping managers to match employees with their specific skills and creating a/an --- work environment.", options:['underconfident','inclusive','defensive','assertive'], answer:'inclusive'},
   {unitIdx:0, sectionIdx:1, prompt:'Hamza is very --- and --- - he always knows what to do and he keeps his promises.', options:['capable / trustworthy','underconfident / frank','underconfident / humble','tough / defensive'], answer:'capable / trustworthy'},
   {unitIdx:0, sectionIdx:1, prompt:"Reem is so positive about learning and particularly loves Science. She's very --- and ---.", options:['enthusiastic / passionate','humble / discreet','capable / underconfident','dedicated / defensive'], answer:'enthusiastic / passionate'},
@@ -711,16 +802,11 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:1, prompt:"A 'humble' person is someone who:", options:['brags about their achievements','is modest about their abilities','is aggressive','avoids new experiences'], answer:'is modest about their abilities'},
   {unitIdx:0, sectionIdx:1, prompt:"A 'sincere' person is:", options:['dishonest','genuine and honest in their feelings','very demanding','emotionally distant'], answer:'genuine and honest in their feelings'},
 
-  /* ═══ الوحدة الأولى · Section 2 ═══ */
-  {unitIdx:0, sectionIdx:2, prompt:"The word that completes the compound adjective 'tight ---' is:", options:['back','looking','strung','fisted'], answer:'fisted'},
   {unitIdx:0, sectionIdx:2, prompt:"Every time we eat out, he always tries to avoid paying his share. He's so ---.", options:['tight-fisted','forward-fisted','like-minded','thin-skinned'], answer:'tight-fisted'},
   {unitIdx:0, sectionIdx:2, prompt:'I joined a film club hoping to meet --- people at school.', options:['thin-skinned','like-minded','strong-spirited','absent-minded'], answer:'like-minded'},
   {unitIdx:0, sectionIdx:2, prompt:"She's always been really ---. Once she makes up her mind, there's no changing it.", options:['strong-willed','strong-fisted','like-minded','red-hot'], answer:'strong-willed'},
-  {unitIdx:0, sectionIdx:2, prompt:"If a parent is strong-willed or kind ---, it's highly likely that their offspring and possibly even their grandchildren will display the same personality trait.", options:['minded','spirited','hearted','catching'], answer:'hearted'},
-  {unitIdx:0, sectionIdx:2, prompt:"If you've never had a problem making money, you have a higher probability of being laid --- about life than if you've had to do back-breaking work to gain a small income.", options:['skinned','witted','saving','back'], answer:'back'},
+  {unitIdx:0, sectionIdx:2, prompt:"If a parent is strong-willed or kind ---, it's highly likely that their offspring will display the same personality trait.", options:['minded','spirited','hearted','catching'], answer:'hearted'},
   {unitIdx:0, sectionIdx:2, prompt:"I don't think there's anyone even nearly as talented as Nadia Alkanafani is. She's world ---.", options:['minded','famous','hearted','strung'], answer:'famous'},
-  {unitIdx:0, sectionIdx:2, prompt:"I don't like to spend money on my family and friends. The compound adjective that describes the situation above is:", options:['tight-fisted','kind-hearted','forward-looking','mouth-watering'], answer:'tight-fisted'},
-  {unitIdx:0, sectionIdx:2, prompt:'He never buys me a birthday present, never gives money to people in need. The compound adjective that describes the situation above is:', options:['like-minded','carefree','tight-fisted','streetwise'], answer:'tight-fisted'},
   {unitIdx:0, sectionIdx:2, prompt:"He's so --- that some people take advantage of it.", options:['tight-fisted','forward-looking','kind-hearted','absent-hearted'], answer:'kind-hearted'},
   {unitIdx:0, sectionIdx:2, prompt:'The stress from moving house has left Mum feeling quite ---, so be careful around her.', options:['full-time','like-minded','lifelong','highly strung'], answer:'highly strung'},
   {unitIdx:0, sectionIdx:2, prompt:"I'm so --- I can't find my glasses even when they're on top of my head!", options:['tight-fisted','absent-minded','laid-back','forward-looking'], answer:'absent-minded'},
@@ -733,7 +819,6 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:2, prompt:"A 'carefree' person is:", options:['worried about everything','free from worries or responsibilities','very selfish','very serious'], answer:'free from worries or responsibilities'},
   {unitIdx:0, sectionIdx:2, prompt:"A 'time-saving' method is one that:", options:['wastes time','helps you do things faster','is very complicated','requires careful planning'], answer:'helps you do things faster'},
 
-  /* ═══ الوحدة الأولى · Section 3 ═══ */
   {unitIdx:0, sectionIdx:3, prompt:"'A person who doesn't show their feelings' is the definition of:", options:['a cold fish','a smart alec','a soft touch','a smart cookie'], answer:'a cold fish'},
   {unitIdx:0, sectionIdx:3, prompt:"The idiom which means 'a person who keeps their abilities secret' is:", options:['a soft touch','a social butterfly','a go-getter','a dark horse'], answer:'a dark horse'},
   {unitIdx:0, sectionIdx:3, prompt:"Which of the following idioms means 'a person who is determined to be successful'?", options:['a social butterfly','a smart alec','a go-getter','a mover and shaker'], answer:'a go-getter'},
@@ -744,7 +829,6 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:3, prompt:"'A social butterfly' is someone who:", options:['avoids people','likes to attend social events','is very aggressive','prefers to be alone'], answer:'likes to attend social events'},
   {unitIdx:0, sectionIdx:3, prompt:"If you 'keep yourself to yourself', you:", options:['avoid meeting people socially','are very outgoing','help everyone','never stop talking'], answer:'avoid meeting people socially'},
 
-  /* ═══ الوحدة الأولى · Section 4 ═══ */
   {unitIdx:0, sectionIdx:4, prompt:"The word which means 'character or personality' is:", options:['disposition','moulded','proponents','imply'], answer:'disposition'},
   {unitIdx:0, sectionIdx:4, prompt:"Which of the following words means 'influenced or changed'?", options:['oversimplification','hereditary','moulded','nurture'], answer:'moulded'},
   {unitIdx:0, sectionIdx:4, prompt:"'People who publicly support an idea' is the definition of:", options:['vulnerability','proponents','offspring','trait'], answer:'proponents'},
@@ -762,20 +846,18 @@ const BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:4, prompt:'My family, community and beliefs have very much --- the person I am today.', options:['oversimplification','hereditary','moulded','implied'], answer:'moulded'},
   {unitIdx:0, sectionIdx:4, prompt:"Suha's intelligence is ---, she gets it from her parents who are both teachers.", options:['hereditary','proponent','imply','vulnerability'], answer:'hereditary'},
 
-  /* ═══ الوحدة الأولى · Section 5 ═══ */
   {unitIdx:0, sectionIdx:5, prompt:'This implies that the languages spoken by the Inuit mould the way they --- of the world.', options:['plump','click','gather','conceive'], answer:'gather'},
-  {unitIdx:0, sectionIdx:5, prompt:"We can probably --- from this that they don't feel the need to quantify precisely in the way that many of us do.", options:['overcooked','underconfident','deduce','plump'], answer:'deduce'},
-  {unitIdx:0, sectionIdx:5, prompt:"I suppose our boss is very forward --- and always thinks about the long-term future of the business, rather than what's just round the corner.", options:['seeing','looking','minded','hot'], answer:'looking'},
+  {unitIdx:0, sectionIdx:5, prompt:"We can probably --- from this that they don't feel the need to quantify precisely.", options:['overcooked','underconfident','deduce','plump'], answer:'deduce'},
+  {unitIdx:0, sectionIdx:5, prompt:"I suppose our boss is very forward --- and always thinks about the long-term future.", options:['seeing','looking','minded','hot'], answer:'looking'},
   {unitIdx:0, sectionIdx:5, prompt:"I simply can't --- why two sisters with the same parents have such different personalities.", options:['conclude','assume','comprehend','narrow-minded'], answer:'comprehend'},
-  {unitIdx:0, sectionIdx:5, prompt:"There is very little --- in my cousin's life as he always plans everything down to the last detail.", options:['discretion','humility','spontaneity','assertiveness'], answer:'spontaneity'},
+  {unitIdx:0, sectionIdx:5, prompt:"There is very little --- in my cousin's life as he always plans everything.", options:['discretion','humility','spontaneity','assertiveness'], answer:'spontaneity'},
   {unitIdx:0, sectionIdx:5, prompt:'The writer of the article is a --- of the theory that early childhood habits last a lifetime.', options:['mover and shaker','proponent','go-getter','cold fish'], answer:'proponent'},
   {unitIdx:0, sectionIdx:5, prompt:"'Perceive' means:", options:['to become aware of something through the senses','to ignore something','to forget','to create'], answer:'to become aware of something through the senses'},
   {unitIdx:0, sectionIdx:5, prompt:"'Recognise' means:", options:['to identify someone or something from previous experience','to forget something','to imagine something','to build something'], answer:'to identify someone or something from previous experience'},
-  {unitIdx:0, sectionIdx:5, prompt:"'Grasp' (in this unit's context) means:", options:['to hold tightly with your hands','to understand','to throw away','to shout'], answer:'to understand'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Grasp' (in this context) means:", options:['to hold tightly with your hands','to understand','to throw away','to shout'], answer:'to understand'},
   {unitIdx:0, sectionIdx:5, prompt:"'Assume' means:", options:['to know for sure','to suppose something is true without proof','to deny','to refuse'], answer:'to suppose something is true without proof'},
-  {unitIdx:0, sectionIdx:5, prompt:"'Reflect' (in this unit's context) means:", options:['to think deeply about something','to shine light','to sing','to write quickly'], answer:'to think deeply about something'},
+  {unitIdx:0, sectionIdx:5, prompt:"'Reflect' (in this context) means:", options:['to think deeply about something','to shine light','to sing','to write quickly'], answer:'to think deeply about something'},
 
-  /* ═══ الوحدة الثانية · Section 0 ═══ */
   {unitIdx:1, sectionIdx:0, prompt:'Eman --- through all the questions in the test and finished at least ten minutes before anyone else.', options:['sailed','backpedaled','parked','stumbled'], answer:'sailed'},
   {unitIdx:1, sectionIdx:0, prompt:'After the interview, Tareq was --- when the manager asked him if he could start immediately.', options:['backpedaled','staggered','parked','hobbled'], answer:'staggered'},
   {unitIdx:1, sectionIdx:0, prompt:'When Professor Hassan had lost one page of his notes, he panicked and started --- over his words.', options:['stumbling','staggering','sailing','backpedaling'], answer:'stumbling'},
@@ -785,14 +867,14 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:0, prompt:'When Khalid realised he was wrong, he tried to --- very quickly.', options:['backpedal','fly','jump','sail'], answer:'backpedal'},
   {unitIdx:1, sectionIdx:0, prompt:"The government's plans to reform the public sector have been --- until after the general election.", options:['driven','parked','flown','surged'], answer:'parked'},
   {unitIdx:1, sectionIdx:0, prompt:'He arrived --- on a black horse.', options:['riding','parking','backpedaling','jumping'], answer:'riding'},
-  {unitIdx:1, sectionIdx:0, prompt:'A guy wearing a very unusual outfit like an old-fashioned British gentleman boarded the train and --- over to sit by a businessman in his pinstripe suit.', options:['backpedaled','shuffled','jumped','sailed'], answer:'shuffled'},
+  {unitIdx:1, sectionIdx:0, prompt:'A guy wearing a very unusual outfit like an old-fashioned British gentleman boarded the train and --- over to sit by a businessman.', options:['backpedaled','shuffled','jumped','sailed'], answer:'shuffled'},
   {unitIdx:1, sectionIdx:0, prompt:'The gentleman --- down the platform, clearly uncomfortable with his shoes.', options:['hobbled','strode','surged','parked'], answer:'hobbled'},
   {unitIdx:1, sectionIdx:0, prompt:'The guy in the gold suit --- off, with the crowds of commuters parting in front of him!', options:['sailed','strode','backpedaled','jumped'], answer:'strode'},
   {unitIdx:1, sectionIdx:0, prompt:'Immediately, the crowd --- forward, and everyone pushed and shoved their way through the barriers.', options:['surged','shuffled','wobbled','staggered'], answer:'surged'},
   {unitIdx:1, sectionIdx:0, prompt:'After hurting his ankle, the footballer --- off the pitch to get some help.', options:['hobbled','strode','surged','wobbled'], answer:'hobbled'},
   {unitIdx:1, sectionIdx:0, prompt:'As soon as the train arrived, the crowd --- forward to try and get on it as quickly as possible.', options:['wobbled','shuffled','lurched','surged'], answer:'lurched'},
-  {unitIdx:1, sectionIdx:0, prompt:'My brother and I lifted up the sofa with some difficulty and --- across the room with it. It was far heavier than we expected.', options:['strode','staggered','surged','lurched'], answer:'staggered'},
-  {unitIdx:1, sectionIdx:0, prompt:'I woke my sister up when I came home and, while still half asleep, she --- out of her bedroom and asked me where I had been.', options:['shuffled','strode','lurched','wobbled'], answer:'shuffled'},
+  {unitIdx:1, sectionIdx:0, prompt:'My brother and I lifted up the sofa with some difficulty and --- across the room with it.', options:['strode','staggered','surged','lurched'], answer:'staggered'},
+  {unitIdx:1, sectionIdx:0, prompt:'I woke my sister up when I came home and, while still half asleep, she --- out of her bedroom.', options:['shuffled','strode','lurched','wobbled'], answer:'shuffled'},
   {unitIdx:1, sectionIdx:0, prompt:'Angry at having to wait for so long, my father --- up to the manager and demanded an explanation.', options:['shuffled','hobbled','strode','lurched'], answer:'strode'},
   {unitIdx:1, sectionIdx:0, prompt:'The famous author confidently --- into the room to meet the children waiting for her to sign their books.', options:['wobbled','strode','shuffled','hobbled'], answer:'strode'},
   {unitIdx:1, sectionIdx:0, prompt:'When the Prime Minister got out of the car, the reporters suddenly --- forward and nearly knocked over the security guards.', options:['surged','shuffled','wobbled','staggered'], answer:'surged'},
@@ -800,37 +882,32 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:0, prompt:'As the wind became stronger, the boat started to --- from side to side and we nearly capsized.', options:['lurch','stride','stumble','shuffle'], answer:'lurch'},
   {unitIdx:1, sectionIdx:0, prompt:'The train guard --- over a bag in the aisle and nearly fell.', options:['stumbled','surged','hobbled','lurched'], answer:'stumbled'},
   {unitIdx:1, sectionIdx:0, prompt:'When the hockey ball hit her on the leg, she had to --- off the pitch to sit down for a while.', options:['shuffle','stagger','stride','stumble'], answer:'stagger'},
-  {unitIdx:1, sectionIdx:0, prompt:'Mariam --- into the room with a tray of tea and cake, terrified of dropping it on the expensive carpet.', options:['strode','wobbled','surged','shuffled'], answer:'wobbled'},
+  {unitIdx:1, sectionIdx:0, prompt:'Mariam --- into the room with a tray of tea and cake, terrified of dropping it.', options:['strode','wobbled','surged','shuffled'], answer:'wobbled'},
   {unitIdx:1, sectionIdx:0, prompt:'Shortly after the fire alarm went off, the workers --- out of the office looking very worried.', options:['surged','shuffled','wobbled','hobbled'], answer:'surged'},
   {unitIdx:1, sectionIdx:0, prompt:'Since the operation on my knee, I find it much easier to drive my car to the shops rather than --- down the road.', options:['lurch','hobble','stride','surge'], answer:'hobble'},
   {unitIdx:1, sectionIdx:0, prompt:'I remember my mother telling my brother, when he was very young, not to ---, but to pick his feet up properly when he was walking.', options:['stride','shuffle','stumble','surge'], answer:'shuffle'},
 
-  /* ═══ الوحدة الثانية · Section 1 ═══ */
-  {unitIdx:1, sectionIdx:1, prompt:"There are new roadworks in the town centre, and it is driving motorists up the ---. So you'd better --- clear of the main junction for at least a week.", options:['wall, steer','boat, drive','downhill, steer','wall, take'], answer:'wall, steer'},
+  {unitIdx:1, sectionIdx:1, prompt:"There are new roadworks in the town centre, and it is driving motorists up the ---. So you'd better --- clear of the main junction.", options:['wall, steer','boat, drive','downhill, steer','wall, take'], answer:'wall, steer'},
   {unitIdx:1, sectionIdx:1, prompt:"He encountered some obstacles while training to become a pilot. It wasn't all --- sailing.", options:['force','downhill','plain','sea'], answer:'plain'},
   {unitIdx:1, sectionIdx:1, prompt:"It was because of Suha's commitment that the new rail project was successful. She was the driving --- behind it.", options:['force','plain','steer','ride'], answer:'force'},
   {unitIdx:1, sectionIdx:1, prompt:"The airline used to have an excellent reputation, but in recent months, it's been going --- quickly.", options:['downhill','clear','force','wall'], answer:'downhill'},
-  {unitIdx:1, sectionIdx:1, prompt:"Everyone's furious about the increase in car parking fees. We're all in the same --- - we have no other option. We know the city needs money, but no one likes to be taken for a ---.", options:['force, ride','wall, force','boat, ride','wall, boat'], answer:'boat, ride'},
-  {unitIdx:1, sectionIdx:1, prompt:'The business has been going --- since the new company took it over.', options:['downstairs','downhill','downward','boat'], answer:'downhill'},
+  {unitIdx:1, sectionIdx:1, prompt:"Everyone's furious about the increase in car parking fees. We're all in the same ---.", options:['force, ride','wall, force','boat, ride','wall, boat'], answer:'boat, ride'},
   {unitIdx:1, sectionIdx:1, prompt:'Avoid the websites listed below if you do not want to be taken for a ---.', options:['drive','journey','ride','downhill'], answer:'ride'},
   {unitIdx:1, sectionIdx:1, prompt:'The incessant noise of the roadworks outside his house is driving my uncle up the ---.', options:['wall','hill','path','ride'], answer:'wall'},
   {unitIdx:1, sectionIdx:1, prompt:"It's a good idea to steer --- of making any financial commitment until you know more details.", options:['clean','neat','clear','plain'], answer:'clear'},
-  {unitIdx:1, sectionIdx:1, prompt:'I try to steer --- of rush hour, but I had no choice that day.', options:['force','downhill','clear','sea'], answer:'clear'},
   {unitIdx:1, sectionIdx:1, prompt:'It would drive me up the --- to push and shove through the barriers every day!', options:['wall','ride','downhill','force'], answer:'wall'},
   {unitIdx:1, sectionIdx:1, prompt:"You're on fire today, Cameron! You're always the driving --- behind all the adventures.", options:['downhill','sea','force','clear'], answer:'force'},
   {unitIdx:1, sectionIdx:1, prompt:"I've also got to retake my final exams next month - so we're in the same ---.", options:['ship','boat','canoe','downhill'], answer:'boat'},
   {unitIdx:1, sectionIdx:1, prompt:'The government has been the driving --- behind new regulations to control city pollution.', options:['power','fuel','force','clear'], answer:'force'},
   {unitIdx:1, sectionIdx:1, prompt:'Once we get the bank to agree on the loan, setting up the business should be --- sailing.', options:['clean','plain','open','hill'], answer:'plain'},
-  {unitIdx:1, sectionIdx:1, prompt:"I hear your ferry journey wasn't much of a success. That's a real shame, because when I went on that boat a few years back, the journey was great. It was --- sailing.", options:['plain','sea','force','downhill'], answer:'plain'},
   {unitIdx:1, sectionIdx:1, prompt:'It was a nightmare. So rough that everything on the tables was --- and nearly falling off!', options:['wobbling','hobbling','stumbling','riding'], answer:'wobbling'},
   {unitIdx:1, sectionIdx:1, prompt:'If you go again, --- clear of the sandwiches - the bread was really stale.', options:['steer','drive','take','go'], answer:'steer'},
   {unitIdx:1, sectionIdx:1, prompt:"And I couldn't believe the prices. We were completely --- for a ride.", options:['taken','driven','gone','steered'], answer:'taken'},
-  {unitIdx:1, sectionIdx:1, prompt:'I have to admit, it sounds like the snack counter has --- downhill. The sandwiches were great when we went.', options:['gone','driven','been','taken'], answer:'gone'},
+  {unitIdx:1, sectionIdx:1, prompt:'I have to admit, it sounds like the snack counter has --- downhill.', options:['gone','driven','been','taken'], answer:'gone'},
   {unitIdx:1, sectionIdx:1, prompt:"Also, we were sitting near the TV screen and the volume was so high it nearly --- us up the wall. Next time, we'll fly!", options:['drove','took','went','flew'], answer:'drove'},
 
-  /* ═══ الوحدة الثانية · Section 2 ═══ */
   {unitIdx:1, sectionIdx:2, prompt:'Which of the following is a synonym for "bolting"?', options:['rushing','pulling','slipping','going down'], answer:'rushing'},
-  {unitIdx:1, sectionIdx:2, prompt:"I've heard about ClearSpace-1 - the first space mission to remove debris from orbit. A real breakthrough which involves a vehicle designed to trap objects, then --- them down into the earth's atmosphere where they'll burn up.", options:['drag','bolt','glance','grasp'], answer:'drag'},
+  {unitIdx:1, sectionIdx:2, prompt:"I've heard about ClearSpace-1 - the first space mission to remove debris from orbit. A real breakthrough which involves a vehicle designed to trap objects, then --- them down into the earth's atmosphere.", options:['drag','bolt','glance','grasp'], answer:'drag'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'descend' is a synonym for:", options:['go up','go down','jump over','walk around'], answer:'go down'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'collide' is a synonym for:", options:['miss','crash into','avoid','escape'], answer:'crash into'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'rumble' is a synonym for:", options:['rush','go slowly','fly','jump'], answer:'go slowly'},
@@ -839,47 +916,44 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:2, prompt:"The word 'disperse' is a synonym for:", options:['gather','spread out','combine','stay close'], answer:'spread out'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'bolt' is a synonym for:", options:['crawl','rush','stroll','stop'], answer:'rush'},
 
-  /* ═══ الوحدة الثانية · Section 3 ═══ */
   {unitIdx:1, sectionIdx:3, prompt:'Do you think the employees get their fair --- of the money?', options:['share','effect','mark','speed'], answer:'share'},
   {unitIdx:1, sectionIdx:3, prompt:'What --- might you have to overcome to be successful in your chosen career?', options:['share','mark','hurdles','knock-on'], answer:'hurdles'},
   {unitIdx:1, sectionIdx:3, prompt:'Do you think you would enjoy travelling at breakneck ---?', options:['effect','speed','share','mark'], answer:'speed'},
   {unitIdx:1, sectionIdx:3, prompt:'Do you think there are any areas on Earth where humans have not left their ---?', options:['effect','speed','mark','share'], answer:'mark'},
   {unitIdx:1, sectionIdx:3, prompt:'Have you done anything recently that you might be tempted to --- about?', options:['brag','grasp','get','leave'], answer:'brag'},
   {unitIdx:1, sectionIdx:3, prompt:'What might be the knock-on --- of more spending on space research?', options:['share','speed','mark','effect'], answer:'effect'},
-  {unitIdx:1, sectionIdx:3, prompt:'There are still a lot of --- left for these private companies to overcome before people start hurtling through space on a regular basis.', options:['effect','outcome','hurdles','outcry'], answer:'hurdles'},
-  {unitIdx:1, sectionIdx:3, prompt:'There have been lots of --- already. But if it all goes well and it becomes more affordable for members of the general public, then I would love the experience.', options:['setbacks','brag','get','leave'], answer:'setbacks'},
-  {unitIdx:1, sectionIdx:3, prompt:"A space tourism trip certainly would be a --- with a difference! Obviously, for a long time, it's only going to be available to people with a lot of money.", options:['setback','outlay','getaway','hurdle'], answer:'getaway'},
-  {unitIdx:1, sectionIdx:3, prompt:"I'm sure that for most people the getaway won't be about having a magical experience, but about being able to --- about it to their friends.", options:['get','go','brag','leave'], answer:'brag'},
-  {unitIdx:1, sectionIdx:3, prompt:'What would fascinate me would be that sudden exhilaration of flying through space at breakneck --- and of course the loss of gravity.', options:['effect','speed','share','mark'], answer:'speed'},
-  {unitIdx:1, sectionIdx:3, prompt:'People tend to focus on environmental problems that abound here on Earth, but we should look a bit further afield, you know - space is getting its fair --- too!', options:['share','effect','mark','speed'], answer:'share'},
-  {unitIdx:1, sectionIdx:3, prompt:'The debris from defunct satellites is whizzing round at --- speed, over seventeen thousand miles an hour!', options:['fair','breakneck','hurdles','knock-on'], answer:'breakneck'},
-  {unitIdx:1, sectionIdx:3, prompt:'The build-up is getting so bad that the risk of collision between these objects is getting higher and higher and the knock-on --- would mean more and more debris.', options:['share','speed','mark','effect'], answer:'effect'},
+  {unitIdx:1, sectionIdx:3, prompt:'There are still a lot of --- left for these private companies to overcome.', options:['effect','outcome','hurdles','outcry'], answer:'hurdles'},
+  {unitIdx:1, sectionIdx:3, prompt:'There have been lots of --- already. But if it all goes well, I would love the experience.', options:['setbacks','brag','get','leave'], answer:'setbacks'},
+  {unitIdx:1, sectionIdx:3, prompt:"A space tourism trip certainly would be a --- with a difference!", options:['setback','outlay','getaway','hurdle'], answer:'getaway'},
+  {unitIdx:1, sectionIdx:3, prompt:"I'm sure that for most people the getaway won't be about a magical experience, but about being able to --- about it to their friends.", options:['get','go','brag','leave'], answer:'brag'},
+  {unitIdx:1, sectionIdx:3, prompt:'What would fascinate me would be that sudden exhilaration of flying through space at breakneck ---.', options:['effect','speed','share','mark'], answer:'speed'},
+  {unitIdx:1, sectionIdx:3, prompt:'Space is getting its fair --- too!', options:['share','effect','mark','speed'], answer:'share'},
+  {unitIdx:1, sectionIdx:3, prompt:'The debris from defunct satellites is whizzing round at --- speed!', options:['fair','breakneck','hurdles','knock-on'], answer:'breakneck'},
+  {unitIdx:1, sectionIdx:3, prompt:'The knock-on --- would mean more and more debris.', options:['share','speed','mark','effect'], answer:'effect'},
   {unitIdx:1, sectionIdx:3, prompt:'The --- for developing any ideas is enormous, as you can imagine.', options:['outlay','milling','breakneck','hurdle'], answer:'outlay'},
   {unitIdx:1, sectionIdx:3, prompt:'I know humans are certainly leaving their ---, bits of metal and things.', options:['effect','speed','mark','share'], answer:'mark'},
 
-  /* ═══ الوحدة الثانية · Section 4 ═══ */
   {unitIdx:1, sectionIdx:4, prompt:"We're going for a quick --- to Amman at the weekend.", options:['setback','breakthrough','getaway','outget'], answer:'getaway'},
   {unitIdx:1, sectionIdx:4, prompt:'The --- of the investigation into the collision will not be known before March.', options:['comethrough','setback','outcome','getaway'], answer:'outcome'},
   {unitIdx:1, sectionIdx:4, prompt:"They've recently made an amazing --- in developing driverless cars.", options:['breakthrough','cutbacks','outlay','getthrough'], answer:'breakthrough'},
-  {unitIdx:1, sectionIdx:4, prompt:"The weather --- for May sounds really good, so let's book a holiday for then.", options:['breakthrough','getaway','lookback','outlook'], answer:'outlook'},
-  {unitIdx:1, sectionIdx:4, prompt:"Our aim was to print the report on Thursday, but due to a --- it won't be finished until next week.", options:['setback','outlook','getaway','setthrough'], answer:'setback'},
+  {unitIdx:1, sectionIdx:4, prompt:"The weather --- for May sounds really good, so let's book a holiday.", options:['breakthrough','getaway','lookback','outlook'], answer:'outlook'},
+  {unitIdx:1, sectionIdx:4, prompt:"Our aim was to print the report on Thursday, but due to a --- it won't be finished.", options:['setback','outlook','getaway','setthrough'], answer:'setback'},
   {unitIdx:1, sectionIdx:4, prompt:'From the ---, scientists have warned of the potential dangers of space junk.', options:['getaway','outlook','outset','setback'], answer:'outset'},
-  {unitIdx:1, sectionIdx:4, prompt:'The initial --- for developing a space tourist programme was immense, but it will eventually make a good profit.', options:['outcry','outlook','getaway','outlay'], answer:'outlay'},
+  {unitIdx:1, sectionIdx:4, prompt:'The initial --- for developing a space tourist programme was immense.', options:['outcry','outlook','getaway','outlay'], answer:'outlay'},
   {unitIdx:1, sectionIdx:4, prompt:'There would be an --- if the company made too many ---.', options:['outcry, cutbacks','getaway, outlooks','cutback, outcries','outcry, outlooks'], answer:'outcry, cutbacks'},
-  {unitIdx:1, sectionIdx:4, prompt:"There's been a --- with the project and we're unlikely to finish before next week now.", options:['setback','breakthrough','outlay','outcome'], answer:'setback'},
+  {unitIdx:1, sectionIdx:4, prompt:"There's been a --- with the project and we're unlikely to finish before next week.", options:['setback','breakthrough','outlay','outcome'], answer:'setback'},
   {unitIdx:1, sectionIdx:4, prompt:'The invention of the Internet was an incredible --- for the advancement of humankind.', options:['cutback','breakthrough','outcry','outlay'], answer:'breakthrough'},
   {unitIdx:1, sectionIdx:4, prompt:"I'm not sure about buying a car now because I didn't realise how big the --- would be.", options:['outset','outcome','breakthrough','outlay'], answer:'outlay'},
   {unitIdx:1, sectionIdx:4, prompt:"Due to --- we're not going to be hiring any new staff this year.", options:['getaways','outcomes','breakthroughs','cutbacks'], answer:'cutbacks'},
   {unitIdx:1, sectionIdx:4, prompt:"We're waiting to hear the --- of the meeting when they finish at 2.", options:['getaway','outcome','setback','cutback'], answer:'outcome'},
   {unitIdx:1, sectionIdx:4, prompt:'Recently, the rising cost of university education has caused an --- from students and parents.', options:['outcry','outlay','outlook','breakthrough'], answer:'outcry'},
 
-  /* ═══ الوحدة الثانية · Section 5 ═══ */
   {unitIdx:1, sectionIdx:5, prompt:'I think on --- I prefer the old system.', options:['balance','question','pin','way'], answer:'balance'},
   {unitIdx:1, sectionIdx:5, prompt:"I'm in two --- here. There are pros and cons for each solution.", options:['questions','minds','ways','points'], answer:'minds'},
   {unitIdx:1, sectionIdx:5, prompt:'Thinking about it, there are a lot of points in --- of having a couple of days on the windy, rainy coast.', options:['minds','favour','question','forward'], answer:'favour'},
   {unitIdx:1, sectionIdx:5, prompt:'Alternatively, we could put --- the idea of going along the canal for a few days.', options:['question','forward','minds','favour'], answer:'forward'},
-  {unitIdx:1, sectionIdx:5, prompt:'Well, you could --- that with everyone contributing it might be cheaper than the cost of train travel to the city, hotel rooms, tickets to the show ...?', options:['go','put','argue','pin'], answer:'argue'},
-  {unitIdx:1, sectionIdx:5, prompt:'Which of the following is an example of considering alternatives?', options:["I'm split between the beach and the canal.","There are a lot of points in favour of having a couple of days on the windy, rainy coast.","Oh, a canal trip - no question! I love being on the water!","If you really wanted to pin me down, I'd probably say - if Antarctica is definitely out, then the seaside!"], answer:"I'm split between the beach and the canal."},
+  {unitIdx:1, sectionIdx:5, prompt:'Well, you could --- that with everyone contributing it might be cheaper.', options:['go','put','argue','pin'], answer:'argue'},
+  {unitIdx:1, sectionIdx:5, prompt:'Which of the following is an example of considering alternatives?', options:["I'm split between the beach and the canal.","There are a lot of points in favour of having a couple of days on the windy, rainy coast.","Oh, a canal trip - no question! I love being on the water!","If you really wanted to pin me down, I'd probably say - the seaside!"], answer:"I'm split between the beach and the canal."},
   {unitIdx:1, sectionIdx:5, prompt:"I'm in two minds here. There are pros and cons for each solution. - The sentence above is used for ...", options:['giving preferences','considering alternatives','checking understanding','summarising'], answer:'considering alternatives'},
   {unitIdx:1, sectionIdx:5, prompt:"'I'd go for... anytime!' is used for:", options:['considering alternatives','giving preferences','refusing an offer','making a complaint'], answer:'giving preferences'},
   {unitIdx:1, sectionIdx:5, prompt:"'No two ways about it, my choice would be...' is used for:", options:['considering alternatives','giving preferences','asking for options','refusing'], answer:'giving preferences'},
@@ -888,19 +962,49 @@ const BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:5, prompt:"'It's pretty clear cut to me that...' is used for:", options:['giving preferences','hesitating','refusing','complaining'], answer:'giving preferences'},
   {unitIdx:1, sectionIdx:5, prompt:"'If you really wanted to pin me down, I'd probably say...' is used for:", options:['giving preferences','avoiding decisions','refusing to answer','summarising'], answer:'giving preferences'},
 
-  /* ═══ الوحدة الثانية · Section 6 (Travel Verbs) ═══ */
-  {unitIdx:1, sectionIdx:6, prompt:"'Drive yourself too hard' has a figurative meaning of:", options:['operating a vehicle roughly','pushing yourself to work extremely hard','avoiding work','driving fast'], answer:'pushing yourself to work extremely hard'},
-  {unitIdx:1, sectionIdx:6, prompt:"'Park an idea' has a figurative meaning of:", options:['leave a car somewhere','delay thinking about something until later','forget about something permanently','refuse to discuss'], answer:'delay thinking about something until later'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Sail through' literally means:", options:['to move on the water in a boat','to fly','to run','to jump'], answer:'to move on the water in a boat'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Stumble over' literally means:", options:['to trip over something','to think about something','to forget something','to run fast'], answer:'to trip over something'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Park' literally means:", options:['to think about an idea','to stop a vehicle in a marked space','to sell something','to buy something'], answer:'to stop a vehicle in a marked space'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Drive' literally means:", options:['to operate a vehicle','to think hard','to be shocked','to fall'], answer:'to operate a vehicle'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Jump' literally means:", options:['to drive through a red light','to use your feet to move in the air','to hesitate','to speak'], answer:'to use your feet to move in the air'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Stagger' literally means:", options:['to move in an unsteady way','to be shocked','to be happy','to run'], answer:'to move in an unsteady way'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Fly' literally means:", options:['to move quickly','to move in the air','to think','to fall'], answer:'to move in the air'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Backpedal' literally means:", options:['to say something incorrect','to use pedals on a bike to move backwards','to walk fast','to jump'], answer:'to use pedals on a bike to move backwards'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Make way' literally means:", options:['to create something intangible','producing something from materials','to walk forward','to speak'], answer:'producing something from materials'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Fall into step' literally means:", options:['to walk at the same pace','suddenly landing on the ground by accident','to jump','to fly'], answer:'suddenly landing on the ground by accident'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Milling around' literally means:", options:['a group of people walking','grinding something (e.g. wheat)','being noisy','walking slowly'], answer:'grinding something (e.g. wheat)'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Thunder past' literally means:", options:['going by noisily','a loud noise from the sky during a big storm','walking quickly','running away'], answer:'a loud noise from the sky during a big storm'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Forge ahead' literally means:", options:['moving forward with difficulty','illegally copying something','walking slowly','stopping suddenly'], answer:'illegally copying something'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Find your footing' literally means:", options:['beginning to feel confident','recovering something that was lost','standing still','walking fast'], answer:'recovering something that was lost'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Catch somebody's eye' literally means:", options:['making eye-contact','physically taking hold of something that moved through the air','looking at someone','smiling at someone'], answer:'physically taking hold of something that moved through the air'},
+  {unitIdx:1, sectionIdx:6, prompt:"'Sweep along with the crowds' literally means:", options:['being pulled along by a crowd','using a broom to collect dirt from the floor','walking slowly','running with people'], answer:'using a broom to collect dirt from the floor'},
 
-  /* ═══ الوحدة الثالثة · Section 0 ═══ */
+  {unitIdx:1, sectionIdx:7, prompt:"'Sail through something' figuratively means:", options:['to move on the water','to do something quickly and without any problems','to fail at something','to be slow'], answer:'to do something quickly and without any problems'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Stumble over something' figuratively means:", options:['to trip','to hesitate and speak in an unclear way','to walk confidently','to sing'], answer:'to hesitate and speak in an unclear way'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Park an idea' figuratively means:", options:['to abandon something','to plan to think about something at a later time','to stop a car','to write down'], answer:'to plan to think about something at a later time'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Drive yourself too hard' figuratively means:", options:['to operate a vehicle','to put a lot of effort into something which can be damaging','to relax','to take a break'], answer:'to put a lot of effort into something which can be damaging'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Jump the lights' figuratively means:", options:['to use your feet to move','to drive through a red light without stopping','to jump high','to hesitate'], answer:'to drive through a red light without stopping'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Be staggered by' something figuratively means:", options:['to walk unsteadily','to be shocked or amazed by something','to be happy','to be confused'], answer:'to be shocked or amazed by something'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Fly' figuratively means:", options:['to move in the air','to move quickly and suddenly','to travel by plane','to be slow'], answer:'to move quickly and suddenly'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Backpedal' figuratively means:", options:['to use pedals on a bike','to say that something you have just said is not correct','to walk backwards','to cycle'], answer:'to say that something you have just said is not correct'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Make somebody's way' figuratively means:", options:['to build something physical','something intangible is created','to destroy something','to sell something'], answer:'something intangible is created'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Fall into step beside somebody' figuratively means:", options:['to fall on the ground','changing your way of walking so you walk at the same pace as those around you','to walk alone','to run away'], answer:'changing your way of walking so you walk at the same pace as those around you'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Milling around' figuratively means:", options:['grinding wheat','a group of people moving about in a seemingly directionless way','a loud noise','a strong wind'], answer:'a group of people moving about in a seemingly directionless way'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Thunder past' figuratively means:", options:['a loud noise in the sky','going by very noisily','walking slowly','staying still'], answer:'going by very noisily'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Forge ahead' figuratively means:", options:['illegally copying documents','moving forward with some difficulty','stopping suddenly','walking backwards'], answer:'moving forward with some difficulty'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Completely at sea with something' figuratively means:", options:['swimming in the ocean','be confused or not sure what to do with something','sailing a boat','being relaxed'], answer:'be confused or not sure what to do with something'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Find your footing' figuratively means:", options:['to recover something lost','beginning to feel confident in a new situation','to stand up','to fall down'], answer:'beginning to feel confident in a new situation'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Catch somebody's eye' figuratively means:", options:['to physically grab something','making eye-contact with someone','to hurt someone','to blink'], answer:'making eye-contact with someone'},
+  {unitIdx:1, sectionIdx:7, prompt:"'Sweep along with the crowds' figuratively means:", options:['cleaning the floor','being pulled along amidst a group, typically a lack of control','walking alone','driving a car'], answer:'being pulled along amidst a group, typically a lack of control'},
+
   {unitIdx:2, sectionIdx:0, prompt:"'Good value for money' is the definition of:", options:['cost-effective','bespoke','quote','launching'], answer:'cost-effective'},
   {unitIdx:2, sectionIdx:0, prompt:"'Extremely cheap' is the definition of:", options:['quote','bargain basement','bespoke','price tag'], answer:'bargain basement'},
   {unitIdx:2, sectionIdx:0, prompt:"'Specially made for a particular person' is the definition of:", options:['price tag','turnover','bespoke','venture'], answer:'bespoke'},
-  {unitIdx:2, sectionIdx:0, prompt:"Which of the following means 'the feature that makes a product different from and better than anything else'?", options:['USP (Unique Selling Point)','bespoke','turnover','branching out'], answer:'USP (Unique Selling Point)'},
+  {unitIdx:2, sectionIdx:0, prompt:"Which of the following means 'the feature that makes a product different and better'?", options:['USP (Unique Selling Point)','bespoke','turnover','branching out'], answer:'USP (Unique Selling Point)'},
   {unitIdx:2, sectionIdx:0, prompt:"The word that means 'the estimated price that will be charged for a service' is:", options:['bespoke','USP','quote','venture'], answer:'quote'},
   {unitIdx:2, sectionIdx:0, prompt:"'Buildings such as houses, offices, factories' is the definition of:", options:['bricks and mortar','quote','USP','turnover'], answer:'bricks and mortar'},
   {unitIdx:2, sectionIdx:0, prompt:"'A new business that is risky' is the definition of:", options:['USP','quote','venture','turnover'], answer:'venture'},
-  {unitIdx:2, sectionIdx:0, prompt:"Which of the following means 'the amount of business a company does in a set period of time'?", options:['quote','turnover','bespoke','venture'], answer:'turnover'},
+  {unitIdx:2, sectionIdx:0, prompt:"Which of the following means 'the amount of business a company does in a set period'?", options:['quote','turnover','bespoke','venture'], answer:'turnover'},
   {unitIdx:2, sectionIdx:0, prompt:"The word that means 'making a new product available to be sold' is:", options:['launching','quote','venture','USP'], answer:'launching'},
   {unitIdx:2, sectionIdx:0, prompt:"The phrase that means 'an idea for a business' is:", options:['business concept','branching out','cost-effective','price tag'], answer:'business concept'},
   {unitIdx:2, sectionIdx:0, prompt:"The phrase that means 'extended or expanded on the work normally done'?", options:['quote','USP','venture','branching out'], answer:'branching out'},
@@ -910,70 +1014,65 @@ const BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:0, prompt:'Planes are expensive to design and make, so require a lot of upfront ---.', options:['investment','buy','up','gimmick'], answer:'investment'},
   {unitIdx:2, sectionIdx:0, prompt:"I wasn't planning on getting a new shirt today, it was a bit of an impulse ---.", options:['investment','gimmick','up','buy'], answer:'buy'},
 
-  /* ═══ الوحدة الثالثة · Section 1 ═══ */
   {unitIdx:2, sectionIdx:1, prompt:'My family set --- this business 100 years ago.', options:['up','over','off','into'], answer:'up'},
   {unitIdx:2, sectionIdx:1, prompt:'Fast-food restaurants are --- up all over town.', options:['springing','winning','knocking','breaking'], answer:'springing'},
   {unitIdx:2, sectionIdx:1, prompt:'We had to --- quite a lot --- the price and compensate the neighbours.', options:['pass, up','set, up','win, over','knock, off'], answer:'knock, off'},
-  {unitIdx:2, sectionIdx:1, prompt:'My brother was a master at convincing our parents to let him go out for the afternoon! Even when they had said no initially, he could always --- them ---.', options:['knock, off','set, up','break, into','win, over'], answer:'win, over'},
+  {unitIdx:2, sectionIdx:1, prompt:'Even when they had said no initially, he could always --- them ---.', options:['knock, off','set, up','break, into','win, over'], answer:'win, over'},
   {unitIdx:2, sectionIdx:1, prompt:'Slowly, the business is being built ---.', options:['up','off','over','into'], answer:'up'},
-  {unitIdx:2, sectionIdx:1, prompt:'When I heard about goat rental companies springing --- all over the US, it seemed like it might be a good market to break into.', options:['up','over','off','into'], answer:'up'},
+  {unitIdx:2, sectionIdx:1, prompt:'When I heard about goat rental companies springing --- all over the US, it seemed like a good market.', options:['up','over','off','into'], answer:'up'},
   {unitIdx:2, sectionIdx:1, prompt:'So, what gave you the idea to --- the business?', options:['set up','break into','win over','sign up'], answer:'set up'},
-  {unitIdx:2, sectionIdx:1, prompt:'It seemed like it might be a good market to get involved with. - The phrasal verb that has the same meaning as the underlined words above is:', options:['set up','break into','win over','sign up'], answer:'break into'},
-  {unitIdx:2, sectionIdx:1, prompt:'It was too good an opportunity to fail to take advantage of. - The phrasal verb that has the same meaning as the underlined words above is:', options:['pass up','set up','win over','knock off'], answer:'pass up'},
-  {unitIdx:2, sectionIdx:1, prompt:'We often get new customers to commit on the spot. - The phrasal verb that has the same meaning as the underlined words above is:', options:['sign up','pass, up','set, up','break, into'], answer:'sign up'},
-  {unitIdx:2, sectionIdx:1, prompt:"We'd been gradually increasing customer loyalty in that area. - The phrasal verb that has the same meaning as the underlined words above is:", options:['building up','passing up','winning over','setting up'], answer:'building up'},
-  {unitIdx:2, sectionIdx:1, prompt:"Eventually, we did manage to persuade them. - The phrasal verb that has the same meaning as the underlined words above is:", options:['knock them off','set them up','break into them','win them over'], answer:'win them over'},
-  {unitIdx:2, sectionIdx:1, prompt:'We had to considerably reduce the price. - The phrasal verb that has the same meaning as the underlined words above is:', options:['knock quite a lot off','pass quite a lot up','sign quite a lot up','set quite a lot up'], answer:'knock quite a lot off'},
+  {unitIdx:2, sectionIdx:1, prompt:'It seemed like it might be a good market to get involved with. - The phrasal verb with the same meaning is:', options:['set up','break into','win over','sign up'], answer:'break into'},
+  {unitIdx:2, sectionIdx:1, prompt:'It was too good an opportunity to fail to take advantage of. - The phrasal verb with the same meaning is:', options:['pass up','set up','win over','knock off'], answer:'pass up'},
+  {unitIdx:2, sectionIdx:1, prompt:'We often get new customers to commit on the spot. - The phrasal verb with the same meaning is:', options:['sign up','pass, up','set, up','break, into'], answer:'sign up'},
+  {unitIdx:2, sectionIdx:1, prompt:"We'd been gradually increasing customer loyalty in that area. - The phrasal verb with the same meaning is:", options:['building up','passing up','winning over','setting up'], answer:'building up'},
+  {unitIdx:2, sectionIdx:1, prompt:"Eventually, we did manage to persuade them. - The phrasal verb with the same meaning is:", options:['knock them off','set them up','break into them','win them over'], answer:'win them over'},
+  {unitIdx:2, sectionIdx:1, prompt:'We had to considerably reduce the price. - The phrasal verb with the same meaning is:', options:['knock quite a lot off','pass quite a lot up','sign quite a lot up','set quite a lot up'], answer:'knock quite a lot off'},
 
-  /* ═══ الوحدة الثالثة · Section 2 ═══ */
-  {unitIdx:2, sectionIdx:2, prompt:"I'm not always very --- when I meet new people. It takes me time to feel safe with them.", options:['trusting','cunning','crafty','credulous'], answer:'trusting'},
+  {unitIdx:2, sectionIdx:2, prompt:"I'm not always very --- when I meet new people.", options:['trusting','cunning','crafty','credulous'], answer:'trusting'},
   {unitIdx:2, sectionIdx:2, prompt:'I was quite --- about how much work I needed to do to pass my exams.', options:['credulous','gullible','naive','suspecting'], answer:'naive'},
   {unitIdx:2, sectionIdx:2, prompt:'My cousin has always been a --- businesswoman and runs several companies now.', options:['shrewd','gullible','naive','unsuspecting'], answer:'shrewd'},
-  {unitIdx:2, sectionIdx:2, prompt:'In 1925, the Eiffel Tower in Paris was sold to a --- businessman by Victor Lustig, an American conman.', options:['cunning','ingenuous','gullible','shrewd'], answer:'gullible'},
+  {unitIdx:2, sectionIdx:2, prompt:'In 1925, the Eiffel Tower in Paris was sold to a --- businessman by Victor Lustig.', options:['cunning','ingenuous','gullible','shrewd'], answer:'gullible'},
   {unitIdx:2, sectionIdx:2, prompt:"I loved the film! I thought the story was --- and I've never seen anything like it before.", options:['ingenuous','naive','credulous','gullible'], answer:'ingenuous'},
-  {unitIdx:2, sectionIdx:2, prompt:"Interviewer: I don't perceive myself as naive or ingenuous, so Lama, Adnan, was I manipulated? - Lama: Well, 'manipulated' is quite a strong word, but certainly I can see that the salesperson was --- - she obviously knew what she was doing!", options:['luxury','eyesore','crafty','upfront'], answer:'crafty'},
-  {unitIdx:2, sectionIdx:2, prompt:'The salesperson was also --- enough to use another well-known persuasion technique on you: the principle of scarcity.', options:['shrewd','electric','upfront','bargain'], answer:'shrewd'},
-  {unitIdx:2, sectionIdx:2, prompt:"Let's say you're a teenager and you want to --- your parents to let you go out for the afternoon.", options:['convince','knock','break','pass'], answer:'convince'},
+  {unitIdx:2, sectionIdx:2, prompt:"the salesperson was --- - she obviously knew what she was doing!", options:['luxury','eyesore','crafty','upfront'], answer:'crafty'},
+  {unitIdx:2, sectionIdx:2, prompt:'The salesperson was also --- enough to use another well-known persuasion technique on you.', options:['shrewd','electric','upfront','bargain'], answer:'shrewd'},
+  {unitIdx:2, sectionIdx:2, prompt:"Let's say you're a teenager and you want to --- your parents to let you go out.", options:['convince','knock','break','pass'], answer:'convince'},
   {unitIdx:2, sectionIdx:2, prompt:'She --- the child to clean her teeth. (COAX)', options:['coaxed','enticed','cajoled','urged'], answer:'coaxed'},
   {unitIdx:2, sectionIdx:2, prompt:'They --- her away from her job with promises of a better salary. (ENTICE)', options:['coaxed','enticed','cajoled','urged'], answer:'enticed'},
   {unitIdx:2, sectionIdx:2, prompt:'She --- us into working late. (CAJOLE)', options:['coaxed','enticed','cajoled','urged'], answer:'cajoled'},
   {unitIdx:2, sectionIdx:2, prompt:'She --- the team into taking responsibility. (URGE)', options:['coaxed','enticed','urged','incited'], answer:'urged'},
   {unitIdx:2, sectionIdx:2, prompt:'He tried to --- his brother into doing it. (INCITE)', options:['coax','entice','cajole','incite'], answer:'incite'},
-  {unitIdx:2, sectionIdx:2, prompt:'He tried to coerce his brother into doing it. - The sentence that has the same meaning as the one above is:', options:['He tried to incite his brother to do it.','He tried to coax his brother to do it.','He tried to cajole his brother into doing it.','He tried to sway his brother to do it.'], answer:'He tried to incite his brother to do it.'},
+  {unitIdx:2, sectionIdx:2, prompt:'He tried to coerce his brother into doing it. - The sentence with the same meaning is:', options:['He tried to incite his brother to do it.','He tried to coax his brother to do it.','He tried to cajole his brother into doing it.','He tried to sway his brother to do it.'], answer:'He tried to incite his brother to do it.'},
   {unitIdx:2, sectionIdx:2, prompt:'Omar pressured the team into taking responsibility. - The underlined word "pressured" means:', options:['coaxed','urged','cajoled','enticed'], answer:'urged'},
   {unitIdx:2, sectionIdx:2, prompt:'Which word has the sense of persuading someone to do something violent or unpleasant?', options:['incite','sway','coax','cajole'], answer:'incite'},
   {unitIdx:2, sectionIdx:2, prompt:'Which word has the sense of tempting people to choose between two things?', options:['sway','incite','coax','entice'], answer:'sway'},
 
-  /* ═══ الوحدة الثالثة · Section 3 ═══ */
-  {unitIdx:2, sectionIdx:3, prompt:"I'm really sorry, but at the --- of the day, we don't know when the top was purchased, you see, and we have a fourteen-day return policy.", options:['bottom','meet','end','room'], answer:'end'},
-  {unitIdx:2, sectionIdx:3, prompt:"Student: My birthday was only yesterday, the top can't have been bought very long ago. - Assistant: I'm so sorry, but it has to be a ---.", options:["'no'",'prepared','awkward','saying'], answer:"'no'"},
+  {unitIdx:2, sectionIdx:3, prompt:"I'm really sorry, but at the --- of the day, we don't know when the top was purchased.", options:['bottom','meet','end','room'], answer:'end'},
+  {unitIdx:2, sectionIdx:3, prompt:"My birthday was only yesterday, the top can't have been bought very long ago. - Assistant: I'm so sorry, but it has to be a ---.", options:["'no'",'prepared','awkward','saying'], answer:"'no'"},
   {unitIdx:2, sectionIdx:3, prompt:"I guess I'm wondering if there's any --- on how much you want for the rent?", options:['compromise','flexibility','halfway','bottom'], answer:'flexibility'},
-  {unitIdx:2, sectionIdx:3, prompt:"Landlord: I'm --- that's a bit less than I'd be willing to accept. The bottom line is, this is a good flat and I won't have any difficulty finding a tenant.", options:['awkward','afraid','prepared','shake'], answer:'afraid'},
-  {unitIdx:2, sectionIdx:3, prompt:"Well, this is a bit ---, but I was bought this top as a birthday present, and it just doesn't suit me. Can I return it?", options:['awkward','prepared','range','willing'], answer:'awkward'},
+  {unitIdx:2, sectionIdx:3, prompt:"Landlord: I'm --- that's a bit less than I'd be willing to accept.", options:['awkward','afraid','prepared','shake'], answer:'afraid'},
+  {unitIdx:2, sectionIdx:3, prompt:"Well, this is a bit ---, but I was bought this top as a birthday present.", options:['awkward','prepared','range','willing'], answer:'awkward'},
   {unitIdx:2, sectionIdx:3, prompt:"Well, I'd like to --- yes, but I'm afraid it isn't company policy.", options:['say','try','see','can'], answer:'say'},
   {unitIdx:2, sectionIdx:3, prompt:"I can see what you're ---, but the top's clearly from this shop.", options:['seeing','saying','willing','preparing'], answer:'saying'},
-  {unitIdx:2, sectionIdx:3, prompt:'Would you be --- to give me a store gift card or credit so I can buy something else from the store?', options:['awkward','shake','wondering','prepared'], answer:'prepared'},
-  {unitIdx:2, sectionIdx:3, prompt:'Which of the following examples is used to refuse an offer?', options:["I can see what you're saying, but the top's clearly from this shop.","Well, I'd like to say yes, but I'm afraid it isn't company policy.","At the end of the day, the children really won't be any bother, they're quite self-sufficient.","B + C"], answer:'B + C'},
-  {unitIdx:2, sectionIdx:3, prompt:"Well, this is a bit awkward, but I was bought this top as a birthday present, and it just doesn't suit me. Can I return it? - The underlined part of the above sentence refers to ... when negotiating.", options:['asking for what you want','accepting an offer','refusing an offer','trying to get to a win-win situation'], answer:'asking for what you want'},
+  {unitIdx:2, sectionIdx:3, prompt:'Would you be --- to give me a store gift card or credit?', options:['awkward','shake','wondering','prepared'], answer:'prepared'},
+  {unitIdx:2, sectionIdx:3, prompt:'Which of the following examples is used to refuse an offer?', options:["I can see what you're saying, but the top's clearly from this shop.","Well, I'd like to say yes, but I'm afraid it isn't company policy.","At the end of the day, the children really won't be any bother.","B + C"], answer:'B + C'},
+  {unitIdx:2, sectionIdx:3, prompt:"The underlined part 'this is a bit awkward' refers to ... when negotiating.", options:['asking for what you want','accepting an offer','refusing an offer','trying to get to a win-win situation'], answer:'asking for what you want'},
   {unitIdx:2, sectionIdx:3, prompt:'Huda: Well, (1) --- yes, but midnight is a bit late for me on a Friday night.', options:["I'd like to say","I'm afraid","How about if we","at the end of the day"], answer:"I'd like to say"},
   {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: (2) --- say 11.30? Would that be OK?", options:["Let's shake on that","How about if we","I'm afraid","At the end of the day"], answer:'How about if we'},
-  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: Oh, I'm afraid (3) --- budget. The children really won't be any bother.", options:["it has to be a 'no' to my","that's a bit out of my","there's no flexibility in my","let's shake on my"], answer:"that's a bit out of my"},
-  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: You won't have to do anything except watch TV. Would you (4) --- accept 7 dinars an hour?", options:['be prepared to','be afraid to','be awkward to','shake to'], answer:'be prepared to'},
+  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: Oh, I'm afraid (3) --- budget.", options:["it has to be a 'no' to my","that's a bit out of my","there's no flexibility in my","let's shake on my"], answer:"that's a bit out of my"},
+  {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: Would you (4) --- accept 7 dinars an hour?", options:['be prepared to','be afraid to','be awkward to','shake to'], answer:'be prepared to'},
   {unitIdx:2, sectionIdx:3, prompt:'Huda: Can we try and (5) ---? Would 7.50 dinars be OK?', options:['shake on this','meet halfway on this','end the day here','give up on this'], answer:'meet halfway on this'},
 
-  /* ═══ الوحدة الثالثة · Section 4 ═══ */
-  {unitIdx:2, sectionIdx:4, prompt:'"Just one of the cons might easily outweigh all of the pros." - The words that have the same meaning as the underlined word above are:', options:['cancel out','negate','persevere','A + B'], answer:'A + B'},
-  {unitIdx:2, sectionIdx:4, prompt:'"A cost-benefit analysis allows you to be more objective." - The word that has the same meaning as the underlined word above is:', options:['dispassionate','impartial','detrimental','A + B'], answer:'A + B'},
-  {unitIdx:2, sectionIdx:4, prompt:'"There are also other costs to take into account, such as the cost in your time." - The words that have the same meaning as the underlined ones above are:', options:['cancel out','bear in mind','plough on','persist'], answer:'bear in mind'},
-  {unitIdx:2, sectionIdx:4, prompt:'"People have a tendency to overvalue immediate rewards." - The word that has the same meaning as the underlined one above is:', options:['propensity','concept','snare','notion'], answer:'propensity'},
-  {unitIdx:2, sectionIdx:4, prompt:'"Another trap is the sunk-cost fallacy." - The word that has the same meaning as the underlined one above is:', options:['pitfall','snare','notion','A + B'], answer:'A + B'},
-  {unitIdx:2, sectionIdx:4, prompt:'"Because you have already invested, you should persist no matter what." - The words that have the same meaning as the underlined word above are:', options:['persevere','plough on','cancel out','A + B'], answer:'A + B'},
-  {unitIdx:2, sectionIdx:4, prompt:'"After a certain point, investing more money does not lead to increased benefits, and may even have an adverse impact." - The word that has the same meaning as the underlined one above is:', options:['dispassionate','impartial','objective','detrimental'], answer:'detrimental'},
-  {unitIdx:2, sectionIdx:4, prompt:'"Nowadays, it\'s worth considering this concept when it comes to free social media sites." - The word that has the same meaning as the underlined one above is:', options:['notion','pitfall','snare','trap'], answer:'notion'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Just one of the cons might easily outweigh all of the pros." - The words with the same meaning are:', options:['cancel out','negate','persevere','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"A cost-benefit analysis allows you to be more objective." - The word with the same meaning is:', options:['dispassionate','impartial','detrimental','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"There are also other costs to take into account." - The words with the same meaning are:', options:['cancel out','bear in mind','plough on','persist'], answer:'bear in mind'},
+  {unitIdx:2, sectionIdx:4, prompt:'"People have a tendency to overvalue immediate rewards." - The word with the same meaning is:', options:['propensity','concept','snare','notion'], answer:'propensity'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Another trap is the sunk-cost fallacy." - The word with the same meaning is:', options:['pitfall','snare','notion','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Because you have already invested, you should persist no matter what." - The words with the same meaning are:', options:['persevere','plough on','cancel out','A + B'], answer:'A + B'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Investing more money may even have an adverse impact." - The word with the same meaning is:', options:['dispassionate','impartial','objective','detrimental'], answer:'detrimental'},
+  {unitIdx:2, sectionIdx:4, prompt:'"Nowadays, it is worth considering this concept." - The word with the same meaning is:', options:['notion','pitfall','snare','trap'], answer:'notion'},
 
-  /* ═══ الوحدة الثالثة · Section 5 (Collocations purchasing) ═══ */
   {unitIdx:2, sectionIdx:5, prompt:"'Buy in bulk' means:", options:['buy a small amount','buy large quantities to save money','buy cheap items only','buy from a specific shop'], answer:'buy large quantities to save money'},
-  {unitIdx:2, sectionIdx:5, prompt:"'Go on a shopping spree' means:", options:['buy only essentials','shop a lot in one go (often for fun)','browse without buying','look for the cheapest deals'], answer:'shop a lot in one go (often for fun)'},
+  {unitIdx:2, sectionIdx:5, prompt:"'Go on a shopping spree' means:", options:['buy only essentials','shop a lot in one go','browse without buying','look for the cheapest deals'], answer:'shop a lot in one go'},
   {unitIdx:2, sectionIdx:5, prompt:"'Stock up on essentials' means:", options:['buy only luxury items','buy important items in large amounts to store','sell items quickly','avoid buying anything'], answer:'buy important items in large amounts to store'},
   {unitIdx:2, sectionIdx:5, prompt:"'Mooch around the shops' means:", options:['shop seriously for hours','wander around shops without intending to buy','buy things on impulse','complain about shops'], answer:'wander around shops without intending to buy'},
   {unitIdx:2, sectionIdx:5, prompt:"'Shop around for the best deal' means:", options:['buy the first thing you see','compare prices in different shops to find the cheapest','avoid shopping','only buy online'], answer:'compare prices in different shops to find the cheapest'},
@@ -981,10 +1080,9 @@ const BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:5, prompt:"'Display wares' means:", options:['hide products in storage','show items for sale on shelves','wrap up purchases','count inventory'], answer:'show items for sale on shelves'},
   {unitIdx:2, sectionIdx:5, prompt:"'Run errands' means:", options:['exercise in the morning','do small everyday tasks like shopping','drive long distances','avoid all tasks'], answer:'do small everyday tasks like shopping'},
 
-  /* ═══ الوحدة الثالثة · Section 6 (Sales techniques) ═══ */
-  {unitIdx:2, sectionIdx:6, prompt:'When the salesperson told you that they wouldn\'t be getting any more stock in, that made you wonder if you might be missing out if you didn\'t get it right away, which is very ---.', options:['breaking','knocking','enticing','passing'], answer:'enticing'},
+  {unitIdx:2, sectionIdx:6, prompt:'When the salesperson told you that they would not be getting any more stock in, that made you wonder if you might be missing out, which is very ---.', options:['breaking','knocking','enticing','passing'], answer:'enticing'},
   {unitIdx:2, sectionIdx:6, prompt:'Do you really think it works to --- people into doing something?', options:['pressure','discount','collapse','withdraw'], answer:'pressure'},
-  {unitIdx:2, sectionIdx:6, prompt:'I remember saying to my parents that everyone was going to this event, thinking that would --- them to let me go, and they just said "If everyone was jumping off a cliff, would you?"', options:['convince','knock','owe','collapse'], answer:'convince'},
+  {unitIdx:2, sectionIdx:6, prompt:'I remember saying to my parents that everyone was going to this event, thinking that would --- them to let me go.', options:['convince','knock','owe','collapse'], answer:'convince'},
   {unitIdx:2, sectionIdx:6, prompt:'The technique where giving a customer a small gift makes them feel they should buy something is called:', options:['framing','reciprocation','social proof','the scarcity principle'], answer:'reciprocation'},
   {unitIdx:2, sectionIdx:6, prompt:"The technique of presenting information in a way that influences the customer's decision is called:", options:['framing','reciprocation','social proof','the scarcity principle'], answer:'framing'},
   {unitIdx:2, sectionIdx:6, prompt:'When a product seems more attractive because many other people are buying it, this is called:', options:['framing','reciprocation','social proof','the scarcity principle'], answer:'social proof'},
@@ -992,63 +1090,71 @@ const BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:6, prompt:'Asking a series of questions where the answer is intended to be "Yes" is called:', options:['framing','reciprocation','social proof','"yes questions"'], answer:'"yes questions"'}
 ];
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ⚙️  إعدادات عامة
-   ═══════════════════════════════════════════════════════════════════════════ */
-const LOCKED_UNITS=[];
+var LOCKED_UNITS=[];
+var floatWrappers=[];
+var floatLayers=[];
+var FLOAT_WORDS=['dream','focus','learn','grow','speak','think','create','believe','explore','achieve','imagine','inspire','discover','wonder','reflect','journey','vision','purpose','passion','wisdom','courage','future','identity','language','culture','mind','voice','story','change','bridge','snow','word','meaning','grammar','write','read','happy','peace','strong','kind','calm','bold','warm','shine','hope','rise','soul','faith','heart','light','truth','grace','magic','spark','flow','glow','bloom','soar','dive','leap','dance','sing','paint','build','shape','craft','forge','frame','blaze','whisper','listen','hear','tell','ask','answer','search','find','know','feel','sense','touch','move','breathe','live','love','care','give','share','teach','guide','lead','follow','walk','run','climb','reach','hold','carry','lift','fly','float','drift','echo','resonate','kindle','ignite','flourish','thrive','evolve','become'];
+var FLOAT_COLORS=[[139,92,246],[99,102,241],[6,182,212],[236,72,153],[251,191,36],[16,185,129],[59,130,246],[168,85,247]];
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ⬇️  الكود التشغيلي
-   ═══════════════════════════════════════════════════════════════════════════ */
-const floatWrappers=[];
-const floatLayers=[];
-const FLOAT_WORDS=['dream','focus','learn','grow','speak','think','create','believe','explore','achieve','imagine','inspire','discover','wonder','reflect','journey','vision','purpose','passion','wisdom','courage','future','identity','language','culture','mind','voice','story','change','bridge','snow','word','meaning','grammar','write','read','happy','peace','strong','kind','calm','bold','warm','shine','hope','rise','soul','faith','heart','light','truth','grace','magic','spark','flow','glow','bloom','soar','dive','leap','dance','sing','paint','build','shape','craft','forge','frame','blaze','whisper','listen','hear','tell','ask','answer','search','find','know','feel','sense','touch','move','breathe','live','love','care','give','share','teach','guide','lead','follow','walk','run','climb','reach','hold','carry','lift','fly','float','drift','echo','resonate','kindle','ignite','flourish','thrive','evolve','become'];
-const FLOAT_COLORS=[[139,92,246],[99,102,241],[6,182,212],[236,72,153],[251,191,36],[16,185,129],[59,130,246],[168,85,247]];
-
-const QUALITY_PRESETS={
+var QUALITY_PRESETS={
   low:{layers:[{desktopCount:3,mobileCount:3,sizeMin:9,sizeMax:13,opMin:0.12,opMax:0.24,durMin:30,durMax:45,drift:10,glowChance:0,blur:0.4},{desktopCount:4,mobileCount:4,sizeMin:14,sizeMax:20,opMin:0.18,opMax:0.34,durMin:20,durMax:32,drift:16,glowChance:0.15,blur:0.15},{desktopCount:3,mobileCount:3,sizeMin:20,sizeMax:30,opMin:0.28,opMax:0.48,durMin:14,durMax:24,drift:24,glowChance:0.38,blur:0}],dustDesktop:0,dustMobile:0,orbs:false,parallax:false},
   medium:{layers:[{desktopCount:10,mobileCount:6,sizeMin:9,sizeMax:13,opMin:0.12,opMax:0.24,durMin:30,durMax:45,drift:10,glowChance:0,blur:0.4},{desktopCount:12,mobileCount:8,sizeMin:14,sizeMax:20,opMin:0.18,opMax:0.34,durMin:20,durMax:32,drift:16,glowChance:0.15,blur:0.15},{desktopCount:10,mobileCount:6,sizeMin:20,sizeMax:30,opMin:0.28,opMax:0.48,durMin:14,durMax:24,drift:24,glowChance:0.38,blur:0}],dustDesktop:12,dustMobile:6,orbs:'desktop',parallax:'desktop'},
   high:{layers:[{desktopCount:22,mobileCount:12,sizeMin:9,sizeMax:13,opMin:0.12,opMax:0.24,durMin:30,durMax:45,drift:10,glowChance:0,blur:0.4},{desktopCount:26,mobileCount:14,sizeMin:14,sizeMax:20,opMin:0.18,opMax:0.34,durMin:20,durMax:32,drift:16,glowChance:0.15,blur:0.15},{desktopCount:20,mobileCount:10,sizeMin:20,sizeMax:30,opMin:0.28,opMax:0.48,durMin:14,durMax:24,drift:24,glowChance:0.38,blur:0}],dustDesktop:24,dustMobile:12,orbs:'all',parallax:'all'}
 };
 
+var state={
+  unit:0,
+  selectedQTypes:[],selectedSections:[],selectedQCount:10,selectedCorrection:'instant',
+  currentSectionIdx:null,
+  markedKnown:{},markedWeak:{},
+  xp:0,theme:'dark',fontSize:'medium',quality:'high',
+  quiz:null,quizOrigin:'vocab',
+  missedQuestions:[]
+};
+
+var soundOn=true;
+var audioCtx=null;
+
 function applyQuality(){
-  document.documentElement.setAttribute('data-quality', state.quality);
-  const preset=QUALITY_PRESETS[state.quality];
-  const isSmall=window.innerWidth<640;
-  document.querySelectorAll('.orb').forEach(o=>{
-    const show=preset.orbs==='all'||(preset.orbs==='desktop'&&!isSmall);
-    o.style.display=show?'':'none';
-  });
-  initFloatBg();initDust();initParallax();
-  document.querySelectorAll('.quality-btn').forEach(b=>b.classList.toggle('active',b.dataset.q===state.quality));
+  try{
+    document.documentElement.setAttribute('data-quality', state.quality);
+    var preset=QUALITY_PRESETS[state.quality];
+    var isSmall=window.innerWidth<640;
+    document.querySelectorAll('.orb').forEach(function(o){
+      var show=preset.orbs==='all'||(preset.orbs==='desktop'&&!isSmall);
+      o.style.display=show?'':'none';
+    });
+    initFloatBg();initDust();initParallax();
+    document.querySelectorAll('.quality-btn').forEach(function(b){b.classList.toggle('active',b.dataset.q===state.quality)});
+  }catch(e){}
 }
 function initFloatBg(){
-  const bg=document.getElementById('floatBg');if(!bg)return;
-  bg.innerHTML='';floatWrappers.length=0;floatLayers.length=0;
-  const preset=QUALITY_PRESETS[state.quality];const isSmall=window.innerWidth<640;
   try{
-    preset.layers.forEach((cfg,li)=>{
-      const layerEl=document.createElement('div');layerEl.className='float-layer';layerEl.dataset.depth=String(li);
-      const count=isSmall?cfg.mobileCount:cfg.desktopCount;
-      const frag=document.createDocumentFragment();
-      for(let i=0;i<count;i++){
-        const wrap=document.createElement('div');wrap.className='float-wrapper';
+    var bg=document.getElementById('floatBg');if(!bg)return;
+    bg.innerHTML='';floatWrappers.length=0;floatLayers.length=0;
+    var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
+    preset.layers.forEach(function(cfg,li){
+      var layerEl=document.createElement('div');layerEl.className='float-layer';layerEl.dataset.depth=String(li);
+      var count=isSmall?cfg.mobileCount:cfg.desktopCount;
+      var frag=document.createDocumentFragment();
+      for(var i=0;i<count;i++){
+        var wrap=document.createElement('div');wrap.className='float-wrapper';
         wrap.style.left=(Math.random()*100).toFixed(2)+'%';
-        const dur=cfg.durMin+Math.random()*(cfg.durMax-cfg.durMin);
+        var dur=cfg.durMin+Math.random()*(cfg.durMax-cfg.durMin);
         wrap.style.setProperty('--dur',dur.toFixed(2)+'s');
         wrap.style.setProperty('--delay',(-Math.random()*dur).toFixed(2)+'s');
-        const word=document.createElement('span');word.className='float-word';
+        var word=document.createElement('span');word.className='float-word';
         word.textContent=FLOAT_WORDS[Math.floor(Math.random()*FLOAT_WORDS.length)];
-        const size=cfg.sizeMin+Math.random()*(cfg.sizeMax-cfg.sizeMin);
+        var size=cfg.sizeMin+Math.random()*(cfg.sizeMax-cfg.sizeMin);
         word.style.fontSize=size.toFixed(1)+'px';
-        const op=cfg.opMin+Math.random()*(cfg.opMax-cfg.opMin);
+        var op=cfg.opMin+Math.random()*(cfg.opMax-cfg.opMin);
         word.style.opacity=op.toFixed(3);
-        const c=FLOAT_COLORS[Math.floor(Math.random()*FLOAT_COLORS.length)];
+        var c=FLOAT_COLORS[Math.floor(Math.random()*FLOAT_COLORS.length)];
         word.style.color='rgb('+c[0]+','+c[1]+','+c[2]+')';
-        const dDur=4.5+Math.random()*7;
+        var dDur=4.5+Math.random()*7;
         word.style.setProperty('--ddur',dDur.toFixed(2)+'s');
         word.style.setProperty('--ddelay',(-Math.random()*dDur).toFixed(2)+'s');
-        const dr=cfg.drift*(0.5+Math.random()*1.1);
+        var dr=cfg.drift*(0.5+Math.random()*1.1);
         word.style.setProperty('--drange',dr.toFixed(1)+'px');
         word.style.setProperty('--rrange',(3+Math.random()*7).toFixed(1)+'deg');
         if(Math.random()<cfg.glowChance){word.classList.add('glow');word.style.setProperty('--gdur',(3+Math.random()*2).toFixed(2)+'s')}
@@ -1060,16 +1166,16 @@ function initFloatBg(){
   }catch(e){}
 }
 function initDust(){
-  const dust=document.getElementById('floatDust');if(!dust)return;
-  dust.innerHTML='';const preset=QUALITY_PRESETS[state.quality];const isSmall=window.innerWidth<640;
-  const count=isSmall?preset.dustMobile:preset.dustDesktop;if(count===0)return;
   try{
-    const frag=document.createDocumentFragment();
-    for(let i=0;i<count;i++){
-      const d=document.createElement('div');d.className='dust';
-      const size=2+Math.random()*4;d.style.width=size+'px';d.style.height=size+'px';
+    var dust=document.getElementById('floatDust');if(!dust)return;
+    dust.innerHTML='';var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
+    var count=isSmall?preset.dustMobile:preset.dustDesktop;if(count===0)return;
+    var frag=document.createDocumentFragment();
+    for(var i=0;i<count;i++){
+      var d=document.createElement('div');d.className='dust';
+      var size=2+Math.random()*4;d.style.width=size+'px';d.style.height=size+'px';
       d.style.left=(Math.random()*100)+'%';d.style.top=(Math.random()*100)+'%';
-      const dur=8+Math.random()*12;d.style.setProperty('--ddur',dur.toFixed(2)+'s');
+      var dur=8+Math.random()*12;d.style.setProperty('--ddur',dur.toFixed(2)+'s');
       d.style.setProperty('--ddelay',(-Math.random()*dur).toFixed(2)+'s');
       d.style.setProperty('--dpx',(Math.random()*60-30).toFixed(1)+'px');
       d.style.setProperty('--dpy',(Math.random()*60-40).toFixed(1)+'px');
@@ -1080,19 +1186,20 @@ function initDust(){
   }catch(e){}
 }
 function initParallax(){
-  if(!floatLayers.length)return;
-  const preset=QUALITY_PRESETS[state.quality];if(!preset.parallax)return;
-  const hasHover=window.matchMedia&&window.matchMedia('(hover: hover)').matches;
-  if(preset.parallax==='desktop'&&!hasHover)return;
-  let px=0,py=0,pxT=0,pyT=0,raf=null,lastRun=0;
-  function apply(){for(let i=0;i<floatLayers.length;i++){const depth=(i+1)*10;floatLayers[i].style.transform='translate3d('+(-px*depth).toFixed(2)+'px,'+(-py*depth).toFixed(2)+'px,0)'}}
-  function step(){const dx=pxT-px;const dy=pyT-py;if(Math.abs(dx)<0.0015&&Math.abs(dy)<0.0015){px=pxT;py=pyT;apply();raf=null;return}px+=dx*0.075;py+=dy*0.075;apply();raf=requestAnimationFrame(step)}
-  window.addEventListener('mousemove',(e)=>{const now=performance.now();if(now-lastRun<33)return;lastRun=now;pxT=(e.clientX/window.innerWidth-0.5)*2;pyT=(e.clientY/window.innerHeight-0.5)*2;if(!raf)raf=requestAnimationFrame(step)},{passive:true});
+  try{
+    if(!floatLayers.length)return;
+    var preset=QUALITY_PRESETS[state.quality];if(!preset.parallax)return;
+    var hasHover=window.matchMedia&&window.matchMedia('(hover: hover)').matches;
+    if(preset.parallax==='desktop'&&!hasHover)return;
+    var px=0,py=0,pxT=0,pyT=0,raf=null,lastRun=0;
+    function apply(){for(var i=0;i<floatLayers.length;i++){var depth=(i+1)*10;floatLayers[i].style.transform='translate3d('+(-px*depth).toFixed(2)+'px,'+(-py*depth).toFixed(2)+'px,0)'}}
+    function step(){var dx=pxT-px;var dy=pyT-py;if(Math.abs(dx)<0.0015&&Math.abs(dy)<0.0015){px=pxT;py=pyT;apply();raf=null;return}px+=dx*0.075;py+=dy*0.075;apply();raf=requestAnimationFrame(step)}
+    window.addEventListener('mousemove',function(e){var now=performance.now();if(now-lastRun<33)return;lastRun=now;pxT=(e.clientX/window.innerWidth-0.5)*2;pyT=(e.clientY/window.innerHeight-0.5)*2;if(!raf)raf=requestAnimationFrame(step)},{passive:true});
+  }catch(e){}
 }
 
-let audioCtx=null;let soundOn=true;
 function getCtx(){if(audioCtx){if(audioCtx.state==='suspended')try{audioCtx.resume()}catch(e){}return audioCtx}try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')try{audioCtx.resume()}catch(e){}}catch(e){}return audioCtx}
-function tone(freq,dur,type,vol,delay){if(!soundOn)return;type=type||'sine';vol=vol||0.06;delay=delay||0;const ctx=getCtx();if(!ctx)return;try{const start=ctx.currentTime+delay;const osc=ctx.createOscillator();const gain=ctx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,start);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(vol,start+0.01);gain.gain.exponentialRampToValueAtTime(0.0001,start+dur);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);osc.stop(start+dur+0.02)}catch(e){}}
+function tone(freq,dur,type,vol,delay){if(!soundOn)return;type=type||'sine';vol=vol||0.06;delay=delay||0;var ctx=getCtx();if(!ctx)return;try{var start=ctx.currentTime+delay;var osc=ctx.createOscillator();var gain=ctx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,start);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(vol,start+0.01);gain.gain.exponentialRampToValueAtTime(0.0001,start+dur);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);osc.stop(start+dur+0.02)}catch(e){}}
 function sfxClick(){tone(1100,0.05,'sine',0.04)}
 function sfxTap(){tone(820,0.06,'sine',0.055)}
 function sfxNav(){tone(660,0.08,'sine',0.05);tone(990,0.07,'sine',0.03,0.03)}
@@ -1103,211 +1210,195 @@ function sfxStar(){tone(880,0.08,'sine',0.055);tone(1320,0.1,'sine',0.04,0.05)}
 function sfxFlag(){tone(523,0.08,'sine',0.055);tone(392,0.1,'sine',0.04,0.05)}
 function sfxToggleOn(){tone(740,0.07,'sine',0.06);tone(1046,0.09,'sine',0.045,0.04)}
 function sfxToggleOff(){tone(520,0.07,'sine',0.045);tone(370,0.08,'sine',0.035,0.04)}
-function sfxBubble(){const f=700+Math.random()*600;tone(f,0.18,'sine',0.045)}
+function sfxBubble(){var f=700+Math.random()*600;tone(f,0.18,'sine',0.045)}
 
-const ADHKAR=[
-  {text:'اللهم صلِّ وسلِّم على نبينا محمد ﷺ',icon:'🕌',type:'صلاة على النبي'},
-  {text:'سبحان الله وبحمده، سبحان الله العظيم',icon:'📿',type:'تسبيح'},
-  {text:'لا حول ولا قوة إلا بالله',icon:'✨',type:'ذكر'},
-  {text:'أستغفر الله العظيم وأتوب إليه',icon:'🤲',type:'استغفار'},
-  {text:'لا إله إلا الله وحده لا شريك له',icon:'☪️',type:'توحيد'},
-  {text:'اللهم إني أسألك علمًا نافعًا ورزقًا طيبًا',icon:'📚',type:'دعاء'},
-  {text:'ربِّ اشرح لي صدري ويسر لي أمري',icon:'💡',type:'دعاء'},
-  {text:'اللهم لا سهل إلا ما جعلته سهلًا',icon:'🌟',type:'دعاء'},
-  {text:'الحمد لله على كل حال',icon:'🤍',type:'حمد'},
-  {text:'من سلك طريقًا يبتغي فيه علمًا، سهَّل الله له طريقًا إلى الجنة',icon:'🎓',type:'حديث شريف'},
-  {text:'اللهم أعني على ذكرك وشكرك وحسن عبادتك',icon:'🌙',type:'دعاء'},
+var ADHKAR=[
+  {text:'سبحان الله',icon:'📿',type:'تسبيح'},
+  {text:'الحمد لله',icon:'🤍',type:'حمد'},
+  {text:'الله أكبر',icon:'✨',type:'تكبير'},
+  {text:'لا إله إلا الله',icon:'☪️',type:'توحيد'},
+  {text:'أستغفر الله',icon:'🤲',type:'استغفار'},
+  {text:'اللهم صل على محمد',icon:'🕌',type:'صلاة على النبي'},
+  {text:'لا حول ولا قوة إلا بالله',icon:'🌟',type:'ذكر'},
+  {text:'سبحان الله وبحمده',icon:'📿',type:'تسبيح'},
   {text:'حسبي الله ونعم الوكيل',icon:'🤲',type:'ذكر'},
-  {text:'سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر',icon:'✨',type:'ذكر'},
-  {text:'اللهم علِّمني ما ينفعني، وانفعني بما علَّمتني',icon:'📚',type:'دعاء'}
+  {text:'اللهم اغفر لي',icon:'🌙',type:'استغفار'}
 ];
-let lastDhikrIdx=-1;
-function getRandomDhikr(){let idx;do{idx=Math.floor(Math.random()*ADHKAR.length)}while(idx===lastDhikrIdx&&ADHKAR.length>1);lastDhikrIdx=idx;return ADHKAR[idx]}
+var lastDhikrIdx=-1;
+function getRandomDhikr(){var idx;do{idx=Math.floor(Math.random()*ADHKAR.length)}while(idx===lastDhikrIdx&&ADHKAR.length>1);lastDhikrIdx=idx;return ADHKAR[idx]}
+
 function initSplash(){
-  const splash=document.getElementById('splashScreen');if(!splash)return;
-  const iEl=document.getElementById('splashDhikrIcon');const tEl=document.getElementById('splashDhikrText');const yEl=document.getElementById('splashDhikrType');const box=document.getElementById('splashDhikr');
-  if(!iEl||!tEl||!yEl||!box){setTimeout(()=>{splash.classList.add('hide');setTimeout(()=>splash.style.display='none',700)},2200);return}
+  var hideNow = window.__hideSplash || function(){
+    var s=document.getElementById('splashScreen');
+    if(s){s.classList.add('hide');setTimeout(function(){s.style.display='none';},700);}
+  };
   try{
-    const first=getRandomDhikr();iEl.textContent=first.icon;tEl.textContent=first.text;yEl.textContent=first.type;
-    const interval=setInterval(()=>{box.classList.add('fade');setTimeout(()=>{const d=getRandomDhikr();iEl.textContent=d.icon;tEl.textContent=d.text;yEl.textContent=d.type;box.classList.remove('fade')},400)},1300);
-    setTimeout(()=>{clearInterval(interval);splash.classList.add('hide');setTimeout(()=>splash.style.display='none',700)},2700);
-  }catch(e){splash.classList.add('hide');setTimeout(()=>splash.style.display='none',700)}
+    var splash=document.getElementById('splashScreen');
+    if(!splash)return;
+    var iEl=document.getElementById('splashDhikrIcon');
+    var tEl=document.getElementById('splashDhikrText');
+    var yEl=document.getElementById('splashDhikrType');
+    var box=document.getElementById('splashDhikr');
+    if(!iEl||!tEl||!yEl||!box){setTimeout(hideNow,1500);return;}
+    var first=getRandomDhikr();
+    iEl.textContent=first.icon;tEl.textContent=first.text;yEl.textContent=first.type;
+    var interval=setInterval(function(){
+      box.classList.add('fade');
+      setTimeout(function(){
+        var d=getRandomDhikr();
+        iEl.textContent=d.icon;tEl.textContent=d.text;yEl.textContent=d.type;
+        box.classList.remove('fade');
+      },400);
+    },1300);
+    setTimeout(function(){clearInterval(interval);hideNow();},2700);
+  }catch(e){
+    hideNow();
+  }
 }
 
-function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=x[i];x[i]=x[j];x[j]=t}return x}
-function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-let toastTimer;
-function toast(msg){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2400)}
+function shuffle(a){var x=a.slice();for(var i=x.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x[i];x[i]=x[j];x[j]=t}return x}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+var toastTimer;
+function toast(msg){var t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show')},2400)}
 function cleanForSpeech(text){return String(text||'').replace(/_{2,}/g,' ').replace(/-{3,}/g,' ').replace(/\s+/g,' ').trim()}
 
-let confirmResolver=null;
+var confirmResolver=null;
 function customConfirm(title,text,okText){
-  return new Promise(resolve=>{
-    const m=document.getElementById('confirmModal');if(!m){resolve(true);return}
+  return new Promise(function(resolve){
+    var m=document.getElementById('confirmModal');if(!m){resolve(true);return;}
     document.getElementById('cmTitle').textContent=title||'تأكيد';
     document.getElementById('cmText').textContent=text||'هل أنت متأكد؟';
     document.getElementById('cmOk').textContent=okText||'تأكيد';
     m.classList.add('show');confirmResolver=resolve;
   });
 }
-document.getElementById('cmOk').addEventListener('click',()=>{document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(true);confirmResolver=null}sfxTap()});
-document.getElementById('cmCancel').addEventListener('click',()=>{document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(false);confirmResolver=null}sfxClick()});
-
-let countResolver=null;let countMaxAllowed=1;
+var countResolver=null;var countMaxAllowed=1;
 function customCountPrompt(maxAllowed,currentValue){
-  return new Promise(resolve=>{
-    const m=document.getElementById('countModal');if(!m){resolve(null);return}
-    countMaxAllowed=maxAllowed;const input=document.getElementById('countInput');
+  return new Promise(function(resolve){
+    var m=document.getElementById('countModal');if(!m){resolve(null);return;}
+    countMaxAllowed=maxAllowed;var input=document.getElementById('countInput');
     input.max=String(maxAllowed);input.value=String(Math.min(currentValue,maxAllowed));
     document.getElementById('countMax').textContent=String(maxAllowed);
-    m.classList.add('show');setTimeout(()=>{try{input.focus();input.select()}catch(e){}},100);
+    m.classList.add('show');setTimeout(function(){try{input.focus();input.select()}catch(e){}},100);
     countResolver=resolve;
   });
 }
 function closeCountModal(ok){
-  const m=document.getElementById('countModal');m.classList.remove('show');
+  var m=document.getElementById('countModal');m.classList.remove('show');
   if(countResolver){
-    let result=null;
-    if(ok){let v=parseInt(document.getElementById('countInput').value,10);if(isNaN(v)||v<1)v=1;if(v>countMaxAllowed)v=countMaxAllowed;result=v}
+    var result=null;
+    if(ok){var v=parseInt(document.getElementById('countInput').value,10);if(isNaN(v)||v<1)v=1;if(v>countMaxAllowed)v=countMaxAllowed;result=v}
     countResolver(result);countResolver=null;
   }
 }
-document.getElementById('countOk').addEventListener('click',()=>{sfxTap();closeCountModal(true)});
-document.getElementById('countCancel').addEventListener('click',()=>{sfxClick();closeCountModal(false)});
-document.getElementById('countInput').addEventListener('keydown',(e)=>{if(e.key==='Enter'){sfxTap();closeCountModal(true)}else if(e.key==='Escape'){sfxClick();closeCountModal(false)}});
-document.getElementById('iosOk').addEventListener('click',()=>{document.getElementById('iosModal').classList.remove('show');sfxTap()});
 
-const PREFS_KEY='vf_prefs_v15',XP_KEY='vf_xp_v15',THEME_KEY='vf_theme_v15',FS_KEY='vf_fs_v15';
+var PREFS_KEY='vf_prefs_v18',XP_KEY='vf_xp_v18',THEME_KEY='vf_theme_v18',FS_KEY='vf_fs_v18';
 function saveSetting(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function loadSetting(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function loadXP(){try{const r=loadSetting(XP_KEY);if(!r)return;const d=JSON.parse(r);if(typeof d.xp==='number')state.xp=d.xp}catch(e){}}
+function loadXP(){try{var r=loadSetting(XP_KEY);if(!r)return;var d=JSON.parse(r);if(typeof d.xp==='number')state.xp=d.xp}catch(e){}}
 function saveXP(){try{saveSetting(XP_KEY,JSON.stringify({xp:state.xp}))}catch(e){}}
 function loadPrefs(){
   try{
-    const r=loadSetting(PREFS_KEY);
+    var r=loadSetting(PREFS_KEY);
     if(r){
-      const d=JSON.parse(r);
+      var d=JSON.parse(r);
       if(typeof d.soundOn==='boolean')soundOn=d.soundOn;
-      if(Array.isArray(d.markedKnown))d.markedKnown.forEach(k=>state.markedKnown[k]=true);
-      if(Array.isArray(d.markedWeak))d.markedWeak.forEach(k=>state.markedWeak[k]=true);
-      if(typeof d.quality==='string'&&['low','medium','high'].includes(d.quality))state.quality=d.quality;
+      if(Array.isArray(d.markedKnown))d.markedKnown.forEach(function(k){state.markedKnown[k]=true});
+      if(Array.isArray(d.markedWeak))d.markedWeak.forEach(function(k){state.markedWeak[k]=true});
+      if(typeof d.quality==='string'&&['low','medium','high'].indexOf(d.quality)>=0)state.quality=d.quality;
       if(typeof d.theme==='string'&&d.theme)state.theme=d.theme;
       if(typeof d.fontSize==='string'&&d.fontSize)state.fontSize=d.fontSize;
     }
-    const t=loadSetting(THEME_KEY);if(t)state.theme=t;
-    const f=loadSetting(FS_KEY);if(f)state.fontSize=f;
+    var t=loadSetting(THEME_KEY);if(t)state.theme=t;
+    var f=loadSetting(FS_KEY);if(f)state.fontSize=f;
   }catch(e){}
 }
-function savePrefs(){try{saveSetting(PREFS_KEY,JSON.stringify({soundOn,markedKnown:Object.keys(state.markedKnown),markedWeak:Object.keys(state.markedWeak),quality:state.quality,theme:state.theme,fontSize:state.fontSize}))}catch(e){}}
+function savePrefs(){try{saveSetting(PREFS_KEY,JSON.stringify({soundOn:soundOn,markedKnown:Object.keys(state.markedKnown),markedWeak:Object.keys(state.markedWeak),quality:state.quality,theme:state.theme,fontSize:state.fontSize}))}catch(e){}}
 function getLevel(){return Math.floor(state.xp/100)+1}
-function updateXPDisplay(){const lv=document.getElementById('xpLv');const pts=document.getElementById('xpPts');if(lv)lv.textContent='Lv.'+getLevel();if(pts)pts.textContent=state.xp}
+function updateXPDisplay(){var lv=document.getElementById('xpLv');var pts=document.getElementById('xpPts');if(lv)lv.textContent='Lv.'+getLevel();if(pts)pts.textContent=state.xp}
 function addXP(n){state.xp+=n;saveXP();updateXPDisplay()}
 function applyTheme(){document.documentElement.setAttribute('data-theme',state.theme);saveSetting(THEME_KEY,state.theme)}
 function applyFontSize(){document.documentElement.setAttribute('data-fs',state.fontSize);saveSetting(FS_KEY,state.fontSize)}
 
-let speechVoices=[];
-function refreshVoices(){if(!('speechSynthesis' in window))return;try{const v=window.speechSynthesis.getVoices();if(v&&v.length)speechVoices=v}catch(e){}}
+var speechVoices=[];
+function refreshVoices(){if(!('speechSynthesis' in window))return;try{var v=window.speechSynthesis.getVoices();if(v&&v.length)speechVoices=v}catch(e){}}
 if('speechSynthesis' in window){refreshVoices();try{window.speechSynthesis.onvoiceschanged=refreshVoices}catch(e){}setTimeout(refreshVoices,400);setTimeout(refreshVoices,1200);setTimeout(refreshVoices,2500)}
-function pickEnglishVoice(){if(!speechVoices.length)refreshVoices();const us=speechVoices.filter(v=>v.lang&&v.lang.toLowerCase().indexOf('en-us')===0);if(us.length)return us[0];const en=speechVoices.filter(v=>v.lang&&v.lang.toLowerCase().indexOf('en')===0);if(en.length)return en[0];return null}
+function pickEnglishVoice(){if(!speechVoices.length)refreshVoices();var us=speechVoices.filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf('en-us')===0});if(us.length)return us[0];var en=speechVoices.filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf('en')===0});if(en.length)return en[0];return null}
 function speak(text){
   if(!('speechSynthesis' in window))return;
-  const clean=cleanForSpeech(text);if(!clean)return;
+  var clean=cleanForSpeech(text);if(!clean)return;
   try{
     window.speechSynthesis.cancel();
-    setTimeout(()=>{
+    setTimeout(function(){
       try{
-        const u=new SpeechSynthesisUtterance(clean);u.lang='en-US';u.rate=0.85;u.pitch=1.0;u.volume=1.0;
-        const voice=pickEnglishVoice();if(voice)u.voice=voice;
+        var u=new SpeechSynthesisUtterance(clean);u.lang='en-US';u.rate=0.85;u.pitch=1.0;u.volume=1.0;
+        var voice=pickEnglishVoice();if(voice)u.voice=voice;
         window.speechSynthesis.speak(u);
-      }catch(e){try{const u2=new SpeechSynthesisUtterance(clean);u2.lang='en-US';u2.rate=0.85;window.speechSynthesis.speak(u2)}catch(e2){}}
+      }catch(e){try{var u2=new SpeechSynthesisUtterance(clean);u2.lang='en-US';u2.rate=0.85;window.speechSynthesis.speak(u2)}catch(e2){}}
     },60);
   }catch(e){}
 }
 
-let deferredInstallPrompt=null;
-const installBtn=document.getElementById('installBtn');
-let isInstalled=false;
+var deferredInstallPrompt=null;
+var installBtn=document.getElementById('installBtn');
+var isInstalled=false;
 function isIOS(){return /iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream}
 function isStandalone(){try{return (window.matchMedia('(display-mode: standalone)').matches)||(window.navigator.standalone===true)}catch(e){return false}}
 function updateInstallBtnVisibility(){
   if(!installBtn)return;
-  if(isInstalled||isStandalone()){installBtn.style.display='none';return}
-  const home=document.getElementById('scr-home');const onHome=home&&home.classList.contains('active');
+  if(isInstalled||isStandalone()){installBtn.style.display='none';return;}
+  var home=document.getElementById('scr-home');var onHome=home&&home.classList.contains('active');
   installBtn.style.display=onHome?'inline-flex':'none';
 }
 if(installBtn){installBtn.style.display='inline-flex'}
-window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredInstallPrompt=e;updateInstallBtnVisibility()});
-window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;isInstalled=true;if(installBtn)installBtn.style.display='none';toast('✅ تم تثبيت التطبيق بنجاح')});
-if(installBtn){
-  installBtn.addEventListener('click',async()=>{
-    sfxTap();
-    if(deferredInstallPrompt){
-      try{deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;if(choice&&choice.outcome==='accepted'){toast('📲 جاري التثبيت...')}else{toast('تم إلغاء التثبيت')}}catch(e){}
-      deferredInstallPrompt=null;return;
-    }
-    if(isIOS()){document.getElementById('iosModal').classList.add('show');return}
-    if(location.protocol==='file:'){toast('⚠️ افتح التطبيق من رابط HTTPS للتثبيت');return}
-    toast('افتح قائمة المتصفح واختر "تثبيت التطبيق"');
-  });
-}
 
-const Q_TYPES=[
+var Q_TYPES=[
   {id:'meaning',num:'01',title:'معنى الكلمة',en:'EN → AR',color:'c-purple',desc:'الكلمة إنجليزي'},
   {id:'term',num:'02',title:'الكلمة من المعنى',en:'AR → EN',color:'c-cyan',desc:'المعنى عربي'},
   {id:'definition',num:'03',title:'التعريف الإنجليزي',en:'EN → EN',color:'c-blue',desc:'يحتاج كلمات بتعريف'},
   {id:'book',num:'04',title:'أسئلة الكتاب',en:'DOSSIER',color:'c-pink',desc:'اختيار من متعدد'}
 ];
-const CORRECTION_TYPES=[
+var CORRECTION_TYPES=[
   {id:'instant',num:'01',title:'تصليح فوري',en:'INSTANT',color:'c-green',desc:'الصحيح يظهر بعد كل سؤال'},
   {id:'end',num:'02',title:'عند النهاية',en:'AT END',color:'c-orange',desc:'تنقّل بحرية بين الأسئلة وعدّل'}
 ];
 
-const state={
-  unit:0,
-  selectedQTypes:[],selectedSections:[],selectedQCount:10,selectedCorrection:'instant',
-  currentSectionIdx:null,
-  markedKnown:{},markedWeak:{},
-  xp:0,theme:'dark',fontSize:'medium',quality:'high',
-  quiz:null,quizOrigin:'vocab',
-  missedQuestions:[]
-};
-
 function go(name,pushHistory){
   if(pushHistory===undefined)pushHistory=true;
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  const el=document.getElementById('scr-'+name);
-  if(!el){console.warn('Screen not found:',name);return}
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  var el=document.getElementById('scr-'+name);
+  if(!el){console.warn('Screen not found:',name);return;}
   el.classList.add('active');
-  el.querySelectorAll('.scroll-area').forEach(sa=>{sa.scrollTop=0});
-  const tb=document.getElementById('themeBar');
+  el.querySelectorAll('.scroll-area').forEach(function(sa){sa.scrollTop=0});
+  var tb=document.getElementById('themeBar');
   if(tb)tb.style.display=name==='home'?'flex':'none';
-  const qb=document.getElementById('qualityBar');
+  var qb=document.getElementById('qualityBar');
   if(qb)qb.classList.toggle('show',name==='home');
   updateInstallBtnVisibility();
   try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){}
   sfxNav();
   if(pushHistory){try{history.pushState({screen:name},'','#'+name)}catch(e){}}
 }
-window.addEventListener('popstate',async()=>{
+window.addEventListener('popstate',async function(){
   if(state.quiz){
-    const ok=await customConfirm('الخروج من الاختبار؟','هل تريد الخروج من الاختبار؟ سيتم فقدان تقدمك.','خروج');
-    if(!ok){try{history.pushState({screen:'quiz'},'','#quiz')}catch(e2){}return}
+    var ok=await customConfirm('الخروج من الاختبار؟','هل تريد الخروج من الاختبار؟ سيتم فقدان تقدمك.','خروج');
+    if(!ok){try{history.pushState({screen:'quiz'},'','#quiz')}catch(e2){}return;}
     state.quiz=null;
   }
-  const name=(history.state&&history.state.screen)||'home';
+  var name=(history.state&&history.state.screen)||'home';
   go(name,false);
 });
 
 function renderUnits(){
-  const grid=document.getElementById('unitsGrid');if(!grid)return;
-  const UNITS=VOCAB.map((u,i)=>({
+  var grid=document.getElementById('unitsGrid');if(!grid)return;
+  var UNITS=VOCAB.map(function(u,i){return {
     id:i,num:'UNIT '+String(i+1).padStart(2,'0'),title:u.unit,
-    words:u.sections.reduce((sum,s)=>sum+s.words.length,0),
+    words:u.sections.reduce(function(sum,s){return sum+s.words.length},0),
     sections:u.sections.length,
     color:'u'+(i+1),locked:LOCKED_UNITS.indexOf(i)>=0
-  }));
-  grid.innerHTML=UNITS.map(u=>{
-    const locked=u.locked;
+  }});
+  grid.innerHTML=UNITS.map(function(u){
+    var locked=u.locked;
     return '<div class="sway"><div class="unit-card '+u.color+' '+(locked?'locked':'')+'" data-unit="'+u.id+'" role="button" tabindex="0">'+
       '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
       (locked?'<span class="lock-tag">قريباً</span>':'')+
@@ -1315,11 +1406,11 @@ function renderUnits(){
       '<div class="uc-meta">'+(locked?'<span class="soon">🔒 قريباً</span>':'<span>'+u.words+' كلمة</span><span class="dot"></span><span>'+u.sections+' أقسام</span>')+'</div>'+
     '</div></div>';
   }).join('');
-  grid.querySelectorAll('.unit-card').forEach(c=>{
-    c.addEventListener('click',()=>{
-      if(c.classList.contains('locked')){shake(c);sfxWrong();toast('🔒 الوحدة قريباً');return}
+  grid.querySelectorAll('.unit-card').forEach(function(c){
+    c.addEventListener('click',function(){
+      if(c.classList.contains('locked')){shake(c);sfxWrong();toast('🔒 الوحدة قريباً');return;}
       sfxTap();state.unit=+c.dataset.unit;
-      const u=VOCAB[state.unit];
+      var u=VOCAB[state.unit];
       document.getElementById('vLabel').textContent='UNIT '+String(state.unit+1).padStart(2,'0');
       document.getElementById('vTitle').textContent=u.unit;
       renderVocabMain();go('vocab');
@@ -1329,36 +1420,36 @@ function renderUnits(){
 function shake(el){try{el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:400,easing:'ease-in-out'})}catch(e){}}
 
 function renderVocabMain(){
-  const grid=document.getElementById('vocabGrid');if(!grid)return;
-  const known=Object.keys(state.markedKnown).length;
-  const weak=Object.keys(state.markedWeak).length;
-  const total=VOCAB[state.unit].sections.reduce((sum,s)=>sum+s.words.length,0);
-  const cards=[
+  var grid=document.getElementById('vocabGrid');if(!grid)return;
+  var known=Object.keys(state.markedKnown).length;
+  var weak=Object.keys(state.markedWeak).length;
+  var total=VOCAB[state.unit].sections.reduce(function(sum,s){return sum+s.words.length},0);
+  var cards=[
     {id:'mark',num:'01',title:'تحديد الكلمات',en:'MARK',color:'c-star',desc:'⭐ سهلة · 🚩 صعبة',meta:known+weak+'/'+total},
     {id:'quiz',num:'02',title:'اختبار مخصص',en:'QUIZ',color:'c-purple',desc:'اختر القسم ثم النوع',meta:'ابدأ الآن'}
   ];
-  grid.innerHTML=cards.map(c=>{
+  grid.innerHTML=cards.map(function(c){
     return '<div class="sway"><div class="box-card '+c.color+'" data-vocab="'+c.id+'" role="button" tabindex="0">'+
       '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
       '<div class="box-body"><div class="box-num">'+c.num+'</div><div class="box-title">'+esc(c.title)+'</div><div class="box-desc">'+esc(c.desc)+'</div></div>'+
       '<div class="box-meta">'+c.meta+'</div>'+
     '</div></div>';
   }).join('');
-  grid.querySelectorAll('.box-card').forEach(c=>{
-    c.addEventListener('click',()=>{
+  grid.querySelectorAll('.box-card').forEach(function(c){
+    c.addEventListener('click',function(){
       sfxTap();
-      const v=c.dataset.vocab;
-      if(v==='mark'){renderMarkSections();go('vocab-sections')}
-      else if(v==='quiz'){state.selectedSections=[];state.selectedQTypes=[];renderQSections();go('quiz-sections')}
+      var v=c.dataset.vocab;
+      if(v==='mark'){renderMarkSections();go('vocab-sections');}
+      else if(v==='quiz'){state.selectedSections=[];state.selectedQTypes=[];renderQSections();go('quiz-sections');}
     });
   });
 }
 function renderMarkSections(){
-  const grid=document.getElementById('markSectionsGrid');if(!grid)return;
-  const secs=VOCAB[state.unit].sections;
-  grid.innerHTML=secs.map((s,i)=>{
-    const kc=s.words.filter(w=>state.markedKnown[w.t]).length;
-    const wc=s.words.filter(w=>state.markedWeak[w.t]).length;
+  var grid=document.getElementById('markSectionsGrid');if(!grid)return;
+  var secs=VOCAB[state.unit].sections;
+  grid.innerHTML=secs.map(function(s,i){
+    var kc=s.words.filter(function(w){return state.markedKnown[w.t]}).length;
+    var wc=s.words.filter(function(w){return state.markedWeak[w.t]}).length;
     return '<div class="mini-box" data-secid="'+i+'" onclick="openMarkSection('+i+')" style="--c:#10b981" role="button" tabindex="0">'+
       '<div class="mb-title">'+esc(s.title)+'</div>'+
       '<div class="mb-meta">'+s.words.length+' كلمة · ⭐ '+kc+' · 🚩 '+wc+'</div>'+
@@ -1367,20 +1458,20 @@ function renderMarkSections(){
 }
 function openMarkSection(idx){
   sfxTap();state.currentSectionIdx=idx;
-  const s=VOCAB[state.unit].sections[idx];
+  var s=VOCAB[state.unit].sections[idx];
   document.getElementById('markLabel').textContent='SECTION '+String(idx+1).padStart(2,'0');
   document.getElementById('markTitle').textContent=s.title;
   renderVocabList();go('vocab-mark');
 }
 function renderVocabList(){
-  const list=document.getElementById('vocabList');if(!list)return;
-  const s=VOCAB[state.unit].sections[state.currentSectionIdx];if(!s)return;
-  list.innerHTML=s.words.map((w,i)=>{
-    const k=state.markedKnown[w.t]?'marked-known':'';
-    const wk=state.markedWeak[w.t]?'marked-weak':'';
-    const kBtn=state.markedKnown[w.t]?'on-star':'';
-    const wkBtn=state.markedWeak[w.t]?'on-flag':'';
-    const tk=w.t.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  var list=document.getElementById('vocabList');if(!list)return;
+  var s=VOCAB[state.unit].sections[state.currentSectionIdx];if(!s)return;
+  list.innerHTML=s.words.map(function(w,i){
+    var k=state.markedKnown[w.t]?'marked-known':'';
+    var wk=state.markedWeak[w.t]?'marked-weak':'';
+    var kBtn=state.markedKnown[w.t]?'on-star':'';
+    var wkBtn=state.markedWeak[w.t]?'on-flag':'';
+    var tk=w.t.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
     return '<div class="vocab-item '+k+' '+wk+'">'+
       '<div class="vi-num">'+String(i+1).padStart(2,'0')+'</div>'+
       '<div class="vi-text" onclick="speak(\''+tk+'\')" role="button" tabindex="0">'+
@@ -1397,20 +1488,20 @@ function renderVocabList(){
 function toggleMark(term,type,e){
   if(e)e.stopPropagation();
   if(type==='known'){
-    if(state.markedKnown[term]){delete state.markedKnown[term];sfxToggleOff()}
-    else{state.markedKnown[term]=true;delete state.markedWeak[term];sfxStar()}
+    if(state.markedKnown[term]){delete state.markedKnown[term];sfxToggleOff();}
+    else{state.markedKnown[term]=true;delete state.markedWeak[term];sfxStar();}
   }else{
-    if(state.markedWeak[term]){delete state.markedWeak[term];sfxToggleOff()}
-    else{state.markedWeak[term]=true;delete state.markedKnown[term];sfxFlag()}
+    if(state.markedWeak[term]){delete state.markedWeak[term];sfxToggleOff();}
+    else{state.markedWeak[term]=true;delete state.markedKnown[term];sfxFlag();}
   }
   renderVocabList();savePrefs();
 }
 
 function renderQSections(){
-  const grid=document.getElementById('sectionsGrid');if(!grid)return;
-  const secs=VOCAB[state.unit].sections;
-  grid.innerHTML=secs.map((s,i)=>{
-    const sel=state.selectedSections.indexOf(i)>=0;
+  var grid=document.getElementById('sectionsGrid');if(!grid)return;
+  var secs=VOCAB[state.unit].sections;
+  grid.innerHTML=secs.map(function(s,i){
+    var sel=state.selectedSections.indexOf(i)>=0;
     return '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+i+'" onclick="toggleSection('+i+')" style="--c:#8b5cf6" role="button" tabindex="0">'+
       '<div class="mb-title">'+esc(s.title)+'</div>'+
       '<div class="mb-meta">'+s.words.length+' كلمة</div>'+
@@ -1419,38 +1510,38 @@ function renderQSections(){
   updateSectionNext();
 }
 function toggleSection(id){
-  const i=state.selectedSections.indexOf(id);
-  if(i>=0){state.selectedSections.splice(i,1);sfxToggleOff()}else{state.selectedSections.push(id);sfxToggleOn()}
-  document.querySelectorAll('#sectionsGrid .mini-box').forEach(el=>el.classList.toggle('selected',state.selectedSections.indexOf(+el.dataset.secid)>=0));
+  var i=state.selectedSections.indexOf(id);
+  if(i>=0){state.selectedSections.splice(i,1);sfxToggleOff();}else{state.selectedSections.push(id);sfxToggleOn();}
+  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(+el.dataset.secid)>=0)});
   updateSectionNext();
 }
 function selectAllSections(){
-  const secs=VOCAB[state.unit].sections;
+  var secs=VOCAB[state.unit].sections;
   if(state.selectedSections.length===secs.length)state.selectedSections=[];
-  else state.selectedSections=secs.map((_,i)=>i);
-  document.querySelectorAll('#sectionsGrid .mini-box').forEach(el=>el.classList.toggle('selected',state.selectedSections.indexOf(+el.dataset.secid)>=0));
+  else state.selectedSections=secs.map(function(_,i){return i});
+  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(+el.dataset.secid)>=0)});
   sfxTap();updateSectionNext();
 }
-function updateSectionNext(){const b=document.getElementById('sectionsNext');if(b)b.disabled=state.selectedSections.length===0}
-function toQTypes(){state.selectedQTypes=[];renderQTypes();go('quiz-types')}
+function updateSectionNext(){var b=document.getElementById('sectionsNext');if(b)b.disabled=state.selectedSections.length===0}
+function toQTypes(){state.selectedQTypes=[];renderQTypes();go('quiz-types');}
 function getSelectedWords(){
-  const secs=VOCAB[state.unit].sections;const out=[];
-  secs.forEach((s,si)=>{if(state.selectedSections.indexOf(si)>=0)s.words.forEach(w=>out.push(w))});
-  const seen={};return out.filter(w=>{if(seen[w.t])return false;seen[w.t]=true;return true});
+  var secs=VOCAB[state.unit].sections;var out=[];
+  secs.forEach(function(s,si){if(state.selectedSections.indexOf(si)>=0)s.words.forEach(function(w){out.push(w)})});
+  var seen={};return out.filter(function(w){if(seen[w.t])return false;seen[w.t]=true;return true});
 }
-function hasEnglishDefs(){return getSelectedWords().some(w=>!!w.e)}
+function hasEnglishDefs(){return getSelectedWords().some(function(w){return !!w.e})}
 function hasBookQuestions(){
-  const secSet={};state.selectedSections.forEach(i=>{secSet[state.unit+'-'+i]=true});
-  return BOOK_QUESTIONS.some(q=>secSet[q.unitIdx+'-'+q.sectionIdx]);
+  var secSet={};state.selectedSections.forEach(function(i){secSet[state.unit+'-'+i]=true});
+  return BOOK_QUESTIONS.some(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]});
 }
 function renderQTypes(){
-  const grid=document.getElementById('qTypesGrid');if(!grid)return;
-  const hasDef=hasEnglishDefs();const hasBook=hasBookQuestions();
-  grid.innerHTML=Q_TYPES.map(t=>{
-    const sel=state.selectedQTypes.indexOf(t.id)>=0;
-    let disabled=false;let hint='';
-    if(t.id==='definition'&&!hasDef){disabled=true;hint='لا توجد كلمات بتعريف إنجليزي'}
-    if(t.id==='book'&&!hasBook){disabled=true;hint='لا توجد أسئلة كتاب لهذه الأقسام'}
+  var grid=document.getElementById('qTypesGrid');if(!grid)return;
+  var hasDef=hasEnglishDefs();var hasBook=hasBookQuestions();
+  grid.innerHTML=Q_TYPES.map(function(t){
+    var sel=state.selectedQTypes.indexOf(t.id)>=0;
+    var disabled=false;var hint='';
+    if(t.id==='definition'&&!hasDef){disabled=true;hint='لا توجد كلمات بتعريف إنجليزي';}
+    if(t.id==='book'&&!hasBook){disabled=true;hint='لا توجد أسئلة كتاب لهذه الأقسام';}
     return '<div class="sway"><div class="box-card '+t.color+' '+(sel?'selected':'')+' '+(disabled?'disabled-by-data':'')+'" data-qtype="'+t.id+'" '+(disabled?'data-disabled="1"':'')+' role="button" tabindex="0">'+
       '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
       (disabled?'<span class="lock-tag" style="background:rgba(239,68,68,.15);color:#fca5a5;border-color:rgba(239,68,68,.35)">غير متاح</span>':'')+
@@ -1458,132 +1549,132 @@ function renderQTypes(){
       '<div class="box-meta">'+t.en+'</div>'+
     '</div></div>';
   }).join('');
-  grid.querySelectorAll('.box-card').forEach(c=>{
-    c.addEventListener('click',()=>{
-      if(c.dataset.disabled){shake(c);sfxWrong();toast(c.querySelector('.box-desc').textContent);return}
-      const id=c.dataset.qtype;const i=state.selectedQTypes.indexOf(id);
-      if(i>=0){state.selectedQTypes.splice(i,1);sfxToggleOff()}else{state.selectedQTypes.push(id);sfxToggleOn()}
+  grid.querySelectorAll('.box-card').forEach(function(c){
+    c.addEventListener('click',function(){
+      if(c.dataset.disabled){shake(c);sfxWrong();toast(c.querySelector('.box-desc').textContent);return;}
+      var id=c.dataset.qtype;var i=state.selectedQTypes.indexOf(id);
+      if(i>=0){state.selectedQTypes.splice(i,1);sfxToggleOff();}else{state.selectedQTypes.push(id);sfxToggleOn();}
       renderQTypes();
     });
   });
-  const nb=document.getElementById('qTypesNext');if(nb)nb.disabled=state.selectedQTypes.length===0;
+  var nb=document.getElementById('qTypesNext');if(nb)nb.disabled=state.selectedQTypes.length===0;
 }
-function toQCount(){renderQCount();go('quiz-count')}
+function toQCount(){renderQCount();go('quiz-count');}
 function getAvailabilityBreakdown(){
-  const pool=getSelectedWords();const types=state.selectedQTypes;
-  const b={meaning:0,term:0,definition:0,book:0};
+  var pool=getSelectedWords();var types=state.selectedQTypes;
+  var b={meaning:0,term:0,definition:0,book:0};
   if(types.indexOf('book')>=0){
-    const secSet={};state.selectedSections.forEach(i=>{secSet[state.unit+'-'+i]=true});
-    b.book=BOOK_QUESTIONS.filter(q=>secSet[q.unitIdx+'-'+q.sectionIdx]).length;
+    var secSet={};state.selectedSections.forEach(function(i){secSet[state.unit+'-'+i]=true});
+    b.book=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]}).length;
   }
   if(pool.length>=4){
-    if(types.indexOf('meaning')>=0)b.meaning=pool.filter(w=>w.m).length;
-    if(types.indexOf('term')>=0)b.term=pool.filter(w=>w.t&&w.m).length;
-    if(types.indexOf('definition')>=0)b.definition=pool.filter(w=>w.e).length;
+    if(types.indexOf('meaning')>=0)b.meaning=pool.filter(function(w){return w.m}).length;
+    if(types.indexOf('term')>=0)b.term=pool.filter(function(w){return w.t&&w.m}).length;
+    if(types.indexOf('definition')>=0)b.definition=pool.filter(function(w){return w.e}).length;
   }
   return b;
 }
-function getAvailableCount(){const b=getAvailabilityBreakdown();return b.meaning+b.term+b.definition+b.book}
 function renderAvailPanel(b,total){
-  const panel=document.getElementById('availPanel');if(!panel)return;
-  const rows=[];
+  var panel=document.getElementById('availPanel');if(!panel)return;
+  var rows=[];
   if(state.selectedQTypes.indexOf('meaning')>=0)rows.push({icon:'🇬🇧',label:'معنى الكلمة (EN → AR)',count:b.meaning});
   if(state.selectedQTypes.indexOf('term')>=0)rows.push({icon:'🇯🇴',label:'الكلمة من المعنى (AR → EN)',count:b.term});
   if(state.selectedQTypes.indexOf('definition')>=0)rows.push({icon:'📖',label:'التعريف الإنجليزي (EN → EN)',count:b.definition});
   if(state.selectedQTypes.indexOf('book')>=0)rows.push({icon:'📚',label:'أسئلة الكتاب (Dossier)',count:b.book});
-  const totalClass=total===0?'zero':(total<10?'low':'');
-  panel.innerHTML=rows.map(r=>{
-    const cls=r.count===0?'zero':'';
+  var totalClass=total===0?'zero':(total<10?'low':'');
+  panel.innerHTML=rows.map(function(r){
+    var cls=r.count===0?'zero':'';
     return '<div class="avail-row"><span class="ar-icon">'+r.icon+'</span><span class="ar-label">'+r.label+'</span><span class="ar-count '+cls+'">'+r.count+'</span></div>';
   }).join('')+'<div class="avail-total"><span class="at-label">🎯 المجموع المتاح</span><span class="at-count '+totalClass+'">'+total+' سؤال</span></div>';
 }
 function renderQCount(){
-  const grid=document.getElementById('qCountGrid');if(!grid)return;
-  const b=getAvailabilityBreakdown();const avail=b.meaning+b.term+b.definition+b.book;
+  var grid=document.getElementById('qCountGrid');if(!grid)return;
+  var b=getAvailabilityBreakdown();var avail=b.meaning+b.term+b.definition+b.book;
   renderAvailPanel(b,avail);
-  if(state.selectedQCount>avail||state.selectedQCount<1){if(avail>=10)state.selectedQCount=10;else if(avail>=5)state.selectedQCount=5;else state.selectedQCount=Math.max(1,avail)}
-  const fixed=[5,10,15,20,30];const isCustom=fixed.indexOf(state.selectedQCount)<0&&avail>0;
-  let html=fixed.map(n=>{
-    const disabled=n>avail;const sel=state.selectedQCount===n&&!disabled;
+  if(state.selectedQCount>avail||state.selectedQCount<1){if(avail>=10)state.selectedQCount=10;else if(avail>=5)state.selectedQCount=5;else state.selectedQCount=Math.max(1,avail);}
+  var fixed=[5,10,15,20,30];var isCustom=fixed.indexOf(state.selectedQCount)<0&&avail>0;
+  var html=fixed.map(function(n){
+    var disabled=n>avail;var sel=state.selectedQCount===n&&!disabled;
     return '<div class="count-tile '+(sel?'selected':'')+' '+(disabled?'disabled':'')+'" data-qcount="'+n+'" '+(disabled?'data-disabled="1"':'')+' role="button" tabindex="0"><div class="ct-num">'+n+'</div><div class="ct-label">'+(disabled?'غير متاح':'سؤال')+'</div></div>';
   }).join('');
-  const customDisabled=avail===0;
+  var customDisabled=avail===0;
   html+='<div class="count-tile custom-tile '+(isCustom&&!customDisabled?'selected':'')+' '+(customDisabled?'disabled':'')+'" data-qcount="custom" '+(customDisabled?'data-disabled="1"':'')+' role="button" tabindex="0"><div class="ct-num">'+(isCustom&&!customDisabled?state.selectedQCount:'✏️')+'</div><div class="ct-label">'+(customDisabled?'غير متاح':'مخصص')+'</div></div>';
   grid.innerHTML=html;
-  grid.querySelectorAll('.count-tile').forEach(c=>{
-    c.addEventListener('click',async()=>{
-      if(c.dataset.disabled){shake(c);sfxWrong();toast('عدد الأسئلة المتاح '+avail+' فقط');return}
-      if(c.dataset.qcount==='custom'){sfxTap();const v=await customCountPrompt(avail,state.selectedQCount>0?state.selectedQCount:avail);if(v!=null){state.selectedQCount=v;renderQCount();sfxToggleOn()}return}
+  grid.querySelectorAll('.count-tile').forEach(function(c){
+    c.addEventListener('click',async function(){
+      if(c.dataset.disabled){shake(c);sfxWrong();toast('عدد الأسئلة المتاح '+avail+' فقط');return;}
+      if(c.dataset.qcount==='custom'){sfxTap();var v=await customCountPrompt(avail,state.selectedQCount>0?state.selectedQCount:avail);if(v!=null){state.selectedQCount=v;renderQCount();sfxToggleOn();}return;}
       state.selectedQCount=+c.dataset.qcount;sfxTap();renderQCount();
     });
   });
-  const nb=document.getElementById('qCountNext');if(nb)nb.disabled=avail===0||state.selectedQCount>avail||state.selectedQCount<1;
+  var nb=document.getElementById('qCountNext');if(nb)nb.disabled=avail===0||state.selectedQCount>avail||state.selectedQCount<1;
 }
-function toQCorrection(){renderQCorrection();go('quiz-correction')}
+function toQCorrection(){renderQCorrection();go('quiz-correction');}
 function renderQCorrection(){
-  const grid=document.getElementById('qCorrectionGrid');if(!grid)return;
-  grid.innerHTML=CORRECTION_TYPES.map(c=>{
-    const sel=state.selectedCorrection===c.id;
+  var grid=document.getElementById('qCorrectionGrid');if(!grid)return;
+  grid.innerHTML=CORRECTION_TYPES.map(function(c){
+    var sel=state.selectedCorrection===c.id;
     return '<div class="sway"><div class="box-card '+c.color+' '+(sel?'selected':'')+'" data-correct="'+c.id+'" role="button" tabindex="0">'+
       '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
       '<div class="box-body"><div class="box-num">'+c.num+'</div><div class="box-title">'+esc(c.title)+'</div><div class="box-desc">'+esc(c.desc)+'</div></div>'+
       '<div class="box-meta">'+c.en+'</div>'+
     '</div></div>';
   }).join('');
-  grid.querySelectorAll('.box-card').forEach(c=>{
-    c.addEventListener('click',()=>{state.selectedCorrection=c.dataset.correct;sfxTap();renderQCorrection()});
+  grid.querySelectorAll('.box-card').forEach(function(c){
+    c.addEventListener('click',function(){state.selectedCorrection=c.dataset.correct;sfxTap();renderQCorrection()});
   });
 }
 
-/* ══════════════════ BUILD QUIZ (with global dedup) ══════════════════ */
 function buildQuiz(){
-  const pool=getSelectedWords();const types=state.selectedQTypes;const count=state.selectedQCount;
-  const questions=[];
-  const secSet={};state.selectedSections.forEach(i=>{secSet[state.unit+'-'+i]=true});
-  const usedKeys={};
-  const addQ=(q)=>{
+  var pool=getSelectedWords();var types=state.selectedQTypes;var count=state.selectedQCount;
+  var questions=[];
+  var secSet={};state.selectedSections.forEach(function(i){secSet[state.unit+'-'+i]=true});
+  var usedKeys={};
+  function addQ(q){
     if(!q)return false;
-    const key=q.kind+'|'+q.prompt;
+    var key=q.kind+'||'+q.prompt+'||'+q.answer;
     if(usedKeys[key])return false;
     usedKeys[key]=true;
     questions.push(q);
     return true;
-  };
+  }
   if(types.indexOf('book')>=0){
-    const bookPool=BOOK_QUESTIONS.filter(q=>secSet[q.unitIdx+'-'+q.sectionIdx]);
-    bookPool.forEach(q=>{
+    var bookPool=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]});
+    bookPool.forEach(function(q){
       addQ({kind:'book',prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:false,promptRTL:false,user:null,answered:false});
     });
   }
-  const nonBook=types.filter(t=>t!=='book');
+  var nonBook=types.filter(function(t){return t!=='book'});
   if(nonBook.length>0&&pool.length>=4){
-    const sh=shuffle(pool);
-    for(const w of sh){
-      for(const t of nonBook){
-        let q=null;
+    var sh=shuffle(pool);
+    for(var wi=0;wi<sh.length;wi++){
+      var w=sh[wi];
+      for(var ti=0;ti<nonBook.length;ti++){
+        var t=nonBook[ti];
+        var q=null;
         if(t==='meaning'&&w.m){
-          const o=shuffle(pool.filter(x=>x.t!==w.t&&x.m).map(x=>x.m)).slice(0,3);
+          var o=shuffle(pool.filter(function(x){return x.t!==w.t&&x.m}).map(function(x){return x.m})).slice(0,3);
           if(o.length>=3)q={kind:'meaning',prompt:w.t,options:shuffle([w.m].concat(o)),answer:w.m,optionsRTL:true,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};
         }else if(t==='term'&&w.t&&w.m){
-          const o=shuffle(pool.filter(x=>x.t!==w.t).map(x=>x.t)).slice(0,3);
-          if(o.length>=3)q={kind:'term',prompt:w.m,options:shuffle([w.t].concat(o)),answer:w.t,optionsRTL:false,promptRTL:true,term:w.t,meaning:w.m,user:null,answered:false};
+          var o2=shuffle(pool.filter(function(x){return x.t!==w.t}).map(function(x){return x.t})).slice(0,3);
+          if(o2.length>=3)q={kind:'term',prompt:w.m,options:shuffle([w.t].concat(o2)),answer:w.t,optionsRTL:false,promptRTL:true,term:w.t,meaning:w.m,user:null,answered:false};
         }else if(t==='definition'&&w.e){
-          const o=shuffle(pool.filter(x=>x.e&&x.e!==w.e).map(x=>x.e)).slice(0,3);
-          if(o.length>=3)q={kind:'definition',prompt:w.t,options:shuffle([w.e].concat(o)),answer:w.e,optionsRTL:false,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};
+          var o3=shuffle(pool.filter(function(x){return x.e&&x.e!==w.e}).map(function(x){return x.e})).slice(0,3);
+          if(o3.length>=3)q={kind:'definition',prompt:w.t,options:shuffle([w.e].concat(o3)),answer:w.e,optionsRTL:false,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};
         }
         addQ(q);
       }
     }
   }
-  const final=shuffle(questions).slice(0,Math.min(count,questions.length));
+  var final=shuffle(questions).slice(0,Math.min(count,questions.length));
   if(!final.length)return null;
   return {questions:final,idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false};
 }
 function startCustomQuiz(){
-  const quiz=buildQuiz();
-  if(!quiz){toast('تعذّر توليد أسئلة');sfxWrong();return}
+  var quiz=buildQuiz();
+  if(!quiz){toast('تعذّر توليد أسئلة');sfxWrong();return;}
   sfxNav();state.quiz=quiz;state.quizOrigin='vocab';
-  const isEnd=quiz.correction==='end';
+  var isEnd=quiz.correction==='end';
   document.getElementById('qzLabel').textContent=isEnd?'تصليح بالنهاية':'تصليح فوري';
   document.getElementById('qzProgress').textContent='1 / '+quiz.questions.length;
   document.getElementById('qzCorrect').textContent='0';
@@ -1593,41 +1684,41 @@ function startCustomQuiz(){
 
 function renderQuizQuestion(){
   if(!state.quiz)return;
-  const q=state.quiz.questions[state.quiz.idx];if(!q)return;
+  var q=state.quiz.questions[state.quiz.idx];if(!q)return;
   document.getElementById('qzProgress').textContent=(state.quiz.idx+1)+' / '+state.quiz.questions.length;
   document.getElementById('qzCorrect').textContent=state.quiz.correct;
   document.getElementById('qzBar').style.width=(state.quiz.idx/state.quiz.questions.length*100)+'%';
-  const body=document.getElementById('qzBody');if(!body)return;
-  const pc=q.kind==='meaning'?'quiz-prompt big':(q.promptRTL?'quiz-prompt rtl':'quiz-prompt');
-  let promptHTML=esc(q.prompt);
+  var body=document.getElementById('qzBody');if(!body)return;
+  var pc=q.kind==='meaning'?'quiz-prompt big':(q.promptRTL?'quiz-prompt rtl':'quiz-prompt');
+  var promptHTML=esc(q.prompt);
   if(q.kind==='book'&&/-{3,}/.test(q.prompt)){
-    const parts=q.prompt.split(/-{3,}/);
-    promptHTML=parts.map((p,i,arr)=>{const s=esc(p);return i<arr.length-1?s+'<span style="display:inline-block;min-width:60px;border-bottom:2.5px solid #8b5cf6;margin:0 4px">&nbsp;</span>':s}).join('');
+    var parts=q.prompt.split(/-{3,}/);
+    promptHTML=parts.map(function(p,i,arr){var s=esc(p);return i<arr.length-1?s+'<span style="display:inline-block;min-width:60px;border-bottom:2.5px solid #8b5cf6;margin:0 4px">&nbsp;</span>':s}).join('');
   }
-  const isEnd=state.quiz.correction==='end';
+  var isEnd=state.quiz.correction==='end';
   body.innerHTML='<div class="quiz-card">'+
     '<div class="quiz-label">QUESTION '+(state.quiz.idx+1)+(isEnd?' · بدون تصليح':'')+'</div>'+
     '<div class="'+pc+'">'+promptHTML+'</div>'+
     '<div class="quiz-options">'+
-      q.options.map((o,oi)=>{
-        const isSelected=(q.user===o);const cls=q.optionsRTL?'rtl':'';
-        const selectedCls=isSelected?'pending':'';
-        const disabledAttr=(q.answered&&!isEnd)?'disabled':'';
+      q.options.map(function(o,oi){
+        var isSelected=(q.user===o);var cls=q.optionsRTL?'rtl':'';
+        var selectedCls=isSelected?'pending':'';
+        var disabledAttr=(q.answered&&!isEnd)?'disabled':'';
         return '<button class="q-opt '+cls+' '+selectedCls+'" data-oi="'+oi+'" onclick="answerQuiz('+oi+')" '+disabledAttr+'><span class="qk">'+String.fromCharCode(65+oi)+'</span><span>'+esc(o)+'</span></button>';
       }).join('')+
     '</div></div>';
   if(q.answered&&isEnd){
-    body.querySelectorAll('.q-opt').forEach(b=>{const val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});
+    body.querySelectorAll('.q-opt').forEach(function(b){var val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});
   }else if(q.answered){
-    body.querySelectorAll('.q-opt').forEach(b=>{const val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});
+    body.querySelectorAll('.q-opt').forEach(function(b){var val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});
   }
   renderQuizBottomBar();
 }
 function renderQuizBottomBar(){
-  const bar=document.getElementById('qzBottomBar');if(!bar||!state.quiz)return;
-  const q=state.quiz.questions[state.quiz.idx];const isLast=state.quiz.idx===state.quiz.questions.length-1;
-  const isFirst=state.quiz.idx===0;const isEnd=state.quiz.correction==='end';
-  const btns=[];
+  var bar=document.getElementById('qzBottomBar');if(!bar||!state.quiz)return;
+  var q=state.quiz.questions[state.quiz.idx];var isLast=state.quiz.idx===state.quiz.questions.length-1;
+  var isFirst=state.quiz.idx===0;var isEnd=state.quiz.correction==='end';
+  var btns=[];
   if(isEnd){
     if(state.quiz.cameFromReview)btns.push('<button class="action-btn ghost" onclick="sfxClick();openReview()">→ المراجعة</button>');
     btns.push('<button class="action-btn ghost" onclick="quizPrev()" '+(isFirst?'disabled':'')+'>→</button>');
@@ -1639,95 +1730,95 @@ function renderQuizBottomBar(){
 }
 function answerQuiz(oi){
   if(!state.quiz)return;
-  const q=state.quiz.questions[state.quiz.idx];if(!q)return;
-  const isEnd=state.quiz.correction==='end';
+  var q=state.quiz.questions[state.quiz.idx];if(!q)return;
+  var isEnd=state.quiz.correction==='end';
   q.user=q.options[oi];
   if(isEnd){
     sfxClick();q.answered=true;
-    document.querySelectorAll('#qzBody .q-opt').forEach(b=>{b.classList.remove('pending','correct','wrong');const val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});
+    document.querySelectorAll('#qzBody .q-opt').forEach(function(b){b.classList.remove('pending','correct','wrong');var val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});
     renderQuizBottomBar();return;
   }
   if(q.answered)return;
   q.answered=true;
-  const correct=q.user===q.answer;
-  if(correct){state.quiz.correct++;sfxCorrect()}else sfxWrong();
+  var correct=q.user===q.answer;
+  if(correct){state.quiz.correct++;sfxCorrect();}else sfxWrong();
   document.getElementById('qzCorrect').textContent=state.quiz.correct;
   document.getElementById('qzBar').style.width=((state.quiz.idx+1)/state.quiz.questions.length*100)+'%';
-  document.querySelectorAll('#qzBody .q-opt').forEach(b=>{b.disabled=true;const val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});
+  document.querySelectorAll('#qzBody .q-opt').forEach(function(b){b.disabled=true;var val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});
   renderQuizBottomBar();
 }
 function quizNext(){
   if(!state.quiz)return;
-  if(state.quiz.correction==='end'&&state.quiz.cameFromReview){state.quiz.cameFromReview=false;sfxNav();openReview();return}
-  const isLast=state.quiz.idx===state.quiz.questions.length-1;
+  if(state.quiz.correction==='end'&&state.quiz.cameFromReview){state.quiz.cameFromReview=false;sfxNav();openReview();return;}
+  var isLast=state.quiz.idx===state.quiz.questions.length-1;
   if(isLast){
-    if(state.quiz.correction==='end'){sfxNav();openReview()}
-    else{sfxNav();finishQuiz()}
-  }else{sfxClick();state.quiz.idx++;renderQuizQuestion()}
+    if(state.quiz.correction==='end'){sfxNav();openReview();}
+    else{sfxNav();finishQuiz();}
+  }else{sfxClick();state.quiz.idx++;renderQuizQuestion();}
 }
-function quizPrev(){if(state.quiz&&state.quiz.idx>0){sfxClick();state.quiz.idx--;renderQuizQuestion()}}
+function quizPrev(){if(state.quiz&&state.quiz.idx>0){sfxClick();state.quiz.idx--;renderQuizQuestion();}}
 async function quitQuiz(){
   if(state.quiz){
-    const answered=state.quiz.questions.some(q=>q.user);
-    if(answered){const ok=await customConfirm('الخروج من الاختبار؟','سيتم فقدان تقدمك الحالي.','خروج');if(!ok)return}
+    var answered=state.quiz.questions.some(function(q){return q.user});
+    if(answered){var ok=await customConfirm('الخروج من الاختبار؟','سيتم فقدان تقدمك الحالي.','خروج');if(!ok)return;}
   }
   state.quiz=null;go('vocab');
 }
 function openReview(){
   if(!state.quiz)return;
-  const list=document.getElementById('reviewNavList');if(!list)return;
-  list.innerHTML=state.quiz.questions.map((q,i)=>{
-    const status=q.user?'answered':'empty';
-    const statusText=q.user?'مُجاب':'فارغ';
+  var list=document.getElementById('reviewNavList');if(!list)return;
+  list.innerHTML=state.quiz.questions.map(function(q,i){
+    var status=q.user?'answered':'empty';
+    var statusText=q.user?'مُجاب':'فارغ';
     return '<div class="review-nav-item" onclick="editQuestion('+i+')" role="button" tabindex="0"><div class="rn-head"><span class="rn-num">QUESTION '+(i+1)+'</span><span class="rn-status '+status+'">'+statusText+'</span></div><div class="rn-q">'+esc(q.prompt)+'</div></div>';
   }).join('');
   go('quiz-review');
 }
-function editQuestion(i){if(state.quiz){sfxTap();state.quiz.idx=i;state.quiz.cameFromReview=true;go('quiz');renderQuizQuestion()}}
-function backFromReview(){if(state.quiz){state.quiz.cameFromReview=false;state.quiz.idx=state.quiz.questions.length-1;go('quiz');renderQuizQuestion()}}
+function editQuestion(i){if(state.quiz){sfxTap();state.quiz.idx=i;state.quiz.cameFromReview=true;go('quiz');renderQuizQuestion();}}
+function backFromReview(){if(state.quiz){state.quiz.cameFromReview=false;state.quiz.idx=state.quiz.questions.length-1;go('quiz');renderQuizQuestion();}}
 function finishFromReview(){
   if(!state.quiz)return;
-  let correct=0;state.quiz.questions.forEach(q=>{if(q.user===q.answer)correct++});
+  var correct=0;state.quiz.questions.forEach(function(q){if(q.user===q.answer)correct++;});
   state.quiz.correct=correct;finishQuiz();
 }
 function finishQuiz(){
   if(!state.quiz)return;
   try{
-    const total=state.quiz.questions.length;const correct=state.quiz.correct;
-    const pct=total?Math.round(correct/total*100):0;
-    const color=pct>=80?'#10b981':pct>=50?'#6366f1':'#ef4444';
-    const xpGained=correct*10+50;addXP(xpGained);
-    const missed=state.quiz.questions.filter(q=>q.user!==q.answer);
+    var total=state.quiz.questions.length;var correct=state.quiz.correct;
+    var pct=total?Math.round(correct/total*100):0;
+    var color=pct>=80?'#10b981':pct>=50?'#6366f1':'#ef4444';
+    var xpGained=correct*10+50;addXP(xpGained);
+    var missed=state.quiz.questions.filter(function(q){return q.user!==q.answer});
     state.missedQuestions=missed;
     if(pct>=80)sfxLevelUp();
-    const reviewHTML=state.quiz.questions.map((q,i)=>{
-      const ok=q.user===q.answer;
+    var reviewHTML=state.quiz.questions.map(function(q,i){
+      var ok=q.user===q.answer;
       return '<div class="review-item '+(ok?'ok':'bad')+'"><div class="review-q '+(q.promptRTL?'rtl':'')+'">'+(i+1)+'. '+esc(q.prompt)+'</div><div class="review-a">إجابتك: <span class="'+(ok?'val-ok':'val-bad')+'">'+esc(q.user||'—')+'</span>'+
         (!ok?' · الصحيح: <span style="color:#10b981;font-weight:800">'+esc(q.answer)+'</span>':'')+'</div></div>';
     }).join('');
-    const rb=document.getElementById('resultsBody');
+    var rb=document.getElementById('resultsBody');
     if(rb){
       rb.innerHTML='<div style="text-align:center;padding:20px 10px"><div style="width:140px;height:140px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:conic-gradient('+color+' '+(pct*3.6)+'deg, rgba(255,255,255,.06) 0deg);position:relative"><div style="position:absolute;inset:12px;border-radius:50%;background:var(--bg);display:grid;place-items:center"><div style="font-family:Inter,sans-serif;font-size:2rem;font-weight:900;color:'+color+'">'+pct+'%</div><div style="font-size:.688rem;color:var(--text-3);font-weight:700;margin-top:-4px">'+correct+' / '+total+'</div></div></div><h2 style="font-size:1.25rem;font-weight:900;margin-bottom:6px">'+(pct>=80?'🎉 ممتاز!':pct>=50?'👍 جيد':'💪 واصل')+'</h2><p style="color:var(--text-3);font-size:.813rem;margin-bottom:10px">أجبت على '+correct+' من '+total+'</p><p style="color:#fbbf24;font-size:.813rem;font-weight:800">+'+xpGained+' XP</p></div>'+
         '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px"><span class="sum-chip"><span class="c-dot"></span>صحيح <b>'+correct+'</b></span><span class="sum-chip"><span class="c-dot" style="background:#ef4444"></span>خطأ <b>'+(total-correct)+'</b></span></div>'+
         '<h3 style="font-size:.938rem;font-weight:900;margin:20px 4px 10px">📝 مراجعة الإجابات</h3>'+reviewHTML;
     }
-    const bar=document.getElementById('resultsBottomBar');
+    var bar=document.getElementById('resultsBottomBar');
     if(bar){
-      const retryBtn=missed.length>0?'<button class="action-btn ghost" onclick="retryMissed()">🔁 أعد المخطئة</button>':'';
-      const backBtn='<button class="action-btn" onclick="go(\'vocab\')">→ رجوع</button>';
+      var retryBtn=missed.length>0?'<button class="action-btn ghost" onclick="retryMissed()">🔁 أعد المخطئة</button>':'';
+      var backBtn='<button class="action-btn" onclick="go(\'vocab\')">→ رجوع</button>';
       bar.innerHTML=retryBtn+backBtn;
     }
     go('results');
-  }catch(e){console.error(e);toast('حدث خطأ')}
+  }catch(e){console.error(e);toast('حدث خطأ');}
 }
 function retryMissed(){
-  if(!state.missedQuestions||!state.missedQuestions.length){toast('🎉 لا توجد أسئلة مخطئة');return}
+  if(!state.missedQuestions||!state.missedQuestions.length){toast('🎉 لا توجد أسئلة مخطئة');return;}
   sfxNav();
   state.quiz={
-    questions:state.missedQuestions.map(q=>({kind:q.kind,prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:q.optionsRTL,promptRTL:q.promptRTL,term:q.term,meaning:q.meaning,user:null,answered:false})),
+    questions:state.missedQuestions.map(function(q){return {kind:q.kind,prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:q.optionsRTL,promptRTL:q.promptRTL,term:q.term,meaning:q.meaning,user:null,answered:false}}),
     idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false
   };
-  const isEnd=state.quiz.correction==='end';
+  var isEnd=state.quiz.correction==='end';
   document.getElementById('qzLabel').textContent=isEnd?'إعادة - بالنهاية':'إعادة المخطئة';
   document.getElementById('qzProgress').textContent='1 / '+state.quiz.questions.length;
   document.getElementById('qzCorrect').textContent='0';
@@ -1735,57 +1826,132 @@ function retryMissed(){
   go('quiz');renderQuizQuestion();
 }
 
-document.querySelectorAll('.theme-dot').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    sfxClick();state.theme=btn.dataset.t;applyTheme();
-    document.querySelectorAll('.theme-dot').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');savePrefs();
-  });
-});
-document.querySelectorAll('.quality-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const q=btn.dataset.q;if(state.quality===q)return;
-    state.quality=q;savePrefs();applyQuality();sfxToggleOn();
-    const names={low:'🍃 منخفضة',medium:'⚡ متوسطة',high:'✨ عالية'};
-    toast('جودة العرض: '+names[q]);
-  });
-});
-
-document.addEventListener('click',(e)=>{
-  const target=e.target;
-  if(target.closest('button')||target.closest('.box-card')||target.closest('.unit-card')||target.closest('.vocab-item')||target.closest('.mini-box')||target.closest('.q-opt')||target.closest('input')||target.closest('.theme-float')||target.closest('.quality-float')||target.closest('.review-nav-item')||target.closest('#confirmModal')||target.closest('.count-tile')||target.closest('#countModal')||target.closest('#iosModal'))return;
-  try{const ripple=document.createElement('div');ripple.className='click-ripple'+(Math.random()<0.5?' alt':'');ripple.style.left=e.clientX+'px';ripple.style.top=e.clientY+'px';document.body.appendChild(ripple);setTimeout(()=>ripple.remove(),900)}catch(err){}
-  if(floatWrappers.length){for(let i=0;i<2;i++){const w=floatWrappers[Math.floor(Math.random()*floatWrappers.length)];if(w){w.classList.add('hit');setTimeout(()=>w.classList.remove('hit'),500)}}}
-  sfxBubble();
-},true);
-
 function initApp(){
   try{loadXP()}catch(e){}
   try{loadPrefs()}catch(e){}
   try{applyTheme()}catch(e){}
   try{applyFontSize()}catch(e){}
   try{updateXPDisplay()}catch(e){}
-  try{document.querySelectorAll('.theme-dot').forEach(b=>b.classList.toggle('active',b.dataset.t===state.theme))}catch(e){}
+  try{document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.toggle('active',b.dataset.t===state.theme)})}catch(e){}
   try{document.documentElement.setAttribute('data-quality',state.quality)}catch(e){}
-  try{document.querySelectorAll('.quality-btn').forEach(b=>b.classList.toggle('active',b.dataset.q===state.quality))}catch(e){}
-  try{renderUnits()}catch(e){console.error('renderUnits:',e)}
+  try{document.querySelectorAll('.quality-btn').forEach(function(b){b.classList.toggle('active',b.dataset.q===state.quality)})}catch(e){}
+  try{renderUnits()}catch(e){console.error('renderUnits:',e);}
   try{history.replaceState({screen:'home'},'','#home')}catch(e){}
   try{updateInstallBtnVisibility()}catch(e){}
-  try{const qb=document.getElementById('qualityBar');if(qb)qb.classList.add('show')}catch(e){}
+  try{var qb=document.getElementById('qualityBar');if(qb)qb.classList.add('show')}catch(e){}
+
+  try{
+    document.getElementById('cmOk').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(true);confirmResolver=null;}sfxTap();});
+    document.getElementById('cmCancel').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(false);confirmResolver=null;}sfxClick();});
+    document.getElementById('countOk').addEventListener('click',function(){sfxTap();closeCountModal(true)});
+    document.getElementById('countCancel').addEventListener('click',function(){sfxClick();closeCountModal(false)});
+    document.getElementById('countInput').addEventListener('keydown',function(e){if(e.key==='Enter'){sfxTap();closeCountModal(true);}else if(e.key==='Escape'){sfxClick();closeCountModal(false);}});
+    document.getElementById('iosOk').addEventListener('click',function(){document.getElementById('iosModal').classList.remove('show');sfxTap();});
+    document.querySelectorAll('.theme-dot').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        sfxClick();state.theme=btn.dataset.t;applyTheme();
+        document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');savePrefs();
+      });
+    });
+    document.querySelectorAll('.quality-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var q=btn.dataset.q;if(state.quality===q)return;
+        state.quality=q;savePrefs();applyQuality();sfxToggleOn();
+        var names={low:'🍃 منخفضة',medium:'⚡ متوسطة',high:'✨ عالية'};
+        toast('جودة العرض: '+names[q]);
+      });
+    });
+    if(installBtn){
+      installBtn.addEventListener('click',async function(){
+        sfxTap();
+        if(deferredInstallPrompt){
+          try{deferredInstallPrompt.prompt();var choice=await deferredInstallPrompt.userChoice;if(choice&&choice.outcome==='accepted'){toast('📲 جاري التثبيت...')}else{toast('تم إلغاء التثبيت')}}catch(e){}
+          deferredInstallPrompt=null;return;
+        }
+        if(isIOS()){document.getElementById('iosModal').classList.add('show');return;}
+        if(location.protocol==='file:'){toast('⚠️ افتح التطبيق من رابط HTTPS للتثبيت');return;}
+        toast('افتح قائمة المتصفح واختر "تثبيت التطبيق"');
+      });
+    }
+    window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredInstallPrompt=e;updateInstallBtnVisibility();});
+    window.addEventListener('appinstalled',function(){deferredInstallPrompt=null;isInstalled=true;if(installBtn)installBtn.style.display='none';toast('✅ تم تثبيت التطبيق بنجاح');});
+  }catch(e){console.warn('initApp events:',e);}
+
+  try{
+    document.addEventListener('click',function(e){
+      var target=e.target;
+      if(target.closest('button')||target.closest('.box-card')||target.closest('.unit-card')||target.closest('.vocab-item')||target.closest('.mini-box')||target.closest('.q-opt')||target.closest('input')||target.closest('.theme-float')||target.closest('.quality-float')||target.closest('.review-nav-item')||target.closest('#confirmModal')||target.closest('.count-tile')||target.closest('#countModal')||target.closest('#iosModal')||target.closest('#dhikrFloat'))return;
+      try{var ripple=document.createElement('div');ripple.className='click-ripple'+(Math.random()<0.5?' alt':'');ripple.style.left=e.clientX+'px';ripple.style.top=e.clientY+'px';document.body.appendChild(ripple);setTimeout(function(){ripple.remove()},900)}catch(err){}
+      if(floatWrappers.length){for(var i=0;i<2;i++){var w=floatWrappers[Math.floor(Math.random()*floatWrappers.length)];if(w){w.classList.add('hit');setTimeout(function(){w.classList.remove('hit')},500)}}}
+      sfxBubble();
+    },true);
+  }catch(e){}
 }
+
 try{applyQuality()}catch(e){}
-try{initSplash()}catch(e){const sp=document.getElementById('splashScreen');if(sp)sp.style.display='none'}
+try{initSplash()}catch(e){if(window.__hideSplash)window.__hideSplash();}
 try{initApp()}catch(e){}
 setTimeout(updateInstallBtnVisibility,500);
 setTimeout(updateInstallBtnVisibility,2000);
-document.addEventListener('pointerdown',()=>{const ctx=getCtx();if(ctx&&ctx.state==='suspended')try{ctx.resume()}catch(e){}},{once:true,capture:true});
-document.addEventListener('touchmove',(e)=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
+document.addEventListener('pointerdown',function(){var ctx=getCtx();if(ctx&&ctx.state==='suspended')try{ctx.resume()}catch(e){}},{once:true,capture:true});
+document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').then(reg=>console.log('SW registered!',reg)).catch(err=>console.log('SW registration failed:',err));
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').then(function(reg){console.log('SW registered!',reg)}).catch(function(err){console.log('SW registration failed:',err)});
   });
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   💫 شريط الذكر الخفيف — يظهر بشكل عشوائي وبنتغير بلطف
+   ═══════════════════════════════════════════════════════════════════ */
+(function(){
+  var SHORT_ADHKAR=[
+    {text:'سبحان الله',icon:'📿'},
+    {text:'الحمد لله',icon:'🤍'},
+    {text:'الله أكبر',icon:'✨'},
+    {text:'لا إله إلا الله',icon:'☪️'},
+    {text:'أستغفر الله',icon:'🤲'},
+    {text:'اللهم صل على محمد',icon:'🕌'},
+    {text:'لا حول ولا قوة إلا بالله',icon:'🌟'},
+    {text:'سبحان الله وبحمده',icon:'📿'},
+    {text:'حسبي الله ونعم الوكيل',icon:'🤲'},
+    {text:'اللهم اغفر لي',icon:'🌙'}
+  ];
+  var lastIdx=-1;
+  var container=document.getElementById('dhikrFloat');
+  var iconEl=document.getElementById('dhikrIcon');
+  var textEl=document.getElementById('dhikrText');
+  if(!container||!iconEl||!textEl)return;
+
+  function pickRandom(){
+    var idx;
+    do{idx=Math.floor(Math.random()*SHORT_ADHKAR.length);}
+    while(idx===lastIdx&&SHORT_ADHKAR.length>1);
+    lastIdx=idx;
+    return SHORT_ADHKAR[idx];
+  }
+
+  function cycle(){
+    var d=pickRandom();
+    textEl.classList.add('fade');
+    setTimeout(function(){
+      iconEl.textContent=d.icon;
+      textEl.textContent=d.text;
+      textEl.classList.remove('fade');
+    },600);
+  }
+
+  setTimeout(function(){
+    var first=pickRandom();
+    iconEl.textContent=first.icon;
+    textEl.textContent=first.text;
+    container.classList.add('show');
+  },5000);
+
+  setInterval(cycle,12000);
+})();
 </script>
 </body>
 </html>
