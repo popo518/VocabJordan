@@ -136,6 +136,8 @@ input,select{font-family:inherit;color:inherit}
 .u3{background:linear-gradient(135deg,#059669 0%,#10b981 100%)}
 .u4{background:linear-gradient(135deg,#d97706 0%,#f59e0b 100%)}
 .u5{background:linear-gradient(135deg,#db2777 0%,#ec4899 100%)}
+.u-all{background:linear-gradient(135deg,#334155 0%,#0f172a 100%);border:1px solid rgba(255,255,255,.2);box-shadow:0 10px 30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+.u-all .uc-num{color:#94a3b8}
 .box-card{position:relative;width:clamp(140px,32vw,180px);aspect-ratio:1;border-radius:20px;padding:16px 14px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .3s var(--ease),box-shadow .3s var(--ease);display:flex;flex-direction:column;justify-content:space-between;background:var(--surface);border:1px solid var(--border);overflow:hidden;backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .box-card:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 18px 45px rgba(0,0,0,.5)}
 .box-card:active{transform:translateY(-1px) scale(.97)}
@@ -384,9 +386,6 @@ html[data-theme="light"] #dhikrFloat{
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     FAILSAFE SCRIPT — يعمل بشكل مستقل تماماً
-     ═══════════════════════════════════════════════════════════════════════ -->
 <script>
 (function(){
   var _splashHidden = false;
@@ -413,7 +412,6 @@ html[data-theme="light"] #dhikrFloat{
 <div class="float-dust" id="floatDust"></div>
 <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="orb orb-4"></div>
 
-<!-- شريط الذكر الخفيف -->
 <div id="dhikrFloat" aria-hidden="true">
   <span class="df-icon" id="dhikrIcon">📿</span>
   <span class="df-text" id="dhikrText">سبحان الله</span>
@@ -454,7 +452,7 @@ html[data-theme="light"] #dhikrFloat{
   </div>
 
   <div id="scr-quiz-sections" class="screen">
-    <div class="unit-header"><button class="icon-btn" onclick="go('vocab')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STEP 1 · 4</div><div class="uh-title">اختيار الأقسام</div></div></div>
+    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STEP 1 · 4</div><div class="uh-title">اختيار الأقسام</div></div></div>
     <div class="progress-line"><div class="progress-label"><span>1 من 4</span><span>25%</span></div><div class="progress-track"><div class="progress-fill" style="width:25%"></div></div></div>
     <div class="content-wrap" style="padding-top:6px"><div class="step-title" style="padding:0 0 10px"><h2 style="font-size:1rem">اختر الأقسام</h2><p>اختر قسم كامل أو أكثر</p></div><div class="scroll-area"><div id="sectionsGrid" style="display:flex;flex-direction:column;gap:8px;padding:4px 0"></div></div></div>
     <div class="bottom-bar"><button class="action-btn ghost" onclick="selectAllSections()">تحديد الكل</button><button class="action-btn" id="sectionsNext" onclick="toQTypes()" disabled>التالي ←</button></div>
@@ -1104,6 +1102,7 @@ var QUALITY_PRESETS={
 
 var state={
   unit:0,
+  isCrossUnitQuiz:false,
   selectedQTypes:[],selectedSections:[],selectedQCount:10,selectedCorrection:'instant',
   currentSectionIdx:null,
   markedKnown:{},markedWeak:{},
@@ -1292,7 +1291,7 @@ function closeCountModal(ok){
   }
 }
 
-var PREFS_KEY='vf_prefs_v18',XP_KEY='vf_xp_v18',THEME_KEY='vf_theme_v18',FS_KEY='vf_fs_v18';
+var PREFS_KEY='vf_prefs_v20',XP_KEY='vf_xp_v20',THEME_KEY='vf_theme_v20',FS_KEY='vf_fs_v20';
 function saveSetting(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function loadSetting(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function loadXP(){try{var r=loadSetting(XP_KEY);if(!r)return;var d=JSON.parse(r);if(typeof d.xp==='number')state.xp=d.xp}catch(e){}}
@@ -1397,6 +1396,13 @@ function renderUnits(){
     sections:u.sections.length,
     color:'u'+(i+1),locked:LOCKED_UNITS.indexOf(i)>=0
   }});
+  
+  var compCard = '<div class="sway"><div class="unit-card u-all" data-unit="all" role="button" tabindex="0">'+
+      '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
+      '<div class="uc-body"><div class="uc-num">ALL UNITS</div><div class="uc-title">اختبار شامل</div></div>'+
+      '<div class="uc-meta"><span>كل الوحدات</span><span class="dot"></span><span>اختيار حر</span></div>'+
+    '</div></div>';
+
   grid.innerHTML=UNITS.map(function(u){
     var locked=u.locked;
     return '<div class="sway"><div class="unit-card '+u.color+' '+(locked?'locked':'')+'" data-unit="'+u.id+'" role="button" tabindex="0">'+
@@ -1405,15 +1411,28 @@ function renderUnits(){
       '<div class="uc-body"><div class="uc-num">'+u.num+'</div><div class="uc-title">'+esc(u.title)+'</div></div>'+
       '<div class="uc-meta">'+(locked?'<span class="soon">🔒 قريباً</span>':'<span>'+u.words+' كلمة</span><span class="dot"></span><span>'+u.sections+' أقسام</span>')+'</div>'+
     '</div></div>';
-  }).join('');
+  }).join('') + compCard;
+  
   grid.querySelectorAll('.unit-card').forEach(function(c){
     c.addEventListener('click',function(){
       if(c.classList.contains('locked')){shake(c);sfxWrong();toast('🔒 الوحدة قريباً');return;}
-      sfxTap();state.unit=+c.dataset.unit;
-      var u=VOCAB[state.unit];
-      document.getElementById('vLabel').textContent='UNIT '+String(state.unit+1).padStart(2,'0');
-      document.getElementById('vTitle').textContent=u.unit;
-      renderVocabMain();go('vocab');
+      sfxTap();
+      
+      if(c.dataset.unit === 'all'){
+        state.isCrossUnitQuiz = true;
+        state.selectedSections = [];
+        state.selectedQTypes = [];
+        renderQSections();
+        go('quiz-sections');
+      } else {
+        state.isCrossUnitQuiz = false;
+        state.unit=+c.dataset.unit;
+        var u=VOCAB[state.unit];
+        document.getElementById('vLabel').textContent='UNIT '+String(state.unit+1).padStart(2,'0');
+        document.getElementById('vTitle').textContent=u.unit;
+        renderVocabMain();
+        go('vocab');
+      }
     });
   });
 }
@@ -1424,10 +1443,12 @@ function renderVocabMain(){
   var known=Object.keys(state.markedKnown).length;
   var weak=Object.keys(state.markedWeak).length;
   var total=VOCAB[state.unit].sections.reduce(function(sum,s){return sum+s.words.length},0);
+  
   var cards=[
     {id:'mark',num:'01',title:'تحديد الكلمات',en:'MARK',color:'c-star',desc:'⭐ سهلة · 🚩 صعبة',meta:known+weak+'/'+total},
-    {id:'quiz',num:'02',title:'اختبار مخصص',en:'QUIZ',color:'c-purple',desc:'اختر القسم ثم النوع',meta:'ابدأ الآن'}
+    {id:'quiz',num:'02',title:'اختبار الوحدة',en:'QUIZ',color:'c-purple',desc:'أقسام من هذه الوحدة',meta:'ابدأ الآن'}
   ];
+  
   grid.innerHTML=cards.map(function(c){
     return '<div class="sway"><div class="box-card '+c.color+'" data-vocab="'+c.id+'" role="button" tabindex="0">'+
       '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
@@ -1435,12 +1456,16 @@ function renderVocabMain(){
       '<div class="box-meta">'+c.meta+'</div>'+
     '</div></div>';
   }).join('');
+  
   grid.querySelectorAll('.box-card').forEach(function(c){
     c.addEventListener('click',function(){
       sfxTap();
       var v=c.dataset.vocab;
       if(v==='mark'){renderMarkSections();go('vocab-sections');}
-      else if(v==='quiz'){state.selectedSections=[];state.selectedQTypes=[];renderQSections();go('quiz-sections');}
+      else if(v==='quiz'){
+        state.isCrossUnitQuiz = false;
+        state.selectedSections=[];state.selectedQTypes=[];renderQSections();go('quiz-sections');
+      }
     });
   });
 }
@@ -1499,39 +1524,71 @@ function toggleMark(term,type,e){
 
 function renderQSections(){
   var grid=document.getElementById('sectionsGrid');if(!grid)return;
-  var secs=VOCAB[state.unit].sections;
-  grid.innerHTML=secs.map(function(s,i){
-    var sel=state.selectedSections.indexOf(i)>=0;
-    return '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+i+'" onclick="toggleSection('+i+')" style="--c:#8b5cf6" role="button" tabindex="0">'+
-      '<div class="mb-title">'+esc(s.title)+'</div>'+
-      '<div class="mb-meta">'+s.words.length+' كلمة</div>'+
-    '</div>';
-  }).join('');
+  var html='';
+  if(state.isCrossUnitQuiz){
+     VOCAB.forEach(function(u, uIdx){
+         html += '<div style="padding:14px 4px 6px;font-weight:900;font-size:0.85rem;color:var(--text-2);">'+esc(u.unit)+'</div>';
+         u.sections.forEach(function(s, sIdx){
+             var id = uIdx+'-'+sIdx;
+             var sel = state.selectedSections.indexOf(id)>=0;
+             html += '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+id+'" onclick="toggleSection(\''+id+'\')" style="--c:#3b82f6;margin-bottom:8px" role="button" tabindex="0">'+
+               '<div class="mb-title">'+esc(s.title)+'</div>'+
+               '<div class="mb-meta">'+s.words.length+' كلمة</div>'+
+             '</div>';
+         });
+     });
+  } else {
+     var secs = VOCAB[state.unit].sections;
+     html = secs.map(function(s,i){
+       var id = state.unit+'-'+i;
+       var sel=state.selectedSections.indexOf(id)>=0;
+       return '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+id+'" onclick="toggleSection(\''+id+'\')" style="--c:#8b5cf6;margin-bottom:8px" role="button" tabindex="0">'+
+         '<div class="mb-title">'+esc(s.title)+'</div>'+
+         '<div class="mb-meta">'+s.words.length+' كلمة</div>'+
+       '</div>';
+     }).join('');
+  }
+  grid.innerHTML = html;
   updateSectionNext();
 }
 function toggleSection(id){
   var i=state.selectedSections.indexOf(id);
   if(i>=0){state.selectedSections.splice(i,1);sfxToggleOff();}else{state.selectedSections.push(id);sfxToggleOn();}
-  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(+el.dataset.secid)>=0)});
+  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(el.dataset.secid)>=0)});
   updateSectionNext();
 }
 function selectAllSections(){
-  var secs=VOCAB[state.unit].sections;
-  if(state.selectedSections.length===secs.length)state.selectedSections=[];
-  else state.selectedSections=secs.map(function(_,i){return i});
-  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(+el.dataset.secid)>=0)});
+  var allIds=[];
+  if(state.isCrossUnitQuiz){
+     VOCAB.forEach(function(u, uIdx){
+         u.sections.forEach(function(s, sIdx){ allIds.push(uIdx+'-'+sIdx); });
+     });
+  } else {
+     VOCAB[state.unit].sections.forEach(function(s, i){ allIds.push(state.unit+'-'+i); });
+  }
+  
+  if(state.selectedSections.length===allIds.length) state.selectedSections=[];
+  else state.selectedSections=allIds.slice();
+  
+  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(el.dataset.secid)>=0)});
   sfxTap();updateSectionNext();
 }
 function updateSectionNext(){var b=document.getElementById('sectionsNext');if(b)b.disabled=state.selectedSections.length===0}
 function toQTypes(){state.selectedQTypes=[];renderQTypes();go('quiz-types');}
 function getSelectedWords(){
-  var secs=VOCAB[state.unit].sections;var out=[];
-  secs.forEach(function(s,si){if(state.selectedSections.indexOf(si)>=0)s.words.forEach(function(w){out.push(w)})});
+  var out=[];
+  state.selectedSections.forEach(function(id){
+    var parts = id.split('-');
+    var uIdx = parseInt(parts[0], 10);
+    var sIdx = parseInt(parts[1], 10);
+    var sec = VOCAB[uIdx].sections[sIdx];
+    if(sec) sec.words.forEach(function(w){ out.push(w); });
+  });
   var seen={};return out.filter(function(w){if(seen[w.t])return false;seen[w.t]=true;return true});
 }
 function hasEnglishDefs(){return getSelectedWords().some(function(w){return !!w.e})}
 function hasBookQuestions(){
-  var secSet={};state.selectedSections.forEach(function(i){secSet[state.unit+'-'+i]=true});
+  var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});
   return BOOK_QUESTIONS.some(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]});
 }
 function renderQTypes(){
@@ -1564,7 +1621,7 @@ function getAvailabilityBreakdown(){
   var pool=getSelectedWords();var types=state.selectedQTypes;
   var b={meaning:0,term:0,definition:0,book:0};
   if(types.indexOf('book')>=0){
-    var secSet={};state.selectedSections.forEach(function(i){secSet[state.unit+'-'+i]=true});
+    var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});
     b.book=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]}).length;
   }
   if(pool.length>=4){
@@ -1628,7 +1685,7 @@ function renderQCorrection(){
 function buildQuiz(){
   var pool=getSelectedWords();var types=state.selectedQTypes;var count=state.selectedQCount;
   var questions=[];
-  var secSet={};state.selectedSections.forEach(function(i){secSet[state.unit+'-'+i]=true});
+  var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});
   var usedKeys={};
   function addQ(q){
     if(!q)return false;
