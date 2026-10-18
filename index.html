@@ -4,16 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0c11">
-<meta name="description" content="VocabJordan — مفردات 2009 متقدم — umbra">
+
+<!-- SEO Meta Tags -->
+<title>VocabJordan | مفردات 2009 متقدم</title>
+<meta name="description" content="تطبيق VocabJordan التفاعلي لدراسة وحفظ مفردات اللغة الإنجليزية للمنهاج الأردني 2009 - المستوى المتقدم. يوفر اختبارات شاملة، تحديد الكلمات، ومراجعة ذكية لتسهيل الحفظ.">
+<meta name="keywords" content="مفردات, انجليزي, توجيهي, 2009, متقدم, VocabJordan, اختبارات انجليزي, الأردن">
 <meta name="author" content="umbra">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="application-name" content="VocabJordan">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>VocabJordan — مفردات 2009 متقدم</title>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://popo518.github.io/VocabJordan/">
+<meta property="og:title" content="VocabJordan | مفردات 2009 متقدم">
+<meta property="og:description" content="تطبيق VocabJordan التفاعلي لدراسة وحفظ مفردات اللغة الإنجليزية للمنهاج الأردني 2009 - المستوى المتقدم.">
+<meta property="og:image" content="https://popo518.github.io/VocabJordan/icon-512.png">
+<meta property="og:locale" content="ar_JO">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VocabJordan | مفردات 2009 متقدم">
+<meta name="twitter:description" content="تطبيق VocabJordan التفاعلي لدراسة وحفظ مفردات اللغة الإنجليزية للمنهاج الأردني 2009.">
+<meta name="twitter:image" content="https://popo518.github.io/VocabJordan/icon-512.png">
+
+<link rel="manifest" href="manifest.json">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="48x48" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="96x96" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="shortcut icon" href="icon-192.png" type="image/x-icon">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -78,7 +102,8 @@ input,select{font-family:inherit;color:inherit}
 .brand-name{font-family:'Inter',sans-serif;font-size:.938rem;font-weight:800;letter-spacing:-.3px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
 .brand-sub{font-size:.625rem;color:var(--text-3);font-weight:600;margin-top:1px}
 .topbar-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.xp-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:10px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.28);font-family:'Inter',sans-serif;font-size:.688rem;font-weight:800;color:#fbbf24;white-space:nowrap}
+.xp-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:10px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.28);font-family:'Inter',sans-serif;font-size:.688rem;font-weight:800;color:#fbbf24;white-space:nowrap;cursor:pointer;transition:all .2s}
+.xp-pill:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(251,191,36,.2)}
 .xp-pill .lv{background:#fbbf24;color:#1a1200;padding:1px 5px;border-radius:5px;font-size:.563rem;font-weight:900}
 .install-pill{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:10px;background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:#fff;font-size:.75rem;font-weight:800;white-space:nowrap;border:1px solid rgba(255,255,255,.22);box-shadow:0 4px 14px rgba(16,185,129,.4);transition:transform .2s var(--ease),box-shadow .2s var(--ease);cursor:pointer;min-height:42px;animation:installPulse 2.6s ease-in-out infinite}
 .install-pill:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(16,185,129,.6);animation-play-state:paused}
@@ -288,9 +313,9 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 .td-8{background:linear-gradient(135deg,#0c1f2c,#06b6d4)}
 #toast{position:fixed;bottom:calc(80px + var(--safe-bottom));left:50%;transform:translate(-50%,20px);background:var(--surface);border:1px solid var(--border-2);color:var(--text);padding:12px 22px;border-radius:12px;font-size:.844rem;font-weight:700;box-shadow:0 24px 60px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;max-width:90vw;text-align:center;backdrop-filter:blur(20px)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
-#confirmModal,#countModal,#iosModal{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
-#confirmModal.show,#countModal.show,#iosModal.show{display:flex}
-.cm-box{background:var(--bg-2);border:1px solid var(--border-2);border-radius:18px;padding:22px;max-width:400px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+#confirmModal,#countModal,#iosModal,#motivationModal{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
+#confirmModal.show,#countModal.show,#iosModal.show,#motivationModal.show{display:flex}
+.cm-box{background:var(--bg-2);border:1px solid var(--border-2);border-radius:18px;padding:22px;max-width:400px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.6);text-align:center}
 .cm-title{font-size:1.063rem;font-weight:900;margin-bottom:8px}
 .cm-text{font-size:.813rem;color:var(--text-2);font-weight:600;line-height:1.7;margin-bottom:16px}
 .cm-input{width:100%;padding:12px 14px;border-radius:12px;background:var(--surface);border:1.5px solid var(--border-2);color:var(--text);font-family:'Inter',sans-serif;font-size:1.25rem;font-weight:900;text-align:center;margin-bottom:14px;outline:none;transition:border-color .2s}
@@ -300,37 +325,51 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 .ios-steps{background:var(--surface);border-radius:12px;padding:14px;margin-bottom:14px;text-align:right}
 .ios-steps .step-row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.813rem;font-weight:600;color:var(--text-2);line-height:1.5}
 .ios-steps .step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;display:grid;place-items:center;font-family:'Inter',sans-serif;font-weight:900;font-size:.75rem;flex-shrink:0}
-/* ═══ شريط الذكر الخفيف — أسفل الشاشة ═══ */
-#dhikrFloat{
-  position:fixed;
-  bottom:calc(48px + var(--safe-bottom));
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  align-items:center;
-  gap:6px;
-  padding:5px 14px;
-  border-radius:99px;
-  background:rgba(20,24,36,.55);
-  backdrop-filter:blur(14px) saturate(140%);
-  border:1px solid rgba(139,92,246,.18);
-  color:var(--text-3);
-  font-size:.688rem;
-  font-weight:700;
-  font-family:'Tajawal',sans-serif;
-  letter-spacing:.2px;
-  pointer-events:none;
-  z-index:99;
-  opacity:0;
-  transition:opacity 1.2s ease;
-  user-select:none;
-  white-space:nowrap;
-  max-width:calc(100vw - 40px);
-}
-html[data-theme="light"] #dhikrFloat{
-  background:rgba(255,255,255,.65);
-  border-color:rgba(99,102,241,.18);
-}
+
+/* Motivation Modal Specific */
+#motivationModal .cm-box{background:linear-gradient(135deg,var(--bg-2),var(--surface));border:1px solid var(--brand-2);box-shadow:0 0 50px rgba(139,92,246,.4);animation:modalPop .4s var(--ease)}
+@keyframes modalPop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
+#motivationModal .motiv-icon{font-size:4rem;margin-bottom:16px;animation:emojiBounce 2s infinite;display:none;}
+#motivationModal .motiv-title{font-size:1.5rem;font-weight:900;color:#fbbf24;margin-bottom:8px}
+#motivationModal .motiv-text{font-size:.938rem;font-weight:700;color:var(--text);margin-bottom:20px;line-height:1.6}
+
+/* Stats Screen */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.stat-card{padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:transform .2s}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--border-2)}
+.stat-icon{font-size:1.5rem;margin-bottom:8px}
+.stat-value{font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:900;color:var(--text);line-height:1}
+.stat-label{font-size:.688rem;font-weight:700;color:var(--text-3);margin-top:4px}
+.stat-bar-container{width:100%;height:6px;border-radius:6px;background:var(--surface-2);margin-top:10px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#6366f1,#8b5cf6);transition:width .4s ease}
+
+/* ═══ لائحة الصدارة ═══ */
+.lb-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--border);margin-bottom:8px;transition:all .2s var(--ease);backdrop-filter:blur(12px)}
+.lb-item.me{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.08));border-color:rgba(139,92,246,.55);box-shadow:0 0 0 1.5px rgba(139,92,246,.35),0 8px 24px rgba(139,92,246,.18)}
+.lb-item.top-1{background:linear-gradient(135deg,rgba(251,191,36,.18),transparent);border-color:rgba(251,191,36,.55)}
+.lb-item.top-2{background:linear-gradient(135deg,rgba(203,213,225,.15),transparent);border-color:rgba(203,213,225,.45)}
+.lb-item.top-3{background:linear-gradient(135deg,rgba(217,119,6,.15),transparent);border-color:rgba(217,119,6,.45)}
+.lb-rank{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:'Inter',sans-serif;font-weight:900;font-size:1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);flex-shrink:0;color:var(--text-2)}
+.lb-item.top-1 .lb-rank{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a1200;border-color:transparent;font-size:1.25rem;box-shadow:0 4px 14px rgba(251,191,36,.45)}
+.lb-item.top-2 .lb-rank{background:linear-gradient(135deg,#e2e8f0,#94a3b8);color:#1e293b;border-color:transparent;font-size:1.25rem}
+.lb-item.top-3 .lb-rank{background:linear-gradient(135deg,#d97706,#b45309);color:#fff;border-color:transparent;font-size:1.25rem}
+.lb-item.me .lb-rank{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent}
+.lb-info{flex:1;min-width:0}
+.lb-name{font-size:.938rem;font-weight:800;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-meta{font-size:.688rem;color:var(--text-3);font-weight:600;margin-top:2px;font-family:'Inter',sans-serif;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lb-xp{font-family:'Inter',sans-serif;font-size:.875rem;font-weight:900;color:#a5b4fc;white-space:nowrap}
+.lb-item.top-1 .lb-xp{color:#fbbf24}
+.lb-item.me .lb-xp{color:#a78bfa}
+.lb-badge{display:inline-flex;align-items:center;padding:1px 7px;border-radius:99px;background:rgba(99,102,241,.15);color:#a5b4fc;font-size:.563rem;font-weight:800;border:1px solid rgba(99,102,241,.3)}
+.lb-item.me .lb-badge{background:rgba(139,92,246,.25);color:#c4b5fd;border-color:rgba(139,92,246,.5)}
+.lb-me-card{text-align:center;padding:16px;margin-bottom:16px;background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.08));border:1px solid rgba(139,92,246,.4);border-radius:16px;backdrop-filter:blur(12px)}
+.lb-me-card .lb-me-icon{font-size:2.5rem;line-height:1;margin-bottom:6px}
+.lb-me-card .lb-me-rank{font-size:1.5rem;font-weight:900;color:#a5b4fc}
+.lb-me-card .lb-me-label{font-size:.813rem;color:var(--text-3);font-weight:600;margin-top:4px}
+
+/* ═══ شريط الذكر الخفيف ═══ */
+#dhikrFloat{position:fixed;bottom:calc(48px + var(--safe-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:99px;background:rgba(20,24,36,.55);backdrop-filter:blur(14px) saturate(140%);border:1px solid rgba(139,92,246,.18);color:var(--text-3);font-size:.688rem;font-weight:700;font-family:'Tajawal',sans-serif;letter-spacing:.2px;pointer-events:none;z-index:99;opacity:0;transition:opacity 1.2s ease;user-select:none;white-space:nowrap;max-width:calc(100vw - 40px)}
+html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-color:rgba(99,102,241,.18)}
 #dhikrFloat.show{opacity:.62;}
 #dhikrFloat .df-icon{font-size:.813rem;line-height:1;}
 #dhikrFloat .df-text{transition:opacity .6s ease,transform .6s ease;}
@@ -341,6 +380,7 @@ html[data-theme="light"] #dhikrFloat{
   .quality-btn .q-emoji{font-size:.75rem}
   #dhikrFloat{font-size:.625rem;padding:4px 11px;gap:5px;}
   #dhikrFloat .df-icon{font-size:.75rem;}
+  .stat-value{font-size:1.25rem}
 }
 @media (max-width:330px){.quality-btn .q-text{display:none}}
 @media (max-height:640px){.box-card,.unit-card{width:clamp(100px,25vw,140px)}.step-title h2{font-size:1.063rem}}
@@ -393,10 +433,7 @@ html[data-theme="light"] #dhikrFloat{
     if(_splashHidden) return;
     _splashHidden = true;
     var s = document.getElementById('splashScreen');
-    if(s){
-      s.classList.add('hide');
-      setTimeout(function(){ s.style.display = 'none'; }, 700);
-    }
+    if(s){ s.classList.add('hide'); setTimeout(function(){ s.style.display = 'none'; }, 700); }
   }
   setTimeout(_hideSplash, 3500);
   document.addEventListener('click', _hideSplash, true);
@@ -420,6 +457,7 @@ html[data-theme="light"] #dhikrFloat{
 <div id="confirmModal"><div class="cm-box"><div class="cm-title" id="cmTitle">تأكيد</div><div class="cm-text" id="cmText">هل أنت متأكد؟</div><div class="cm-actions"><button class="action-btn ghost" id="cmCancel">إلغاء</button><button class="action-btn" id="cmOk">تأكيد</button></div></div></div>
 <div id="countModal"><div class="cm-box"><div class="cm-title">🎯 عدد أسئلة مخصص</div><div class="cm-text">أدخل عدد الأسئلة اللي بدك إياها</div><input type="number" class="cm-input" id="countInput" min="1" max="100" value="10" inputmode="numeric"><div class="cm-hint">المتاح: <b id="countMax">99</b> سؤال</div><div class="cm-actions"><button class="action-btn ghost" id="countCancel">إلغاء</button><button class="action-btn" id="countOk">تأكيد ✓</button></div></div></div>
 <div id="iosModal"><div class="cm-box"><div class="cm-title">📲 تثبيت التطبيق على iPhone</div><div class="cm-text">لأن iOS Safari ما يدعم التثبيت التلقائي، اتبع هالخطوات:</div><div class="ios-steps"><div class="step-row"><span class="step-num">1</span><span>اضغط على زر <b>المشاركة</b> <span style="font-size:1.1rem">⬆️</span> في الأسفل</span></div><div class="step-row"><span class="step-num">2</span><span>اختر <b>"إضافة إلى الشاشة الرئيسية"</b> <span style="font-size:1.1rem">➕</span></span></div><div class="step-row"><span class="step-num">3</span><span>اضغط <b>"إضافة"</b> في الأعلى</span></div></div><div class="cm-actions"><button class="action-btn" id="iosOk">فهمت ✓</button></div></div></div>
+<div id="motivationModal"><div class="cm-box"><div class="motiv-title" id="motivTitle">أداء أسطوري!</div><div class="motiv-text" id="motivText">لقد وصلت للمستوى 50، أنت تبني مستقبلك بيدك!</div><div class="cm-actions"><button class="action-btn" onclick="document.getElementById('motivationModal').classList.remove('show');sfxLevelUp();">شكراً! 🚀</button></div></div></div>
 
 <div class="stage">
   <div id="scr-home" class="screen active">
@@ -427,11 +465,15 @@ html[data-theme="light"] #dhikrFloat{
       <div class="brand"><div class="brand-logo">V</div><div><div class="brand-name">VocabJordan</div><div class="brand-sub">مفردات 2009 متقدم</div></div></div>
       <div class="topbar-actions">
         <button class="install-pill" id="installBtn" aria-label="تثبيت التطبيق"><span class="inst-emoji">📲</span><span class="inst-text">تثبيت</span></button>
-        <div class="xp-pill" id="xpPill"><span class="lv" id="xpLv">Lv.1</span> <span id="xpPts">0</span></div>
+        <div class="xp-pill" id="xpPill" onclick="openStats()"><span class="lv" id="xpLv">Lv.1</span> <span id="xpPts">0</span> XP</div>
       </div>
     </div>
-    <div class="content-wrap">
+    <div class="content-wrap" style="padding-bottom:calc(100px + var(--safe-bottom))">
       <div class="step-title" style="text-align:center"><span class="st-label">VOCAB</span><h2>وين بدك <span style="background:linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent">تبدأ اليوم؟</span></h2><p>اختر وحدة</p></div>
+      <div style="display:flex;gap:8px;margin:0 0 14px">
+        <button class="action-btn ghost" onclick="openStats()" style="flex:1;font-size:.75rem;min-height:42px;padding:8px 10px">📊 إحصائياتي</button>
+        <button class="action-btn ghost" onclick="openLeaderboard()" style="flex:1;font-size:.75rem;min-height:42px;padding:8px 10px">🏆 الصدارة</button>
+      </div>
       <div class="boxes-grid" id="unitsGrid"></div>
     </div>
   </div>
@@ -492,6 +534,42 @@ html[data-theme="light"] #dhikrFloat{
     <div class="content-wrap"><div class="scroll-area" id="resultsBody" style="padding-top:8px"></div></div>
     <div class="bottom-bar" id="resultsBottomBar"></div>
   </div>
+
+  <div id="scr-stats" class="screen">
+    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STATISTICS</div><div class="uh-title">إحصائياتي</div></div></div>
+    <div class="content-wrap" style="padding-top:8px">
+      <div class="scroll-area">
+        <div style="text-align:center;margin-bottom:20px">
+          <div style="font-size:3rem;line-height:1;margin-bottom:8px" id="statsRankIcon">🌱</div>
+          <div style="font-size:1.25rem;font-weight:900" id="statsRankName">مبتدئ</div>
+          <div style="font-size:0.813rem;color:var(--text-3);font-weight:600">مستوى <span id="statsLevelDisplay">1</span></div>
+          <div class="stat-bar-container" style="max-width:200px;margin:12px auto 0">
+            <div class="stat-bar-fill" id="statsXpBar" style="width:0%"></div>
+          </div>
+          <div style="font-size:0.688rem;color:var(--text-3);margin-top:6px;font-family:'Inter',sans-serif"><span id="statsXpCurrent">0</span> / <span id="statsXpMax">100</span> XP</div>
+        </div>
+        <h3 style="font-size:.938rem;font-weight:900;margin:20px 4px 10px">📊 ملخص الاختبارات</h3>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">📝</div><div class="stat-value" id="statQuizzes">0</div><div class="stat-label">اختبار مكتمل</div></div>
+          <div class="stat-card"><div class="stat-icon" style="color:#10b981">✅</div><div class="stat-value" id="statCorrect">0</div><div class="stat-label">إجابة صحيحة</div></div>
+          <div class="stat-card"><div class="stat-icon" style="color:#ef4444">❌</div><div class="stat-value" id="statWrong">0</div><div class="stat-label">إجابة خاطئة</div></div>
+          <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value" id="statAccuracy">0%</div><div class="stat-label">نسبة الدقة</div></div>
+        </div>
+        <h3 style="font-size:.938rem;font-weight:900;margin:20px 4px 10px">📖 الكلمات</h3>
+        <div class="stats-grid">
+          <div class="stat-card" style="border-color:rgba(251,191,36,.3)"><div class="stat-icon" style="color:#fbbf24">⭐</div><div class="stat-value" id="statKnown">0</div><div class="stat-label">كلمة سهلة</div></div>
+          <div class="stat-card" style="border-color:rgba(239,68,68,.3)"><div class="stat-icon" style="color:#ef4444">🚩</div><div class="stat-value" id="statWeak">0</div><div class="stat-label">كلمة صعبة</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="scr-leaderboard" class="screen">
+    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">LEADERBOARD</div><div class="uh-title">🏆 لائحة الصدارة</div></div></div>
+    <div class="content-wrap" style="padding-top:8px">
+      <div class="scroll-area"><div id="leaderboardList"></div></div>
+    </div>
+  </div>
 </div>
 
 <div class="quality-float" id="qualityBar" role="group" aria-label="جودة العرض">
@@ -511,11 +589,10 @@ html[data-theme="light"] #dhikrFloat{
   <button class="theme-dot td-8" data-t="ocean" aria-label="ثيم محيط"></button>
 </div>
 
-<div id="toast" role="status" aria-live="polite"></div>
-
-<script>
+<div id="toast" role="status" aria-live="polite"></div><script>
 'use strict';
 
+// ==================== VOCAB DATA ====================
 var VOCAB=[
   {unit:'الوحدة الأولى', sections:[
     {title:'Fixed expressions related to identity', words:[
@@ -762,6 +839,7 @@ var VOCAB=[
   ]}
 ];
 
+// ==================== BOOK QUESTIONS DATA ====================
 var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:0, prompt:'I really get a kick --- of mystery stories.', options:['by','out','with','into'], answer:'out'},
   {unitIdx:0, sectionIdx:0, prompt:'Would you --- a day out or a day in bed?', options:['plump for','make you tick','say a lot about','click with'], answer:'plump for'},
@@ -784,7 +862,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:0, prompt:"We're no longer wild --- collecting toy cars.", options:['for','with','about','by'], answer:'about'},
   {unitIdx:0, sectionIdx:0, prompt:"When we know it, it's easier to find the tribe that we really click ---.", options:['with','out','for','by'], answer:'with'},
   {unitIdx:0, sectionIdx:0, prompt:'When we know this, we can consider whether the choices we make are in line --- these values.', options:['out','by','into','with'], answer:'with'},
-
   {unitIdx:0, sectionIdx:1, prompt:'I want to look at what personality testing is, and how I believe it should be used to create a work environment in which everyone feels --- about their job.', options:['passionate','underconfident','defensive','mercy'], answer:'passionate'},
   {unitIdx:0, sectionIdx:1, prompt:"Although she doesn't think that personality tests help in the hiring process, she does credit them with helping managers to match employees with their specific skills and creating a/an --- work environment.", options:['underconfident','inclusive','defensive','assertive'], answer:'inclusive'},
   {unitIdx:0, sectionIdx:1, prompt:'Hamza is very --- and --- - he always knows what to do and he keeps his promises.', options:['capable / trustworthy','underconfident / frank','underconfident / humble','tough / defensive'], answer:'capable / trustworthy'},
@@ -799,7 +876,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:1, prompt:"'Frank' means someone who:", options:['is shy and quiet','speaks honestly and directly','is often rude','avoids conflict'], answer:'speaks honestly and directly'},
   {unitIdx:0, sectionIdx:1, prompt:"A 'humble' person is someone who:", options:['brags about their achievements','is modest about their abilities','is aggressive','avoids new experiences'], answer:'is modest about their abilities'},
   {unitIdx:0, sectionIdx:1, prompt:"A 'sincere' person is:", options:['dishonest','genuine and honest in their feelings','very demanding','emotionally distant'], answer:'genuine and honest in their feelings'},
-
   {unitIdx:0, sectionIdx:2, prompt:"Every time we eat out, he always tries to avoid paying his share. He's so ---.", options:['tight-fisted','forward-fisted','like-minded','thin-skinned'], answer:'tight-fisted'},
   {unitIdx:0, sectionIdx:2, prompt:'I joined a film club hoping to meet --- people at school.', options:['thin-skinned','like-minded','strong-spirited','absent-minded'], answer:'like-minded'},
   {unitIdx:0, sectionIdx:2, prompt:"She's always been really ---. Once she makes up her mind, there's no changing it.", options:['strong-willed','strong-fisted','like-minded','red-hot'], answer:'strong-willed'},
@@ -816,7 +892,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:2, prompt:"'Mouth-watering' food is:", options:['disgusting','very tasty and appetizing','bland','burnt'], answer:'very tasty and appetizing'},
   {unitIdx:0, sectionIdx:2, prompt:"A 'carefree' person is:", options:['worried about everything','free from worries or responsibilities','very selfish','very serious'], answer:'free from worries or responsibilities'},
   {unitIdx:0, sectionIdx:2, prompt:"A 'time-saving' method is one that:", options:['wastes time','helps you do things faster','is very complicated','requires careful planning'], answer:'helps you do things faster'},
-
   {unitIdx:0, sectionIdx:3, prompt:"'A person who doesn't show their feelings' is the definition of:", options:['a cold fish','a smart alec','a soft touch','a smart cookie'], answer:'a cold fish'},
   {unitIdx:0, sectionIdx:3, prompt:"The idiom which means 'a person who keeps their abilities secret' is:", options:['a soft touch','a social butterfly','a go-getter','a dark horse'], answer:'a dark horse'},
   {unitIdx:0, sectionIdx:3, prompt:"Which of the following idioms means 'a person who is determined to be successful'?", options:['a social butterfly','a smart alec','a go-getter','a mover and shaker'], answer:'a go-getter'},
@@ -826,7 +901,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:3, prompt:"'A soft touch' is a person who:", options:['is physically strong','can easily be deceived or persuaded','is very strict','never shows emotions'], answer:'can easily be deceived or persuaded'},
   {unitIdx:0, sectionIdx:3, prompt:"'A social butterfly' is someone who:", options:['avoids people','likes to attend social events','is very aggressive','prefers to be alone'], answer:'likes to attend social events'},
   {unitIdx:0, sectionIdx:3, prompt:"If you 'keep yourself to yourself', you:", options:['avoid meeting people socially','are very outgoing','help everyone','never stop talking'], answer:'avoid meeting people socially'},
-
   {unitIdx:0, sectionIdx:4, prompt:"The word which means 'character or personality' is:", options:['disposition','moulded','proponents','imply'], answer:'disposition'},
   {unitIdx:0, sectionIdx:4, prompt:"Which of the following words means 'influenced or changed'?", options:['oversimplification','hereditary','moulded','nurture'], answer:'moulded'},
   {unitIdx:0, sectionIdx:4, prompt:"'People who publicly support an idea' is the definition of:", options:['vulnerability','proponents','offspring','trait'], answer:'proponents'},
@@ -843,7 +917,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:4, prompt:'Some people think that kindness is a ---, but I see it as a strength.', options:['oversimplification','vulnerability','proponent','nurture'], answer:'vulnerability'},
   {unitIdx:0, sectionIdx:4, prompt:'My family, community and beliefs have very much --- the person I am today.', options:['oversimplification','hereditary','moulded','implied'], answer:'moulded'},
   {unitIdx:0, sectionIdx:4, prompt:"Suha's intelligence is ---, she gets it from her parents who are both teachers.", options:['hereditary','proponent','imply','vulnerability'], answer:'hereditary'},
-
   {unitIdx:0, sectionIdx:5, prompt:'This implies that the languages spoken by the Inuit mould the way they --- of the world.', options:['plump','click','gather','conceive'], answer:'gather'},
   {unitIdx:0, sectionIdx:5, prompt:"We can probably --- from this that they don't feel the need to quantify precisely.", options:['overcooked','underconfident','deduce','plump'], answer:'deduce'},
   {unitIdx:0, sectionIdx:5, prompt:"I suppose our boss is very forward --- and always thinks about the long-term future.", options:['seeing','looking','minded','hot'], answer:'looking'},
@@ -855,7 +928,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:0, sectionIdx:5, prompt:"'Grasp' (in this context) means:", options:['to hold tightly with your hands','to understand','to throw away','to shout'], answer:'to understand'},
   {unitIdx:0, sectionIdx:5, prompt:"'Assume' means:", options:['to know for sure','to suppose something is true without proof','to deny','to refuse'], answer:'to suppose something is true without proof'},
   {unitIdx:0, sectionIdx:5, prompt:"'Reflect' (in this context) means:", options:['to think deeply about something','to shine light','to sing','to write quickly'], answer:'to think deeply about something'},
-
   {unitIdx:1, sectionIdx:0, prompt:'Eman --- through all the questions in the test and finished at least ten minutes before anyone else.', options:['sailed','backpedaled','parked','stumbled'], answer:'sailed'},
   {unitIdx:1, sectionIdx:0, prompt:'After the interview, Tareq was --- when the manager asked him if he could start immediately.', options:['backpedaled','staggered','parked','hobbled'], answer:'staggered'},
   {unitIdx:1, sectionIdx:0, prompt:'When Professor Hassan had lost one page of his notes, he panicked and started --- over his words.', options:['stumbling','staggering','sailing','backpedaling'], answer:'stumbling'},
@@ -884,7 +956,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:0, prompt:'Shortly after the fire alarm went off, the workers --- out of the office looking very worried.', options:['surged','shuffled','wobbled','hobbled'], answer:'surged'},
   {unitIdx:1, sectionIdx:0, prompt:'Since the operation on my knee, I find it much easier to drive my car to the shops rather than --- down the road.', options:['lurch','hobble','stride','surge'], answer:'hobble'},
   {unitIdx:1, sectionIdx:0, prompt:'I remember my mother telling my brother, when he was very young, not to ---, but to pick his feet up properly when he was walking.', options:['stride','shuffle','stumble','surge'], answer:'shuffle'},
-
   {unitIdx:1, sectionIdx:1, prompt:"There are new roadworks in the town centre, and it is driving motorists up the ---. So you'd better --- clear of the main junction.", options:['wall, steer','boat, drive','downhill, steer','wall, take'], answer:'wall, steer'},
   {unitIdx:1, sectionIdx:1, prompt:"He encountered some obstacles while training to become a pilot. It wasn't all --- sailing.", options:['force','downhill','plain','sea'], answer:'plain'},
   {unitIdx:1, sectionIdx:1, prompt:"It was because of Suha's commitment that the new rail project was successful. She was the driving --- behind it.", options:['force','plain','steer','ride'], answer:'force'},
@@ -903,7 +974,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:1, prompt:"And I couldn't believe the prices. We were completely --- for a ride.", options:['taken','driven','gone','steered'], answer:'taken'},
   {unitIdx:1, sectionIdx:1, prompt:'I have to admit, it sounds like the snack counter has --- downhill.', options:['gone','driven','been','taken'], answer:'gone'},
   {unitIdx:1, sectionIdx:1, prompt:"Also, we were sitting near the TV screen and the volume was so high it nearly --- us up the wall. Next time, we'll fly!", options:['drove','took','went','flew'], answer:'drove'},
-
   {unitIdx:1, sectionIdx:2, prompt:'Which of the following is a synonym for "bolting"?', options:['rushing','pulling','slipping','going down'], answer:'rushing'},
   {unitIdx:1, sectionIdx:2, prompt:"I've heard about ClearSpace-1 - the first space mission to remove debris from orbit. A real breakthrough which involves a vehicle designed to trap objects, then --- them down into the earth's atmosphere.", options:['drag','bolt','glance','grasp'], answer:'drag'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'descend' is a synonym for:", options:['go up','go down','jump over','walk around'], answer:'go down'},
@@ -913,7 +983,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:2, prompt:"The word 'falter' is a synonym for:", options:['speed up','slip','stand still','shout'], answer:'slip'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'disperse' is a synonym for:", options:['gather','spread out','combine','stay close'], answer:'spread out'},
   {unitIdx:1, sectionIdx:2, prompt:"The word 'bolt' is a synonym for:", options:['crawl','rush','stroll','stop'], answer:'rush'},
-
   {unitIdx:1, sectionIdx:3, prompt:'Do you think the employees get their fair --- of the money?', options:['share','effect','mark','speed'], answer:'share'},
   {unitIdx:1, sectionIdx:3, prompt:'What --- might you have to overcome to be successful in your chosen career?', options:['share','mark','hurdles','knock-on'], answer:'hurdles'},
   {unitIdx:1, sectionIdx:3, prompt:'Do you think you would enjoy travelling at breakneck ---?', options:['effect','speed','share','mark'], answer:'speed'},
@@ -930,7 +999,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:3, prompt:'The knock-on --- would mean more and more debris.', options:['share','speed','mark','effect'], answer:'effect'},
   {unitIdx:1, sectionIdx:3, prompt:'The --- for developing any ideas is enormous, as you can imagine.', options:['outlay','milling','breakneck','hurdle'], answer:'outlay'},
   {unitIdx:1, sectionIdx:3, prompt:'I know humans are certainly leaving their ---, bits of metal and things.', options:['effect','speed','mark','share'], answer:'mark'},
-
   {unitIdx:1, sectionIdx:4, prompt:"We're going for a quick --- to Amman at the weekend.", options:['setback','breakthrough','getaway','outget'], answer:'getaway'},
   {unitIdx:1, sectionIdx:4, prompt:'The --- of the investigation into the collision will not be known before March.', options:['comethrough','setback','outcome','getaway'], answer:'outcome'},
   {unitIdx:1, sectionIdx:4, prompt:"They've recently made an amazing --- in developing driverless cars.", options:['breakthrough','cutbacks','outlay','getthrough'], answer:'breakthrough'},
@@ -945,7 +1013,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:4, prompt:"Due to --- we're not going to be hiring any new staff this year.", options:['getaways','outcomes','breakthroughs','cutbacks'], answer:'cutbacks'},
   {unitIdx:1, sectionIdx:4, prompt:"We're waiting to hear the --- of the meeting when they finish at 2.", options:['getaway','outcome','setback','cutback'], answer:'outcome'},
   {unitIdx:1, sectionIdx:4, prompt:'Recently, the rising cost of university education has caused an --- from students and parents.', options:['outcry','outlay','outlook','breakthrough'], answer:'outcry'},
-
   {unitIdx:1, sectionIdx:5, prompt:'I think on --- I prefer the old system.', options:['balance','question','pin','way'], answer:'balance'},
   {unitIdx:1, sectionIdx:5, prompt:"I'm in two --- here. There are pros and cons for each solution.", options:['questions','minds','ways','points'], answer:'minds'},
   {unitIdx:1, sectionIdx:5, prompt:'Thinking about it, there are a lot of points in --- of having a couple of days on the windy, rainy coast.', options:['minds','favour','question','forward'], answer:'favour'},
@@ -959,7 +1026,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:5, prompt:"'There are pros and cons for each.' is used for:", options:['considering alternatives','giving preferences','refusing an offer','showing anger'], answer:'considering alternatives'},
   {unitIdx:1, sectionIdx:5, prompt:"'It's pretty clear cut to me that...' is used for:", options:['giving preferences','hesitating','refusing','complaining'], answer:'giving preferences'},
   {unitIdx:1, sectionIdx:5, prompt:"'If you really wanted to pin me down, I'd probably say...' is used for:", options:['giving preferences','avoiding decisions','refusing to answer','summarising'], answer:'giving preferences'},
-
   {unitIdx:1, sectionIdx:6, prompt:"'Sail through' literally means:", options:['to move on the water in a boat','to fly','to run','to jump'], answer:'to move on the water in a boat'},
   {unitIdx:1, sectionIdx:6, prompt:"'Stumble over' literally means:", options:['to trip over something','to think about something','to forget something','to run fast'], answer:'to trip over something'},
   {unitIdx:1, sectionIdx:6, prompt:"'Park' literally means:", options:['to think about an idea','to stop a vehicle in a marked space','to sell something','to buy something'], answer:'to stop a vehicle in a marked space'},
@@ -976,7 +1042,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:6, prompt:"'Find your footing' literally means:", options:['beginning to feel confident','recovering something that was lost','standing still','walking fast'], answer:'recovering something that was lost'},
   {unitIdx:1, sectionIdx:6, prompt:"'Catch somebody's eye' literally means:", options:['making eye-contact','physically taking hold of something that moved through the air','looking at someone','smiling at someone'], answer:'physically taking hold of something that moved through the air'},
   {unitIdx:1, sectionIdx:6, prompt:"'Sweep along with the crowds' literally means:", options:['being pulled along by a crowd','using a broom to collect dirt from the floor','walking slowly','running with people'], answer:'using a broom to collect dirt from the floor'},
-
   {unitIdx:1, sectionIdx:7, prompt:"'Sail through something' figuratively means:", options:['to move on the water','to do something quickly and without any problems','to fail at something','to be slow'], answer:'to do something quickly and without any problems'},
   {unitIdx:1, sectionIdx:7, prompt:"'Stumble over something' figuratively means:", options:['to trip','to hesitate and speak in an unclear way','to walk confidently','to sing'], answer:'to hesitate and speak in an unclear way'},
   {unitIdx:1, sectionIdx:7, prompt:"'Park an idea' figuratively means:", options:['to abandon something','to plan to think about something at a later time','to stop a car','to write down'], answer:'to plan to think about something at a later time'},
@@ -994,7 +1059,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:1, sectionIdx:7, prompt:"'Find your footing' figuratively means:", options:['to recover something lost','beginning to feel confident in a new situation','to stand up','to fall down'], answer:'beginning to feel confident in a new situation'},
   {unitIdx:1, sectionIdx:7, prompt:"'Catch somebody's eye' figuratively means:", options:['to physically grab something','making eye-contact with someone','to hurt someone','to blink'], answer:'making eye-contact with someone'},
   {unitIdx:1, sectionIdx:7, prompt:"'Sweep along with the crowds' figuratively means:", options:['cleaning the floor','being pulled along amidst a group, typically a lack of control','walking alone','driving a car'], answer:'being pulled along amidst a group, typically a lack of control'},
-
   {unitIdx:2, sectionIdx:0, prompt:"'Good value for money' is the definition of:", options:['cost-effective','bespoke','quote','launching'], answer:'cost-effective'},
   {unitIdx:2, sectionIdx:0, prompt:"'Extremely cheap' is the definition of:", options:['quote','bargain basement','bespoke','price tag'], answer:'bargain basement'},
   {unitIdx:2, sectionIdx:0, prompt:"'Specially made for a particular person' is the definition of:", options:['price tag','turnover','bespoke','venture'], answer:'bespoke'},
@@ -1011,7 +1075,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:0, prompt:"They're giving away free toys with children's meals as a part of a sales ---.", options:['gimmick','buy','investment','up'], answer:'gimmick'},
   {unitIdx:2, sectionIdx:0, prompt:'Planes are expensive to design and make, so require a lot of upfront ---.', options:['investment','buy','up','gimmick'], answer:'investment'},
   {unitIdx:2, sectionIdx:0, prompt:"I wasn't planning on getting a new shirt today, it was a bit of an impulse ---.", options:['investment','gimmick','up','buy'], answer:'buy'},
-
   {unitIdx:2, sectionIdx:1, prompt:'My family set --- this business 100 years ago.', options:['up','over','off','into'], answer:'up'},
   {unitIdx:2, sectionIdx:1, prompt:'Fast-food restaurants are --- up all over town.', options:['springing','winning','knocking','breaking'], answer:'springing'},
   {unitIdx:2, sectionIdx:1, prompt:'We had to --- quite a lot --- the price and compensate the neighbours.', options:['pass, up','set, up','win, over','knock, off'], answer:'knock, off'},
@@ -1025,7 +1088,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:1, prompt:"We'd been gradually increasing customer loyalty in that area. - The phrasal verb with the same meaning is:", options:['building up','passing up','winning over','setting up'], answer:'building up'},
   {unitIdx:2, sectionIdx:1, prompt:"Eventually, we did manage to persuade them. - The phrasal verb with the same meaning is:", options:['knock them off','set them up','break into them','win them over'], answer:'win them over'},
   {unitIdx:2, sectionIdx:1, prompt:'We had to considerably reduce the price. - The phrasal verb with the same meaning is:', options:['knock quite a lot off','pass quite a lot up','sign quite a lot up','set quite a lot up'], answer:'knock quite a lot off'},
-
   {unitIdx:2, sectionIdx:2, prompt:"I'm not always very --- when I meet new people.", options:['trusting','cunning','crafty','credulous'], answer:'trusting'},
   {unitIdx:2, sectionIdx:2, prompt:'I was quite --- about how much work I needed to do to pass my exams.', options:['credulous','gullible','naive','suspecting'], answer:'naive'},
   {unitIdx:2, sectionIdx:2, prompt:'My cousin has always been a --- businesswoman and runs several companies now.', options:['shrewd','gullible','naive','unsuspecting'], answer:'shrewd'},
@@ -1043,7 +1105,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:2, prompt:'Omar pressured the team into taking responsibility. - The underlined word "pressured" means:', options:['coaxed','urged','cajoled','enticed'], answer:'urged'},
   {unitIdx:2, sectionIdx:2, prompt:'Which word has the sense of persuading someone to do something violent or unpleasant?', options:['incite','sway','coax','cajole'], answer:'incite'},
   {unitIdx:2, sectionIdx:2, prompt:'Which word has the sense of tempting people to choose between two things?', options:['sway','incite','coax','entice'], answer:'sway'},
-
   {unitIdx:2, sectionIdx:3, prompt:"I'm really sorry, but at the --- of the day, we don't know when the top was purchased.", options:['bottom','meet','end','room'], answer:'end'},
   {unitIdx:2, sectionIdx:3, prompt:"My birthday was only yesterday, the top can't have been bought very long ago. - Assistant: I'm so sorry, but it has to be a ---.", options:["'no'",'prepared','awkward','saying'], answer:"'no'"},
   {unitIdx:2, sectionIdx:3, prompt:"I guess I'm wondering if there's any --- on how much you want for the rent?", options:['compromise','flexibility','halfway','bottom'], answer:'flexibility'},
@@ -1059,7 +1120,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: Oh, I'm afraid (3) --- budget.", options:["it has to be a 'no' to my","that's a bit out of my","there's no flexibility in my","let's shake on my"], answer:"that's a bit out of my"},
   {unitIdx:2, sectionIdx:3, prompt:"Mrs Alra'i: Would you (4) --- accept 7 dinars an hour?", options:['be prepared to','be afraid to','be awkward to','shake to'], answer:'be prepared to'},
   {unitIdx:2, sectionIdx:3, prompt:'Huda: Can we try and (5) ---? Would 7.50 dinars be OK?', options:['shake on this','meet halfway on this','end the day here','give up on this'], answer:'meet halfway on this'},
-
   {unitIdx:2, sectionIdx:4, prompt:'"Just one of the cons might easily outweigh all of the pros." - The words with the same meaning are:', options:['cancel out','negate','persevere','A + B'], answer:'A + B'},
   {unitIdx:2, sectionIdx:4, prompt:'"A cost-benefit analysis allows you to be more objective." - The word with the same meaning is:', options:['dispassionate','impartial','detrimental','A + B'], answer:'A + B'},
   {unitIdx:2, sectionIdx:4, prompt:'"There are also other costs to take into account." - The words with the same meaning are:', options:['cancel out','bear in mind','plough on','persist'], answer:'bear in mind'},
@@ -1068,7 +1128,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:4, prompt:'"Because you have already invested, you should persist no matter what." - The words with the same meaning are:', options:['persevere','plough on','cancel out','A + B'], answer:'A + B'},
   {unitIdx:2, sectionIdx:4, prompt:'"Investing more money may even have an adverse impact." - The word with the same meaning is:', options:['dispassionate','impartial','objective','detrimental'], answer:'detrimental'},
   {unitIdx:2, sectionIdx:4, prompt:'"Nowadays, it is worth considering this concept." - The word with the same meaning is:', options:['notion','pitfall','snare','trap'], answer:'notion'},
-
   {unitIdx:2, sectionIdx:5, prompt:"'Buy in bulk' means:", options:['buy a small amount','buy large quantities to save money','buy cheap items only','buy from a specific shop'], answer:'buy large quantities to save money'},
   {unitIdx:2, sectionIdx:5, prompt:"'Go on a shopping spree' means:", options:['buy only essentials','shop a lot in one go','browse without buying','look for the cheapest deals'], answer:'shop a lot in one go'},
   {unitIdx:2, sectionIdx:5, prompt:"'Stock up on essentials' means:", options:['buy only luxury items','buy important items in large amounts to store','sell items quickly','avoid buying anything'], answer:'buy important items in large amounts to store'},
@@ -1077,7 +1136,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:5, prompt:"'Carry the products' means:", options:['transport goods by truck','supply or sell products in a shop','refuse to sell products','return products'], answer:'supply or sell products in a shop'},
   {unitIdx:2, sectionIdx:5, prompt:"'Display wares' means:", options:['hide products in storage','show items for sale on shelves','wrap up purchases','count inventory'], answer:'show items for sale on shelves'},
   {unitIdx:2, sectionIdx:5, prompt:"'Run errands' means:", options:['exercise in the morning','do small everyday tasks like shopping','drive long distances','avoid all tasks'], answer:'do small everyday tasks like shopping'},
-
   {unitIdx:2, sectionIdx:6, prompt:'When the salesperson told you that they would not be getting any more stock in, that made you wonder if you might be missing out, which is very ---.', options:['breaking','knocking','enticing','passing'], answer:'enticing'},
   {unitIdx:2, sectionIdx:6, prompt:'Do you really think it works to --- people into doing something?', options:['pressure','discount','collapse','withdraw'], answer:'pressure'},
   {unitIdx:2, sectionIdx:6, prompt:'I remember saying to my parents that everyone was going to this event, thinking that would --- them to let me go.', options:['convince','knock','owe','collapse'], answer:'convince'},
@@ -1088,6 +1146,7 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:6, prompt:'Asking a series of questions where the answer is intended to be "Yes" is called:', options:['framing','reciprocation','social proof','"yes questions"'], answer:'"yes questions"'}
 ];
 
+// ==================== LOCKED & QUALITY PRESETS ====================
 var LOCKED_UNITS=[];
 var floatWrappers=[];
 var floatLayers=[];
@@ -1108,95 +1167,12 @@ var state={
   markedKnown:{},markedWeak:{},
   xp:0,theme:'dark',fontSize:'medium',quality:'high',
   quiz:null,quizOrigin:'vocab',
-  missedQuestions:[]
+  missedQuestions:[],
+  stats:{ quizzes:0, correct:0, wrong:0 }
 };
 
 var soundOn=true;
-var audioCtx=null;
-
-function applyQuality(){
-  try{
-    document.documentElement.setAttribute('data-quality', state.quality);
-    var preset=QUALITY_PRESETS[state.quality];
-    var isSmall=window.innerWidth<640;
-    document.querySelectorAll('.orb').forEach(function(o){
-      var show=preset.orbs==='all'||(preset.orbs==='desktop'&&!isSmall);
-      o.style.display=show?'':'none';
-    });
-    initFloatBg();initDust();initParallax();
-    document.querySelectorAll('.quality-btn').forEach(function(b){b.classList.toggle('active',b.dataset.q===state.quality)});
-  }catch(e){}
-}
-function initFloatBg(){
-  try{
-    var bg=document.getElementById('floatBg');if(!bg)return;
-    bg.innerHTML='';floatWrappers.length=0;floatLayers.length=0;
-    var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
-    preset.layers.forEach(function(cfg,li){
-      var layerEl=document.createElement('div');layerEl.className='float-layer';layerEl.dataset.depth=String(li);
-      var count=isSmall?cfg.mobileCount:cfg.desktopCount;
-      var frag=document.createDocumentFragment();
-      for(var i=0;i<count;i++){
-        var wrap=document.createElement('div');wrap.className='float-wrapper';
-        wrap.style.left=(Math.random()*100).toFixed(2)+'%';
-        var dur=cfg.durMin+Math.random()*(cfg.durMax-cfg.durMin);
-        wrap.style.setProperty('--dur',dur.toFixed(2)+'s');
-        wrap.style.setProperty('--delay',(-Math.random()*dur).toFixed(2)+'s');
-        var word=document.createElement('span');word.className='float-word';
-        word.textContent=FLOAT_WORDS[Math.floor(Math.random()*FLOAT_WORDS.length)];
-        var size=cfg.sizeMin+Math.random()*(cfg.sizeMax-cfg.sizeMin);
-        word.style.fontSize=size.toFixed(1)+'px';
-        var op=cfg.opMin+Math.random()*(cfg.opMax-cfg.opMin);
-        word.style.opacity=op.toFixed(3);
-        var c=FLOAT_COLORS[Math.floor(Math.random()*FLOAT_COLORS.length)];
-        word.style.color='rgb('+c[0]+','+c[1]+','+c[2]+')';
-        var dDur=4.5+Math.random()*7;
-        word.style.setProperty('--ddur',dDur.toFixed(2)+'s');
-        word.style.setProperty('--ddelay',(-Math.random()*dDur).toFixed(2)+'s');
-        var dr=cfg.drift*(0.5+Math.random()*1.1);
-        word.style.setProperty('--drange',dr.toFixed(1)+'px');
-        word.style.setProperty('--rrange',(3+Math.random()*7).toFixed(1)+'deg');
-        if(Math.random()<cfg.glowChance){word.classList.add('glow');word.style.setProperty('--gdur',(3+Math.random()*2).toFixed(2)+'s')}
-        if(cfg.blur>0)wrap.style.filter='blur('+cfg.blur+'px)';
-        wrap.appendChild(word);frag.appendChild(wrap);floatWrappers.push(word);
-      }
-      layerEl.appendChild(frag);bg.appendChild(layerEl);floatLayers.push(layerEl);
-    });
-  }catch(e){}
-}
-function initDust(){
-  try{
-    var dust=document.getElementById('floatDust');if(!dust)return;
-    dust.innerHTML='';var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
-    var count=isSmall?preset.dustMobile:preset.dustDesktop;if(count===0)return;
-    var frag=document.createDocumentFragment();
-    for(var i=0;i<count;i++){
-      var d=document.createElement('div');d.className='dust';
-      var size=2+Math.random()*4;d.style.width=size+'px';d.style.height=size+'px';
-      d.style.left=(Math.random()*100)+'%';d.style.top=(Math.random()*100)+'%';
-      var dur=8+Math.random()*12;d.style.setProperty('--ddur',dur.toFixed(2)+'s');
-      d.style.setProperty('--ddelay',(-Math.random()*dur).toFixed(2)+'s');
-      d.style.setProperty('--dpx',(Math.random()*60-30).toFixed(1)+'px');
-      d.style.setProperty('--dpy',(Math.random()*60-40).toFixed(1)+'px');
-      d.style.opacity=(0.15+Math.random()*0.35).toFixed(3);
-      frag.appendChild(d);
-    }
-    dust.appendChild(frag);
-  }catch(e){}
-}
-function initParallax(){
-  try{
-    if(!floatLayers.length)return;
-    var preset=QUALITY_PRESETS[state.quality];if(!preset.parallax)return;
-    var hasHover=window.matchMedia&&window.matchMedia('(hover: hover)').matches;
-    if(preset.parallax==='desktop'&&!hasHover)return;
-    var px=0,py=0,pxT=0,pyT=0,raf=null,lastRun=0;
-    function apply(){for(var i=0;i<floatLayers.length;i++){var depth=(i+1)*10;floatLayers[i].style.transform='translate3d('+(-px*depth).toFixed(2)+'px,'+(-py*depth).toFixed(2)+'px,0)'}}
-    function step(){var dx=pxT-px;var dy=pyT-py;if(Math.abs(dx)<0.0015&&Math.abs(dy)<0.0015){px=pxT;py=pyT;apply();raf=null;return}px+=dx*0.075;py+=dy*0.075;apply();raf=requestAnimationFrame(step)}
-    window.addEventListener('mousemove',function(e){var now=performance.now();if(now-lastRun<33)return;lastRun=now;pxT=(e.clientX/window.innerWidth-0.5)*2;pyT=(e.clientY/window.innerHeight-0.5)*2;if(!raf)raf=requestAnimationFrame(step)},{passive:true});
-  }catch(e){}
-}
-
+var audioCtx=null;// ==================== AUDIO & SOUNDS ====================
 function getCtx(){if(audioCtx){if(audioCtx.state==='suspended')try{audioCtx.resume()}catch(e){}return audioCtx}try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')try{audioCtx.resume()}catch(e){}}catch(e){}return audioCtx}
 function tone(freq,dur,type,vol,delay){if(!soundOn)return;type=type||'sine';vol=vol||0.06;delay=delay||0;var ctx=getCtx();if(!ctx)return;try{var start=ctx.currentTime+delay;var osc=ctx.createOscillator();var gain=ctx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,start);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(vol,start+0.01);gain.gain.exponentialRampToValueAtTime(0.0001,start+dur);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);osc.stop(start+dur+0.02)}catch(e){}}
 function sfxClick(){tone(1100,0.05,'sine',0.04)}
@@ -1211,17 +1187,13 @@ function sfxToggleOn(){tone(740,0.07,'sine',0.06);tone(1046,0.09,'sine',0.045,0.
 function sfxToggleOff(){tone(520,0.07,'sine',0.045);tone(370,0.08,'sine',0.035,0.04)}
 function sfxBubble(){var f=700+Math.random()*600;tone(f,0.18,'sine',0.045)}
 
+// ==================== SPLASH & DHIKR ====================
 var ADHKAR=[
-  {text:'سبحان الله',icon:'📿',type:'تسبيح'},
-  {text:'الحمد لله',icon:'🤍',type:'حمد'},
-  {text:'الله أكبر',icon:'✨',type:'تكبير'},
-  {text:'لا إله إلا الله',icon:'☪️',type:'توحيد'},
-  {text:'أستغفر الله',icon:'🤲',type:'استغفار'},
-  {text:'اللهم صل على محمد',icon:'🕌',type:'صلاة على النبي'},
-  {text:'لا حول ولا قوة إلا بالله',icon:'🌟',type:'ذكر'},
-  {text:'سبحان الله وبحمده',icon:'📿',type:'تسبيح'},
-  {text:'حسبي الله ونعم الوكيل',icon:'🤲',type:'ذكر'},
-  {text:'اللهم اغفر لي',icon:'🌙',type:'استغفار'}
+  {text:'سبحان الله',icon:'📿',type:'تسبيح'},{text:'الحمد لله',icon:'🤍',type:'حمد'},
+  {text:'الله أكبر',icon:'✨',type:'تكبير'},{text:'لا إله إلا الله',icon:'☪️',type:'توحيد'},
+  {text:'أستغفر الله',icon:'🤲',type:'استغفار'},{text:'اللهم صل على محمد',icon:'🕌',type:'صلاة على النبي'},
+  {text:'لا حول ولا قوة إلا بالله',icon:'🌟',type:'ذكر'},{text:'سبحان الله وبحمده',icon:'📿',type:'تسبيح'},
+  {text:'حسبي الله ونعم الوكيل',icon:'🤲',type:'ذكر'},{text:'اللهم اغفر لي',icon:'🌙',type:'استغفار'}
 ];
 var lastDhikrIdx=-1;
 function getRandomDhikr(){var idx;do{idx=Math.floor(Math.random()*ADHKAR.length)}while(idx===lastDhikrIdx&&ADHKAR.length>1);lastDhikrIdx=idx;return ADHKAR[idx]}
@@ -1232,29 +1204,16 @@ function initSplash(){
     if(s){s.classList.add('hide');setTimeout(function(){s.style.display='none';},700);}
   };
   try{
-    var splash=document.getElementById('splashScreen');
-    if(!splash)return;
-    var iEl=document.getElementById('splashDhikrIcon');
-    var tEl=document.getElementById('splashDhikrText');
-    var yEl=document.getElementById('splashDhikrType');
-    var box=document.getElementById('splashDhikr');
+    var splash=document.getElementById('splashScreen');if(!splash)return;
+    var iEl=document.getElementById('splashDhikrIcon'),tEl=document.getElementById('splashDhikrText'),yEl=document.getElementById('splashDhikrType'),box=document.getElementById('splashDhikr');
     if(!iEl||!tEl||!yEl||!box){setTimeout(hideNow,1500);return;}
-    var first=getRandomDhikr();
-    iEl.textContent=first.icon;tEl.textContent=first.text;yEl.textContent=first.type;
-    var interval=setInterval(function(){
-      box.classList.add('fade');
-      setTimeout(function(){
-        var d=getRandomDhikr();
-        iEl.textContent=d.icon;tEl.textContent=d.text;yEl.textContent=d.type;
-        box.classList.remove('fade');
-      },400);
-    },1300);
+    var first=getRandomDhikr();iEl.textContent=first.icon;tEl.textContent=first.text;yEl.textContent=first.type;
+    var interval=setInterval(function(){box.classList.add('fade');setTimeout(function(){var d=getRandomDhikr();iEl.textContent=d.icon;tEl.textContent=d.text;yEl.textContent=d.type;box.classList.remove('fade');},400);},1300);
     setTimeout(function(){clearInterval(interval);hideNow();},2700);
-  }catch(e){
-    hideNow();
-  }
+  }catch(e){hideNow();}
 }
 
+// ==================== HELPERS & MODALS ====================
 function shuffle(a){var x=a.slice();for(var i=x.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x[i];x[i]=x[j];x[j]=t}return x}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 var toastTimer;
@@ -1265,9 +1224,7 @@ var confirmResolver=null;
 function customConfirm(title,text,okText){
   return new Promise(function(resolve){
     var m=document.getElementById('confirmModal');if(!m){resolve(true);return;}
-    document.getElementById('cmTitle').textContent=title||'تأكيد';
-    document.getElementById('cmText').textContent=text||'هل أنت متأكد؟';
-    document.getElementById('cmOk').textContent=okText||'تأكيد';
+    document.getElementById('cmTitle').textContent=title||'تأكيد';document.getElementById('cmText').textContent=text||'هل أنت متأكد؟';document.getElementById('cmOk').textContent=okText||'تأكيد';
     m.classList.add('show');confirmResolver=resolve;
   });
 }
@@ -1275,27 +1232,25 @@ var countResolver=null;var countMaxAllowed=1;
 function customCountPrompt(maxAllowed,currentValue){
   return new Promise(function(resolve){
     var m=document.getElementById('countModal');if(!m){resolve(null);return;}
-    countMaxAllowed=maxAllowed;var input=document.getElementById('countInput');
-    input.max=String(maxAllowed);input.value=String(Math.min(currentValue,maxAllowed));
-    document.getElementById('countMax').textContent=String(maxAllowed);
-    m.classList.add('show');setTimeout(function(){try{input.focus();input.select()}catch(e){}},100);
-    countResolver=resolve;
+    countMaxAllowed=maxAllowed;var input=document.getElementById('countInput');input.max=String(maxAllowed);input.value=String(Math.min(currentValue,maxAllowed));
+    document.getElementById('countMax').textContent=String(maxAllowed);m.classList.add('show');setTimeout(function(){try{input.focus();input.select()}catch(e){}},100);countResolver=resolve;
   });
 }
 function closeCountModal(ok){
   var m=document.getElementById('countModal');m.classList.remove('show');
-  if(countResolver){
-    var result=null;
-    if(ok){var v=parseInt(document.getElementById('countInput').value,10);if(isNaN(v)||v<1)v=1;if(v>countMaxAllowed)v=countMaxAllowed;result=v}
-    countResolver(result);countResolver=null;
-  }
+  if(countResolver){var result=null;if(ok){var v=parseInt(document.getElementById('countInput').value,10);if(isNaN(v)||v<1)v=1;if(v>countMaxAllowed)v=countMaxAllowed;result=v}countResolver(result);countResolver=null;}
 }
 
-var PREFS_KEY='vf_prefs_v20',XP_KEY='vf_xp_v20',THEME_KEY='vf_theme_v20',FS_KEY='vf_fs_v20';
+// ==================== STORAGE & XP ====================
+var PREFS_KEY='vf_prefs_v21',XP_KEY='vf_xp_v21',THEME_KEY='vf_theme_v21',FS_KEY='vf_fs_v21',STATS_KEY='vf_stats_v21',NAME_KEY='vj_username';
 function saveSetting(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function loadSetting(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function loadXP(){try{var r=loadSetting(XP_KEY);if(!r)return;var d=JSON.parse(r);if(typeof d.xp==='number')state.xp=d.xp}catch(e){}}
-function saveXP(){try{saveSetting(XP_KEY,JSON.stringify({xp:state.xp}))}catch(e){}}
+
+function loadXP(){try{var r=loadSetting(XP_KEY);if(r)state.xp=parseInt(r,10)||0;}catch(e){}}
+function saveXP(){try{saveSetting(XP_KEY,state.xp)}catch(e){}}
+function loadStats(){try{var r=loadSetting(STATS_KEY);if(r){var d=JSON.parse(r);state.stats.quizzes=d.quizzes||0;state.stats.correct=d.correct||0;state.stats.wrong=d.wrong||0;}}catch(e){}}
+function saveStats(){try{saveSetting(STATS_KEY,JSON.stringify(state.stats))}catch(e){}}
+
 function loadPrefs(){
   try{
     var r=loadSetting(PREFS_KEY);
@@ -1313,43 +1268,284 @@ function loadPrefs(){
   }catch(e){}
 }
 function savePrefs(){try{saveSetting(PREFS_KEY,JSON.stringify({soundOn:soundOn,markedKnown:Object.keys(state.markedKnown),markedWeak:Object.keys(state.markedWeak),quality:state.quality,theme:state.theme,fontSize:state.fontSize}))}catch(e){}}
+
 function getLevel(){return Math.floor(state.xp/100)+1}
-function updateXPDisplay(){var lv=document.getElementById('xpLv');var pts=document.getElementById('xpPts');if(lv)lv.textContent='Lv.'+getLevel();if(pts)pts.textContent=state.xp}
-function addXP(n){state.xp+=n;saveXP();updateXPDisplay()}
+function getXpForNextLevel(){return getLevel()*100}
+function getXpProgress(){var currentLevelXp = (getLevel()-1)*100;var nextLevelXp = getLevel()*100;return { current: state.xp - currentLevelXp, max: nextLevelXp - currentLevelXp };}
+
+function updateXPDisplay(){
+  var lv=document.getElementById('xpLv');var pts=document.getElementById('xpPts');
+  if(lv)lv.textContent='Lv.'+getLevel();if(pts)pts.textContent=state.xp;
+}
+
+function addXP(n){
+  var oldLevel = getLevel();state.xp += n;saveXP();updateXPDisplay();var newLevel = getLevel();
+  syncXpToCloud(); // Sync to cloud after adding XP
+  if(newLevel > oldLevel){if(newLevel % 50 === 0){showMotivation(newLevel);}}
+}
+
+function showMotivation(level){
+  var title = 'أداء أسطوري!', text = 'لقد وصلت للمستوى ' + level + '، أنت تبني مستقبلك بيدك! استمر ولا تتوقف.';
+  if(level >= 200) { title = 'ملك المفردات!'; text = 'المستوى ' + level + '! لقد أصبحت أسطورة في اللغة الإنجليزية. لا شيء يوقفك الآن.'; }
+  else if(level >= 100) { title = 'نجم ساطع!'; text = 'المستوى ' + level + '! إنجاز رائع جداً. لقد تجاوزت الصعوبات وأصبحت من الأفضل.'; }
+  else if(level >= 50) { title = 'قوة لا تُوقف!'; text = 'المستوى ' + level + '! أنت في القمة. استمر بهذا الحماس، فأنت تصنع الفارق!'; }
+  document.getElementById('motivTitle').textContent = title;document.getElementById('motivText').textContent = text;document.getElementById('motivationModal').classList.add('show');
+}
+
 function applyTheme(){document.documentElement.setAttribute('data-theme',state.theme);saveSetting(THEME_KEY,state.theme)}
 function applyFontSize(){document.documentElement.setAttribute('data-fs',state.fontSize);saveSetting(FS_KEY,state.fontSize)}
 
+// ==================== SPEECH ====================
 var speechVoices=[];
 function refreshVoices(){if(!('speechSynthesis' in window))return;try{var v=window.speechSynthesis.getVoices();if(v&&v.length)speechVoices=v}catch(e){}}
-if('speechSynthesis' in window){refreshVoices();try{window.speechSynthesis.onvoiceschanged=refreshVoices}catch(e){}setTimeout(refreshVoices,400);setTimeout(refreshVoices,1200);setTimeout(refreshVoices,2500)}
+if('speechSynthesis' in window){refreshVoices();try{window.speechSynthesis.onvoiceschanged=refreshVoices}catch(e){}setTimeout(refreshVoices,400);setTimeout(refreshVoices,1200)}
 function pickEnglishVoice(){if(!speechVoices.length)refreshVoices();var us=speechVoices.filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf('en-us')===0});if(us.length)return us[0];var en=speechVoices.filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf('en')===0});if(en.length)return en[0];return null}
 function speak(text){
-  if(!('speechSynthesis' in window))return;
-  var clean=cleanForSpeech(text);if(!clean)return;
+  if(!('speechSynthesis' in window))return;var clean=cleanForSpeech(text);if(!clean)return;
+  try{window.speechSynthesis.cancel();setTimeout(function(){try{var u=new SpeechSynthesisUtterance(clean);u.lang='en-US';u.rate=0.85;u.pitch=1.0;u.volume=1.0;var voice=pickEnglishVoice();if(voice)u.voice=voice;window.speechSynthesis.speak(u);}catch(e){}},60);}catch(e){}
+}
+
+// ==================== UI EFFECTS (BACKGROUND) ====================
+function applyQuality(){
   try{
-    window.speechSynthesis.cancel();
-    setTimeout(function(){
-      try{
-        var u=new SpeechSynthesisUtterance(clean);u.lang='en-US';u.rate=0.85;u.pitch=1.0;u.volume=1.0;
-        var voice=pickEnglishVoice();if(voice)u.voice=voice;
-        window.speechSynthesis.speak(u);
-      }catch(e){try{var u2=new SpeechSynthesisUtterance(clean);u2.lang='en-US';u2.rate=0.85;window.speechSynthesis.speak(u2)}catch(e2){}}
-    },60);
+    document.documentElement.setAttribute('data-quality', state.quality);
+    var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
+    document.querySelectorAll('.orb').forEach(function(o){var show=preset.orbs==='all'||(preset.orbs==='desktop'&&!isSmall);o.style.display=show?'':'none';});
+    initFloatBg();initDust();initParallax();
+    document.querySelectorAll('.quality-btn').forEach(function(b){b.classList.toggle('active',b.dataset.q===state.quality)});
+  }catch(e){}
+}
+function initFloatBg(){
+  try{
+    var bg=document.getElementById('floatBg');if(!bg)return;bg.innerHTML='';floatWrappers.length=0;floatLayers.length=0;
+    var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
+    preset.layers.forEach(function(cfg,li){
+      var layerEl=document.createElement('div');layerEl.className='float-layer';layerEl.dataset.depth=String(li);
+      var count=isSmall?cfg.mobileCount:cfg.desktopCount;var frag=document.createDocumentFragment();
+      for(var i=0;i<count;i++){
+        var wrap=document.createElement('div');wrap.className='float-wrapper';wrap.style.left=(Math.random()*100).toFixed(2)+'%';
+        var dur=cfg.durMin+Math.random()*(cfg.durMax-cfg.durMin);wrap.style.setProperty('--dur',dur.toFixed(2)+'s');wrap.style.setProperty('--delay',(-Math.random()*dur).toFixed(2)+'s');
+        var word=document.createElement('span');word.className='float-word';word.textContent=FLOAT_WORDS[Math.floor(Math.random()*FLOAT_WORDS.length)];
+        var size=cfg.sizeMin+Math.random()*(cfg.sizeMax-cfg.sizeMin);word.style.fontSize=size.toFixed(1)+'px';
+        var op=cfg.opMin+Math.random()*(cfg.opMax-cfg.opMin);word.style.opacity=op.toFixed(3);
+        var c=FLOAT_COLORS[Math.floor(Math.random()*FLOAT_COLORS.length)];word.style.color='rgb('+c[0]+','+c[1]+','+c[2]+')';
+        var dDur=4.5+Math.random()*7;word.style.setProperty('--ddur',dDur.toFixed(2)+'s');word.style.setProperty('--ddelay',(-Math.random()*dDur).toFixed(2)+'s');
+        var dr=cfg.drift*(0.5+Math.random()*1.1);word.style.setProperty('--drange',dr.toFixed(1)+'px');word.style.setProperty('--rrange',(3+Math.random()*7).toFixed(1)+'deg');
+        if(Math.random()<cfg.glowChance){word.classList.add('glow');word.style.setProperty('--gdur',(3+Math.random()*2).toFixed(2)+'s')}
+        if(cfg.blur>0)wrap.style.filter='blur('+cfg.blur+'px)';
+        wrap.appendChild(word);frag.appendChild(wrap);floatWrappers.push(word);
+      }
+      layerEl.appendChild(frag);bg.appendChild(layerEl);floatLayers.push(layerEl);
+    });
+  }catch(e){}
+}
+function initDust(){
+  try{
+    var dust=document.getElementById('floatDust');if(!dust)return;dust.innerHTML='';var preset=QUALITY_PRESETS[state.quality];var isSmall=window.innerWidth<640;
+    var count=isSmall?preset.dustMobile:preset.dustDesktop;if(count===0)return;var frag=document.createDocumentFragment();
+    for(var i=0;i<count;i++){
+      var d=document.createElement('div');d.className='dust';var size=2+Math.random()*4;d.style.width=size+'px';d.style.height=size+'px';
+      d.style.left=(Math.random()*100)+'%';d.style.top=(Math.random()*100)+'%';var dur=8+Math.random()*12;d.style.setProperty('--ddur',dur.toFixed(2)+'s');d.style.setProperty('--ddelay',(-Math.random()*dur).toFixed(2)+'s');
+      d.style.setProperty('--dpx',(Math.random()*60-30).toFixed(1)+'px');d.style.setProperty('--dpy',(Math.random()*60-40).toFixed(1)+'px');d.style.opacity=(0.15+Math.random()*0.35).toFixed(3);frag.appendChild(d);
+    }
+    dust.appendChild(frag);
+  }catch(e){}
+}
+function initParallax(){
+  try{
+    if(!floatLayers.length)return;var preset=QUALITY_PRESETS[state.quality];if(!preset.parallax)return;
+    var hasHover=window.matchMedia&&window.matchMedia('(hover: hover)').matches;if(preset.parallax==='desktop'&&!hasHover)return;
+    var px=0,py=0,pxT=0,pyT=0,raf=null,lastRun=0;
+    function apply(){for(var i=0;i<floatLayers.length;i++){var depth=(i+1)*10;floatLayers[i].style.transform='translate3d('+(-px*depth).toFixed(2)+'px,'+(-py*depth).toFixed(2)+'px,0)'}}
+    function step(){var dx=pxT-px;var dy=pyT-py;if(Math.abs(dx)<0.0015&&Math.abs(dy)<0.0015){px=pxT;py=pyT;apply();raf=null;return}px+=dx*0.075;py+=dy*0.075;apply();raf=requestAnimationFrame(step)}
+    window.addEventListener('mousemove',function(e){var now=performance.now();if(now-lastRun<33)return;lastRun=now;pxT=(e.clientX/window.innerWidth-0.5)*2;pyT=(e.clientY/window.innerHeight-0.5)*2;if(!raf)raf=requestAnimationFrame(step)},{passive:true});
   }catch(e){}
 }
 
-var deferredInstallPrompt=null;
-var installBtn=document.getElementById('installBtn');
-var isInstalled=false;
-function isIOS(){return /iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream}
-function isStandalone(){try{return (window.matchMedia('(display-mode: standalone)').matches)||(window.navigator.standalone===true)}catch(e){return false}}
-function updateInstallBtnVisibility(){
-  if(!installBtn)return;
-  if(isInstalled||isStandalone()){installBtn.style.display='none';return;}
-  var home=document.getElementById('scr-home');var onHome=home&&home.classList.contains('active');
-  installBtn.style.display=onHome?'inline-flex':'none';
+// ==================== SUPABASE & LEADERBOARD ====================
+var supabase = null;
+
+// Initialize Supabase when library loads
+setTimeout(function() {
+  if (window.supabase) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    subscribeToLeaderboard();
+  }
+}, 1000); // Small delay to ensure script tag from Part 1 is fully parsed
+
+function getCurrentUsername() {
+  var name = localStorage.getItem(NAME_KEY);
+  if (!name) {
+    name = prompt('أدخل اسمك للائحة الصدارة:') || 'لاعب ' + Math.floor(Math.random() * 1000);
+    localStorage.setItem(NAME_KEY, name);
+  }
+  return name;
 }
-if(installBtn){installBtn.style.display='inline-flex'}
+
+async function syncXpToCloud() {
+  if (!supabase) return;
+  var username = getCurrentUsername();
+  try {
+    var { data, error } = await supabase.from('profiles').select('id, xp').eq('username', username).single();
+    if (error && error.code !== 'PGRST116') { // PGRST116 means no rows found
+      console.warn('Supabase select error:', error);
+      return;
+    }
+    if (data) {
+      if (state.xp > data.xp) {
+        await supabase.from('profiles').update({ xp: state.xp, updated_at: new Date().toISOString() }).eq('id', data.id);
+      }
+    } else {
+      await supabase.from('profiles').insert([{ username: username, xp: state.xp }]);
+    }
+  } catch (e) { console.log('Sync err:', e); }
+}
+
+function subscribeToLeaderboard() {
+  if (!supabase) return;
+  supabase.channel('public:profiles').on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, function() {
+    if (document.getElementById('scr-leaderboard').classList.contains('active')) {
+      renderLeaderboard();
+    }
+  }).subscribe();
+}
+
+function openLeaderboard() { sfxNav(); renderLeaderboard(); go('leaderboard'); }
+
+async function renderLeaderboard() {
+  var el = document.getElementById('leaderboardList');
+  if (!el) return;
+  el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-3)">جاري تحميل المنافسين...</div>';
+
+  var allPlayers = [];
+  var myName = getCurrentUsername();
+
+  // 1. Add Bots
+  REALISTIC_BOTS.forEach(function(bot) {
+    allPlayers.push({ name: bot.name, xp: getCurrentBotXp(bot), isBot: true, isMe: false });
+  });
+
+  // 2. Add Me (Immediately so user is always there)
+  allPlayers.push({ name: myName, xp: state.xp, isBot: false, isMe: true });
+
+  // 3. Fetch Real Users
+  if (supabase) {
+    try {
+      var { data, error } = await supabase.from('profiles').select('username, xp').order('xp', { ascending: false }).limit(50);
+      if (!error && data) {
+        data.forEach(function(user) {
+          // Don't duplicate me if I'm already in DB
+          if (user.username !== myName) {
+            allPlayers.push({ name: user.username, xp: user.xp, isBot: false, isMe: false });
+          }
+        });
+      }
+    } catch (e) { console.warn('Fetch err:', e); }
+  }
+
+  // Sort
+  allPlayers.sort(function(a, b) { return b.xp - a.xp; });
+
+  var myIdx = allPlayers.findIndex(function(p) { return p.isMe; });
+  var myRank = myIdx + 1;
+
+  var header = '<div class="lb-me-card"><div class="lb-me-icon">🎯</div><div class="lb-me-rank">#' + myRank + '</div><div class="lb-me-label">ترتيبك من ' + allPlayers.length + ' متنافس · ' + state.xp + ' XP</div></div>';
+
+  var rows = allPlayers.map(function(p, idx) {
+    var rank = idx + 1;
+    var rankLabel = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : String(rank);
+    var cls = 'lb-item';
+    if (rank <= 3) cls += ' top-' + rank;
+    if (p.isMe) cls += ' me';
+    var lv = Math.floor(p.xp / 100) + 1;
+    var badge = p.isMe ? '<span class="lb-badge">أنت</span>' : (p.isBot ? '<span class="lb-badge" style="opacity:0.6">منافس</span>' : '');
+    
+    return '<div class="' + cls + '">' +
+      '<div class="lb-rank">' + rankLabel + '</div>' +
+      '<div class="lb-info"><div class="lb-name">' + esc(p.name) + ' ' + badge + '</div>' +
+      '<div class="lb-meta"><span>Lv.' + lv + '</span><span>•</span><span>' + p.xp + ' XP</span></div></div>' +
+      '<div class="lb-xp">' + p.xp + '</div>' +
+    '</div>';
+  }).join('');
+
+  el.innerHTML = header + rows;
+}
+
+// ==================== NAVIGATION ====================
+function go(name, pushHistory) {
+  if(pushHistory===undefined)pushHistory=true;
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  var el=document.getElementById('scr-'+name);if(!el)return;
+  el.classList.add('active');el.querySelectorAll('.scroll-area').forEach(function(sa){sa.scrollTop=0});
+  
+  var tb=document.getElementById('themeBar'); if(tb)tb.style.display=name==='home'?'flex':'none';
+  var qb=document.getElementById('qualityBar'); if(qb)qb.classList.toggle('show',name==='home');
+  
+  sfxNav();
+  if(pushHistory){try{history.pushState({screen:name},'','#'+name)}catch(e){}}
+}
+
+// ==================== RENDER UNITS ====================
+function renderUnits(){
+  var grid=document.getElementById('unitsGrid');if(!grid)return;
+  var UNITS=VOCAB.map(function(u,i){return {id:i,num:'UNIT '+String(i+1).padStart(2,'0'),title:u.unit,words:u.sections.reduce(function(sum,s){return sum+s.words.length},0),sections:u.sections.length,color:'u'+(i+1),locked:LOCKED_UNITS.indexOf(i)>=0}});
+  var compCard = '<div class="sway"><div class="unit-card u-all" data-unit="all" role="button" tabindex="0"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="uc-body"><div class="uc-num">ALL UNITS</div><div class="uc-title">اختبار شامل</div></div><div class="uc-meta"><span>كل الوحدات</span><span class="dot"></span><span>اختيار حر</span></div></div></div>';
+  grid.innerHTML=UNITS.map(function(u){return '<div class="sway"><div class="unit-card '+u.color+' '+(u.locked?'locked':'')+'" data-unit="'+u.id+'" role="button" tabindex="0"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+(u.locked?'<span class="lock-tag">قريباً</span>':'')+'<div class="uc-body"><div class="uc-num">'+u.num+'</div><div class="uc-title">'+esc(u.title)+'</div></div><div class="uc-meta">'+(u.locked?'<span class="soon">🔒 قريباً</span>':'<span>'+u.words+' كلمة</span><span class="dot"></span><span>'+u.sections+' أقسام</span>')+'</div></div></div>'}).join('') + compCard;
+  
+  grid.querySelectorAll('.unit-card').forEach(function(c){
+    c.addEventListener('click',function(){
+      if(c.classList.contains('locked')){sfxWrong();toast('🔒 الوحدة قريباً');return;}
+      sfxTap();
+      if(c.dataset.unit === 'all'){state.isCrossUnitQuiz = true;state.selectedSections = [];state.selectedQTypes = [];renderQSections();go('quiz-sections');}
+      else{state.isCrossUnitQuiz = false;state.unit=+c.dataset.unit;var u=VOCAB[state.unit];document.getElementById('vLabel').textContent='UNIT '+String(state.unit+1).padStart(2,'0');document.getElementById('vTitle').textContent=u.unit;renderVocabMain();go('vocab');}
+    });
+  });
+}
+
+// ==================== VOCAB MARKING ====================
+function renderVocabMain(){
+  var grid=document.getElementById('vocabGrid');if(!grid)return;
+  var total=VOCAB[state.unit].sections.reduce(function(sum,s){return sum+s.words.length},0);
+  var cards=[{id:'mark',num:'01',title:'تحديد الكلمات',en:'MARK',color:'c-star',desc:'⭐ سهلة · 🚩 صعبة',meta:Object.keys(state.markedKnown).length+Object.keys(state.markedWeak).length+'/'+total},{id:'quiz',num:'02',title:'اختبار الوحدة',en:'QUIZ',color:'c-purple',desc:'أقسام من هذه الوحدة',meta:'ابدأ الآن'}];
+  grid.innerHTML=cards.map(function(c){return '<div class="sway"><div class="box-card '+c.color+'" data-vocab="'+c.id+'" role="button" tabindex="0"><div class="box-body"><div class="box-num">'+c.num+'</div><div class="box-title">'+esc(c.title)+'</div><div class="box-desc">'+esc(c.desc)+'</div></div><div class="box-meta">'+c.meta+'</div></div></div>'}).join('');
+  grid.querySelectorAll('.box-card').forEach(function(c){c.addEventListener('click',function(){sfxTap();var v=c.dataset.vocab;if(v==='mark'){renderMarkSections();go('vocab-sections');}else{state.isCrossUnitQuiz = false;state.selectedSections=[];state.selectedQTypes=[];renderQSections();go('quiz-sections');}});});
+}
+function renderMarkSections(){
+  var grid=document.getElementById('markSectionsGrid');if(!grid)return;
+  grid.innerHTML=VOCAB[state.unit].sections.map(function(s,i){var kc=s.words.filter(function(w){return state.markedKnown[w.t]}).length;var wc=s.words.filter(function(w){return state.markedWeak[w.t]}).length;return '<div class="mini-box" data-secid="'+i+'" onclick="openMarkSection('+i+')" style="--c:#10b981" role="button"><div class="mb-title">'+esc(s.title)+'</div><div class="mb-meta">'+s.words.length+' كلمة · ⭐ '+kc+' · 🚩 '+wc+'</div></div>';}).join('');
+}
+function openMarkSection(idx){
+  sfxTap();state.currentSectionIdx=idx;var s=VOCAB[state.unit].sections[idx];document.getElementById('markLabel').textContent='SECTION '+String(idx+1).padStart(2,'0');document.getElementById('markTitle').textContent=s.title;renderVocabList();go('vocab-mark');
+}
+function renderVocabList(){
+  var list=document.getElementById('vocabList');if(!list)return;var s=VOCAB[state.unit].sections[state.currentSectionIdx];if(!s)return;
+  list.innerHTML=s.words.map(function(w,i){var k=state.markedKnown[w.t]?'marked-known':'';var wk=state.markedWeak[w.t]?'marked-weak':'';var kBtn=state.markedKnown[w.t]?'on-star':'';var wkBtn=state.markedWeak[w.t]?'on-flag':'';var tk=w.t.replace(/\\/g,'\\\\').replace(/'/g,"\\'");return '<div class="vocab-item '+k+' '+wk+'"><div class="vi-num">'+String(i+1).padStart(2,'0')+'</div><div class="vi-text" onclick="speak(\''+tk+'\')"><div class="vi-term">'+esc(w.t)+'</div><div class="vi-meaning">'+esc(w.m)+'</div></div><div class="vi-actions"><button class="vi-mark '+kBtn+'" onclick="toggleMark(\''+tk+'\',\'known\',event)">⭐</button><button class="vi-mark '+wkBtn+'" onclick="toggleMark(\''+tk+'\',\'weak\',event)">🚩</button></div></div>';}).join('');
+}
+function toggleMark(term,type,e){
+  if(e)e.stopPropagation();
+  if(type==='known'){if(state.markedKnown[term]){delete state.markedKnown[term];sfxToggleOff();}else{state.markedKnown[term]=true;delete state.markedWeak[term];sfxStar();}}
+  else{if(state.markedWeak[term]){delete state.markedWeak[term];sfxToggleOff();}else{state.markedWeak[term]=true;delete state.markedKnown[term];sfxFlag();}}
+  renderVocabList();savePrefs();
+}
+
+// ==================== QUIZ SETUP ====================
+function renderQSections(){
+  var grid=document.getElementById('sectionsGrid');if(!grid)return;var html='';
+  if(state.isCrossUnitQuiz){
+     VOCAB.forEach(function(u, uIdx){html += '<div style="padding:14px 4px 6px;font-weight:900;font-size:0.85rem;color:var(--text-2);">'+esc(u.unit)+'</div>';u.sections.forEach(function(s, sIdx){var id = uIdx+'-'+sIdx;var sel = state.selectedSections.indexOf(id)>=0;html += '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+id+'" onclick="toggleSection(\''+id+'\')" style="--c:#3b82f6;margin-bottom:8px"><div class="mb-title">'+esc(s.title)+'</div><div class="mb-meta">'+s.words.length+' كلمة</div></div>';});});
+  } else {
+     html = VOCAB[state.unit].sections.map(function(s,i){var id = state.unit+'-'+i;var sel=state.selectedSections.indexOf(id)>=0;return '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+id+'" onclick="toggleSection(\''+id+'\')" style="--c:#8b5cf6;margin-bottom:8px"><div class="mb-title">'+esc(s.title)+'</div><div class="mb-meta">'+s.words.length+' كلمة</div></div>';}).join('');
+  }
+  grid.innerHTML = html;updateSectionNext();
+}
+function toggleSection(id){var i=state.selectedSections.indexOf(id);if(i>=0){state.selectedSections.splice(i,1);sfxToggleOff();}else{state.selectedSections.push(id);sfxToggleOn();}document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(el.dataset.secid)>=0)});updateSectionNext();}
+function selectAllSections(){var allIds=[];if(state.isCrossUnitQuiz){VOCAB.forEach(function(u, uIdx){u.sections.forEach(function(s, sIdx){ allIds.push(uIdx+'-'+sIdx); });});}else{VOCAB[state.unit].sections.forEach(function(s, i){ allIds.push(state.unit+'-'+i); });}if(state.selectedSections.length===allIds.length) state.selectedSections=[];else state.selectedSections=allIds.slice();document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(el.dataset.secid)>=0)});sfxTap();updateSectionNext();}
+function updateSectionNext(){var b=document.getElementById('sectionsNext');if(b)b.disabled=state.selectedSections.length===0}
+
+function toQTypes(){state.selectedQTypes=[];renderQTypes();go('quiz-types');}
+function getSelectedWords(){var out=[];state.selectedSections.forEach(function(id){var parts = id.split('-');var uIdx = parseInt(parts[0], 10);var sIdx = parseInt(parts[1], 10);var sec = VOCAB[uIdx].sections[sIdx];if(sec) sec.words.forEach(function(w){ out.push(w); });});var seen={};return out.filter(function(w){if(seen[w.t])return false;seen[w.t]=true;return true});}
+function hasEnglishDefs(){return getSelectedWords().some(function(w){return !!w.e})}
+function hasBookQuestions(){var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});return BOOK_QUESTIONS.some(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]})}
 
 var Q_TYPES=[
   {id:'meaning',num:'01',title:'معنى الكلمة',en:'EN → AR',color:'c-purple',desc:'الكلمة إنجليزي'},
@@ -1357,658 +1553,172 @@ var Q_TYPES=[
   {id:'definition',num:'03',title:'التعريف الإنجليزي',en:'EN → EN',color:'c-blue',desc:'يحتاج كلمات بتعريف'},
   {id:'book',num:'04',title:'أسئلة الكتاب',en:'DOSSIER',color:'c-pink',desc:'اختيار من متعدد'}
 ];
-var CORRECTION_TYPES=[
-  {id:'instant',num:'01',title:'تصليح فوري',en:'INSTANT',color:'c-green',desc:'الصحيح يظهر بعد كل سؤال'},
-  {id:'end',num:'02',title:'عند النهاية',en:'AT END',color:'c-orange',desc:'تنقّل بحرية بين الأسئلة وعدّل'}
-];
 
-function go(name,pushHistory){
-  if(pushHistory===undefined)pushHistory=true;
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
-  var el=document.getElementById('scr-'+name);
-  if(!el){console.warn('Screen not found:',name);return;}
-  el.classList.add('active');
-  el.querySelectorAll('.scroll-area').forEach(function(sa){sa.scrollTop=0});
-  var tb=document.getElementById('themeBar');
-  if(tb)tb.style.display=name==='home'?'flex':'none';
-  var qb=document.getElementById('qualityBar');
-  if(qb)qb.classList.toggle('show',name==='home');
-  updateInstallBtnVisibility();
-  try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){}
-  sfxNav();
-  if(pushHistory){try{history.pushState({screen:name},'','#'+name)}catch(e){}}
-}
-window.addEventListener('popstate',async function(){
-  if(state.quiz){
-    var ok=await customConfirm('الخروج من الاختبار؟','هل تريد الخروج من الاختبار؟ سيتم فقدان تقدمك.','خروج');
-    if(!ok){try{history.pushState({screen:'quiz'},'','#quiz')}catch(e2){}return;}
-    state.quiz=null;
-  }
-  var name=(history.state&&history.state.screen)||'home';
-  go(name,false);
-});
-
-function renderUnits(){
-  var grid=document.getElementById('unitsGrid');if(!grid)return;
-  var UNITS=VOCAB.map(function(u,i){return {
-    id:i,num:'UNIT '+String(i+1).padStart(2,'0'),title:u.unit,
-    words:u.sections.reduce(function(sum,s){return sum+s.words.length},0),
-    sections:u.sections.length,
-    color:'u'+(i+1),locked:LOCKED_UNITS.indexOf(i)>=0
-  }});
-  
-  var compCard = '<div class="sway"><div class="unit-card u-all" data-unit="all" role="button" tabindex="0">'+
-      '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
-      '<div class="uc-body"><div class="uc-num">ALL UNITS</div><div class="uc-title">اختبار شامل</div></div>'+
-      '<div class="uc-meta"><span>كل الوحدات</span><span class="dot"></span><span>اختيار حر</span></div>'+
-    '</div></div>';
-
-  grid.innerHTML=UNITS.map(function(u){
-    var locked=u.locked;
-    return '<div class="sway"><div class="unit-card '+u.color+' '+(locked?'locked':'')+'" data-unit="'+u.id+'" role="button" tabindex="0">'+
-      '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
-      (locked?'<span class="lock-tag">قريباً</span>':'')+
-      '<div class="uc-body"><div class="uc-num">'+u.num+'</div><div class="uc-title">'+esc(u.title)+'</div></div>'+
-      '<div class="uc-meta">'+(locked?'<span class="soon">🔒 قريباً</span>':'<span>'+u.words+' كلمة</span><span class="dot"></span><span>'+u.sections+' أقسام</span>')+'</div>'+
-    '</div></div>';
-  }).join('') + compCard;
-  
-  grid.querySelectorAll('.unit-card').forEach(function(c){
-    c.addEventListener('click',function(){
-      if(c.classList.contains('locked')){shake(c);sfxWrong();toast('🔒 الوحدة قريباً');return;}
-      sfxTap();
-      
-      if(c.dataset.unit === 'all'){
-        state.isCrossUnitQuiz = true;
-        state.selectedSections = [];
-        state.selectedQTypes = [];
-        renderQSections();
-        go('quiz-sections');
-      } else {
-        state.isCrossUnitQuiz = false;
-        state.unit=+c.dataset.unit;
-        var u=VOCAB[state.unit];
-        document.getElementById('vLabel').textContent='UNIT '+String(state.unit+1).padStart(2,'0');
-        document.getElementById('vTitle').textContent=u.unit;
-        renderVocabMain();
-        go('vocab');
-      }
-    });
-  });
-}
-function shake(el){try{el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:400,easing:'ease-in-out'})}catch(e){}}
-
-function renderVocabMain(){
-  var grid=document.getElementById('vocabGrid');if(!grid)return;
-  var known=Object.keys(state.markedKnown).length;
-  var weak=Object.keys(state.markedWeak).length;
-  var total=VOCAB[state.unit].sections.reduce(function(sum,s){return sum+s.words.length},0);
-  
-  var cards=[
-    {id:'mark',num:'01',title:'تحديد الكلمات',en:'MARK',color:'c-star',desc:'⭐ سهلة · 🚩 صعبة',meta:known+weak+'/'+total},
-    {id:'quiz',num:'02',title:'اختبار الوحدة',en:'QUIZ',color:'c-purple',desc:'أقسام من هذه الوحدة',meta:'ابدأ الآن'}
-  ];
-  
-  grid.innerHTML=cards.map(function(c){
-    return '<div class="sway"><div class="box-card '+c.color+'" data-vocab="'+c.id+'" role="button" tabindex="0">'+
-      '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
-      '<div class="box-body"><div class="box-num">'+c.num+'</div><div class="box-title">'+esc(c.title)+'</div><div class="box-desc">'+esc(c.desc)+'</div></div>'+
-      '<div class="box-meta">'+c.meta+'</div>'+
-    '</div></div>';
-  }).join('');
-  
-  grid.querySelectorAll('.box-card').forEach(function(c){
-    c.addEventListener('click',function(){
-      sfxTap();
-      var v=c.dataset.vocab;
-      if(v==='mark'){renderMarkSections();go('vocab-sections');}
-      else if(v==='quiz'){
-        state.isCrossUnitQuiz = false;
-        state.selectedSections=[];state.selectedQTypes=[];renderQSections();go('quiz-sections');
-      }
-    });
-  });
-}
-function renderMarkSections(){
-  var grid=document.getElementById('markSectionsGrid');if(!grid)return;
-  var secs=VOCAB[state.unit].sections;
-  grid.innerHTML=secs.map(function(s,i){
-    var kc=s.words.filter(function(w){return state.markedKnown[w.t]}).length;
-    var wc=s.words.filter(function(w){return state.markedWeak[w.t]}).length;
-    return '<div class="mini-box" data-secid="'+i+'" onclick="openMarkSection('+i+')" style="--c:#10b981" role="button" tabindex="0">'+
-      '<div class="mb-title">'+esc(s.title)+'</div>'+
-      '<div class="mb-meta">'+s.words.length+' كلمة · ⭐ '+kc+' · 🚩 '+wc+'</div>'+
-    '</div>';
-  }).join('');
-}
-function openMarkSection(idx){
-  sfxTap();state.currentSectionIdx=idx;
-  var s=VOCAB[state.unit].sections[idx];
-  document.getElementById('markLabel').textContent='SECTION '+String(idx+1).padStart(2,'0');
-  document.getElementById('markTitle').textContent=s.title;
-  renderVocabList();go('vocab-mark');
-}
-function renderVocabList(){
-  var list=document.getElementById('vocabList');if(!list)return;
-  var s=VOCAB[state.unit].sections[state.currentSectionIdx];if(!s)return;
-  list.innerHTML=s.words.map(function(w,i){
-    var k=state.markedKnown[w.t]?'marked-known':'';
-    var wk=state.markedWeak[w.t]?'marked-weak':'';
-    var kBtn=state.markedKnown[w.t]?'on-star':'';
-    var wkBtn=state.markedWeak[w.t]?'on-flag':'';
-    var tk=w.t.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    return '<div class="vocab-item '+k+' '+wk+'">'+
-      '<div class="vi-num">'+String(i+1).padStart(2,'0')+'</div>'+
-      '<div class="vi-text" onclick="speak(\''+tk+'\')" role="button" tabindex="0">'+
-        '<div class="vi-term">'+esc(w.t)+'</div>'+
-        '<div class="vi-meaning">'+esc(w.m)+'</div>'+
-      '</div>'+
-      '<div class="vi-actions">'+
-        '<button class="vi-mark '+kBtn+'" onclick="toggleMark(\''+tk+'\',\'known\',event)" aria-label="سهلة">⭐</button>'+
-        '<button class="vi-mark '+wkBtn+'" onclick="toggleMark(\''+tk+'\',\'weak\',event)" aria-label="صعبة">🚩</button>'+
-      '</div>'+
-    '</div>';
-  }).join('');
-}
-function toggleMark(term,type,e){
-  if(e)e.stopPropagation();
-  if(type==='known'){
-    if(state.markedKnown[term]){delete state.markedKnown[term];sfxToggleOff();}
-    else{state.markedKnown[term]=true;delete state.markedWeak[term];sfxStar();}
-  }else{
-    if(state.markedWeak[term]){delete state.markedWeak[term];sfxToggleOff();}
-    else{state.markedWeak[term]=true;delete state.markedKnown[term];sfxFlag();}
-  }
-  renderVocabList();savePrefs();
-}
-
-function renderQSections(){
-  var grid=document.getElementById('sectionsGrid');if(!grid)return;
-  var html='';
-  if(state.isCrossUnitQuiz){
-     VOCAB.forEach(function(u, uIdx){
-         html += '<div style="padding:14px 4px 6px;font-weight:900;font-size:0.85rem;color:var(--text-2);">'+esc(u.unit)+'</div>';
-         u.sections.forEach(function(s, sIdx){
-             var id = uIdx+'-'+sIdx;
-             var sel = state.selectedSections.indexOf(id)>=0;
-             html += '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+id+'" onclick="toggleSection(\''+id+'\')" style="--c:#3b82f6;margin-bottom:8px" role="button" tabindex="0">'+
-               '<div class="mb-title">'+esc(s.title)+'</div>'+
-               '<div class="mb-meta">'+s.words.length+' كلمة</div>'+
-             '</div>';
-         });
-     });
-  } else {
-     var secs = VOCAB[state.unit].sections;
-     html = secs.map(function(s,i){
-       var id = state.unit+'-'+i;
-       var sel=state.selectedSections.indexOf(id)>=0;
-       return '<div class="mini-box '+(sel?'selected':'')+'" data-secid="'+id+'" onclick="toggleSection(\''+id+'\')" style="--c:#8b5cf6;margin-bottom:8px" role="button" tabindex="0">'+
-         '<div class="mb-title">'+esc(s.title)+'</div>'+
-         '<div class="mb-meta">'+s.words.length+' كلمة</div>'+
-       '</div>';
-     }).join('');
-  }
-  grid.innerHTML = html;
-  updateSectionNext();
-}
-function toggleSection(id){
-  var i=state.selectedSections.indexOf(id);
-  if(i>=0){state.selectedSections.splice(i,1);sfxToggleOff();}else{state.selectedSections.push(id);sfxToggleOn();}
-  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(el.dataset.secid)>=0)});
-  updateSectionNext();
-}
-function selectAllSections(){
-  var allIds=[];
-  if(state.isCrossUnitQuiz){
-     VOCAB.forEach(function(u, uIdx){
-         u.sections.forEach(function(s, sIdx){ allIds.push(uIdx+'-'+sIdx); });
-     });
-  } else {
-     VOCAB[state.unit].sections.forEach(function(s, i){ allIds.push(state.unit+'-'+i); });
-  }
-  
-  if(state.selectedSections.length===allIds.length) state.selectedSections=[];
-  else state.selectedSections=allIds.slice();
-  
-  document.querySelectorAll('#sectionsGrid .mini-box').forEach(function(el){el.classList.toggle('selected',state.selectedSections.indexOf(el.dataset.secid)>=0)});
-  sfxTap();updateSectionNext();
-}
-function updateSectionNext(){var b=document.getElementById('sectionsNext');if(b)b.disabled=state.selectedSections.length===0}
-function toQTypes(){state.selectedQTypes=[];renderQTypes();go('quiz-types');}
-function getSelectedWords(){
-  var out=[];
-  state.selectedSections.forEach(function(id){
-    var parts = id.split('-');
-    var uIdx = parseInt(parts[0], 10);
-    var sIdx = parseInt(parts[1], 10);
-    var sec = VOCAB[uIdx].sections[sIdx];
-    if(sec) sec.words.forEach(function(w){ out.push(w); });
-  });
-  var seen={};return out.filter(function(w){if(seen[w.t])return false;seen[w.t]=true;return true});
-}
-function hasEnglishDefs(){return getSelectedWords().some(function(w){return !!w.e})}
-function hasBookQuestions(){
-  var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});
-  return BOOK_QUESTIONS.some(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]});
-}
 function renderQTypes(){
-  var grid=document.getElementById('qTypesGrid');if(!grid)return;
-  var hasDef=hasEnglishDefs();var hasBook=hasBookQuestions();
-  grid.innerHTML=Q_TYPES.map(function(t){
-    var sel=state.selectedQTypes.indexOf(t.id)>=0;
-    var disabled=false;var hint='';
-    if(t.id==='definition'&&!hasDef){disabled=true;hint='لا توجد كلمات بتعريف إنجليزي';}
-    if(t.id==='book'&&!hasBook){disabled=true;hint='لا توجد أسئلة كتاب لهذه الأقسام';}
-    return '<div class="sway"><div class="box-card '+t.color+' '+(sel?'selected':'')+' '+(disabled?'disabled-by-data':'')+'" data-qtype="'+t.id+'" '+(disabled?'data-disabled="1"':'')+' role="button" tabindex="0">'+
-      '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
-      (disabled?'<span class="lock-tag" style="background:rgba(239,68,68,.15);color:#fca5a5;border-color:rgba(239,68,68,.35)">غير متاح</span>':'')+
-      '<div class="box-body"><div class="box-num">'+t.num+'</div><div class="box-title">'+esc(t.title)+'</div><div class="box-desc">'+(disabled?hint:esc(t.desc))+'</div></div>'+
-      '<div class="box-meta">'+t.en+'</div>'+
-    '</div></div>';
-  }).join('');
-  grid.querySelectorAll('.box-card').forEach(function(c){
-    c.addEventListener('click',function(){
-      if(c.dataset.disabled){shake(c);sfxWrong();toast(c.querySelector('.box-desc').textContent);return;}
-      var id=c.dataset.qtype;var i=state.selectedQTypes.indexOf(id);
-      if(i>=0){state.selectedQTypes.splice(i,1);sfxToggleOff();}else{state.selectedQTypes.push(id);sfxToggleOn();}
-      renderQTypes();
-    });
-  });
+  var grid=document.getElementById('qTypesGrid');if(!grid)return;var hasDef=hasEnglishDefs();var hasBook=hasBookQuestions();
+  grid.innerHTML=Q_TYPES.map(function(t){var sel=state.selectedQTypes.indexOf(t.id)>=0;var disabled=false;var hint='';if(t.id==='definition'&&!hasDef){disabled=true;hint='لا توجد كلمات بتعريف إنجليزي';}if(t.id==='book'&&!hasBook){disabled=true;hint='لا توجد أسئلة كتاب لهذه الأقسام';}return '<div class="sway"><div class="box-card '+t.color+' '+(sel?'selected':'')+' '+(disabled?'disabled-by-data':'')+'" data-qtype="'+t.id+'" '+(disabled?'data-disabled="1"':'')+'><div class="box-body"><div class="box-num">'+t.num+'</div><div class="box-title">'+esc(t.title)+'</div><div class="box-desc">'+(disabled?hint:esc(t.desc))+'</div></div><div class="box-meta">'+t.en+'</div></div></div>';}).join('');
+  grid.querySelectorAll('.box-card').forEach(function(c){c.addEventListener('click',function(){if(c.dataset.disabled){sfxWrong();toast(c.querySelector('.box-desc').textContent);return;}var id=c.dataset.qtype;var i=state.selectedQTypes.indexOf(id);if(i>=0){state.selectedQTypes.splice(i,1);sfxToggleOff();}else{state.selectedQTypes.push(id);sfxToggleOn();}renderQTypes();});});
   var nb=document.getElementById('qTypesNext');if(nb)nb.disabled=state.selectedQTypes.length===0;
 }
+
 function toQCount(){renderQCount();go('quiz-count');}
-function getAvailabilityBreakdown(){
-  var pool=getSelectedWords();var types=state.selectedQTypes;
-  var b={meaning:0,term:0,definition:0,book:0};
-  if(types.indexOf('book')>=0){
-    var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});
-    b.book=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]}).length;
-  }
-  if(pool.length>=4){
-    if(types.indexOf('meaning')>=0)b.meaning=pool.filter(function(w){return w.m}).length;
-    if(types.indexOf('term')>=0)b.term=pool.filter(function(w){return w.t&&w.m}).length;
-    if(types.indexOf('definition')>=0)b.definition=pool.filter(function(w){return w.e}).length;
-  }
-  return b;
-}
-function renderAvailPanel(b,total){
-  var panel=document.getElementById('availPanel');if(!panel)return;
-  var rows=[];
-  if(state.selectedQTypes.indexOf('meaning')>=0)rows.push({icon:'🇬🇧',label:'معنى الكلمة (EN → AR)',count:b.meaning});
-  if(state.selectedQTypes.indexOf('term')>=0)rows.push({icon:'🇯🇴',label:'الكلمة من المعنى (AR → EN)',count:b.term});
-  if(state.selectedQTypes.indexOf('definition')>=0)rows.push({icon:'📖',label:'التعريف الإنجليزي (EN → EN)',count:b.definition});
-  if(state.selectedQTypes.indexOf('book')>=0)rows.push({icon:'📚',label:'أسئلة الكتاب (Dossier)',count:b.book});
-  var totalClass=total===0?'zero':(total<10?'low':'');
-  panel.innerHTML=rows.map(function(r){
-    var cls=r.count===0?'zero':'';
-    return '<div class="avail-row"><span class="ar-icon">'+r.icon+'</span><span class="ar-label">'+r.label+'</span><span class="ar-count '+cls+'">'+r.count+'</span></div>';
-  }).join('')+'<div class="avail-total"><span class="at-label">🎯 المجموع المتاح</span><span class="at-count '+totalClass+'">'+total+' سؤال</span></div>';
-}
+function getAvailabilityBreakdown(){var pool=getSelectedWords();var types=state.selectedQTypes;var b={meaning:0,term:0,definition:0,book:0};if(types.indexOf('book')>=0){var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});b.book=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]}).length;}if(pool.length>=4){if(types.indexOf('meaning')>=0)b.meaning=pool.filter(function(w){return w.m}).length;if(types.indexOf('term')>=0)b.term=pool.filter(function(w){return w.t&&w.m}).length;if(types.indexOf('definition')>=0)b.definition=pool.filter(function(w){return w.e}).length;}return b;}
+function renderAvailPanel(b,total){var panel=document.getElementById('availPanel');if(!panel)return;var rows=[];if(state.selectedQTypes.indexOf('meaning')>=0)rows.push({icon:'🇬🇧',label:'معنى الكلمة (EN → AR)',count:b.meaning});if(state.selectedQTypes.indexOf('term')>=0)rows.push({icon:'🇯🇴',label:'الكلمة من المعنى (AR → EN)',count:b.term});if(state.selectedQTypes.indexOf('definition')>=0)rows.push({icon:'📖',label:'التعريف الإنجليزي (EN → EN)',count:b.definition});if(state.selectedQTypes.indexOf('book')>=0)rows.push({icon:'📚',label:'أسئلة الكتاب (Dossier)',count:b.book});var totalClass=total===0?'zero':(total<10?'low':'');panel.innerHTML=rows.map(function(r){var cls=r.count===0?'zero':'';return '<div class="avail-row"><span class="ar-icon">'+r.icon+'</span><span class="ar-label">'+r.label+'</span><span class="ar-count '+cls+'">'+r.count+'</span></div>';}).join('')+'<div class="avail-total"><span class="at-label">🎯 المجموع المتاح</span><span class="at-count '+totalClass+'">'+total+' سؤال</span></div>';}
+
 function renderQCount(){
-  var grid=document.getElementById('qCountGrid');if(!grid)return;
-  var b=getAvailabilityBreakdown();var avail=b.meaning+b.term+b.definition+b.book;
-  renderAvailPanel(b,avail);
+  var grid=document.getElementById('qCountGrid');if(!grid)return;var b=getAvailabilityBreakdown();var avail=b.meaning+b.term+b.definition+b.book;renderAvailPanel(b,avail);
   if(state.selectedQCount>avail||state.selectedQCount<1){if(avail>=10)state.selectedQCount=10;else if(avail>=5)state.selectedQCount=5;else state.selectedQCount=Math.max(1,avail);}
-  var fixed=[5,10,15,20,30];var isCustom=fixed.indexOf(state.selectedQCount)<0&&avail>0;
-  var html=fixed.map(function(n){
-    var disabled=n>avail;var sel=state.selectedQCount===n&&!disabled;
-    return '<div class="count-tile '+(sel?'selected':'')+' '+(disabled?'disabled':'')+'" data-qcount="'+n+'" '+(disabled?'data-disabled="1"':'')+' role="button" tabindex="0"><div class="ct-num">'+n+'</div><div class="ct-label">'+(disabled?'غير متاح':'سؤال')+'</div></div>';
-  }).join('');
-  var customDisabled=avail===0;
-  html+='<div class="count-tile custom-tile '+(isCustom&&!customDisabled?'selected':'')+' '+(customDisabled?'disabled':'')+'" data-qcount="custom" '+(customDisabled?'data-disabled="1"':'')+' role="button" tabindex="0"><div class="ct-num">'+(isCustom&&!customDisabled?state.selectedQCount:'✏️')+'</div><div class="ct-label">'+(customDisabled?'غير متاح':'مخصص')+'</div></div>';
+  var fixed=[5,10,15,20,30];var isCustom=fixed.indexOf(state.selectedQCount)<0&&avail>0;var html=fixed.map(function(n){var disabled=n>avail;var sel=state.selectedQCount===n&&!disabled;return '<div class="count-tile '+(sel?'selected':'')+' '+(disabled?'disabled':'')+'" data-qcount="'+n+'" '+(disabled?'data-disabled="1"':'')+'><div class="ct-num">'+n+'</div><div class="ct-label">'+(disabled?'غير متاح':'سؤال')+'</div></div>';}).join('');
+  var customDisabled=avail===0;html+='<div class="count-tile custom-tile '+(isCustom&&!customDisabled?'selected':'')+' '+(customDisabled?'disabled':'')+'" data-qcount="custom" '+(customDisabled?'data-disabled="1"':'')+'><div class="ct-num">'+(isCustom&&!customDisabled?state.selectedQCount:'✏️')+'</div><div class="ct-label">'+(customDisabled?'غير متاح':'مخصص')+'</div></div>';
   grid.innerHTML=html;
-  grid.querySelectorAll('.count-tile').forEach(function(c){
-    c.addEventListener('click',async function(){
-      if(c.dataset.disabled){shake(c);sfxWrong();toast('عدد الأسئلة المتاح '+avail+' فقط');return;}
-      if(c.dataset.qcount==='custom'){sfxTap();var v=await customCountPrompt(avail,state.selectedQCount>0?state.selectedQCount:avail);if(v!=null){state.selectedQCount=v;renderQCount();sfxToggleOn();}return;}
-      state.selectedQCount=+c.dataset.qcount;sfxTap();renderQCount();
-    });
-  });
+  grid.querySelectorAll('.count-tile').forEach(function(c){c.addEventListener('click',async function(){if(c.dataset.disabled){sfxWrong();toast('عدد الأسئلة المتاح '+avail+' فقط');return;}if(c.dataset.qcount==='custom'){sfxTap();var v=await customCountPrompt(avail,state.selectedQCount>0?state.selectedQCount:avail);if(v!=null){state.selectedQCount=v;renderQCount();sfxToggleOn();}return;}state.selectedQCount=+c.dataset.qcount;sfxTap();renderQCount();});});
   var nb=document.getElementById('qCountNext');if(nb)nb.disabled=avail===0||state.selectedQCount>avail||state.selectedQCount<1;
 }
+
 function toQCorrection(){renderQCorrection();go('quiz-correction');}
+var CORRECTION_TYPES=[{id:'instant',num:'01',title:'تصليح فوري',en:'INSTANT',color:'c-green',desc:'الصحيح يظهر بعد كل سؤال'},{id:'end',num:'02',title:'عند النهاية',en:'AT END',color:'c-orange',desc:'تنقّل بحرية بين الأسئلة وعدّل'}];
 function renderQCorrection(){
-  var grid=document.getElementById('qCorrectionGrid');if(!grid)return;
-  grid.innerHTML=CORRECTION_TYPES.map(function(c){
-    var sel=state.selectedCorrection===c.id;
-    return '<div class="sway"><div class="box-card '+c.color+' '+(sel?'selected':'')+'" data-correct="'+c.id+'" role="button" tabindex="0">'+
-      '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>'+
-      '<div class="box-body"><div class="box-num">'+c.num+'</div><div class="box-title">'+esc(c.title)+'</div><div class="box-desc">'+esc(c.desc)+'</div></div>'+
-      '<div class="box-meta">'+c.en+'</div>'+
-    '</div></div>';
-  }).join('');
-  grid.querySelectorAll('.box-card').forEach(function(c){
-    c.addEventListener('click',function(){state.selectedCorrection=c.dataset.correct;sfxTap();renderQCorrection()});
-  });
+  var grid=document.getElementById('qCorrectionGrid');if(!grid)return;grid.innerHTML=CORRECTION_TYPES.map(function(c){var sel=state.selectedCorrection===c.id;return '<div class="sway"><div class="box-card '+c.color+' '+(sel?'selected':'')+'" data-correct="'+c.id+'"><div class="box-body"><div class="box-num">'+c.num+'</div><div class="box-title">'+esc(c.title)+'</div><div class="box-desc">'+esc(c.desc)+'</div></div><div class="box-meta">'+c.en+'</div></div></div>';}).join('');grid.querySelectorAll('.box-card').forEach(function(c){c.addEventListener('click',function(){state.selectedCorrection=c.dataset.correct;sfxTap();renderQCorrection()});});
 }
 
+// ==================== QUIZ ENGINE ====================
 function buildQuiz(){
-  var pool=getSelectedWords();var types=state.selectedQTypes;var count=state.selectedQCount;
-  var questions=[];
-  var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});
-  var usedKeys={};
-  function addQ(q){
-    if(!q)return false;
-    var key=q.kind+'||'+q.prompt+'||'+q.answer;
-    if(usedKeys[key])return false;
-    usedKeys[key]=true;
-    questions.push(q);
-    return true;
-  }
-  if(types.indexOf('book')>=0){
-    var bookPool=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]});
-    bookPool.forEach(function(q){
-      addQ({kind:'book',prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:false,promptRTL:false,user:null,answered:false});
-    });
-  }
-  var nonBook=types.filter(function(t){return t!=='book'});
-  if(nonBook.length>0&&pool.length>=4){
-    var sh=shuffle(pool);
-    for(var wi=0;wi<sh.length;wi++){
-      var w=sh[wi];
-      for(var ti=0;ti<nonBook.length;ti++){
-        var t=nonBook[ti];
-        var q=null;
-        if(t==='meaning'&&w.m){
-          var o=shuffle(pool.filter(function(x){return x.t!==w.t&&x.m}).map(function(x){return x.m})).slice(0,3);
-          if(o.length>=3)q={kind:'meaning',prompt:w.t,options:shuffle([w.m].concat(o)),answer:w.m,optionsRTL:true,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};
-        }else if(t==='term'&&w.t&&w.m){
-          var o2=shuffle(pool.filter(function(x){return x.t!==w.t}).map(function(x){return x.t})).slice(0,3);
-          if(o2.length>=3)q={kind:'term',prompt:w.m,options:shuffle([w.t].concat(o2)),answer:w.t,optionsRTL:false,promptRTL:true,term:w.t,meaning:w.m,user:null,answered:false};
-        }else if(t==='definition'&&w.e){
-          var o3=shuffle(pool.filter(function(x){return x.e&&x.e!==w.e}).map(function(x){return x.e})).slice(0,3);
-          if(o3.length>=3)q={kind:'definition',prompt:w.t,options:shuffle([w.e].concat(o3)),answer:w.e,optionsRTL:false,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};
-        }
-        addQ(q);
-      }
-    }
-  }
-  var final=shuffle(questions).slice(0,Math.min(count,questions.length));
-  if(!final.length)return null;
-  return {questions:final,idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false};
+  var pool=getSelectedWords();var types=state.selectedQTypes;var count=state.selectedQCount;var questions=[];var secSet={};state.selectedSections.forEach(function(id){secSet[id]=true});var usedKeys={};
+  function addQ(q){if(!q)return false;var key=q.kind+'||'+q.prompt+'||'+q.answer;if(usedKeys[key])return false;usedKeys[key]=true;questions.push(q);return true;}
+  if(types.indexOf('book')>=0){var bookPool=BOOK_QUESTIONS.filter(function(q){return secSet[q.unitIdx+'-'+q.sectionIdx]});bookPool.forEach(function(q){addQ({kind:'book',prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:false,promptRTL:false,user:null,answered:false});});}
+  var nonBook=types.filter(function(t){return t!=='book'});if(nonBook.length>0&&pool.length>=4){var sh=shuffle(pool);for(var wi=0;wi<sh.length;wi++){var w=sh[wi];for(var ti=0;ti<nonBook.length;ti++){var t=nonBook[ti];var q=null;if(t==='meaning'&&w.m){var o=shuffle(pool.filter(function(x){return x.t!==w.t&&x.m}).map(function(x){return x.m})).slice(0,3);if(o.length>=3)q={kind:'meaning',prompt:w.t,options:shuffle([w.m].concat(o)),answer:w.m,optionsRTL:true,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};}else if(t==='term'&&w.t&&w.m){var o2=shuffle(pool.filter(function(x){return x.t!==w.t}).map(function(x){return x.t})).slice(0,3);if(o2.length>=3)q={kind:'term',prompt:w.m,options:shuffle([w.t].concat(o2)),answer:w.t,optionsRTL:false,promptRTL:true,term:w.t,meaning:w.m,user:null,answered:false};}else if(t==='definition'&&w.e){var o3=shuffle(pool.filter(function(x){return x.e&&x.e!==w.e}).map(function(x){return x.e})).slice(0,3);if(o3.length>=3)q={kind:'definition',prompt:w.t,options:shuffle([w.e].concat(o3)),answer:w.e,optionsRTL:false,promptRTL:false,term:w.t,meaning:w.m,user:null,answered:false};}addQ(q);}}}
+  var final=shuffle(questions).slice(0,Math.min(count,questions.length));if(!final.length)return null;return {questions:final,idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false};
 }
+
 function startCustomQuiz(){
-  var quiz=buildQuiz();
-  if(!quiz){toast('تعذّر توليد أسئلة');sfxWrong();return;}
-  sfxNav();state.quiz=quiz;state.quizOrigin='vocab';
-  var isEnd=quiz.correction==='end';
-  document.getElementById('qzLabel').textContent=isEnd?'تصليح بالنهاية':'تصليح فوري';
-  document.getElementById('qzProgress').textContent='1 / '+quiz.questions.length;
-  document.getElementById('qzCorrect').textContent='0';
-  document.getElementById('qzScoreChip').style.display=isEnd?'none':'inline-flex';
-  go('quiz');renderQuizQuestion();
+  var quiz=buildQuiz();if(!quiz){toast('تعذّر توليد أسئلة');sfxWrong();return;}sfxNav();state.quiz=quiz;
+  var isEnd=quiz.correction==='end';document.getElementById('qzLabel').textContent=isEnd?'تصليح بالنهاية':'تصليح فوري';document.getElementById('qzProgress').textContent='1 / '+quiz.questions.length;document.getElementById('qzCorrect').textContent='0';document.getElementById('qzScoreChip').style.display=isEnd?'none':'inline-flex';go('quiz');renderQuizQuestion();
 }
 
 function renderQuizQuestion(){
-  if(!state.quiz)return;
-  var q=state.quiz.questions[state.quiz.idx];if(!q)return;
-  document.getElementById('qzProgress').textContent=(state.quiz.idx+1)+' / '+state.quiz.questions.length;
-  document.getElementById('qzCorrect').textContent=state.quiz.correct;
-  document.getElementById('qzBar').style.width=(state.quiz.idx/state.quiz.questions.length*100)+'%';
-  var body=document.getElementById('qzBody');if(!body)return;
-  var pc=q.kind==='meaning'?'quiz-prompt big':(q.promptRTL?'quiz-prompt rtl':'quiz-prompt');
-  var promptHTML=esc(q.prompt);
-  if(q.kind==='book'&&/-{3,}/.test(q.prompt)){
-    var parts=q.prompt.split(/-{3,}/);
-    promptHTML=parts.map(function(p,i,arr){var s=esc(p);return i<arr.length-1?s+'<span style="display:inline-block;min-width:60px;border-bottom:2.5px solid #8b5cf6;margin:0 4px">&nbsp;</span>':s}).join('');
-  }
+  if(!state.quiz)return;var q=state.quiz.questions[state.quiz.idx];if(!q)return;
+  document.getElementById('qzProgress').textContent=(state.quiz.idx+1)+' / '+state.quiz.questions.length;document.getElementById('qzCorrect').textContent=state.quiz.correct;document.getElementById('qzBar').style.width=(state.quiz.idx/state.quiz.questions.length*100)+'%';
+  var body=document.getElementById('qzBody');if(!body)return;var pc=q.kind==='meaning'?'quiz-prompt big':(q.promptRTL?'quiz-prompt rtl':'quiz-prompt');var promptHTML=esc(q.prompt);
+  if(q.kind==='book'&&/-{3,}/.test(q.prompt)){var parts=q.prompt.split(/-{3,}/);promptHTML=parts.map(function(p,i,arr){var s=esc(p);return i<arr.length-1?s+'<span style="display:inline-block;min-width:60px;border-bottom:2.5px solid #8b5cf6;margin:0 4px">&nbsp;</span>':s}).join('');}
   var isEnd=state.quiz.correction==='end';
-  body.innerHTML='<div class="quiz-card">'+
-    '<div class="quiz-label">QUESTION '+(state.quiz.idx+1)+(isEnd?' · بدون تصليح':'')+'</div>'+
-    '<div class="'+pc+'">'+promptHTML+'</div>'+
-    '<div class="quiz-options">'+
-      q.options.map(function(o,oi){
-        var isSelected=(q.user===o);var cls=q.optionsRTL?'rtl':'';
-        var selectedCls=isSelected?'pending':'';
-        var disabledAttr=(q.answered&&!isEnd)?'disabled':'';
-        return '<button class="q-opt '+cls+' '+selectedCls+'" data-oi="'+oi+'" onclick="answerQuiz('+oi+')" '+disabledAttr+'><span class="qk">'+String.fromCharCode(65+oi)+'</span><span>'+esc(o)+'</span></button>';
-      }).join('')+
-    '</div></div>';
-  if(q.answered&&isEnd){
-    body.querySelectorAll('.q-opt').forEach(function(b){var val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});
-  }else if(q.answered){
-    body.querySelectorAll('.q-opt').forEach(function(b){var val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});
-  }
+  body.innerHTML='<div class="quiz-card"><div class="quiz-label">QUESTION '+(state.quiz.idx+1)+(isEnd?' · بدون تصليح':'')+'</div><div class="'+pc+'">'+promptHTML+'</div><div class="quiz-options">'+q.options.map(function(o,oi){var isSelected=(q.user===o);var cls=q.optionsRTL?'rtl':'';var selectedCls=isSelected?'pending':'';var disabledAttr=(q.answered&&!isEnd)?'disabled':'';return '<button class="q-opt '+cls+' '+selectedCls+'" data-oi="'+oi+'" onclick="answerQuiz('+oi+')" '+disabledAttr+'><span class="qk">'+String.fromCharCode(65+oi)+'</span><span>'+esc(o)+'</span></button>';}).join('')+'</div></div>';
+  if(q.answered&&isEnd){body.querySelectorAll('.q-opt').forEach(function(b){var val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});}else if(q.answered){body.querySelectorAll('.q-opt').forEach(function(b){var val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});}
   renderQuizBottomBar();
 }
+
 function renderQuizBottomBar(){
-  var bar=document.getElementById('qzBottomBar');if(!bar||!state.quiz)return;
-  var q=state.quiz.questions[state.quiz.idx];var isLast=state.quiz.idx===state.quiz.questions.length-1;
-  var isFirst=state.quiz.idx===0;var isEnd=state.quiz.correction==='end';
-  var btns=[];
-  if(isEnd){
-    if(state.quiz.cameFromReview)btns.push('<button class="action-btn ghost" onclick="sfxClick();openReview()">→ المراجعة</button>');
-    btns.push('<button class="action-btn ghost" onclick="quizPrev()" '+(isFirst?'disabled':'')+'>→</button>');
-    btns.push('<button class="action-btn" onclick="quizNext()">'+(isLast?'مراجعة ←':'التالي ←')+'</button>');
-  }else{
-    btns.push('<button class="action-btn" onclick="quizNext()" '+(q.answered?'':'disabled')+'>'+(isLast?'عرض النتيجة':'التالي ←')+'</button>');
-  }
+  var bar=document.getElementById('qzBottomBar');if(!bar||!state.quiz)return;var q=state.quiz.questions[state.quiz.idx];var isLast=state.quiz.idx===state.quiz.questions.length-1;var isFirst=state.quiz.idx===0;var isEnd=state.quiz.correction==='end';var btns=[];
+  if(isEnd){if(state.quiz.cameFromReview)btns.push('<button class="action-btn ghost" onclick="sfxClick();openReview()">→ المراجعة</button>');btns.push('<button class="action-btn ghost" onclick="quizPrev()" '+(isFirst?'disabled':'')+'>→</button>');btns.push('<button class="action-btn" onclick="quizNext()">'+(isLast?'مراجعة ←':'التالي ←')+'</button>');}
+  else{btns.push('<button class="action-btn" onclick="quizNext()" '+(q.answered?'':'disabled')+'>'+(isLast?'عرض النتيجة':'التالي ←')+'</button>');}
   bar.innerHTML=btns.join('');
 }
+
 function answerQuiz(oi){
-  if(!state.quiz)return;
-  var q=state.quiz.questions[state.quiz.idx];if(!q)return;
-  var isEnd=state.quiz.correction==='end';
-  q.user=q.options[oi];
-  if(isEnd){
-    sfxClick();q.answered=true;
-    document.querySelectorAll('#qzBody .q-opt').forEach(function(b){b.classList.remove('pending','correct','wrong');var val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});
-    renderQuizBottomBar();return;
-  }
-  if(q.answered)return;
-  q.answered=true;
-  var correct=q.user===q.answer;
-  if(correct){state.quiz.correct++;sfxCorrect();}else sfxWrong();
-  document.getElementById('qzCorrect').textContent=state.quiz.correct;
-  document.getElementById('qzBar').style.width=((state.quiz.idx+1)/state.quiz.questions.length*100)+'%';
-  document.querySelectorAll('#qzBody .q-opt').forEach(function(b){b.disabled=true;var val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});
-  renderQuizBottomBar();
+  if(!state.quiz)return;var q=state.quiz.questions[state.quiz.idx];if(!q)return;var isEnd=state.quiz.correction==='end';q.user=q.options[oi];
+  if(isEnd){sfxClick();q.answered=true;document.querySelectorAll('#qzBody .q-opt').forEach(function(b){b.classList.remove('pending','correct','wrong');var val=q.options[+b.dataset.oi];if(val===q.user)b.classList.add('pending')});renderQuizBottomBar();return;}
+  if(q.answered)return;q.answered=true;var correct=q.user===q.answer;if(correct){state.quiz.correct++;sfxCorrect();}else sfxWrong();
+  document.getElementById('qzCorrect').textContent=state.quiz.correct;document.getElementById('qzBar').style.width=((state.quiz.idx+1)/state.quiz.questions.length*100)+'%';
+  document.querySelectorAll('#qzBody .q-opt').forEach(function(b){b.disabled=true;var val=q.options[+b.dataset.oi];if(val===q.answer)b.classList.add('correct');else if(val===q.user)b.classList.add('wrong')});renderQuizBottomBar();
 }
+
 function quizNext(){
-  if(!state.quiz)return;
-  if(state.quiz.correction==='end'&&state.quiz.cameFromReview){state.quiz.cameFromReview=false;sfxNav();openReview();return;}
-  var isLast=state.quiz.idx===state.quiz.questions.length-1;
-  if(isLast){
-    if(state.quiz.correction==='end'){sfxNav();openReview();}
-    else{sfxNav();finishQuiz();}
-  }else{sfxClick();state.quiz.idx++;renderQuizQuestion();}
+  if(!state.quiz)return;if(state.quiz.correction==='end'&&state.quiz.cameFromReview){state.quiz.cameFromReview=false;sfxNav();openReview();return;}var isLast=state.quiz.idx===state.quiz.questions.length-1;
+  if(isLast){if(state.quiz.correction==='end'){sfxNav();openReview();}else{sfxNav();finishQuiz();}}else{sfxClick();state.quiz.idx++;renderQuizQuestion();}
 }
 function quizPrev(){if(state.quiz&&state.quiz.idx>0){sfxClick();state.quiz.idx--;renderQuizQuestion();}}
-async function quitQuiz(){
-  if(state.quiz){
-    var answered=state.quiz.questions.some(function(q){return q.user});
-    if(answered){var ok=await customConfirm('الخروج من الاختبار؟','سيتم فقدان تقدمك الحالي.','خروج');if(!ok)return;}
-  }
-  state.quiz=null;go('vocab');
-}
+async function quitQuiz(){if(state.quiz){var answered=state.quiz.questions.some(function(q){return q.user});if(answered){var ok=await customConfirm('الخروج من الاختبار؟','سيتم فقدان تقدمك الحالي.','خروج');if(!ok)return;}}state.quiz=null;go('home');}
+
 function openReview(){
-  if(!state.quiz)return;
-  var list=document.getElementById('reviewNavList');if(!list)return;
-  list.innerHTML=state.quiz.questions.map(function(q,i){
-    var status=q.user?'answered':'empty';
-    var statusText=q.user?'مُجاب':'فارغ';
-    return '<div class="review-nav-item" onclick="editQuestion('+i+')" role="button" tabindex="0"><div class="rn-head"><span class="rn-num">QUESTION '+(i+1)+'</span><span class="rn-status '+status+'">'+statusText+'</span></div><div class="rn-q">'+esc(q.prompt)+'</div></div>';
-  }).join('');
-  go('quiz-review');
+  if(!state.quiz)return;var list=document.getElementById('reviewNavList');if(!list)return;list.innerHTML=state.quiz.questions.map(function(q,i){var status=q.user?'answered':'empty';var statusText=q.user?'مُجاب':'فارغ';return '<div class="review-nav-item" onclick="editQuestion('+i+')"><div class="rn-head"><span class="rn-num">QUESTION '+(i+1)+'</span><span class="rn-status '+status+'">'+statusText+'</span></div><div class="rn-q">'+esc(q.prompt)+'</div></div>';}).join('');go('quiz-review');
 }
 function editQuestion(i){if(state.quiz){sfxTap();state.quiz.idx=i;state.quiz.cameFromReview=true;go('quiz');renderQuizQuestion();}}
 function backFromReview(){if(state.quiz){state.quiz.cameFromReview=false;state.quiz.idx=state.quiz.questions.length-1;go('quiz');renderQuizQuestion();}}
-function finishFromReview(){
-  if(!state.quiz)return;
-  var correct=0;state.quiz.questions.forEach(function(q){if(q.user===q.answer)correct++;});
-  state.quiz.correct=correct;finishQuiz();
-}
+function finishFromReview(){if(!state.quiz)return;var correct=0;state.quiz.questions.forEach(function(q){if(q.user===q.answer)correct++;});state.quiz.correct=correct;finishQuiz();}
+
 function finishQuiz(){
   if(!state.quiz)return;
   try{
-    var total=state.quiz.questions.length;var correct=state.quiz.correct;
-    var pct=total?Math.round(correct/total*100):0;
-    var color=pct>=80?'#10b981':pct>=50?'#6366f1':'#ef4444';
-    var xpGained=correct*10+50;addXP(xpGained);
-    var missed=state.quiz.questions.filter(function(q){return q.user!==q.answer});
-    state.missedQuestions=missed;
-    if(pct>=80)sfxLevelUp();
-    var reviewHTML=state.quiz.questions.map(function(q,i){
-      var ok=q.user===q.answer;
-      return '<div class="review-item '+(ok?'ok':'bad')+'"><div class="review-q '+(q.promptRTL?'rtl':'')+'">'+(i+1)+'. '+esc(q.prompt)+'</div><div class="review-a">إجابتك: <span class="'+(ok?'val-ok':'val-bad')+'">'+esc(q.user||'—')+'</span>'+
-        (!ok?' · الصحيح: <span style="color:#10b981;font-weight:800">'+esc(q.answer)+'</span>':'')+'</div></div>';
-    }).join('');
+    var total=state.quiz.questions.length;var correct=state.quiz.correct;var pct=total?Math.round(correct/total*100):0;var color=pct>=80?'#10b981':pct>=50?'#6366f1':'#ef4444';var xpGained=correct*10+50;
+    state.stats.quizzes++;state.stats.correct += correct;state.stats.wrong += (total - correct);saveStats();addXP(xpGained);
+    var missed=state.quiz.questions.filter(function(q){return q.user!==q.answer});state.missedQuestions=missed;if(pct>=80)sfxLevelUp();
+    var reviewHTML=state.quiz.questions.map(function(q,i){var ok=q.user===q.answer;return '<div class="review-item '+(ok?'ok':'bad')+'"><div class="review-q '+(q.promptRTL?'rtl':'')+'">'+(i+1)+'. '+esc(q.prompt)+'</div><div class="review-a">إجابتك: <span class="'+(ok?'val-ok':'val-bad')+'">'+esc(q.user||'—')+'</span>'+(!ok?' · الصحيح: <span style="color:#10b981;font-weight:800">'+esc(q.answer)+'</span>':'')+'</div></div>';}).join('');
     var rb=document.getElementById('resultsBody');
-    if(rb){
-      rb.innerHTML='<div style="text-align:center;padding:20px 10px"><div style="width:140px;height:140px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:conic-gradient('+color+' '+(pct*3.6)+'deg, rgba(255,255,255,.06) 0deg);position:relative"><div style="position:absolute;inset:12px;border-radius:50%;background:var(--bg);display:grid;place-items:center"><div style="font-family:Inter,sans-serif;font-size:2rem;font-weight:900;color:'+color+'">'+pct+'%</div><div style="font-size:.688rem;color:var(--text-3);font-weight:700;margin-top:-4px">'+correct+' / '+total+'</div></div></div><h2 style="font-size:1.25rem;font-weight:900;margin-bottom:6px">'+(pct>=80?'🎉 ممتاز!':pct>=50?'👍 جيد':'💪 واصل')+'</h2><p style="color:var(--text-3);font-size:.813rem;margin-bottom:10px">أجبت على '+correct+' من '+total+'</p><p style="color:#fbbf24;font-size:.813rem;font-weight:800">+'+xpGained+' XP</p></div>'+
-        '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px"><span class="sum-chip"><span class="c-dot"></span>صحيح <b>'+correct+'</b></span><span class="sum-chip"><span class="c-dot" style="background:#ef4444"></span>خطأ <b>'+(total-correct)+'</b></span></div>'+
-        '<h3 style="font-size:.938rem;font-weight:900;margin:20px 4px 10px">📝 مراجعة الإجابات</h3>'+reviewHTML;
-    }
-    var bar=document.getElementById('resultsBottomBar');
-    if(bar){
-      var retryBtn=missed.length>0?'<button class="action-btn ghost" onclick="retryMissed()">🔁 أعد المخطئة</button>':'';
-      var backBtn='<button class="action-btn" onclick="go(\'vocab\')">→ رجوع</button>';
-      bar.innerHTML=retryBtn+backBtn;
-    }
+    if(rb){rb.innerHTML='<div style="text-align:center;padding:20px 10px"><div style="width:140px;height:140px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:conic-gradient('+color+' '+(pct*3.6)+'deg, rgba(255,255,255,.06) 0deg);position:relative"><div style="position:absolute;inset:12px;border-radius:50%;background:var(--bg);display:grid;place-items:center"><div style="font-family:Inter,sans-serif;font-size:2rem;font-weight:900;color:'+color+'">'+pct+'%</div><div style="font-size:.688rem;color:var(--text-3);font-weight:700;margin-top:-4px">'+correct+' / '+total+'</div></div></div><h2 style="font-size:1.25rem;font-weight:900;margin-bottom:6px">'+(pct>=80?'🎉 ممتاز!':pct>=50?'👍 جيد':'💪 واصل')+'</h2><p style="color:var(--text-3);font-size:.813rem;margin-bottom:10px">أجبت على '+correct+' من '+total+'</p><p style="color:#fbbf24;font-size:.813rem;font-weight:800">+'+xpGained+' XP</p></div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px"><span class="sum-chip"><span class="c-dot"></span>صحيح <b>'+correct+'</b></span><span class="sum-chip"><span class="c-dot" style="background:#ef4444"></span>خطأ <b>'+(total-correct)+'</b></span></div><h3 style="font-size:.938rem;font-weight:900;margin:20px 4px 10px">📝 مراجعة الإجابات</h3>'+reviewHTML;}
+    var bar=document.getElementById('resultsBottomBar');if(bar){var retryBtn=missed.length>0?'<button class="action-btn ghost" onclick="retryMissed()">🔁 أعد المخطئة</button>':'';var backBtn='<button class="action-btn" onclick="go(\'home\')">→ رجوع</button>';bar.innerHTML=retryBtn+backBtn;}
     go('results');
   }catch(e){console.error(e);toast('حدث خطأ');}
 }
-function retryMissed(){
-  if(!state.missedQuestions||!state.missedQuestions.length){toast('🎉 لا توجد أسئلة مخطئة');return;}
-  sfxNav();
-  state.quiz={
-    questions:state.missedQuestions.map(function(q){return {kind:q.kind,prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:q.optionsRTL,promptRTL:q.promptRTL,term:q.term,meaning:q.meaning,user:null,answered:false}}),
-    idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false
-  };
-  var isEnd=state.quiz.correction==='end';
-  document.getElementById('qzLabel').textContent=isEnd?'إعادة - بالنهاية':'إعادة المخطئة';
-  document.getElementById('qzProgress').textContent='1 / '+state.quiz.questions.length;
-  document.getElementById('qzCorrect').textContent='0';
-  document.getElementById('qzScoreChip').style.display=isEnd?'none':'inline-flex';
-  go('quiz');renderQuizQuestion();
+function retryMissed(){if(!state.missedQuestions||!state.missedQuestions.length){toast('🎉 لا توجد أسئلة مخطئة');return;}sfxNav();state.quiz={questions:state.missedQuestions.map(function(q){return {kind:q.kind,prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:q.optionsRTL,promptRTL:q.promptRTL,term:q.term,meaning:q.meaning,user:null,answered:false};}),idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false};var isEnd=state.quiz.correction==='end';document.getElementById('qzLabel').textContent=isEnd?'إعادة - بالنهاية':'إعادة المخطئة';document.getElementById('qzProgress').textContent='1 / '+state.quiz.questions.length;document.getElementById('qzCorrect').textContent='0';document.getElementById('qzScoreChip').style.display=isEnd?'none':'inline-flex';go('quiz');renderQuizQuestion();}
+
+// ==================== STATS SCREEN ====================
+function openStats(){sfxNav();renderStats();go('stats');}
+function renderStats(){
+  var lv = getLevel(), xpProg = getXpProgress();
+  document.getElementById('statsLevelDisplay').textContent = lv;document.getElementById('statsXpCurrent').textContent = xpProg.current;document.getElementById('statsXpMax').textContent = xpProg.max;document.getElementById('statsXpBar').style.width = ((xpProg.current / xpProg.max) * 100) + '%';
+  document.getElementById('statQuizzes').textContent = state.stats.quizzes;document.getElementById('statCorrect').textContent = state.stats.correct;document.getElementById('statWrong').textContent = state.stats.wrong;
+  var totalAns = state.stats.correct + state.stats.wrong;var acc = totalAns > 0 ? Math.round((state.stats.correct / totalAns) * 100) : 0;document.getElementById('statAccuracy').textContent = acc + '%';
+  document.getElementById('statKnown').textContent = Object.keys(state.markedKnown).length;document.getElementById('statWeak').textContent = Object.keys(state.markedWeak).length;
+  var rankIcon = '🌱', rankName = 'مبتدئ';if(lv >= 100) { rankIcon = '👑'; rankName = 'أسطورة'; }else if(lv >= 50) { rankIcon = '🔥'; rankName = 'محترف'; }else if(lv >= 20) { rankIcon = '🚀'; rankName = 'متقدم'; }else if(lv >= 10) { rankIcon = '🌟'; rankName = 'نشيط'; }else if(lv >= 5) { rankIcon = '📖'; rankName = 'متعلم'; }
+  document.getElementById('statsRankIcon').textContent = rankIcon;document.getElementById('statsRankName').textContent = rankName;
 }
 
+// ==================== INIT APP ====================
 function initApp(){
-  try{loadXP()}catch(e){}
-  try{loadPrefs()}catch(e){}
-  try{applyTheme()}catch(e){}
-  try{applyFontSize()}catch(e){}
-  try{updateXPDisplay()}catch(e){}
-  try{document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.toggle('active',b.dataset.t===state.theme)})}catch(e){}
-  try{document.documentElement.setAttribute('data-quality',state.quality)}catch(e){}
-  try{document.querySelectorAll('.quality-btn').forEach(function(b){b.classList.toggle('active',b.dataset.q===state.quality)})}catch(e){}
-  try{renderUnits()}catch(e){console.error('renderUnits:',e);}
+  try{loadXP();loadStats();loadPrefs();applyTheme();applyFontSize();updateXPDisplay();}catch(e){}
+  
+  document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.toggle('active',b.dataset.t===state.theme)});
+  document.documentElement.setAttribute('data-quality',state.quality);
+  document.querySelectorAll('.quality-btn').forEach(function(b){b.classList.toggle('active',b.dataset.q===state.quality)});
+  renderUnits();
   try{history.replaceState({screen:'home'},'','#home')}catch(e){}
-  try{updateInstallBtnVisibility()}catch(e){}
-  try{var qb=document.getElementById('qualityBar');if(qb)qb.classList.add('show')}catch(e){}
+  var qb=document.getElementById('qualityBar');if(qb)qb.classList.add('show');
 
-  try{
-    document.getElementById('cmOk').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(true);confirmResolver=null;}sfxTap();});
-    document.getElementById('cmCancel').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(false);confirmResolver=null;}sfxClick();});
-    document.getElementById('countOk').addEventListener('click',function(){sfxTap();closeCountModal(true)});
-    document.getElementById('countCancel').addEventListener('click',function(){sfxClick();closeCountModal(false)});
-    document.getElementById('countInput').addEventListener('keydown',function(e){if(e.key==='Enter'){sfxTap();closeCountModal(true);}else if(e.key==='Escape'){sfxClick();closeCountModal(false);}});
-    document.getElementById('iosOk').addEventListener('click',function(){document.getElementById('iosModal').classList.remove('show');sfxTap();});
-    document.querySelectorAll('.theme-dot').forEach(function(btn){
-      btn.addEventListener('click',function(){
-        sfxClick();state.theme=btn.dataset.t;applyTheme();
-        document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.remove('active')});
-        btn.classList.add('active');savePrefs();
-      });
-    });
-    document.querySelectorAll('.quality-btn').forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var q=btn.dataset.q;if(state.quality===q)return;
-        state.quality=q;savePrefs();applyQuality();sfxToggleOn();
-        var names={low:'🍃 منخفضة',medium:'⚡ متوسطة',high:'✨ عالية'};
-        toast('جودة العرض: '+names[q]);
-      });
-    });
-    if(installBtn){
-      installBtn.addEventListener('click',async function(){
-        sfxTap();
-        if(deferredInstallPrompt){
-          try{deferredInstallPrompt.prompt();var choice=await deferredInstallPrompt.userChoice;if(choice&&choice.outcome==='accepted'){toast('📲 جاري التثبيت...')}else{toast('تم إلغاء التثبيت')}}catch(e){}
-          deferredInstallPrompt=null;return;
-        }
-        if(isIOS()){document.getElementById('iosModal').classList.add('show');return;}
-        if(location.protocol==='file:'){toast('⚠️ افتح التطبيق من رابط HTTPS للتثبيت');return;}
-        toast('افتح قائمة المتصفح واختر "تثبيت التطبيق"');
-      });
-    }
-    window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredInstallPrompt=e;updateInstallBtnVisibility();});
-    window.addEventListener('appinstalled',function(){deferredInstallPrompt=null;isInstalled=true;if(installBtn)installBtn.style.display='none';toast('✅ تم تثبيت التطبيق بنجاح');});
-  }catch(e){console.warn('initApp events:',e);}
+  // Modals & Buttons
+  document.getElementById('cmOk').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(true);confirmResolver=null;}sfxTap();});
+  document.getElementById('cmCancel').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(false);confirmResolver=null;}sfxClick();});
+  document.getElementById('countOk').addEventListener('click',function(){sfxTap();closeCountModal(true)});
+  document.getElementById('countCancel').addEventListener('click',function(){sfxClick();closeCountModal(false)});
+  document.getElementById('countInput').addEventListener('keydown',function(e){if(e.key==='Enter'){sfxTap();closeCountModal(true);}else if(e.key==='Escape'){sfxClick();closeCountModal(false);}});
+  
+  document.querySelectorAll('.theme-dot').forEach(function(btn){btn.addEventListener('click',function(){sfxClick();state.theme=btn.dataset.t;applyTheme();document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');savePrefs();});});
+  document.querySelectorAll('.quality-btn').forEach(function(btn){btn.addEventListener('click',function(){var q=btn.dataset.q;if(state.quality===q)return;state.quality=q;savePrefs();applyQuality();sfxToggleOn();var names={low:'🍃 منخفضة',medium:'⚡ متوسطة',high:'✨ عالية'};toast('جودة العرض: '+names[q]);});});
 
-  try{
-    document.addEventListener('click',function(e){
-      var target=e.target;
-      if(target.closest('button')||target.closest('.box-card')||target.closest('.unit-card')||target.closest('.vocab-item')||target.closest('.mini-box')||target.closest('.q-opt')||target.closest('input')||target.closest('.theme-float')||target.closest('.quality-float')||target.closest('.review-nav-item')||target.closest('#confirmModal')||target.closest('.count-tile')||target.closest('#countModal')||target.closest('#iosModal')||target.closest('#dhikrFloat'))return;
-      try{var ripple=document.createElement('div');ripple.className='click-ripple'+(Math.random()<0.5?' alt':'');ripple.style.left=e.clientX+'px';ripple.style.top=e.clientY+'px';document.body.appendChild(ripple);setTimeout(function(){ripple.remove()},900)}catch(err){}
-      if(floatWrappers.length){for(var i=0;i<2;i++){var w=floatWrappers[Math.floor(Math.random()*floatWrappers.length)];if(w){w.classList.add('hit');setTimeout(function(){w.classList.remove('hit')},500)}}}
-      sfxBubble();
-    },true);
-  }catch(e){}
+  // Global Click Effects
+  document.addEventListener('click',function(e){
+    var target=e.target;if(target.closest('button')||target.closest('.box-card')||target.closest('.unit-card')||target.closest('.vocab-item')||target.closest('.mini-box')||target.closest('.q-opt')||target.closest('input')||target.closest('.theme-float')||target.closest('.quality-float')||target.closest('.review-nav-item'))return;
+    try{var ripple=document.createElement('div');ripple.className='click-ripple'+(Math.random()<0.5?' alt':'');ripple.style.left=e.clientX+'px';ripple.style.top=e.clientY+'px';document.body.appendChild(ripple);setTimeout(function(){ripple.remove()},900)}catch(err){}
+    if(floatWrappers.length){for(var i=0;i<2;i++){var w=floatWrappers[Math.floor(Math.random()*floatWrappers.length)];if(w){w.classList.add('hit');setTimeout(function(){w.classList.remove('hit')},500)}}}
+    sfxBubble();
+  },true);
 }
 
+// ==================== START ====================
 try{applyQuality()}catch(e){}
 try{initSplash()}catch(e){if(window.__hideSplash)window.__hideSplash();}
 try{initApp()}catch(e){}
-setTimeout(updateInstallBtnVisibility,500);
-setTimeout(updateInstallBtnVisibility,2000);
 document.addEventListener('pointerdown',function(){var ctx=getCtx();if(ctx&&ctx.state==='suspended')try{ctx.resume()}catch(e){}},{once:true,capture:true});
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault()},{passive:false});
 
+window.addEventListener('popstate',async function(){
+  if(state.quiz){var ok=await customConfirm('الخروج من الاختبار؟','هل تريد الخروج؟ سيتم فقدان تقدمك.','خروج');if(!ok){try{history.pushState({screen:'quiz'},'','#quiz')}catch(e2){}return;}state.quiz=null;}
+  var name=(history.state&&history.state.screen)||'home';go(name,false);
+});
+
 if('serviceWorker' in navigator){
-  window.addEventListener('load',function(){
-    navigator.serviceWorker.register('sw.js').then(function(reg){console.log('SW registered!',reg)}).catch(function(err){console.log('SW registration failed:',err)});
-  });
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(reg){console.log('SW registered!',reg)}).catch(function(err){console.log('SW registration failed:',err)});});
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   💫 شريط الذكر الخفيف — يظهر بشكل عشوائي وبنتغير بلطف
-   ═══════════════════════════════════════════════════════════════════ */
+// Floating Dhikr
 (function(){
-  var SHORT_ADHKAR=[
-    {text:'سبحان الله',icon:'📿'},
-    {text:'الحمد لله',icon:'🤍'},
-    {text:'الله أكبر',icon:'✨'},
-    {text:'لا إله إلا الله',icon:'☪️'},
-    {text:'أستغفر الله',icon:'🤲'},
-    {text:'اللهم صل على محمد',icon:'🕌'},
-    {text:'لا حول ولا قوة إلا بالله',icon:'🌟'},
-    {text:'سبحان الله وبحمده',icon:'📿'},
-    {text:'حسبي الله ونعم الوكيل',icon:'🤲'},
-    {text:'اللهم اغفر لي',icon:'🌙'}
-  ];
-  var lastIdx=-1;
-  var container=document.getElementById('dhikrFloat');
-  var iconEl=document.getElementById('dhikrIcon');
-  var textEl=document.getElementById('dhikrText');
+  var SHORT_ADHKAR=[{text:'سبحان الله',icon:'📿'},{text:'الحمد لله',icon:'🤍'},{text:'الله أكبر',icon:'✨'},{text:'لا إله إلا الله',icon:'☪️'},{text:'أستغفر الله',icon:'🤲'},{text:'اللهم صل على محمد',icon:'🕌'},{text:'لا حول ولا قوة إلا بالله',icon:'🌟'},{text:'سبحان الله وبحمده',icon:'📿'},{text:'حسبي الله ونعم الوكيل',icon:'🤲'},{text:'اللهم اغفر لي',icon:'🌙'}];
+  var lastIdx=-1;var container=document.getElementById('dhikrFloat');var iconEl=document.getElementById('dhikrIcon');var textEl=document.getElementById('dhikrText');
   if(!container||!iconEl||!textEl)return;
-
-  function pickRandom(){
-    var idx;
-    do{idx=Math.floor(Math.random()*SHORT_ADHKAR.length);}
-    while(idx===lastIdx&&SHORT_ADHKAR.length>1);
-    lastIdx=idx;
-    return SHORT_ADHKAR[idx];
-  }
-
-  function cycle(){
-    var d=pickRandom();
-    textEl.classList.add('fade');
-    setTimeout(function(){
-      iconEl.textContent=d.icon;
-      textEl.textContent=d.text;
-      textEl.classList.remove('fade');
-    },600);
-  }
-
-  setTimeout(function(){
-    var first=pickRandom();
-    iconEl.textContent=first.icon;
-    textEl.textContent=first.text;
-    container.classList.add('show');
-  },5000);
-
+  function pickRandom(){var idx;do{idx=Math.floor(Math.random()*SHORT_ADHKAR.length);}while(idx===lastIdx&&SHORT_ADHKAR.length>1);lastIdx=idx;return SHORT_ADHKAR[idx];}
+  function cycle(){var d=pickRandom();textEl.classList.add('fade');setTimeout(function(){iconEl.textContent=d.icon;textEl.textContent=d.text;textEl.classList.remove('fade');},600);}
+  setTimeout(function(){var first=pickRandom();iconEl.textContent=first.icon;textEl.textContent=first.text;container.classList.add('show');},5000);
   setInterval(cycle,12000);
 })();
+
 </script>
 </body>
 </html>
