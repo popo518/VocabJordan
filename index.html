@@ -133,7 +133,7 @@ input,select{font-family:inherit;color:inherit}
 .sway:nth-child(1){animation-delay:0s}.sway:nth-child(2){animation-delay:.3s}.sway:nth-child(3){animation-delay:.6s}
 .sway:nth-child(4){animation-delay:.9s}.sway:nth-child(5){animation-delay:1.2s}.sway:nth-child(6){animation-delay:.15s}
 @keyframes cardSway{0%,100%{transform:rotate(-1.3deg) translateY(0)}50%{transform:rotate(1.3deg) translateY(-4px)}}
-.unit-card{position:relative;width:clamp(110px,26vw,150px);aspect-ratio:1;border-radius:20px;padding:14px 12px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .3s var(--ease),box-shadow .3s var(--ease);display:flex;flex-direction:column;justify-content:space-between;color:#fff;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.15)}
+.unit-card{position:relative;width:clamp(130px,28vw,160px);aspect-ratio:1;border-radius:20px;padding:14px 12px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .3s var(--ease),box-shadow .3s var(--ease);display:flex;flex-direction:column;justify-content:space-between;color:#fff;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.15)}
 .unit-card:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 18px 45px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.18)}
 .unit-card:active{transform:translateY(-1px) scale(.97)}
 .unit-card::before{content:'';position:absolute;top:-40%;right:-40%;width:180%;height:180%;border-radius:50%;background:radial-gradient(circle at center,rgba(255,255,255,.22),transparent 55%);pointer-events:none;transition:transform .5s var(--ease)}
@@ -333,7 +333,7 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 #motivationModal .motiv-title{font-size:1.5rem;font-weight:900;color:#fbbf24;margin-bottom:8px}
 #motivationModal .motiv-text{font-size:.938rem;font-weight:700;color:var(--text);margin-bottom:20px;line-height:1.6}
 
-/* Stats Screen */
+/* Record Screen */
 .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
 .stat-card{padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:transform .2s}
 .stat-card:hover{transform:translateY(-3px);border-color:var(--border-2)}
@@ -343,29 +343,10 @@ html[data-theme="light"] .theme-dot.active{border-color:#0f172a}
 .stat-bar-container{width:100%;height:6px;border-radius:6px;background:var(--surface-2);margin-top:10px;overflow:hidden}
 .stat-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#6366f1,#8b5cf6);transition:width .4s ease}
 
-/* ═══ لائحة الصدارة ═══ */
-.lb-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--border);margin-bottom:8px;transition:all .2s var(--ease);backdrop-filter:blur(12px)}
-.lb-item.me{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.08));border-color:rgba(139,92,246,.55);box-shadow:0 0 0 1.5px rgba(139,92,246,.35),0 8px 24px rgba(139,92,246,.18)}
-.lb-item.top-1{background:linear-gradient(135deg,rgba(251,191,36,.18),transparent);border-color:rgba(251,191,36,.55)}
-.lb-item.top-2{background:linear-gradient(135deg,rgba(203,213,225,.15),transparent);border-color:rgba(203,213,225,.45)}
-.lb-item.top-3{background:linear-gradient(135deg,rgba(217,119,6,.15),transparent);border-color:rgba(217,119,6,.45)}
-.lb-rank{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:'Inter',sans-serif;font-weight:900;font-size:1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);flex-shrink:0;color:var(--text-2)}
-.lb-item.top-1 .lb-rank{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a1200;border-color:transparent;font-size:1.25rem;box-shadow:0 4px 14px rgba(251,191,36,.45)}
-.lb-item.top-2 .lb-rank{background:linear-gradient(135deg,#e2e8f0,#94a3b8);color:#1e293b;border-color:transparent;font-size:1.25rem}
-.lb-item.top-3 .lb-rank{background:linear-gradient(135deg,#d97706,#b45309);color:#fff;border-color:transparent;font-size:1.25rem}
-.lb-item.me .lb-rank{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent}
-.lb-info{flex:1;min-width:0}
-.lb-name{font-size:.938rem;font-weight:800;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lb-meta{font-size:.688rem;color:var(--text-3);font-weight:600;margin-top:2px;font-family:'Inter',sans-serif;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.lb-xp{font-family:'Inter',sans-serif;font-size:.875rem;font-weight:900;color:#a5b4fc;white-space:nowrap}
-.lb-item.top-1 .lb-xp{color:#fbbf24}
-.lb-item.me .lb-xp{color:#a78bfa}
-.lb-badge{display:inline-flex;align-items:center;padding:1px 7px;border-radius:99px;background:rgba(99,102,241,.15);color:#a5b4fc;font-size:.563rem;font-weight:800;border:1px solid rgba(99,102,241,.3)}
-.lb-item.me .lb-badge{background:rgba(139,92,246,.25);color:#c4b5fd;border-color:rgba(139,92,246,.5)}
-.lb-me-card{text-align:center;padding:16px;margin-bottom:16px;background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.08));border:1px solid rgba(139,92,246,.4);border-radius:16px;backdrop-filter:blur(12px)}
-.lb-me-card .lb-me-icon{font-size:2.5rem;line-height:1;margin-bottom:6px}
-.lb-me-card .lb-me-rank{font-size:1.5rem;font-weight:900;color:#a5b4fc}
-.lb-me-card .lb-me-label{font-size:.813rem;color:var(--text-3);font-weight:600;margin-top:4px}
+/* Footer */
+.app-footer{text-align:center;margin-top:auto;padding:20px 0 10px;font-size:.75rem;color:var(--text-4);font-weight:600}
+.app-footer a{color:#a5b4fc;text-decoration:none;font-weight:800;display:inline-flex;align-items:center;gap:5px;margin-bottom:6px;transition:color .2s}
+.app-footer a:hover{color:#8b5cf6}
 
 /* ═══ شريط الذكر الخفيف ═══ */
 #dhikrFloat{position:fixed;bottom:calc(48px + var(--safe-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:99px;background:rgba(20,24,36,.55);backdrop-filter:blur(14px) saturate(140%);border:1px solid rgba(139,92,246,.18);color:var(--text-3);font-size:.688rem;font-weight:700;font-family:'Tajawal',sans-serif;letter-spacing:.2px;pointer-events:none;z-index:99;opacity:0;transition:opacity 1.2s ease;user-select:none;white-space:nowrap;max-width:calc(100vw - 40px)}
@@ -374,30 +355,69 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
 #dhikrFloat .df-icon{font-size:.813rem;line-height:1;}
 #dhikrFloat .df-text{transition:opacity .6s ease,transform .6s ease;}
 #dhikrFloat .df-text.fade{opacity:0;transform:translateY(-4px);}
-@media (max-width:420px){
-  .quality-float{bottom:calc(56px + var(--safe-bottom));padding:4px 5px;gap:3px}
-  .quality-btn{padding:5px 8px;font-size:.625rem;gap:3px}
-  .quality-btn .q-emoji{font-size:.75rem}
-  #dhikrFloat{font-size:.625rem;padding:4px 11px;gap:5px;}
-  #dhikrFloat .df-icon{font-size:.75rem;}
-  .stat-value{font-size:1.25rem}
+
+/* ═══ إصلاحات الجوال الشاملة (Mobile Responsiveness) ═══ */
+@media (max-width: 600px) {
+  /* الحاوية الرئيسية */
+  .content-wrap { padding: 10px 12px 160px 12px !important; }
+  
+  /* شريط العناوين العلوي */
+  .topbar { padding: 10px 10px; padding-top: calc(10px + var(--safe-top)); }
+  .brand-logo { width: 32px; height: 32px; font-size: 0.85rem; }
+  .brand-name { font-size: 0.8rem; }
+  .brand-sub { display: none; }
+  .topbar-actions { gap: 4px; }
+  .xp-pill { padding: 5px 7px; font-size: 0.65rem; }
+  .xp-pill .lv { font-size: 0.55rem; padding: 1px 4px; }
+  .install-pill { padding: 0 8px; min-height: 36px; width: 36px; justify-content: center; }
+  .install-pill .inst-text { display: none; }
+  .install-pill .inst-emoji { font-size: 1rem; margin: 0; }
+  .topbar-actions .icon-btn { width: 36px !important; height: 36px !important; }
+  
+  /* شبكة البطاقات - نستخدم Grid بدلاً من Flexbox */
+  .boxes-grid { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px !important; 
+    align-content: flex-start !important; 
+    justify-content: stretch !important;
+    height: auto !important;
+  }
+  
+  /* البطاقات (الوحدات والاعدادات) */
+  .unit-card, .box-card { 
+    width: 100% !important; 
+    max-width: none !important; 
+    aspect-ratio: auto !important; 
+    min-height: 130px !important;
+    padding: 12px !important;
+  }
+  .uc-title, .box-title { font-size: 0.85rem !important; line-height: 1.2; }
+  .uc-num, .box-num { font-size: 0.55rem !important; }
+  .uc-meta, .box-desc { font-size: 0.65rem !important; margin-top: 4px; }
+  
+  /* الأزرار العائمة السفلية */
+  .quality-float { bottom: calc(55px + var(--safe-bottom)) !important; padding: 4px 6px; }
+  .quality-btn { padding: 5px 8px; font-size: 0.65rem; }
+  .quality-btn .q-text { display: none; }
+  .theme-float { padding: 5px 8px; gap: 5px; }
+  .theme-dot { width: 20px; height: 20px; }
+  
+  /* السجل والفوتر */
+  .app-footer { margin-top: 15px; padding: 10px 0; font-size: 0.7rem; }
+  .action-btn { font-size: 0.75rem; min-height: 42px; padding: 8px 12px; }
+  
+  /* شاشة الأسئلة */
+  .q-opt { padding: 10px; font-size: 0.8rem; }
+  .quiz-prompt { font-size: 0.9rem; }
+  .quiz-prompt.big { font-size: 1.2rem; }
+  .stats-grid { grid-template-columns: 1fr; gap: 8px; }
 }
-@media (max-width:330px){.quality-btn .q-text{display:none}}
-@media (max-height:640px){.box-card,.unit-card{width:clamp(100px,25vw,140px)}.step-title h2{font-size:1.063rem}}
-@media (max-width:420px){
-  .box-card,.unit-card{width:clamp(105px,29vw,140px);border-radius:18px;padding:12px 11px}
-  .box-title,.uc-title{font-size:.813rem}
-  .box-desc{font-size:.625rem}
-  .topbar{padding:12px 12px;padding-top:calc(12px + var(--safe-top));gap:6px}
-  .brand-sub{display:none}
-  .install-pill{padding:0 10px;font-size:.688rem;gap:3px;min-height:38px}
-  .install-pill .inst-text{font-size:.688rem;display:inline-block}
-  .xp-pill{padding:5px 8px;font-size:.656rem}
-  .xp-pill .lv{font-size:.563rem;padding:1px 4px}
-  .icon-btn{width:38px;height:38px;font-size:.938rem;border-radius:10px}
-  .count-grid{grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px}
-  .count-tile .ct-num{font-size:1.35rem}
+
+@media (max-height: 640px) {
+  .unit-card, .box-card { min-height: 110px !important; }
 }
+
 @media (prefers-reduced-motion: reduce){
   .screen{animation:none !important}
   .sway{animation:none !important;transform:none !important}
@@ -464,17 +484,26 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
     <div class="topbar">
       <div class="brand"><div class="brand-logo">V</div><div><div class="brand-name">VocabJordan</div><div class="brand-sub">مفردات 2009 متقدم</div></div></div>
       <div class="topbar-actions">
+        <!-- زر السجل الجديد (صغير) -->
+        <button class="icon-btn" onclick="openRecord()" aria-label="السجل" style="width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; background:var(--surface); border:1px solid var(--border); cursor:pointer; flex-shrink:0;">📊</button>
         <button class="install-pill" id="installBtn" aria-label="تثبيت التطبيق"><span class="inst-emoji">📲</span><span class="inst-text">تثبيت</span></button>
-        <div class="xp-pill" id="xpPill" onclick="openStats()"><span class="lv" id="xpLv">Lv.1</span> <span id="xpPts">0</span> XP</div>
+        <div class="xp-pill" id="xpPill" onclick="openRecord()"><span class="lv" id="xpLv">Lv.1</span> <span id="xpPts">0</span> XP</div>
       </div>
     </div>
-    <div class="content-wrap" style="padding-bottom:calc(100px + var(--safe-bottom))">
+    
+    <div class="content-wrap">
       <div class="step-title" style="text-align:center"><span class="st-label">VOCAB</span><h2>وين بدك <span style="background:linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent">تبدأ اليوم؟</span></h2><p>اختر وحدة</p></div>
-      <div style="display:flex;gap:8px;margin:0 0 14px">
-        <button class="action-btn ghost" onclick="openStats()" style="flex:1;font-size:.75rem;min-height:42px;padding:8px 10px">📊 إحصائياتي</button>
-        <button class="action-btn ghost" onclick="openLeaderboard()" style="flex:1;font-size:.75rem;min-height:42px;padding:8px 10px">🏆 الصدارة</button>
-      </div>
+      
       <div class="boxes-grid" id="unitsGrid"></div>
+      
+      <!-- Footer -->
+      <div class="app-footer">
+        <a href="https://www.instagram.com/the_umbra00/#" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @the_umbra00
+        </a>
+        <div>© 2026 VocabJordan. جميع الحقوق محفوظة.</div>
+      </div>
     </div>
   </div>
 
@@ -488,6 +517,7 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
     <div class="legend"><div class="legend-item star"><div class="legend-icon">⭐</div><div class="legend-text"><div class="legend-title">سهلة</div><div class="legend-desc">تعرفها وتحفظها</div></div></div><div class="legend-item flag"><div class="legend-icon">🚩</div><div class="legend-text"><div class="legend-title">صعبة</div><div class="legend-desc">تحتاج مراجعة</div></div></div></div>
     <div class="content-wrap" style="padding-top:8px"><div class="scroll-area"><div id="markSectionsGrid" style="display:flex;flex-direction:column;gap:10px"></div></div></div>
   </div>
+  
   <div id="scr-vocab-mark" class="screen">
     <div class="unit-header"><button class="icon-btn" onclick="go('vocab-sections')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label" id="markLabel">SECTION</div><div class="uh-title" id="markTitle">القسم</div></div></div>
     <div class="content-wrap" style="padding-top:8px"><div class="scroll-area"><div class="vocab-list" id="vocabList"></div></div></div>
@@ -499,18 +529,21 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
     <div class="content-wrap" style="padding-top:6px"><div class="step-title" style="padding:0 0 10px"><h2 style="font-size:1rem">اختر الأقسام</h2><p>اختر قسم كامل أو أكثر</p></div><div class="scroll-area"><div id="sectionsGrid" style="display:flex;flex-direction:column;gap:8px;padding:4px 0"></div></div></div>
     <div class="bottom-bar"><button class="action-btn ghost" onclick="selectAllSections()">تحديد الكل</button><button class="action-btn" id="sectionsNext" onclick="toQTypes()" disabled>التالي ←</button></div>
   </div>
+  
   <div id="scr-quiz-types" class="screen">
     <div class="unit-header"><button class="icon-btn" onclick="go('quiz-sections')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STEP 2 · 4</div><div class="uh-title">نوع الأسئلة</div></div></div>
     <div class="progress-line"><div class="progress-label"><span>2 من 4</span><span>50%</span></div><div class="progress-track"><div class="progress-fill" style="width:50%"></div></div></div>
     <div class="content-wrap" style="padding-top:6px"><div class="step-title" style="padding:0 0 10px"><h2 style="font-size:1rem">اختر نوع الأسئلة</h2><p>حسب الكلمات المتوفرة في الأقسام المختارة</p></div><div class="boxes-grid top" id="qTypesGrid"></div></div>
     <div class="bottom-bar"><button class="action-btn" id="qTypesNext" onclick="toQCount()" disabled>التالي ←</button></div>
   </div>
+  
   <div id="scr-quiz-count" class="screen">
     <div class="unit-header"><button class="icon-btn" onclick="go('quiz-types')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STEP 3 · 4</div><div class="uh-title">عدد الأسئلة</div></div></div>
     <div class="progress-line"><div class="progress-label"><span>3 من 4</span><span>75%</span></div><div class="progress-track"><div class="progress-fill" style="width:75%"></div></div></div>
     <div class="content-wrap" style="padding-top:6px"><div class="step-title" style="padding:0 0 10px"><h2 style="font-size:1rem">كم سؤال؟</h2><p>اختر عدد الأسئلة أو أدخل رقماً مخصصاً</p></div><div class="scroll-area"><div class="avail-panel" id="availPanel"></div><div class="count-grid" id="qCountGrid"></div></div></div>
     <div class="bottom-bar"><button class="action-btn" id="qCountNext" onclick="toQCorrection()" disabled>التالي ←</button></div>
   </div>
+  
   <div id="scr-quiz-correction" class="screen">
     <div class="unit-header"><button class="icon-btn" onclick="go('quiz-count')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STEP 4 · 4</div><div class="uh-title">نوع التصليح</div></div></div>
     <div class="progress-line"><div class="progress-label"><span>4 من 4</span><span>100%</span></div><div class="progress-track"><div class="progress-fill" style="width:100%"></div></div></div>
@@ -524,19 +557,22 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
     <div class="content-wrap"><div class="scroll-area" style="padding-top:8px"><div id="qzBody"></div></div></div>
     <div class="bottom-bar" id="qzBottomBar"></div>
   </div>
+  
   <div id="scr-quiz-review" class="screen">
     <div class="unit-header"><button class="icon-btn" onclick="backFromReview()" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">REVIEW</div><div class="uh-title">راجع إجاباتك</div></div></div>
     <div class="content-wrap"><div class="step-title" style="padding:8px 4px 14px"><h2 style="font-size:1rem">راجع إجاباتك</h2><p>اضغط على أي سؤال لتعديل إجابتك</p></div><div class="scroll-area"><div id="reviewNavList"></div></div></div>
     <div class="bottom-bar"><button class="action-btn success" onclick="finishFromReview()">✅ إنهاء وعرض النتيجة</button></div>
   </div>
+  
   <div id="scr-results" class="screen">
     <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="الرئيسية">⌂</button><div class="uh-info"><div class="uh-label">RESULTS</div><div class="uh-title">النتيجة</div></div></div>
     <div class="content-wrap"><div class="scroll-area" id="resultsBody" style="padding-top:8px"></div></div>
     <div class="bottom-bar" id="resultsBottomBar"></div>
   </div>
 
-  <div id="scr-stats" class="screen">
-    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">STATISTICS</div><div class="uh-title">إحصائياتي</div></div></div>
+  <!-- شاشة السجل -->
+  <div id="scr-record" class="screen">
+    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">MY RECORD</div><div class="uh-title">السجل</div></div></div>
     <div class="content-wrap" style="padding-top:8px">
       <div class="scroll-area">
         <div style="text-align:center;margin-bottom:20px">
@@ -563,13 +599,6 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
       </div>
     </div>
   </div>
-
-  <div id="scr-leaderboard" class="screen">
-    <div class="unit-header"><button class="icon-btn" onclick="go('home')" aria-label="رجوع">→</button><div class="uh-info"><div class="uh-label">LEADERBOARD</div><div class="uh-title">🏆 لائحة الصدارة</div></div></div>
-    <div class="content-wrap" style="padding-top:8px">
-      <div class="scroll-area"><div id="leaderboardList"></div></div>
-    </div>
-  </div>
 </div>
 
 <div class="quality-float" id="qualityBar" role="group" aria-label="جودة العرض">
@@ -589,7 +618,9 @@ html[data-theme="light"] #dhikrFloat{background:rgba(255,255,255,.65);border-col
   <button class="theme-dot td-8" data-t="ocean" aria-label="ثيم محيط"></button>
 </div>
 
-<div id="toast" role="status" aria-live="polite"></div><script>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
 'use strict';
 
 // ==================== VOCAB DATA ====================
@@ -670,7 +701,6 @@ var VOCAB=[
       {t:'reflect', m:'يفكر بعمق / يتأمل'}
     ]}
   ]},
-
   {unit:'الوحدة الثانية', sections:[
     {title:'Verbs of movement', words:[
       {t:'surge', m:'يندفع بقوة'},{t:'lurch', m:'يتحرك فجأة بشكل غير متوازن'},{t:'hobble', m:'يعرج'},
@@ -753,7 +783,6 @@ var VOCAB=[
       {t:'sweep along with the crowds', m:'يُسحب مع مجموعة دون سيطرة (مجازي)'}
     ]}
   ]},
-
   {unit:'الوحدة الثالثة', sections:[
     {title:'Business-related vocabulary', words:[
       {t:'quote', m:'السعر المقدّر / عرض السعر', e:'the estimated price that will be charged for a service'},
@@ -1146,7 +1175,6 @@ var BOOK_QUESTIONS=[
   {unitIdx:2, sectionIdx:6, prompt:'Asking a series of questions where the answer is intended to be "Yes" is called:', options:['framing','reciprocation','social proof','"yes questions"'], answer:'"yes questions"'}
 ];
 
-// ==================== LOCKED & QUALITY PRESETS ====================
 var LOCKED_UNITS=[];
 var floatWrappers=[];
 var floatLayers=[];
@@ -1172,7 +1200,9 @@ var state={
 };
 
 var soundOn=true;
-var audioCtx=null;// ==================== AUDIO & SOUNDS ====================
+var audioCtx=null;
+
+// ==================== AUDIO ====================
 function getCtx(){if(audioCtx){if(audioCtx.state==='suspended')try{audioCtx.resume()}catch(e){}return audioCtx}try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')try{audioCtx.resume()}catch(e){}}catch(e){}return audioCtx}
 function tone(freq,dur,type,vol,delay){if(!soundOn)return;type=type||'sine';vol=vol||0.06;delay=delay||0;var ctx=getCtx();if(!ctx)return;try{var start=ctx.currentTime+delay;var osc=ctx.createOscillator();var gain=ctx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,start);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(vol,start+0.01);gain.gain.exponentialRampToValueAtTime(0.0001,start+dur);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);osc.stop(start+dur+0.02)}catch(e){}}
 function sfxClick(){tone(1100,0.05,'sine',0.04)}
@@ -1187,13 +1217,18 @@ function sfxToggleOn(){tone(740,0.07,'sine',0.06);tone(1046,0.09,'sine',0.045,0.
 function sfxToggleOff(){tone(520,0.07,'sine',0.045);tone(370,0.08,'sine',0.035,0.04)}
 function sfxBubble(){var f=700+Math.random()*600;tone(f,0.18,'sine',0.045)}
 
-// ==================== SPLASH & DHIKR ====================
+// ==================== SPLASH / DHIKR ====================
 var ADHKAR=[
-  {text:'سبحان الله',icon:'📿',type:'تسبيح'},{text:'الحمد لله',icon:'🤍',type:'حمد'},
-  {text:'الله أكبر',icon:'✨',type:'تكبير'},{text:'لا إله إلا الله',icon:'☪️',type:'توحيد'},
-  {text:'أستغفر الله',icon:'🤲',type:'استغفار'},{text:'اللهم صل على محمد',icon:'🕌',type:'صلاة على النبي'},
-  {text:'لا حول ولا قوة إلا بالله',icon:'🌟',type:'ذكر'},{text:'سبحان الله وبحمده',icon:'📿',type:'تسبيح'},
-  {text:'حسبي الله ونعم الوكيل',icon:'🤲',type:'ذكر'},{text:'اللهم اغفر لي',icon:'🌙',type:'استغفار'}
+  {text:'سبحان الله',icon:'📿',type:'تسبيح'},
+  {text:'الحمد لله',icon:'🤍',type:'حمد'},
+  {text:'الله أكبر',icon:'✨',type:'تكبير'},
+  {text:'لا إله إلا الله',icon:'☪️',type:'توحيد'},
+  {text:'أستغفر الله',icon:'🤲',type:'استغفار'},
+  {text:'اللهم صل على محمد',icon:'🕌',type:'صلاة على النبي'},
+  {text:'لا حول ولا قوة إلا بالله',icon:'🌟',type:'ذكر'},
+  {text:'سبحان الله وبحمده',icon:'📿',type:'تسبيح'},
+  {text:'حسبي الله ونعم الوكيل',icon:'🤲',type:'ذكر'},
+  {text:'اللهم اغفر لي',icon:'🌙',type:'استغفار'}
 ];
 var lastDhikrIdx=-1;
 function getRandomDhikr(){var idx;do{idx=Math.floor(Math.random()*ADHKAR.length)}while(idx===lastDhikrIdx&&ADHKAR.length>1);lastDhikrIdx=idx;return ADHKAR[idx]}
@@ -1213,7 +1248,7 @@ function initSplash(){
   }catch(e){hideNow();}
 }
 
-// ==================== HELPERS & MODALS ====================
+// ==================== HELPERS ====================
 function shuffle(a){var x=a.slice();for(var i=x.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x[i];x[i]=x[j];x[j]=t}return x}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 var toastTimer;
@@ -1224,8 +1259,7 @@ var confirmResolver=null;
 function customConfirm(title,text,okText){
   return new Promise(function(resolve){
     var m=document.getElementById('confirmModal');if(!m){resolve(true);return;}
-    document.getElementById('cmTitle').textContent=title||'تأكيد';document.getElementById('cmText').textContent=text||'هل أنت متأكد؟';document.getElementById('cmOk').textContent=okText||'تأكيد';
-    m.classList.add('show');confirmResolver=resolve;
+    document.getElementById('cmTitle').textContent=title||'تأكيد';document.getElementById('cmText').textContent=text||'هل أنت متأكد؟';document.getElementById('cmOk').textContent=okText||'تأكيد';m.classList.add('show');confirmResolver=resolve;
   });
 }
 var countResolver=null;var countMaxAllowed=1;
@@ -1242,7 +1276,7 @@ function closeCountModal(ok){
 }
 
 // ==================== STORAGE & XP ====================
-var PREFS_KEY='vf_prefs_v21',XP_KEY='vf_xp_v21',THEME_KEY='vf_theme_v21',FS_KEY='vf_fs_v21',STATS_KEY='vf_stats_v21',NAME_KEY='vj_username';
+var PREFS_KEY='vf_prefs_v21',XP_KEY='vf_xp_v21',THEME_KEY='vf_theme_v21',FS_KEY='vf_fs_v21',STATS_KEY='vf_stats_v21';
 function saveSetting(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function loadSetting(k){try{return localStorage.getItem(k)}catch(e){return null}}
 
@@ -1280,7 +1314,6 @@ function updateXPDisplay(){
 
 function addXP(n){
   var oldLevel = getLevel();state.xp += n;saveXP();updateXPDisplay();var newLevel = getLevel();
-  syncXpToCloud(); // Sync to cloud after adding XP
   if(newLevel > oldLevel){if(newLevel % 50 === 0){showMotivation(newLevel);}}
 }
 
@@ -1305,7 +1338,7 @@ function speak(text){
   try{window.speechSynthesis.cancel();setTimeout(function(){try{var u=new SpeechSynthesisUtterance(clean);u.lang='en-US';u.rate=0.85;u.pitch=1.0;u.volume=1.0;var voice=pickEnglishVoice();if(voice)u.voice=voice;window.speechSynthesis.speak(u);}catch(e){}},60);}catch(e){}
 }
 
-// ==================== UI EFFECTS (BACKGROUND) ====================
+// ==================== UI EFFECTS ====================
 function applyQuality(){
   try{
     document.documentElement.setAttribute('data-quality', state.quality);
@@ -1360,115 +1393,6 @@ function initParallax(){
     function step(){var dx=pxT-px;var dy=pyT-py;if(Math.abs(dx)<0.0015&&Math.abs(dy)<0.0015){px=pxT;py=pyT;apply();raf=null;return}px+=dx*0.075;py+=dy*0.075;apply();raf=requestAnimationFrame(step)}
     window.addEventListener('mousemove',function(e){var now=performance.now();if(now-lastRun<33)return;lastRun=now;pxT=(e.clientX/window.innerWidth-0.5)*2;pyT=(e.clientY/window.innerHeight-0.5)*2;if(!raf)raf=requestAnimationFrame(step)},{passive:true});
   }catch(e){}
-}
-
-// ==================== SUPABASE & LEADERBOARD ====================
-var supabase = null;
-
-// Initialize Supabase when library loads
-setTimeout(function() {
-  if (window.supabase) {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    subscribeToLeaderboard();
-  }
-}, 1000); // Small delay to ensure script tag from Part 1 is fully parsed
-
-function getCurrentUsername() {
-  var name = localStorage.getItem(NAME_KEY);
-  if (!name) {
-    name = prompt('أدخل اسمك للائحة الصدارة:') || 'لاعب ' + Math.floor(Math.random() * 1000);
-    localStorage.setItem(NAME_KEY, name);
-  }
-  return name;
-}
-
-async function syncXpToCloud() {
-  if (!supabase) return;
-  var username = getCurrentUsername();
-  try {
-    var { data, error } = await supabase.from('profiles').select('id, xp').eq('username', username).single();
-    if (error && error.code !== 'PGRST116') { // PGRST116 means no rows found
-      console.warn('Supabase select error:', error);
-      return;
-    }
-    if (data) {
-      if (state.xp > data.xp) {
-        await supabase.from('profiles').update({ xp: state.xp, updated_at: new Date().toISOString() }).eq('id', data.id);
-      }
-    } else {
-      await supabase.from('profiles').insert([{ username: username, xp: state.xp }]);
-    }
-  } catch (e) { console.log('Sync err:', e); }
-}
-
-function subscribeToLeaderboard() {
-  if (!supabase) return;
-  supabase.channel('public:profiles').on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, function() {
-    if (document.getElementById('scr-leaderboard').classList.contains('active')) {
-      renderLeaderboard();
-    }
-  }).subscribe();
-}
-
-function openLeaderboard() { sfxNav(); renderLeaderboard(); go('leaderboard'); }
-
-async function renderLeaderboard() {
-  var el = document.getElementById('leaderboardList');
-  if (!el) return;
-  el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-3)">جاري تحميل المنافسين...</div>';
-
-  var allPlayers = [];
-  var myName = getCurrentUsername();
-
-  // 1. Add Bots
-  REALISTIC_BOTS.forEach(function(bot) {
-    allPlayers.push({ name: bot.name, xp: getCurrentBotXp(bot), isBot: true, isMe: false });
-  });
-
-  // 2. Add Me (Immediately so user is always there)
-  allPlayers.push({ name: myName, xp: state.xp, isBot: false, isMe: true });
-
-  // 3. Fetch Real Users
-  if (supabase) {
-    try {
-      var { data, error } = await supabase.from('profiles').select('username, xp').order('xp', { ascending: false }).limit(50);
-      if (!error && data) {
-        data.forEach(function(user) {
-          // Don't duplicate me if I'm already in DB
-          if (user.username !== myName) {
-            allPlayers.push({ name: user.username, xp: user.xp, isBot: false, isMe: false });
-          }
-        });
-      }
-    } catch (e) { console.warn('Fetch err:', e); }
-  }
-
-  // Sort
-  allPlayers.sort(function(a, b) { return b.xp - a.xp; });
-
-  var myIdx = allPlayers.findIndex(function(p) { return p.isMe; });
-  var myRank = myIdx + 1;
-
-  var header = '<div class="lb-me-card"><div class="lb-me-icon">🎯</div><div class="lb-me-rank">#' + myRank + '</div><div class="lb-me-label">ترتيبك من ' + allPlayers.length + ' متنافس · ' + state.xp + ' XP</div></div>';
-
-  var rows = allPlayers.map(function(p, idx) {
-    var rank = idx + 1;
-    var rankLabel = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : String(rank);
-    var cls = 'lb-item';
-    if (rank <= 3) cls += ' top-' + rank;
-    if (p.isMe) cls += ' me';
-    var lv = Math.floor(p.xp / 100) + 1;
-    var badge = p.isMe ? '<span class="lb-badge">أنت</span>' : (p.isBot ? '<span class="lb-badge" style="opacity:0.6">منافس</span>' : '');
-    
-    return '<div class="' + cls + '">' +
-      '<div class="lb-rank">' + rankLabel + '</div>' +
-      '<div class="lb-info"><div class="lb-name">' + esc(p.name) + ' ' + badge + '</div>' +
-      '<div class="lb-meta"><span>Lv.' + lv + '</span><span>•</span><span>' + p.xp + ' XP</span></div></div>' +
-      '<div class="lb-xp">' + p.xp + '</div>' +
-    '</div>';
-  }).join('');
-
-  el.innerHTML = header + rows;
 }
 
 // ==================== NAVIGATION ====================
@@ -1650,9 +1574,9 @@ function finishQuiz(){
 }
 function retryMissed(){if(!state.missedQuestions||!state.missedQuestions.length){toast('🎉 لا توجد أسئلة مخطئة');return;}sfxNav();state.quiz={questions:state.missedQuestions.map(function(q){return {kind:q.kind,prompt:q.prompt,options:q.options.slice(),answer:q.answer,optionsRTL:q.optionsRTL,promptRTL:q.promptRTL,term:q.term,meaning:q.meaning,user:null,answered:false};}),idx:0,correct:0,correction:state.selectedCorrection,cameFromReview:false};var isEnd=state.quiz.correction==='end';document.getElementById('qzLabel').textContent=isEnd?'إعادة - بالنهاية':'إعادة المخطئة';document.getElementById('qzProgress').textContent='1 / '+state.quiz.questions.length;document.getElementById('qzCorrect').textContent='0';document.getElementById('qzScoreChip').style.display=isEnd?'none':'inline-flex';go('quiz');renderQuizQuestion();}
 
-// ==================== STATS SCREEN ====================
-function openStats(){sfxNav();renderStats();go('stats');}
-function renderStats(){
+// ==================== RECORD SCREEN ====================
+function openRecord(){sfxNav();renderRecord();go('record');}
+function renderRecord(){
   var lv = getLevel(), xpProg = getXpProgress();
   document.getElementById('statsLevelDisplay').textContent = lv;document.getElementById('statsXpCurrent').textContent = xpProg.current;document.getElementById('statsXpMax').textContent = xpProg.max;document.getElementById('statsXpBar').style.width = ((xpProg.current / xpProg.max) * 100) + '%';
   document.getElementById('statQuizzes').textContent = state.stats.quizzes;document.getElementById('statCorrect').textContent = state.stats.correct;document.getElementById('statWrong').textContent = state.stats.wrong;
@@ -1673,7 +1597,6 @@ function initApp(){
   try{history.replaceState({screen:'home'},'','#home')}catch(e){}
   var qb=document.getElementById('qualityBar');if(qb)qb.classList.add('show');
 
-  // Modals & Buttons
   document.getElementById('cmOk').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(true);confirmResolver=null;}sfxTap();});
   document.getElementById('cmCancel').addEventListener('click',function(){document.getElementById('confirmModal').classList.remove('show');if(confirmResolver){confirmResolver(false);confirmResolver=null;}sfxClick();});
   document.getElementById('countOk').addEventListener('click',function(){sfxTap();closeCountModal(true)});
@@ -1683,7 +1606,6 @@ function initApp(){
   document.querySelectorAll('.theme-dot').forEach(function(btn){btn.addEventListener('click',function(){sfxClick();state.theme=btn.dataset.t;applyTheme();document.querySelectorAll('.theme-dot').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');savePrefs();});});
   document.querySelectorAll('.quality-btn').forEach(function(btn){btn.addEventListener('click',function(){var q=btn.dataset.q;if(state.quality===q)return;state.quality=q;savePrefs();applyQuality();sfxToggleOn();var names={low:'🍃 منخفضة',medium:'⚡ متوسطة',high:'✨ عالية'};toast('جودة العرض: '+names[q]);});});
 
-  // Global Click Effects
   document.addEventListener('click',function(e){
     var target=e.target;if(target.closest('button')||target.closest('.box-card')||target.closest('.unit-card')||target.closest('.vocab-item')||target.closest('.mini-box')||target.closest('.q-opt')||target.closest('input')||target.closest('.theme-float')||target.closest('.quality-float')||target.closest('.review-nav-item'))return;
     try{var ripple=document.createElement('div');ripple.className='click-ripple'+(Math.random()<0.5?' alt':'');ripple.style.left=e.clientX+'px';ripple.style.top=e.clientY+'px';document.body.appendChild(ripple);setTimeout(function(){ripple.remove()},900)}catch(err){}
@@ -1692,7 +1614,6 @@ function initApp(){
   },true);
 }
 
-// ==================== START ====================
 try{applyQuality()}catch(e){}
 try{initSplash()}catch(e){if(window.__hideSplash)window.__hideSplash();}
 try{initApp()}catch(e){}
@@ -1708,7 +1629,6 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(reg){console.log('SW registered!',reg)}).catch(function(err){console.log('SW registration failed:',err)});});
 }
 
-// Floating Dhikr
 (function(){
   var SHORT_ADHKAR=[{text:'سبحان الله',icon:'📿'},{text:'الحمد لله',icon:'🤍'},{text:'الله أكبر',icon:'✨'},{text:'لا إله إلا الله',icon:'☪️'},{text:'أستغفر الله',icon:'🤲'},{text:'اللهم صل على محمد',icon:'🕌'},{text:'لا حول ولا قوة إلا بالله',icon:'🌟'},{text:'سبحان الله وبحمده',icon:'📿'},{text:'حسبي الله ونعم الوكيل',icon:'🤲'},{text:'اللهم اغفر لي',icon:'🌙'}];
   var lastIdx=-1;var container=document.getElementById('dhikrFloat');var iconEl=document.getElementById('dhikrIcon');var textEl=document.getElementById('dhikrText');
