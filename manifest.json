@@ -1,19 +1,27 @@
 {
-  "name": "VocabJordan — مفردات 2009 متقدم",
-  "short_name": "VocabJordan",
-  "description": "مراجعة المفردات الذكية — 2009 متقدم",
+  "id": "./",
+  "name": "مِرْقاة",
+  "short_name": "مِرْقاة",
+  "description": "تطبيق عربي محلي لتنظيم المهام، مع دليل استخدام تفاعلي ونسخ احتياطي، دون حساب أو كلمة مرور.",
+  "lang": "ar",
+  "dir": "rtl",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#0a0c11",
-  "theme_color": "#6366f1",
-  "lang": "ar",
-  "dir": "rtl",
-  "categories": ["education", "productivity"],
+  "background_color": "#121417",
+  "theme_color": "#121417",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
