@@ -1,68 +1,34 @@
-# VocabJordan Calm Studio v4 — تقرير التغييرات والفحص
+# VocabJordan Aurora Space v6 — QA Report
 
-تاريخ التنفيذ: 7 نوفمبر 2026
+## Scope
+This release adds a space-themed animated backdrop to Aurora v5. It does not change vocabulary data, question banks, learning modes, spaced-review logic, statistics, favorites, sound controls, or local student-data schemas.
 
-## التغييرات المنفذة
+## Visual layer
+- 3 slow-moving nebula layers (violet, cyan, rose) with elliptical edge masks to avoid visible rectangular layer boundaries.
+- 1 low-contrast galaxy/ellipse layer.
+- 3 starfield layers with different density and drift speed.
+- 1 distant planet with a subdued orbital ring.
+- 2 intermittent shooting-star streaks.
+- Floating vocabulary words follow different horizontal paths while scaling gradually to simulate depth.
+- 10 words on desktop and 8 on tablet/mobile.
 
-### الهوية البصرية
-- أُعيد تصميم الواجهة بدرجات داكنة هادئة ومحايدة، مع تخفيض التشبع والتوهج والظلال.
-- أزيل شريط اختيار ألوان الثيمات وشريط جودة العرض من أسفل الشاشة، وحُذفت عناصرهما وآليات التحكم القديمة من التطبيق.
-- أزيلت الكلمات الطافية وجزيئات الغبار والكرات الضوئية والـparallax ومؤثرات النقر العشوائية.
-- أزيلت عمليات بناء عناصر الخلفية المتحركة عند بدء التطبيق؛ لم تعد تُنشأ عناصر خلفية مخفية أو تُدار لها حلقات حركة.
-- أصبحت بطاقات الوحدات موحدة، مع خط جانبي دقيق منخفض التشبع يميّز كل وحدة.
-- أصبحت شبكة الرئيسية 3 أعمدة على الشاشات الكبيرة وعمودين على الشاشات المتوسطة والصغيرة.
-- أضيفت انتقالات قصيرة وهادئة للشاشات والأزرار والبطاقات وأشرطة التقدم. واحترام إعداد تقليل الحركة في نظام التشغيل مفعّل.
-- خُفّض وقت شاشة البداية وأُلغي تبديل الذكر المتكرر أثناء التحميل.
+## Performance and interaction safeguards
+- Decorative layers use `pointer-events: none` and are behind the app content.
+- Motion uses CSS transforms and opacity; no continuous JavaScript animation loop was added.
+- All decorative motion pauses while the document is hidden.
+- With `prefers-reduced-motion: reduce`, the nebula/star/galaxy/planet layers remain static, while comets and moving words are hidden.
+- PWA cache identifier updated to `vocabjordan-v14`; manifest colors updated to match the deep-space background.
 
-### الصوت
-- استُبدلت نغمات الواجهة السابقة بنغمات sine قصيرة منخفضة المستوى.
-- أصبحت نغمة الإجابة الخاطئة مفردة وهادئة بدل نغمتين هابطتين، وأصبحت نغمة الصحيح والتنقل والتبديل مختصرة وأقل حدّة.
-- أزيل الصوت العشوائي عند النقر على خلفية التطبيق.
-- أضيف زر سماعة في الشريط العلوي لتشغيل الأصوات وإيقافها، مع حفظ الإعداد.
-- لا يوجد تشغيل تلقائي لموسيقى أو صوت خلفية. لا يصدر صوت إلا بسبب تفاعل داخل الواجهة.
+## Chromium checks
+- All 3 inline JavaScript blocks passed `node --check`.
+- Rendered at 1366×900, 768×1024, 390×844, and 320×740.
+- Word counts: 10 at 1366px; 8 at 768px, 390px, and 320px.
+- Layer counts: 3 nebulae, 1 galaxy, 3 starfields, 1 planet, and 2 comets.
+- No horizontal overflow at the tested viewport widths.
+- Confirmed all decorative children ignore pointer input and clicking a unit card still navigates to the unit menu.
+- No page-level JavaScript exceptions were recorded.
+- Reduced-motion mode was inspected; moving words and comets are hidden and star/nebula/galaxy animations are disabled.
 
-### المحافظة على الوظائف
-- لم تتغير مجموعات بيانات المفردات أو أسئلة الكتاب في هذا التحديث.
-- لم تتغير مفاتيح تخزين نتائج الدراسة والمراجعات والمفضلة؛ لم تُحذف سجلات الطالب.
-- بقيت أوضاع التعلم والاختبار والمراجعة المتباعدة والبحث والسجل والنطق والتثبيت موجودة.
-- بقي اختيار القسم وطريقة التعلّم منفصلًا كما في النسخة السابقة.
-- أزيلت فقط خيارات الثيم وجودة الرسوم من أسفل الواجهة؛ أصبح التصميم موحدًا بدلًا منها.
-
-## نتائج الاختبارات
-
-### اختبار مسارات الاستخدام
-نجح اختبار Chromium في المسارات التالية:
-- فتح التطبيق على الرئيسية.
-- فتح الوحدة، ثم اختيار وضع التعلّم، ثم الأقسام، ثم طريقة التعلّم.
-- فتح بطاقة تعلم، كشف المعنى، وتقييم الكلمة، والتأكد من حفظ سجل المراجعة.
-- فتح تبويبات السجل الثلاثة: نظرة عامة، التقدّم، ونقاط تحتاج مراجعة.
-- إعداد اختبار، بدء الاختبار، إكمال الأسئلة، والوصول إلى النتيجة.
-- تحديث الإحصائيات بعد إنهاء الاختبار.
-- البحث عن كلمة إنجليزية وإظهار نتيجتها.
-- تشغيل/إيقاف الأصوات وتحديث حالة زر السماعة.
-- التأكد من غياب عناصر أشرطة الجودة والثيمات والخلفيات المتحركة من DOM.
-
-لم تُسجل أخطاء JavaScript في مسار الاختبار، ولم تُكتشف معرّفات HTML مكررة.
-
-### اختبار تجاوب الواجهة
-- فُحصت 15 شاشة رئيسية في 4 عروض مختلفة، بإجمالي 60 قياسًا.
-- العروض شملت 320 و360 و390 و430 و768 و1024 و1366 و1920 بكسل.
-- لم يظهر تمرير أفقي.
-- لم تخرج الأزرار المرئية عن حدود الشاشة.
-- لم يظهر تداخل بين مناطق الشاشة الأساسية.
-- بقيت أشرطة الإجراءات السفلية ضمن الشاشة.
-
-### سلامة الملفات
-- تم التحقق من صياغة JavaScript المضمنة باستخدام Node.js.
-- تم التحقق من صياغة `sw.js`.
-- تم التحقق من صحة JSON في `manifest.json`.
-- تم تغيير ذاكرة التخزين المؤقت في Service Worker إلى `vocabjordan-v12` حتى يطلب العميل ملفات الإصدار الجديد.
-
-## ما لم يتم التحقق منه
-- لا أملك قياسًا صوتيًا على مكبرات صوت حقيقية؛ مستوى الصوت في الكود منخفض ومحدود، لكن درجة الراحة السمعية قد تختلف من جهاز لآخر.
-- لم يجرِ تثبيت ميداني على أجهزة Android وiPhone فعلية.
-- لم يكتمل اختبار وضع الطيران/انقطاع الإنترنت على جهاز حقيقي في هذه الجولة.
-- اختبارات الواجهة تمت في Chromium آليًا، ولا تعادل تجربة مستخدم فعلية على كل متصفح وجهاز.
-
-## ملاحظة النشر
-ارفع جميع ملفات الحزمة إلى جذر GitHub Pages بعد حفظ نسخة احتياطية. اسم ذاكرة التخزين المؤقت الجديد هو `vocabjordan-v12`. قد تحتاج النسخة المثبتة القديمة إلى إغلاقها وإعادة فتحها حتى يظهر التحديث.
+## Test limitations
+- External Google Fonts requests were blocked in the isolated browser test, so Chromium used fallback fonts in the previews. This did not cause a page-level JavaScript exception.
+- Physical Android/iOS display, real-world battery consumption, and PWA offline behavior were not tested on actual devices.

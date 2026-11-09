@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vocabjordan-v12';
+const CACHE_NAME = 'vocabjordan-v14';
 const CORE_ASSETS = [
   './', './index.html', './manifest.json', './icon.svg',
   './icon-192.png', './icon-512.png', './apple-touch-icon.png'
