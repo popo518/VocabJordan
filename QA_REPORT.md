@@ -1,34 +1,67 @@
-# VocabJordan Aurora Space v6 — QA Report
+# VocabJordan Aurora v7 — تدقيق أسئلة الوحدة الثالثة وبنك الأسئلة
 
-## Scope
-This release adds a space-themed animated backdrop to Aurora v5. It does not change vocabulary data, question banks, learning modes, spaced-review logic, statistics, favorites, sound controls, or local student-data schemas.
+## الأرقام
+- الأسئلة قبل التعديل: 303 (85 في الوحدة الثالثة).
+- الأسئلة بعد التعديل: 379 (161 في الوحدة الثالثة).
+- الأسئلة الجديدة المضافة: 76.
+- مفردات وعبارات الوحدة الثالثة قبل التعديل: 109.
+- مفردات وعبارات الوحدة الثالثة بعد التعديل: 138.
 
-## Visual layer
-- 3 slow-moving nebula layers (violet, cyan, rose) with elliptical edge masks to avoid visible rectangular layer boundaries.
-- 1 low-contrast galaxy/ellipse layer.
-- 3 starfield layers with different density and drift speed.
-- 1 distant planet with a subdued orbital ring.
-- 2 intermittent shooting-star streaks.
-- Floating vocabulary words follow different horizontal paths while scaling gradually to simulate depth.
-- 10 words on desktop and 8 on tablet/mobile.
+## تصحيحات البنك القديم
+- Unit 2: corrected the considering-alternatives example to the alternative-comparison sentence.
+- Unit 2: reclassified I'm in two minds here. as giving preferences.
+- Unit 2: reclassified 'I'm split between the... and...' as giving preferences.
+- Unit 2: reclassified 'There are pros and cons for each.' as giving preferences.
+- Unit 2: moved There have been lots of --- already. to the Phrasal nouns section.
+- Unit 2: moved A space tourism trip certainly would be a --- to the Phrasal nouns section.
+- Unit 2: moved The --- for developing any ideas is enormous to the Phrasal nouns section.
+- Unit 3: corrected INCITE pattern from "into doing" to "to do".
+- Unit 3: clarified the meaning of branching out.
+- Unit 3: refined the gloss of carry the products to mean stocking/availability for sale.
 
-## Performance and interaction safeguards
-- Decorative layers use `pointer-events: none` and are behind the app content.
-- Motion uses CSS transforms and opacity; no continuous JavaScript animation loop was added.
-- All decorative motion pauses while the document is hidden.
-- With `prefers-reduced-motion: reduce`, the nebula/star/galaxy/planet layers remain static, while comets and moving words are hidden.
-- PWA cache identifier updated to `vocabjordan-v14`; manifest colors updated to match the deep-space background.
+## تصنيف أقسام الوحدة الثالثة
+- 0. Business-related vocabulary (يتضمن إضافات خارج الدوسية): 63 سؤالًا، 33 مفردة/عبارة
+- 1. Phrasal verbs related to Business (يتضمن إضافة خارج الدوسية): 14 سؤالًا، 8 مفردة/عبارة
+- 2. Synonyms for the verb persuade: 17 سؤالًا، 11 مفردة/عبارة
+- 3. SPEAKING | Negotiating: 16 سؤالًا، 18 مفردة/عبارة
+- 4. Words with their synonyms: 9 سؤالًا، 13 مفردة/عبارة
+- 5. Collocations related to purchasing: 8 سؤالًا، 8 مفردة/عبارة
+- 6. Sales and persuasion techniques (إضافي خارج الدوسية): 8 سؤالًا، 5 مفردة/عبارة
+- 7. Additional vocabulary: trust, judgement and cleverness (إضافي خارج الدوسية): 12 سؤالًا، 13 مفردة/عبارة
+- 8. Listening: Inferring meaning and attitude: 3 سؤالًا، 4 مفردة/عبارة
+- 9. Pronunciation: Dropped syllables: 5 سؤالًا، 17 مفردة/عبارة
+- 10. Business finance verbs (Workbook supplement): 6 سؤالًا، 8 مفردة/عبارة
 
-## Chromium checks
-- All 3 inline JavaScript blocks passed `node --check`.
-- Rendered at 1366×900, 768×1024, 390×844, and 320×740.
-- Word counts: 10 at 1366px; 8 at 768px, 390px, and 320px.
-- Layer counts: 3 nebulae, 1 galaxy, 3 starfields, 1 planet, and 2 comets.
-- No horizontal overflow at the tested viewport widths.
-- Confirmed all decorative children ignore pointer input and clicking a unit card still navigates to the unit menu.
-- No page-level JavaScript exceptions were recorded.
-- Reduced-motion mode was inspected; moving words and comets are hidden and star/nebula/galaxy animations are disabled.
+## أنواع المحتوى المضاف
+- أسئلة مفردات الأعمال، المركبات، المصطلحات السياقية، والمطابقة بصياغة تدريبية مختصرة.
+- أسئلة أفعال الإقناع وأنماط التعدية، مع السماح بتداخل الأنماط حيث يثبته دليل المعلم.
+- أسئلة الاستماع والاستدلال على المعنى والنبرة.
+- أسئلة النطق وحذف المقاطع غير المشددة.
+- أسئلة الأفعال المالية في كتاب التمارين.
 
-## Test limitations
-- External Google Fonts requests were blocked in the isolated browser test, so Chromium used fallback fonts in the previews. This did not cause a page-level JavaScript exception.
-- Physical Android/iOS display, real-world battery consumption, and PWA offline behavior were not tested on actual devices.
+## نقاط التدقيق اللغوي
+- تم اعتماد مجموعات أفعال الإقناع وأنماطها بحسب دليل المعلم. توجد مجموعات متداخلة؛ لذلك لم تُعامل على أنها مجموعات متنافية.
+- سؤال النطق الذي نُقل على أنه يتحدث عن حذف الحرف `o` صيغ من جديد ليختبر حذف مقطع غير مشدد؛ لأن الكلمات الثلاث لا تشترك في حذف حرف `o` حرفيًا.
+- أسئلة `outweigh` في قسم المرادفات أُضيفت بإجابة `cancel out / negate` بحسب مفتاح دليل المعلم، مع إبقاء تعريف الكلمة الأصلي في البنك.
+- لم تُحوّل أسئلة الرأي المفتوح مثل صفات النجاح في الأعمال إلى أسئلة ذات جواب وحيد.
+- لم يُضف السؤال المعتمد على صورة الرجل/الزبون المستهدف لعدم توفر الصورة نفسها في المواد النصية المرسلة.
+- لم يُخترع جواب للسؤال الذي يعتمد على نص أو صورة أعلى الصفحة غير المرفقين؛ عُوّضت الأسئلة التي أمكن حسمها من بنك الكلمات بمشتتات من القسم نفسه.
+
+## أسئلة لم تُحوّل إلى اختيار من متعدد
+- سؤال الرأي المفتوح عن صفات النجاح في الأعمال لم يُحوّل إلى سؤال ذي إجابة وحيدة؛ يمكن استخدامه كنشاط كتابة أو نقاش مستقل.
+- السؤال الذي يطلب وصف الرجل والزبون المثالي اعتمادًا على صورة لم يُضف لأن الصورة الأصلية نفسها لم تكن ضمن المواد المستلمة.
+- أي فراغ يعتمد على نص أعلى الصفحة لم يُرسل كاملًا أو على كلمة ملوّنة لم يعد تمييزها ظاهرًا في النسخ النصي لم يُحسم بالتخمين. أُضيفت الفراغات التي أمكن استنتاج جوابها بثقة من الجملة ومفردات القسم.
+
+## تدقيق آلي
+- جميع الأسئلة: إجابة واحدة موجودة ضمن الخيارات.
+- لا توجد خيارات مكررة داخل السؤال.
+- كل سؤال يشير إلى وحدة وقسم موجودين.
+- لا توجد نصوص أسئلة متطابقة داخل الوحدة والقسم نفسيهما.
+- عدد الخيارات في كل سؤال لا يقل عن ثلاثة.
+- رُفع رقم ذاكرة التخزين المؤقت إلى `vocabjordan-v15`.
+- جرى فحص كتل JavaScript الثلاث باستخدام `node --check`، دون أخطاء صياغة.
+- لم تُسجّل معرّفات HTML مكررة.
+- فُحص ملف ZIP بعد إنشائه، واجتاز اختبار سلامة الأرشيف.
+
+## حدود الفحص
+اجتازت البيانات فحوص البنية والاتساق البرمجية. لم يُدّعَ إجراء اختبار ميداني على أجهزة الهاتف الفعلية.
